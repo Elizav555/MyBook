@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using MyBook.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MyBookContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient);
 
 var app = builder.Build();
 
