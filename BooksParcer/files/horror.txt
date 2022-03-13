@@ -1,0 +1,692 @@
+{
+  kind books#volumes,
+  totalItems 200,
+  items [
+    {
+      kind books#volume,
+      id NtvWPAAACAAJ,
+      etag XDg14ZJeD5o,
+      selfLink httpswww.googleapis.combooksv1volumesNtvWPAAACAAJ,
+      volumeInfo {
+        title Classics of Horror,
+        subtitle DraculaFrankenstein2 Books in 1,
+        authors [
+          Bram Stoker,
+          Mary Wollstonecraft Shelley
+        ],
+        publishedDate 1991,
+        industryIdentifiers [
+          {
+            type ISBN_10,
+            identifier 0681411635
+          },
+          {
+            type ISBN_13,
+            identifier 9780681411630
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 654,
+        printType BOOK,
+        categories [
+          Horror
+        ],
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion preview-1.0.0,
+        language en,
+        previewLink httpbooks.google.rubooksid=NtvWPAAACAAJ&dq=subjecthorror&hl=&cd=1&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=NtvWPAAACAAJ&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutClassics_of_Horror.htmlhl=&id=NtvWPAAACAAJ
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=NtvWPAAACAAJ&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id SMV0GwAACAAJ,
+      etag v843v8QrvkE,
+      selfLink httpswww.googleapis.combooksv1volumesSMV0GwAACAAJ,
+      volumeInfo {
+        title Clive Barker Omnibus,
+        subtitle Books of Blood,
+        authors [
+          Clive Barker
+        ],
+        publishedDate 1999,
+        description This volume contains Books of Blood 1-3, comprising 15 stories from Clive Barker.,
+        industryIdentifiers [
+          {
+            type ISBN_10,
+            identifier 0316853674
+          },
+          {
+            type ISBN_13,
+            identifier 9780316853675
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 481,
+        printType BOOK,
+        categories [
+          Horror
+        ],
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion preview-1.0.0,
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=SMV0GwAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=SMV0GwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=SMV0GwAACAAJ&dq=subjecthorror&hl=&cd=2&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=SMV0GwAACAAJ&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutClive_Barker_Omnibus.htmlhl=&id=SMV0GwAACAAJ
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=SMV0GwAACAAJ&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id qMikAwAAQBAJ,
+      etag CO4Yeqdo4zo,
+      selfLink httpswww.googleapis.combooksv1volumesqMikAwAAQBAJ,
+      volumeInfo {
+        title Unnatural Creatures,
+        authors [
+          Neil Gaiman
+        ],
+        publisher A&C Black,
+        publishedDate 2013,
+        description The griffin, the sunbird, manticores, unicorns ­- all manner of glorious creatures never captured in zoos, museums or photographs are packed vividly into this collection of stories. Neil Gaiman has included some of his own childhood favourites alongside stories classic and modern to spark the imagination of readers young and old. All contributors have given their work free to benefit Dave Eggers' literacy charity, 826DC. Also includes a new Neil Gaiman Story.,
+        industryIdentifiers [
+          {
+            type ISBN_13,
+            identifier 9781408845448
+          },
+          {
+            type ISBN_10,
+            identifier 140884544X
+          }
+        ],
+        readingModes {
+          text false,
+          image true
+        },
+        pageCount 480,
+        printType BOOK,
+        categories [
+          Animals, Mythical
+        ],
+        averageRating 4,
+        ratingsCount 14,
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 0.126.0.0.preview.1,
+        panelizationSummary {
+          containsEpubBubbles false,
+          containsImageBubbles false
+        },
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=qMikAwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=qMikAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=qMikAwAAQBAJ&printsec=frontcover&dq=subjecthorror&hl=&cd=3&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=qMikAwAAQBAJ&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutUnnatural_Creatures.htmlhl=&id=qMikAwAAQBAJ
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability PARTIAL,
+        embeddable true,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=qMikAwAAQBAJ&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus SAMPLE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id WdLDebMG56kC,
+      etag 5Zh1qdW7HY,
+      selfLink httpswww.googleapis.combooksv1volumesWdLDebMG56kC,
+      volumeInfo {
+        title Hit and Run,
+        authors [
+          R. L. Stine
+        ],
+        publisher Scholastic Paperbacks,
+        publishedDate 1992,
+        description Out on the road helping Eddie practice for his driving test, Scott, Winks, and Cassie are horrified when Eddie accidentally hits and kills a pedestrian, and the four friends are soon keeping a terrible secret. Original.,
+        industryIdentifiers [
+          {
+            type ISBN_10,
+            identifier 0590453858
+          },
+          {
+            type ISBN_13,
+            identifier 9780590453851
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 164,
+        printType BOOK,
+        categories [
+          Juvenile Fiction
+        ],
+        averageRating 3.5,
+        ratingsCount 5,
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 0.11.2.0.preview.0,
+        panelizationSummary {
+          containsEpubBubbles false,
+          containsImageBubbles false
+        },
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=WdLDebMG56kC&printsec=frontcover&img=1&zoom=5&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=WdLDebMG56kC&printsec=frontcover&img=1&zoom=1&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=WdLDebMG56kC&dq=subjecthorror&hl=&cd=4&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=WdLDebMG56kC&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutHit_and_Run.htmlhl=&id=WdLDebMG56kC
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=WdLDebMG56kC&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id Z7uwAAAAIAAJ,
+      etag cEJtZZRd1U,
+      selfLink httpswww.googleapis.combooksv1volumesZ7uwAAAAIAAJ,
+      volumeInfo {
+        title Christine,
+        authors [
+          Stephen King
+        ],
+        publisher Viking Adult,
+        publishedDate 1983,
+        description A scarlet-and-white, 1958 Plymouth fury--salvaged over every rational dissent and objection, from decay--possesses its new owner and brings hellish terror to him, his friends, and his classmates,
+        industryIdentifiers [
+          {
+            type OTHER,
+            identifier UCSC32106009833416
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 526,
+        printType BOOK,
+        categories [
+          Fiction
+        ],
+        averageRating 3.5,
+        ratingsCount 51,
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 1.2.2.0.preview.0,
+        panelizationSummary {
+          containsEpubBubbles false,
+          containsImageBubbles false
+        },
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=Z7uwAAAAIAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=Z7uwAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=Z7uwAAAAIAAJ&dq=subjecthorror&hl=&cd=5&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=Z7uwAAAAIAAJ&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutChristine.htmlhl=&id=Z7uwAAAAIAAJ
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=Z7uwAAAAIAAJ&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id _QOZngEACAAJ,
+      etag 5PKvtTpEzVw,
+      selfLink httpswww.googleapis.combooksv1volumes_QOZngEACAAJ,
+      volumeInfo {
+        title The Spook's Stories,
+        subtitle Witches,
+        authors [
+          Joseph Delaney
+        ],
+        publisher Red Fox,
+        publishedDate 2014-01-02,
+        description This is a fabulous collection of stories based on many of the witches from Joseph Delaney's Spooks books. Ever wondered why the Spook doesn't trust girls who wear pointy shoes Or why Grimalkin became the Assassin for the Malkin Witch clan Find out all this and more in this a dark and eerie collection. You don't have to know the Spook's books to enjoy the stories. They're all standalone and absolutely haunting. A perfect introduction to the world of The Spook's Apprentice. But for any fans of the series out there, this collection will be a must-have.,
+        industryIdentifiers [
+          {
+            type ISBN_10,
+            identifier 1782952519
+          },
+          {
+            type ISBN_13,
+            identifier 9781782952510
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 272,
+        printType BOOK,
+        categories [
+          Horror tales, English
+        ],
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion preview-1.0.0,
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=_QOZngEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=_QOZngEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=_QOZngEACAAJ&dq=subjecthorror&hl=&cd=6&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=_QOZngEACAAJ&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutThe_Spook_s_Stories.htmlhl=&id=_QOZngEACAAJ
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=_QOZngEACAAJ&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id 1YP-hfna5ewC,
+      etag RWdqtP9UqwU,
+      selfLink httpswww.googleapis.combooksv1volumes1YP-hfna5ewC,
+      volumeInfo {
+        title Thinner,
+        authors [
+          Stephen King,
+          Richard Bachman
+        ],
+        publisher Berkley,
+        publishedDate 1985,
+        description After an old gypsy woman is killed by his car, lawyer Billy Halleck is stricken with a flesh-wasting malady and must undertake a nightmarish journey to confront the forces of death,
+        industryIdentifiers [
+          {
+            type ISBN_10,
+            identifier 0451161343
+          },
+          {
+            type ISBN_13,
+            identifier 9780451161345
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 318,
+        printType BOOK,
+        categories [
+          Fiction
+        ],
+        averageRating 5,
+        ratingsCount 1,
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 0.2.1.0.preview.0,
+        panelizationSummary {
+          containsEpubBubbles false,
+          containsImageBubbles false
+        },
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=1YP-hfna5ewC&printsec=frontcover&img=1&zoom=5&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=1YP-hfna5ewC&printsec=frontcover&img=1&zoom=1&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=1YP-hfna5ewC&dq=subjecthorror&hl=&cd=7&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=1YP-hfna5ewC&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutThinner.htmlhl=&id=1YP-hfna5ewC
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=1YP-hfna5ewC&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id EL_R7Tiig74C,
+      etag E0oF0tgiYHw,
+      selfLink httpswww.googleapis.combooksv1volumesEL_R7Tiig74C,
+      volumeInfo {
+        title Halloween Party,
+        authors [
+          R.L. Stine
+        ],
+        publisher Simon and Schuster,
+        publishedDate 1990-09-01,
+        description An invitation to a Halloween party hosted by the beautiful but mysterious Justine Cameron spells danger, terror, and murder for the guests.,
+        industryIdentifiers [
+          {
+            type ISBN_13,
+            identifier 9780671702434
+          },
+          {
+            type ISBN_10,
+            identifier 0671702432
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 147,
+        printType BOOK,
+        categories [
+          Juvenile Fiction
+        ],
+        averageRating 3.5,
+        ratingsCount 7,
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 0.1.0.0.preview.0,
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=EL_R7Tiig74C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=EL_R7Tiig74C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=EL_R7Tiig74C&printsec=frontcover&dq=subjecthorror&hl=&cd=8&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=EL_R7Tiig74C&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutHalloween_Party.htmlhl=&id=EL_R7Tiig74C
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability PARTIAL,
+        embeddable true,
+        publicDomain false,
+        textToSpeechPermission ALLOWED_FOR_ACCESSIBILITY,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=EL_R7Tiig74C&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus SAMPLE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id vVZ8x7QglF4C,
+      etag 3MfapFfUsnc,
+      selfLink httpswww.googleapis.combooksv1volumesvVZ8x7QglF4C,
+      volumeInfo {
+        title Goodnight Kiss,
+        authors [
+          R. L. Stine
+        ],
+        publisher Simon and Schuster,
+        publishedDate 1992,
+        description A summer at the beach turns into a nightmare when Matt realizes that his girlfriend, April, and his best friend, Todd, have turned into vampires. Original.,
+        industryIdentifiers [
+          {
+            type ISBN_13,
+            identifier 9780671738235
+          },
+          {
+            type ISBN_10,
+            identifier 0671738232
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 216,
+        printType BOOK,
+        categories [
+          Juvenile Fiction
+        ],
+        averageRating 3.5,
+        ratingsCount 5,
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 0.2.0.0.preview.0,
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=vVZ8x7QglF4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=vVZ8x7QglF4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=vVZ8x7QglF4C&printsec=frontcover&dq=subjecthorror&hl=&cd=9&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=vVZ8x7QglF4C&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutGoodnight_Kiss.htmlhl=&id=vVZ8x7QglF4C
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability PARTIAL,
+        embeddable true,
+        publicDomain false,
+        textToSpeechPermission ALLOWED_FOR_ACCESSIBILITY,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=vVZ8x7QglF4C&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus SAMPLE,
+        quoteSharingAllowed false
+      }
+    },
+    {
+      kind books#volume,
+      id cANUAAAAMAAJ,
+      etag CBDANsx2dlQ,
+      selfLink httpswww.googleapis.combooksv1volumescANUAAAAMAAJ,
+      volumeInfo {
+        title Gregor Schneider,
+        subtitle Die Familie Schneider [published on the Occasion of the Exhibition Held at 14 and 16 Walden Street, London E1 2AN, 2 October - 23 December 2004],
+        authors [
+          Gregor Schneider,
+          Andrew O'Hagan,
+          Colm Toibin,
+          Colm Tóibín
+        ],
+        publisher Steidl,
+        publishedDate 2006,
+        description Talks about artist Gregor Schneider's extension of the original work, a document and exploration of Schneider's obsession with repression, reproduction, and repetition in images and text. Internationally renowned for his unnerving presentation of normality, Schneider's medium is the room - kitchen, living room, bedroom, bathroom, and cellar.,
+        industryIdentifiers [
+          {
+            type OTHER,
+            identifier UOM39015064361655
+          }
+        ],
+        readingModes {
+          text false,
+          image false
+        },
+        pageCount 167,
+        printType BOOK,
+        categories [
+          Photography
+        ],
+        maturityRating NOT_MATURE,
+        allowAnonLogging false,
+        contentVersion 0.2.1.0.preview.0,
+        panelizationSummary {
+          containsEpubBubbles false,
+          containsImageBubbles false
+        },
+        imageLinks {
+          smallThumbnail httpbooks.google.combookscontentid=cANUAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api,
+          thumbnail httpbooks.google.combookscontentid=cANUAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api
+        },
+        language en,
+        previewLink httpbooks.google.rubooksid=cANUAAAAMAAJ&dq=subjecthorror&hl=&cd=10&source=gbs_api,
+        infoLink httpbooks.google.rubooksid=cANUAAAAMAAJ&dq=subjecthorror&hl=&source=gbs_api,
+        canonicalVolumeLink httpsbooks.google.combooksaboutGregor_Schneider.htmlhl=&id=cANUAAAAMAAJ
+      },
+      saleInfo {
+        country RU,
+        saleability NOT_FOR_SALE,
+        isEbook false
+      },
+      accessInfo {
+        country RU,
+        viewability NO_PAGES,
+        embeddable false,
+        publicDomain false,
+        textToSpeechPermission ALLOWED,
+        epub {
+          isAvailable false
+        },
+        pdf {
+          isAvailable false
+        },
+        webReaderLink httpplay.google.combooksreaderid=cANUAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api,
+        accessViewStatus NONE,
+        quoteSharingAllowed false
+      }
+    }
+  ]
+}

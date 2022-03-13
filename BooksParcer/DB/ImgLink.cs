@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace BooksParcer
+{
+    public partial class ImgLink
+    {
+        public int ImgLinkId { get; set; }
+        public int? BookId { get; set; }
+        public int? AuthorId { get; set; }
+        public string? Resolution { get; set; }
+        public string Url { get; set; } = null!;
+
+        public virtual Author? Author { get; set; }
+        public virtual Book? Book { get; set; }
+    }
+}
