@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBook.Entities;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBook.Migrations
 {
     [DbContext(typeof(MyBookContext))]
-    partial class MyBookContextModelSnapshot : ModelSnapshot
+    [Migration("20220313141724_SomeChangesx2")]
+    partial class SomeChangesx2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,8 +82,7 @@ namespace MyBook.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
                     NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
 
-                    b.Property<int?>("DescriptionId")
-                        .IsRequired()
+                    b.Property<int>("DescriptionId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsForAdult")
@@ -101,8 +102,7 @@ namespace MyBook.Migrations
                     b.Property<DateOnly?>("PublishedDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("RatingId")
-                        .IsRequired()
+                    b.Property<int>("RatingId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

@@ -17,9 +17,10 @@ namespace BooksParcer
         public string Name { get; set; } = null!;
         public int RatingId { get; set; }
         public string Language { get; set; } = null!;
-        public DateOnly PublishedDate { get; set; }
+        public DateOnly? PublishedDate { get; set; }
         public int DescriptionId { get; set; }
         public bool IsForAdult { get; set; }
+        public bool IsPaid { get; set; }
 
         public virtual BookDesc Description { get; set; } = null!;
         public virtual Rating Rating { get; set; } = null!;

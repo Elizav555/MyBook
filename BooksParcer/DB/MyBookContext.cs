@@ -53,10 +53,6 @@ namespace BooksParcer
                 entity.Property(e => e.AuthorId)
                     .HasColumnName("author_id")
                     .HasIdentityOptions(null, null, 0L);
-
-                entity.Property(e => e.FirstName).HasMaxLength(50);
-
-                entity.Property(e => e.LastName).HasMaxLength(50);
             });
 
             modelBuilder.Entity<AuthorBook>(entity =>

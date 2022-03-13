@@ -24,25 +24,26 @@ namespace BooksParcer
                 }
                 foreach (var item in root.items)
                 {
-                    var imgLinkSm = new ImgLinkJson { Resolution = "smallThumbnail", Url = item.volumeInfo.imageLinks.smallThumbnail };
-                    var imgLink = new ImgLinkJson { Resolution = "thumbnail", Url = item.volumeInfo.imageLinks.thumbnail };
-                    var epub = new DownloadLinkJson { Format = "epub", Url = item.accessInfo.epub.acsTokenLink };
-                    var pdf = new DownloadLinkJson { Format = "pdf", Url = item.accessInfo.pdf.acsTokenLink };
+                    var imgLinkSm = new ImgLink { Resolution = "smallThumbnail", Url = item.volumeInfo.imageLinks != null && item.volumeInfo.imageLinks.smallThumbnail != null ? item.volumeInfo.imageLinks.smallThumbnail : "" };
+                    var imgLink = new ImgLink { Resolution = "thumbnail", Url = item.volumeInfo.imageLinks != null && item.volumeInfo.imageLinks.thumbnail != null ? item.volumeInfo.imageLinks.thumbnail : "" };
+                    var epub = new DownloadLink { Format = "epub", Url = item.accessInfo.epub.acsTokenLink != null ? item.accessInfo.epub.acsTokenLink : "" };
+                    var pdf = new DownloadLink { Format = "pdf", Url = item.accessInfo.pdf.acsTokenLink != null ? item.accessInfo.pdf.acsTokenLink : "" };
+                    DateOnly date;
+                    DateOnly.TryParse(item.volumeInfo.publishedDate, out date);
                     var book = new BookJson
                     {
                         Name = item.volumeInfo.title,
-                        Rating = item.volumeInfo.averageRating,
                         Language = item.volumeInfo.language,
-                        PublishedDate = item.volumeInfo.publishedDate != null ? DateOnly.Parse(item.volumeInfo.publishedDate) : null,
+                        PublishedDate = date,
                         IsForAdult = item.volumeInfo.maturityRating == "MATURE",
                         IsPaid = !item.volumeInfo.allowAnonLogging,
                         Description = item.volumeInfo.description,
                         Price = item.saleInfo.listPrice?.amount + " " + item.saleInfo.listPrice?.currencyCode,
                         PagesCount = item.volumeInfo.pageCount,
-                        Genres = item.volumeInfo.categories?.Select(catName => new BookGenreJson { Name = catName }).ToList(),
-                        Authors = item.volumeInfo.authors?.Select(authName => new AuthorBookJson { Name = authName }).ToList(),
-                        Images = new List<ImgLinkJson> { imgLink, imgLinkSm },
-                        DownloadLinks = new List<DownloadLinkJson> { epub, pdf }
+                        Genres = item.volumeInfo.categories?.Select(catName => new Genre { Name = catName != null ? catName : "" }).ToList(),
+                        Authors = item.volumeInfo.authors?.Select(authName => new Author { Name = authName != null ? authName : "" }).ToList(),
+                        Images = new List<ImgLink> { imgLink, imgLinkSm },
+                        DownloadLinks = new List<DownloadLink> { epub, pdf }
                     };
                     result.Add(book);
                 }

@@ -54,8 +54,8 @@ namespace BooksParcer
         //public string previewLink { get; set; }
         //public string infoLink { get; set; }
         //public string canonicalVolumeLink { get; set; }
-        public int? averageRating { get; set; }
-        public int? ratingsCount { get; set; }
+        //public int? averageRating { get; set; }
+        //public int? ratingsCount { get; set; }
     }
 
     public class ListPrice
