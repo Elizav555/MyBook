@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\NewProducts\Components\StarsRateResult\Default.cshtml" />
+  </ItemGroup>
+
 </Project>
