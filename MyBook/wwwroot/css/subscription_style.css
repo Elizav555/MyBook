@@ -1,0 +1,341 @@
+﻿*, *:after, *:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: .5s ease-in-out;
+}
+
+body, html{
+    min-height: 100%;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+    font-size: 14px;
+    line-height: 24px;
+    --antd-wave-shadow-color: unset;
+}
+
+body{
+    margin: 0;
+    min-width: 320px;
+    overflow: auto;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+    font-size: 14px;
+    display: block;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    max-width: 100%;
+}
+.headings{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#subscription{
+    border-radius: 12px;
+    box-shadow: rgb(232 232 232) 0px 0px 0px 1px;
+    width:70%;
+    text-align: center;
+    max-width: 100%;
+}
+
+.col-3{
+    overflow: hidden;
+    border-bottom: 5px;
+    border-bottom: 1px solid rgb(232 232 232);
+    border-right: 1px solid rgb(232 232 232);
+    padding: 20px;
+}
+
+.col-9{
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 6%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(232 232 232);
+    text-align: center;
+    vertical-align: middle
+}
+
+.input-group{
+    overflow: hidden;
+    padding-top: 25px;
+   
+    color:#FFC72C;
+}
+
+.form-control{
+    overflow: hidden;
+}
+
+.btn-outline-primary{
+    color: black;
+    height:38px;
+    overflow: hidden;
+}
+
+#btn-subscr{
+    width: 100%;
+    background-color: #FFC72C;
+    overflow: hidden;
+}
+
+#selecttheme{
+    height: 40px;
+    border-radius: 5px;
+    border-color: rgb(232 232 232);
+}
+
+#sub-pay{
+    margin:5% 25% 0 20%;
+    width:65%;
+    background-color: white;
+    padding: 20px 10px 10px 10px;
+    border-radius: 12px;
+}
+
+.btn-lg{
+    margin-right: 4%;
+    margin-left: 2%;
+    margin-top: 4%;
+    padding: 10px;
+    width: 220px;
+    border-radius: 15px;
+    color:black;
+    background-color: white;
+    border-color:  #FFC72C;
+    border-width: thick;
+}
+
+
+.btn-lg:hover{
+    background-color: white;
+    border-color: white;
+    color:black;
+}
+
+
+.price{
+    font-weight: bold;
+}
+
+#ms img{
+    display: block;
+    padding-left: 0;
+    margin-left: 0;
+    width: 200px;
+    height: 60px;
+}
+#pp img{
+    margin-left: 30px;
+    display: block;
+    padding-left: 0;
+    width: 120px;
+    height: 60px;
+}
+
+.r-only{
+    font-size: 17px;
+    color:rosybrown;
+}
+
+
+#pay-up{
+    margin:5% 25% 0 20%;
+    width:65%;
+    background-color: white;
+    padding: 20px 10px 10px 10px;
+    border-radius: 12px;
+}
+
+#sum-up{
+    margin:5% 25% 0 20%;
+    width:65%;
+    background-color: white;
+    padding: 20px 10px 10px 10px;
+    border-radius: 12px;
+}
+.sub-type-price{
+    margin-top: 100px;
+    margin-left: 80%;
+}
+
+#sign-up{
+    margin:2% 30% 0 20%;
+    width:65%;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.register-form{
+    margin:1% 25% 0 25%;
+}
+.sign-in-text{
+    margin:5% 25% 0 34%;
+    width:35%;
+    text-align: center;
+}
+.btn-block{
+    margin: 0;
+    padding: 0;
+}
+.sign-in-danger{
+    margin:1% 25% 0 33%;
+    width:35%;
+    text-align: center;
+    font-size: 10px;
+    color:rosybrown;
+}
+.ant-btn-block{
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#form2Example28{
+    border-radius: 12px;
+}
+
+#form2Example18{
+    border-radius: 12px;
+}
+
+#order-sub{
+    max-width: 1180px;
+    width: 40%;
+    margin: 0px auto;
+    padding: 0px 16px;
+    text-align: center;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    
+}
+#postcard{
+    margin:2% 30% 0 20%;
+    background-color: white;
+    width: 65%;
+}
+#postcard img{
+    display: block;
+    padding-left: 0;
+    margin-left: 0;
+    width: 90%;
+    height: 80%;
+}
+.textarea-postcard {
+    max-width: 100%;
+    height: auto;
+    min-height: 40px;
+    vertical-align: bottom;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    -webkit-font-feature-settings: "tnum","tnum";
+    -moz-font-feature-settings: "tnum","tnum";
+    font-feature-settings: "tnum","tnum";
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    padding: 8px 11px;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+    line-height: 1.5715;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    text-overflow: ellipsis;
+}
+
+.textarea-postcard {
+    resize: vertical;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-bottom: 1%;
+}
+
+.postcard-danger{
+    color: rgb(140, 140, 140);
+     text-align: inherit;
+     font-size: 14px;
+     font-weight: 400;
+     line-height: 24px;
+     padding-bottom: 2%;
+}
+
+#subscription-gift{
+    border-radius: 12px;
+    box-shadow: rgb(232 232 232) 0px 0px 0px 1px;
+    width:65%;
+    text-align: center;
+    margin:2% 30% 0 20%;
+    background-color: white;
+}
+
+
+.wrapper {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 100%;
+}
+
+.wrapper > * {
+    line-height: 1;
+    margin: 0 0 0 0;
+}
+
+#sign-in-danger{
+    margin:1% 25% 0 33%;
+    width:35%;
+    text-align: center;
+    font-size: 10px;
+    color:rosybrown;
+}
+
+#sign-up{
+    margin:2% 30% 0 20%;
+    width:65%;
+    border-radius: 12px;
+    text-align: center;
+}
+
+@media (max-width: 980px) {
+    .container-fluid {
+        margin: 2% 0 0 0!important;
+        width: 100%!important;
+    }
+}
+@media (max-width: 980px) {
+    h3 {
+        font-size: small;
+    }
+}
+@media (max-width: 980px) {
+    #btn-subscr {
+        font-size: 9px;
+    }
+}
