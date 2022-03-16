@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
-        public int RatingId { get; set; }
+        public int? RatingId { get; set; }
         public string Language { get; set; } = "en";
-        public DateOnly PublishedDate { get; set; }
-        public int DescriptionId { get; set; }
+        public DateOnly? PublishedDate { get; set; }
+        public int? DescriptionId { get; set; }
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
         public virtual ICollection<BookGenre> Genres { get; set; }
