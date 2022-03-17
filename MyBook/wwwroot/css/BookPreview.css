@@ -1,0 +1,45 @@
+﻿.postcard {
+    display: flex;
+
+    max-width: 1080px;
+    
+    min-height: auto;
+    max-height: 250px;
+
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    color: #ffffff;
+    
+    box-sizing: content-box;
+}
+
+.postcard_text {
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.author{
+    font-weight: 400;
+    font-size: 20px;
+    color: rgb(179, 77, 0);
+}
+
+
+.postcard_img{
+    max-height: 240px;
+    border-radius: 10px;
+}
+
+.BookPreviewTitle{
+    display: flex;
+    align-items: center;
+}
+

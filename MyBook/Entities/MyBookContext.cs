@@ -37,11 +37,7 @@ namespace MyBook.Entities
             {
                 entity.ToTable("author");
 
-                entity.Property(e => e.Id).HasColumnName("author_id").HasIdentityOptions(0, 1, 0, null, null, null); ;
-
-                entity.Property(e => e.FirstName).HasMaxLength(50);
-
-                entity.Property(e => e.LastName).HasMaxLength(50);
+                entity.Property(e => e.Id).HasColumnName("author_id").HasIdentityOptions(0, 1, 0, null, null, null);
             });
 
             modelBuilder.Entity<User>(entity =>

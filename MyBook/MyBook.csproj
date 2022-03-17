@@ -19,4 +19,10 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\NewProducts\Components\StarsRateResult\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Components\BookPreviewComponent\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Components\BookPreview\Default.cshtml" />
+  </ItemGroup>
+
 </Project>

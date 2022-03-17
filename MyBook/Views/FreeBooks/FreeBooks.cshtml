@@ -1,0 +1,17 @@
+﻿@using MyBook.Entities
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Free Books</title>
+    <link rel="stylesheet" href="~/css/BookPreview.css">
+</head>
+<body>
+<div>
+    <div class="container">
+        <h1 class="h1">Все бесплатные книги</h1>
+        <h5 class="h5">110 000 книг</h5>
+        @await Component.InvokeAsync("BookPreview",new Book())
+    </div>
+</div>
+</body>
+</html>

@@ -36,15 +36,9 @@ namespace MyBook.Migrations
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -86,10 +80,14 @@ namespace MyBook.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
                     NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
 
-                    b.Property<int>("DescriptionId")
+                    b.Property<int?>("DescriptionId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsForAdult")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsPaid")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Language")
@@ -100,10 +98,11 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("PublishedDate")
+                    b.Property<DateOnly?>("PublishedDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("RatingId")
+                    b.Property<int?>("RatingId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -163,6 +162,9 @@ namespace MyBook.Migrations
 
                     b.Property<int>("PagesCount")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Price")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
