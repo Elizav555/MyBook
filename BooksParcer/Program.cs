@@ -1,4 +1,5 @@
-﻿using BooksParcer;
+﻿using System.Linq;
+using BooksParcer;
 using System.Text.Json;
 
 var booksJSON = Parcer.ParceJSONBooks();
@@ -19,17 +20,27 @@ using (var db = new MyBookContext())
         Password = "PASSWORD",
         Salt = "SALT"
     };
-    userInfo.User = user;
-    db.AddRange(userInfo, user);
+    db.UserInfos.Add(userInfo);
+    db.Users.Add(user);
     db.SaveChanges();
 }
 foreach (var bookJSON in booksJSON)
 {
     using (var db = new MyBookContext())
     {
-        var rating = new Rating { Points = rnd.NextDouble() * rnd.Next(5), UserId = 1 };
+        var rating = new Rating { Points = rnd.NextDouble() * rnd.Next(5), User = db.Users.ToList().First(user => user.UserId == 1) };
         var authorBooks = new List<AuthorBook>();
         var bookGenres = new List<BookGenre>();
+        var bookImages = new List<ImgLink>();
+        bookImages = bookJSON.Images.ToList();
+        var desc = new BookDesc
+        {
+            Description = bookJSON.Description,
+            PagesCount = bookJSON.PagesCount,
+            Price = bookJSON.Price,
+            DownloadLinks =  bookJSON.DownloadLinks
+        };
+        
         var book = new Book
         {
             Name = bookJSON.Name,
@@ -37,41 +48,45 @@ foreach (var bookJSON in booksJSON)
             PublishedDate = bookJSON.PublishedDate,
             IsForAdult = bookJSON.IsForAdult,
             IsPaid = bookJSON.IsPaid,
-            ImgLinks = bookJSON.Images,
+            ImgLinks = bookImages,
+            Description = desc,
+            Ratings = new List<Rating>(){rating}
         };
-        rating.Book = book;
-        var desc = new BookDesc
-        {
-            Description = bookJSON.Description,
-            PagesCount = bookJSON.PagesCount,
-            DownloadLinks = bookJSON.DownloadLinks,
-            Book = book,
-            Price = bookJSON.Price,
-        };
-        book.Rating = rating;
-        book.Description = desc;
         if (bookJSON.Authors != null)
         {
             foreach (var author in bookJSON.Authors)
             {
-                authorBooks.Add(new AuthorBook { Author = author, Book = book });
+                var dbAuthor = db.Authors.FirstOrDefault(a => a.Name == author.Name);
+                if (dbAuthor == null)
+                {
+                    db.Authors.Add(author);
+                    authorBooks.Add(new AuthorBook { Author = author, Book = book });
+                }
+                else
+                {
+                    authorBooks.Add(new AuthorBook { Author = dbAuthor, Book = book });
+                }
             }
             book.AuthorBooks = authorBooks;
-            db.AddRange(bookJSON.Authors);
-            db.AddRange(authorBooks);
         }
+        
         if (bookJSON.Genres != null)
         {
             foreach (var genre in bookJSON.Genres)
             {
-                bookGenres.Add(new BookGenre { Genre = genre, Book = book });
+                var dbGenre = db.Genres.FirstOrDefault(a => a.Name == genre.Name);
+                if (dbGenre == null)
+                {
+                    db.Genres.Add(genre);
+                    bookGenres.Add(new BookGenre{ Genre = genre, Book = book });
+                }
+                else
+                {
+                    bookGenres.Add(new BookGenre{ Genre = dbGenre, Book = book });
+                }
             }
-            book.BookGenres = bookGenres;
-            db.AddRange(bookJSON.Genres);
-            db.AddRange(bookGenres);
+            db.BookGenres.AddRange(bookGenres);
         }
-
-        db.AddRange(desc, book);
         db.SaveChanges();
     }
 }
