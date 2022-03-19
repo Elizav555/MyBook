@@ -1,15 +1,22 @@
 ﻿namespace MyBook.Entities
 {
-    public class Author
+    public partial class Author
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; } = "";
-        public string LastName { get; set; } = "";
+        public Author()
+        {
+            AuthorBooks = new HashSet<AuthorBook>();
+            FavAuthors = new HashSet<FavAuthor>();
+            ImgLinks = new HashSet<ImgLink>();
+            SubscrTypes = new HashSet<SubscrType>();
+        }
+
+        public int AuthorId { get; set; }
+        public string Name { get; set; } = null!;
         public DateOnly BirthDate { get; set; }
 
-        public virtual ICollection<AuthorBook> Books { get; set; }
-        public virtual ICollection<FavAuthor> Fans { get; set; }
-        public virtual ICollection<ImgLink> Images { get; set; }
-        public virtual ICollection<SubscriptionType> Followers { get; set; }
+        public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
+        public virtual ICollection<FavAuthor> FavAuthors { get; set; }
+        public virtual ICollection<ImgLink> ImgLinks { get; set; }
+        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
     }
 }

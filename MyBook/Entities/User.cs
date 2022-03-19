@@ -1,19 +1,26 @@
 ﻿namespace MyBook.Entities
 {
-    public class User
+    public partial class User
     {
-        public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Salt { get; set; }
-        public bool IsAdmin { get; set; } = false;
-        public int InfoId { get; set; }
+        public User()
+        {
+            FavAuthors = new HashSet<FavAuthor>();
+            FavGenres = new HashSet<FavGenre>();
+            Histories = new HashSet<History>();
+            Ratings = new HashSet<Rating>();
+            UserSubscrs = new HashSet<UserSubscr>();
+        }
 
-        public virtual ICollection<UserSubscriptions>? Subscriptions { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
-        public virtual ICollection<History> History { get; set; }
+        public int UserId { get; set; }
+        public string Login { get; set; } = null!;
+        public string Password { get; set; } = null!;
+        public string Salt { get; set; } = null!;
+        public bool IsAdmin { get; set; }
+        public virtual UserInfo Info { get; set; } = null!;
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
-        public virtual ICollection<Rating> Marks { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<UserSubscr> UserSubscrs { get; set; }
     }
 }

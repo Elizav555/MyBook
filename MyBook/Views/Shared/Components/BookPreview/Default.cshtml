@@ -10,7 +10,10 @@
             </div>
             @(await Component.InvokeAsync("StarsRateResult",5))
         </h3>
-        <p class="author">@Model.Authors</p>
+        <p class="author">@foreach (var authorBooks in Model.AuthorBooks)
+                          {
+                              @authorBooks.Author.Name
+                          }</p>
         <p class="postcard_preview-txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda culpa dolorem eum explicabo harum hic itaque magnam magni molestias...</p>
     </div>
 </article>
