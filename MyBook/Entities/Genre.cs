@@ -1,12 +1,19 @@
 ﻿namespace MyBook.Entities
 {
-    public class Genre
+    public partial class Genre
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = "";
+        public Genre()
+        {
+            BookGenres = new HashSet<BookGenre>();
+            FavGenres = new HashSet<FavGenre>();
+            SubscrTypes = new HashSet<SubscrType>();
+        }
 
-        public virtual ICollection<BookGenre> Books { get; set; }
-        public virtual ICollection<FavGenre> Fans { get; set; }
-        public virtual ICollection<SubscriptionType> Followers { get; set; }
+        public int GenreId { get; set; }
+        public string Name { get; set; } = null!;
+
+        public virtual ICollection<BookGenre> BookGenres { get; set; }
+        public virtual ICollection<FavGenre> FavGenres { get; set; }
+        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
     }
 }

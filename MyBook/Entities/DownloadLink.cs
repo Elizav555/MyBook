@@ -1,12 +1,11 @@
 ﻿namespace MyBook.Entities
 {
-    public class DownloadLink
+    public partial class DownloadLink
     {
-        public int Id { get; set; }
-        public int BookDescId { get; set; }
-        public string Format { get; set; }
-        public string Url { get; set; }
+        public int DownloadLinkId { get; set; }
+        public string Format { get; set; } = null!;
+        public string Url { get; set; } = null!;
 
-        public virtual BookDescription BookDesc { get; set; }
+        public virtual BookDesc BookDesc { get; set; } = null!;
     }
 }

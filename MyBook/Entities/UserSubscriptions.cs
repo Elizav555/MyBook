@@ -1,12 +1,10 @@
 ﻿namespace MyBook.Entities
 {
-    public class UserSubscriptions
+    public partial class UserSubscr
     {
-        public int Id { get; set; }
-        public int SubscriptionId { get; set; }
-        public int UserId { get; set; }
+        public int UserSubscrId { get; set; }
 
-        public virtual User User { get; set; }
-        public virtual Subscription Subscription { get; set; }
+        public virtual Subscription Subscription { get; set; } = null!;
+        public virtual User User { get; set; } = null!;
     }
 }

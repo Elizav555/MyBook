@@ -1,21 +1,28 @@
 ﻿namespace MyBook.Entities
 {
-    public class Book
+    public partial class Book
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = "";
-        public int? RatingId { get; set; }
-        public string Language { get; set; } = "en";
+        public Book()
+        {
+            AuthorBooks = new HashSet<AuthorBook>();
+            BookGenres = new HashSet<BookGenre>();
+            Histories = new HashSet<History>();
+            ImgLinks = new HashSet<ImgLink>();
+        }
+
+        public int BookId { get; set; }
+        public string Name { get; set; } = null!;
+        public string Language { get; set; } = null!;
         public DateOnly? PublishedDate { get; set; }
-        public int? DescriptionId { get; set; }
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
-        public virtual ICollection<BookGenre> Genres { get; set; }
-        public virtual Rating Rating { get; set; }
-        public virtual BookDescription Description { get; set; }
-        public virtual ICollection<AuthorBook> Authors { get; set; }
-        public virtual ICollection<History> Readers { get; set; }
-        public virtual ICollection<ImgLink> Images { get; set; }
 
+        public int DescriptionId { get; set; }
+        public virtual BookDesc Description { get; set; } = null!;
+        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
+        public virtual ICollection<BookGenre> BookGenres { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
+        public virtual ICollection<ImgLink> ImgLinks { get; set; }
     }
 }
