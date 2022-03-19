@@ -67,7 +67,7 @@ namespace Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IQueryable<TEntity>> GetWithInclude(
+        public IQueryable<TEntity> GetWithInclude(
             params Expression<Func<TEntity, object>>[] includeProperties)
         {
             return Include(includeProperties);
@@ -77,17 +77,17 @@ namespace Repositories
             params Expression<Func<TEntity, object>>[] includeProperties)
         {
             var query = Include(includeProperties);
-            return query.Where(predicate).ToList();
+            return query.AsEnumerable().Where(predicate).ToList();
         }
-
+        
         private IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
         {
-            IQueryable<TEntity> query = _dbSet.AsNoTracking();
+            var query = _dbSet.AsNoTracking();
             return includeProperties
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
-
-        public TResult GetFirstOrDefault<TResult>(
+        
+        public IQueryable<TResult> GetWithMultiIncluding<TResult>(
             Expression<Func<TEntity, TResult>> selector,
             Expression<Func<TEntity, bool>> predicate,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
@@ -109,7 +109,7 @@ namespace Repositories
                 query = query.Where(predicate);
             }
 
-            return query.Select(selector).FirstOrDefault();
+            return query.Select(selector);
         }
     }
 }

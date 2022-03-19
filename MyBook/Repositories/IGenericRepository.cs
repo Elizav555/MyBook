@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Repositories
 {
@@ -13,5 +15,15 @@ namespace Repositories
         Task Remove(TEntity item);
         Task RemoveById(int id);
         Task Update(TEntity item,List<string> excluded);
+        IQueryable<TEntity> GetWithInclude(
+            params Expression<Func<TEntity, object>>[] includeProperties);
+        IEnumerable<TEntity> GetWithInclude(Func<TEntity, bool> predicate,
+            params Expression<Func<TEntity, object>>[] includeProperties);
+
+        IQueryable<TResult> GetWithMultiIncluding<TResult>(
+            Expression<Func<TEntity, TResult>> selector,
+            Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
+            bool disableTracking = true);
     }
 }
