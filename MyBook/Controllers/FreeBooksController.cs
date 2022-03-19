@@ -4,8 +4,10 @@ namespace MyBook.Controllers;
 
 public class FreeBooksController : Controller
 {
-    public IActionResult FreeBooks()
+    [Route("[controller]/[action]/{pageCount:int?}")]
+    public IActionResult FreeBooks(int? pageCount)
     {
+        pageCount ??= 1;
         return View();
     }
 }

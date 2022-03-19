@@ -6,12 +6,11 @@
     <div class="postcard_text">
         <h3 class="h3 BookPreviewTitle">
             <div class="me-4">
-                Книга
-                
+                @Model.Name
             </div>
             @(await Component.InvokeAsync("StarsRateResult",5))
         </h3>
-        <p class="author">Автор</p>
+        <p class="author">@Model.Authors</p>
         <p class="postcard_preview-txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda culpa dolorem eum explicabo harum hic itaque magnam magni molestias...</p>
     </div>
 </article>
