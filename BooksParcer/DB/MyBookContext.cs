@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.PortableExecutable;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -39,8 +40,9 @@ namespace BooksParcer
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyBook;Username=postgres;Password=postgres");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https: //go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseNpgsql(
+                    "Host=localhost;Port=5432;Database=MyBook;Username=postgres;Password=password");
             }
         }
 
@@ -52,51 +54,33 @@ namespace BooksParcer
 
                 entity.Property(e => e.AuthorId)
                     .HasColumnName("author_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
             });
 
             modelBuilder.Entity<AuthorBook>(entity =>
             {
                 entity.ToTable("author_book");
 
-                entity.HasIndex(e => e.AuthorId, "IX_author_book_AuthorId");
-
-                entity.HasIndex(e => e.BookId, "IX_author_book_BookId");
-
                 entity.Property(e => e.AuthorBookId)
-                    .HasColumnName("author_book_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    .HasColumnName("author_book_id");
 
                 entity.HasOne(d => d.Author)
-                    .WithMany(p => p.AuthorBooks)
-                    .HasForeignKey(d => d.AuthorId);
+                    .WithMany(p => p.AuthorBooks);
 
                 entity.HasOne(d => d.Book)
-                    .WithMany(p => p.AuthorBooks)
-                    .HasForeignKey(d => d.BookId);
+                    .WithMany(p => p.AuthorBooks);
             });
 
             modelBuilder.Entity<Book>(entity =>
             {
                 entity.ToTable("book");
 
-                entity.HasIndex(e => e.DescriptionId, "IX_book_DescriptionId")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.RatingId, "IX_book_RatingId")
-                    .IsUnique();
-
                 entity.Property(e => e.BookId)
-                    .HasColumnName("book_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    .HasColumnName("book_id");
 
                 entity.HasOne(d => d.Description)
                     .WithOne(p => p.Book)
-                    .HasForeignKey<Book>(d => d.DescriptionId);
-
-                entity.HasOne(d => d.Rating)
-                    .WithOne(p => p.Book)
-                    .HasForeignKey<Book>(d => d.RatingId);
+                    .HasForeignKey<Book>(b => b.DescriptionId);
             });
 
             modelBuilder.Entity<BookCenter>(entity =>
@@ -105,7 +89,7 @@ namespace BooksParcer
 
                 entity.Property(e => e.BookCenterId)
                     .HasColumnName("book_center_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
             });
 
             modelBuilder.Entity<BookDesc>(entity =>
@@ -114,85 +98,64 @@ namespace BooksParcer
 
                 entity.Property(e => e.BookDescId)
                     .HasColumnName("book_desc_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
             });
 
             modelBuilder.Entity<BookGenre>(entity =>
             {
                 entity.ToTable("book_genre");
 
-                entity.HasIndex(e => e.BookId, "IX_book_genre_BookId");
-
-                entity.HasIndex(e => e.GenreId, "IX_book_genre_GenreId");
-
                 entity.Property(e => e.BookGenreId)
                     .HasColumnName("book_genre_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Book)
-                    .WithMany(p => p.BookGenres)
-                    .HasForeignKey(d => d.BookId);
+                    .WithMany(p => p.BookGenres);
 
                 entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.BookGenres)
-                    .HasForeignKey(d => d.GenreId);
+                    .WithMany(p => p.BookGenres);
             });
 
             modelBuilder.Entity<DownloadLink>(entity =>
             {
                 entity.ToTable("download_link");
 
-                entity.HasIndex(e => e.BookDescId, "IX_download_link_BookDescId");
-
                 entity.Property(e => e.DownloadLinkId)
                     .HasColumnName("download_link_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.BookDesc)
-                    .WithMany(p => p.DownloadLinks)
-                    .HasForeignKey(d => d.BookDescId);
+                    .WithMany(p => p.DownloadLinks);
             });
 
             modelBuilder.Entity<FavAuthor>(entity =>
             {
                 entity.ToTable("fav_author");
 
-                entity.HasIndex(e => e.AuthorId, "IX_fav_author_AuthorId");
-
-                entity.HasIndex(e => e.UserId, "IX_fav_author_UserId");
-
                 entity.Property(e => e.FavAuthorId)
                     .HasColumnName("fav_author_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Author)
-                    .WithMany(p => p.FavAuthors)
-                    .HasForeignKey(d => d.AuthorId);
+                    .WithMany(p => p.FavAuthors);
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.FavAuthors)
-                    .HasForeignKey(d => d.UserId);
+                    .WithMany(p => p.FavAuthors);
             });
 
             modelBuilder.Entity<FavGenre>(entity =>
             {
                 entity.ToTable("fav_genre");
 
-                entity.HasIndex(e => e.GenreId, "IX_fav_genre_GenreId");
-
-                entity.HasIndex(e => e.UserId, "IX_fav_genre_UserId");
-
                 entity.Property(e => e.FavGenreId)
                     .HasColumnName("fav_genre_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.FavGenres)
-                    .HasForeignKey(d => d.GenreId);
+                    .WithMany(p => p.FavGenres);
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.FavGenres)
-                    .HasForeignKey(d => d.UserId);
+                    .WithMany(p => p.FavGenres);
             });
 
             modelBuilder.Entity<Genre>(entity =>
@@ -201,119 +164,91 @@ namespace BooksParcer
 
                 entity.Property(e => e.GenreId)
                     .HasColumnName("genre_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
             });
 
             modelBuilder.Entity<History>(entity =>
             {
                 entity.ToTable("history");
 
-                entity.HasIndex(e => e.BookId, "IX_history_BookId");
-
-                entity.HasIndex(e => e.UserId, "IX_history_UserId");
-
                 entity.Property(e => e.HistoryId)
                     .HasColumnName("history_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Book)
-                    .WithMany(p => p.Histories)
-                    .HasForeignKey(d => d.BookId);
+                    .WithMany(p => p.Histories);
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Histories)
-                    .HasForeignKey(d => d.UserId);
+                    .WithMany(p => p.Histories);
             });
 
             modelBuilder.Entity<ImgLink>(entity =>
             {
                 entity.ToTable("img_link");
 
-                entity.HasIndex(e => e.AuthorId, "IX_img_link_AuthorId");
-
-                entity.HasIndex(e => e.BookId, "IX_img_link_BookId");
-
                 entity.Property(e => e.ImgLinkId)
-                    .HasColumnName("img_link_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    .HasColumnName("img_link_id");
 
                 entity.HasOne(d => d.Author)
-                    .WithMany(p => p.ImgLinks)
-                    .HasForeignKey(d => d.AuthorId);
+                    .WithMany(p => p.ImgLinks);
 
                 entity.HasOne(d => d.Book)
-                    .WithMany(p => p.ImgLinks)
-                    .HasForeignKey(d => d.BookId);
+                    .WithMany(p => p.ImgLinks);
             });
 
             modelBuilder.Entity<Rating>(entity =>
             {
                 entity.ToTable("rating");
 
-                entity.HasIndex(e => e.UserId, "IX_rating_UserId");
-
                 entity.Property(e => e.RatingId)
-                    .HasColumnName("rating_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    .HasColumnName("rating_id");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Ratings)
-                    .HasForeignKey(d => d.UserId);
+                entity.HasOne(p => p.Book)
+                    .WithMany(b => b.Ratings);
+
+                entity.HasOne(p => p.User)
+                    .WithMany(b => b.Ratings);
             });
 
             modelBuilder.Entity<SubscrType>(entity =>
             {
                 entity.ToTable("subscr_type");
 
-                entity.HasIndex(e => e.AuthorId, "IX_subscr_type_AuthorId");
-
-                entity.HasIndex(e => e.GenreId, "IX_subscr_type_GenreId");
-
                 entity.Property(e => e.SubscrTypeId)
                     .HasColumnName("subscr_type_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Author)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.AuthorId);
+                    .WithMany(p => p.SubscrTypes);
 
                 entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.GenreId);
+                    .WithMany(p => p.SubscrTypes);
             });
 
             modelBuilder.Entity<Subscription>(entity =>
             {
-                entity.HasKey(e => e.SubscrId);
-
                 entity.ToTable("subscription");
 
-                entity.HasIndex(e => e.TypeId, "IX_subscription_TypeId")
-                    .IsUnique();
-
-                entity.Property(e => e.SubscrId)
+                entity.Property(e => e.SubscriptionId)
                     .HasColumnName("subscr_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Type)
                     .WithOne(p => p.Subscription)
-                    .HasForeignKey<Subscription>(d => d.TypeId);
+                    .HasForeignKey<Subscription>(b => b.TypeId);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("user");
 
-                entity.HasIndex(e => e.InfoId, "IX_user_InfoId")
-                    .IsUnique();
-
                 entity.Property(e => e.UserId)
                     .HasColumnName("user_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Info)
                     .WithOne(p => p.User)
-                    .HasForeignKey<User>(d => d.InfoId);
+                    .HasForeignKey<User>(u => u.InfoId);
             });
 
             modelBuilder.Entity<UserInfo>(entity =>
@@ -322,29 +257,23 @@ namespace BooksParcer
 
                 entity.Property(e => e.UserInfoId)
                     .HasColumnName("user_info_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
             });
 
             modelBuilder.Entity<UserSubscr>(entity =>
             {
                 entity.ToTable("user_subscr");
 
-                entity.HasIndex(e => e.SubscriptionId, "IX_user_subscr_SubscriptionId")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.UserId, "IX_user_subscr_UserId");
-
                 entity.Property(e => e.UserSubscrId)
                     .HasColumnName("user_subscr_id")
-                    .HasIdentityOptions(null, null, 0L);
+                    ;
 
                 entity.HasOne(d => d.Subscription)
                     .WithOne(p => p.UserSubscr)
-                    .HasForeignKey<UserSubscr>(d => d.SubscriptionId);
+                    .HasForeignKey<UserSubscr>(s => s.SubscriptionId);
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserSubscrs)
-                    .HasForeignKey(d => d.UserId);
+                    .WithMany(p => p.UserSubscrs);
             });
 
             OnModelCreatingPartial(modelBuilder);

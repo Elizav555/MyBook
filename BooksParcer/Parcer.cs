@@ -11,10 +11,9 @@ namespace BooksParcer
     {
         public static List<BookJson> ParceJSONBooks()
         {
-
             var result = new List<BookJson>();
 
-            foreach (var path in Directory.GetFiles(@"C:\IT\MyBook\BooksParcer\files"))
+            foreach (var path in Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent + "/files"))
             {
                 var root = new Root();
                 using (StreamReader reader = new StreamReader(path))

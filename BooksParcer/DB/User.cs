@@ -20,7 +20,6 @@ namespace BooksParcer
         public string Salt { get; set; } = null!;
         public bool IsAdmin { get; set; }
         public int InfoId { get; set; }
-
         public virtual UserInfo Info { get; set; } = null!;
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }

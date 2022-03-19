@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BooksParcer
 {
@@ -7,9 +8,9 @@ namespace BooksParcer
     {
         public int RatingId { get; set; }
         public double Points { get; set; }
-        public int UserId { get; set; }
-
+        [ForeignKey("FK_rating_user_userId")]
         public virtual User User { get; set; } = null!;
+        [ForeignKey("FK_rating_book_bookId")]
         public virtual Book Book { get; set; } = null!;
     }
 }
