@@ -4,7 +4,20 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - MyBook</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400&family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&family=Roboto+Slab:wght@600;700;800&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/pages.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/book_style.css" asp-append-version="true" />
      <link rel="stylesheet" href="~/css/subscription_style.css" asp-append-version="true" />
@@ -12,55 +25,78 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 flex-column">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyBook</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Политика</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="container ">
-            <div class="navbar-collapse  collapse d-sm-inline-flex">
-                <ul class=" navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link chips " asp-area="" asp-controller="Home" asp-action="Privacy">Книги</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link chips " asp-area="" asp-controller="Home" asp-action="Index">Новинки</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link chips" asp-area="" asp-controller="Home" asp-action="Index">Топ книг</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link chips" asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">Бесплатные книги</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+		<div class="upper_header">
+			<nav class="navbar navbar-expand-lg">
+				<div class="logo_wrapper"><img src="/assets/img/logo.png"></div>
+				    <ul class="navbar-nav mr-auto">
+				    	 <li class="nav-form">
+					    	<form class="form-inline">
+					    		<input class="form-control mr-sm-2" type="search" placeholder="Книга или автор" aria-label="Search">
+						    </form>
+				      	</li>
+					    <li class="nav-item">
+					        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+					    </li>
+					    <li class="nav-item">
+					        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">О нас</a>
+					    </li>
+					    <li class="nav-item dropdown">
+					    <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					        Подписка
+					    </a>
+					    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Купить подписку</a>
+					        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Подарить подписку</a>
+					    </div>
+				    	</li>
+					     <li class="nav-item">
+					        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Войти</a>
+					    </li>
+				    </ul>
+			</nav>
+		</div>
+		<div class="lower_header">
+		<div class="wrapper_lower_header">
+			<ul>
+				<li>
+					<a asp-area="" asp-controller="Home" asp-action="Index">📖 Книги</a>
+				</li>
+				<li>
+					<a asp-area="" asp-controller="Home" asp-action="Index">👌 Бесплатные книги</a>
+				</li>
+				<li>
+					<a asp-area="" asp-controller="Home" asp-action="Index">🔥 Новинки</a>
+				</li>
+				<li>
+					<a asp-area="" asp-controller="Home" asp-action="Index">❤️ Топ книг</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </header>
-<div class="container">
+
+<div>
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2022 - MyBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-</footer>
+<footer>
+		<div class="footer_wrapper">
+			<div>
+				<h3>Служба поддержки</h3>
+				<pre>8 800 333 27 37     support@mybook.ru</pre>
+			</div>
+			<div>
+				<p>Мы принимаем к оплате</p>
+				<img src="/assets/img/cards.png" width="250">
+			</div>
+		</div>
+	</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
