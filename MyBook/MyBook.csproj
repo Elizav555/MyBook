@@ -25,8 +25,4 @@
     <_ContentIncludedByDefault Remove="Pages\Components\BookPreview\Default.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\AdminProfile\" />
-  </ItemGroup>
-
 </Project>
