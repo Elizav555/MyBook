@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Edit Profile"] - MyBook</title>
+</head>
+<body>
+    <section class="user_page_upper">
+		<p>Личный кабинет</p>
+		<div class="user_button_wrapper">
+			<button>Профиль</button>
+			<button>Подписка</button>
+		</div>
+	</section>
+
+	<section class="user_page_lower">
+		<div class="user_page_lower_wrapper">
+			<div class="blocks">
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<div class="img_wrapper">
+							<img src="/assets/img/avatar.png">
+						</div>
+						<button class="main_button">Сменить фото</button>
+						<small>Картинка в форматах png и jpg</small>
+					</div>
+				</div>
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<span>Электронная почта</span>
+						<p>raxmankulova.v@mail.ru</p>
+						<button class="main_button">Изменить</button>
+					</div>
+				</div>
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<span>Настройки оповещений</span>
+
+						<div class="checkbox_wrapper">
+							<label>
+								<input type="checkbox" name="stock" value="yes">Акции и скидки
+							</label>
+							<label>
+								<input type="checkbox" name="recommendations" value="yes">Рекомендации книг
+							</label>
+							<label>
+								<input type="checkbox" name="games" value="yes">Игры, конкурсы, тесты
+							</label>
+						</div>
+
+						<button class="main_button">Сохранить</button>
+					</div>
+				</div>
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<span>Ваши данные</span>
+						<div class="form-group form_label">
+						    <label for="nameForm">Имя</label>
+						    <input type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
+					   </div>
+					   <div class="form-group form_label">
+						    <label for="surnameForm">Фамилия</label>
+						    <input type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+					   </div>
+					   <button class="main_button">Сохранить</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="blocks">
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<span>Подключение ЛитРес</span>
+						<div class="color_block" style="background: #efeee9;">
+							<p>Литрес<p>
+							<button class="inner_button">Подключить</button>
+						</div>
+						<small>Книги, которые вы купили в ЛитРес, будут
+						<br>доступны вам в MyBook даже без подписки</small>
+						
+					</div>
+				</div>
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<span>Социальные сети</span>
+
+						<div class="color_block" style="background: #DB4437;">
+							<p>Литрес<p>
+							<button class="inner_button">Подключить</button>
+						</div>
+
+						<div class="color_block" style="background: rgb(59, 89, 152);">
+							<p>Литрес<p>
+							<button class="inner_button">Подключить</button>
+						</div>
+
+						<small>Подключите социальные сети, чтобы входить 
+						<br>через них в MyBook</small>
+					</div>
+				</div>
+			</div>
+
+			<div class="blocks">
+				<div class="inner_content_block">
+					<div class="wrapper_content_inner_block">
+						<span>Изменить пароль</span>
+						<div class="form-group form_label">
+						    <label for="nameForm">Старый пароль</label>
+						    <input type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
+					   </div>
+					   <div class="form-group form_label">
+						    <label for="surnameForm">Новый пароль</label>
+						    <input type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+					   </div>
+					   <button class="main_button">Изменить</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

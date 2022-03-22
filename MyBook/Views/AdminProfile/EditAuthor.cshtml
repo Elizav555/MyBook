@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Admin"] - MyBook</title>
+</head>
+<body>
+  <header>
+		<div class="lower_header">
+		<div class="wrapper_lower_header">
+			<ul>
+				<li>
+					<a href="#">Управлять подпиской</a>
+				</li>
+				<li>
+					<a href="#">Изменить информацию о книге</a>
+				</li>
+				<li>
+					<a href="#">Редактировать информацию об авторе</a>
+				</li>
+				<li>
+					<a href="#">Изменить информацию о магазине</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</header>
+
+	<section class="admin_functional">
+		<h2>Получить информацию об авторе</h2>
+		<form class="form-inline">
+			<input class="form-control mr-sm-2" type="search" placeholder="Найти автора" aria-label="Search">
+		</form>
+		<div class="author_information">
+			<div class="author_information">
+				<table>
+					<tr class="upper_table_row">
+						<td>Фотография</td>
+						<td>ФИО</td>
+						<td>Дата рождения</td>
+						<td>Количество книг</td>
+						<td>Действия</td>
+					</tr>
+					<tr>
+						<td><img src="/assets/img/non.png"></td>
+						<td>Стивен Кинг</td>
+						<td>22.04.2022</td>
+						<td>22</td>
+						<td>
+							<div class="flex_but">
+								<button class="spec_but">Редактировать</button>
+								<button class="spec_but">Удалить</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="/assets/img/non.png"></td>
+						<td>Стивен Кинг</td>
+						<td>22.04.2022</td>
+						<td>22</td>
+						<td>
+							<div class="flex_but">
+								<button class="spec_but">Редактировать</button>
+								<button class="spec_but">Удалить</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="/assets/img/non.png"></td>
+						<td>Стивен Кинг</td>
+						<td>22.04.2022</td>
+						<td>22</td>
+						<td>
+							<div class="flex_but">
+								<button class="spec_but">Редактировать</button>
+								<button class="spec_but">Удалить</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="add_author">
+			<button class="spec_but">Добавить автора</button>
+		</div>
+	</section>
+</body>
+</html>

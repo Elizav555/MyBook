@@ -1,0 +1,810 @@
+﻿body {
+    background: #f5f5f5 !important;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+    /*-----------------header--------------------*/
+
+    body header {
+        padding: 1em 15em;
+        font-size: 14px;
+    }
+
+header a {
+    color: rgb(179, 77, 0) !important;
+    text-decoration: none;
+}
+
+.navbar-nav li {
+    font-weight: bold;
+    padding: 0 2.7em;
+    white-space: nowrap;
+}
+
+.logo_wrapper img {
+    width: 12em;
+    padding-right: 2em;
+}
+
+.navbar form {
+    padding: 0 2em;
+}
+
+.navbar input {
+    padding: 1.2em 2.9em;
+    color: grey;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+}
+/*----------lower_header-----------------*/
+.wrapper_lower_header {
+    padding: 2.5em 1em;
+}
+
+.lower_header a {
+    font-size: 14px;
+    color: rgb(179, 77, 0);
+}
+
+.lower_header {
+    padding: 0;
+    margin: 0;
+}
+
+    .lower_header ul {
+        padding: 1em 1em 1em 0;
+        margin: 0;
+    }
+
+        .lower_header ul li {
+            display: inline;
+            border-radius: 8px;
+            background: white;
+            padding: 0.9em;
+            margin: 0.7em 0.7em 0.7em 0;
+            color: black;
+        }
+
+            .lower_header ul li:hover {
+                box-shadow: 0 0 10px #cfcccc;
+            }
+
+a:hover {
+    text-decoration: none;
+}
+/*-------------border_picture----------------*/
+.border_picture {
+    margin: 0;
+    padding: 0 5em;
+}
+
+.inline_wrapper {
+    display: flex;
+    padding: 3em 2em;
+}
+
+.content_wrapper h1 {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 48px;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+}
+
+.border_picture {
+    padding: 0 15em;
+    margin: 0;
+}
+
+.content_wrapper img {
+    width: 27em;
+}
+/*-----------------delete-it-----------------------*/
+.picture_wrapper svg {
+    margin-top: -4em;
+    padding: 0;
+    width: 30em;
+}
+/*-----------------best_books-----------------------*/
+.best_books {
+    padding: 0;
+    margin: 0;
+}
+
+.best_books_wrapper {
+    padding-bottom: 0;
+    margin-bottom: -500px;
+}
+
+.background_content {
+    position: relative;
+}
+
+.inner_block {
+    position: relative;
+    top: -34em;
+    padding: 0 15em;
+}
+
+.inner_block_wrapper ul {
+    display: flex;
+    list-style-type: none;
+    text-align: center;
+    justify-content: center;
+}
+
+    .inner_block_wrapper ul li {
+        margin-right: 5em;
+        white-space: nowrap;
+    }
+
+span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.slider_block {
+    margin-top: 2em;
+    background: white;
+    border-radius: 18px;
+    padding: 1em;
+}
+
+.with_wrapper {
+    width: 2%;
+}
+
+.title_on_main {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text_on_main {
+    font-size: 14px;
+    color: rgb(179, 77, 0) !important;
+}
+
+.customBookCard div {
+    margin-top: 8px;
+    padding: 2px 3px;
+}
+/*------------phone_content_wrapper------------------*/
+.wrapper_img img {
+    width: 330px;
+}
+
+.wrapper_position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .wrapper_position div {
+        padding: 2.5em;
+        white-space: nowrap;
+    }
+
+    .wrapper_position p {
+        padding-left: 6em;
+    }
+
+.cointainer_for_cahnge {
+    margin-top: 0;
+    padding: 0;
+}
+/*-------------wrapper_block_banner-------------------*/
+.wrapper_block_banner {
+    margin-top: 5em;
+}
+
+.wrapper_content_banner {
+    justify-content: center;
+    text-align: center;
+}
+
+.phones_wrapper img {
+    padding-top: 3.5em;
+    width: 32%;
+}
+/*------------------text_info--------------------*/
+.text_info {
+    background: white;
+    padding: 3em 15em;
+    display: flex;
+}
+
+.text_about_app {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    right: 0;
+    left: auto;
+}
+
+.right_block {
+    padding-left: 5em;
+}
+/*-------------------upper_footer---------------------*/
+.upper_footer {
+    background: #faefd2;
+    display: flex;
+    padding: 2em 15em;
+}
+
+    .upper_footer ul li {
+        list-style-type: none;
+    }
+
+    .upper_footer a {
+        color: rgb(179, 77, 0) !important;
+        text-decoration: none;
+    }
+
+.center_text {
+    padding: 2em 5em;
+}
+
+.right_text {
+    padding-top: 2em;
+}
+
+/*--------------------footer-----------------------*/
+
+footer {
+    padding: 0em 14em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.render_content{
+    margin-bottom: 7em;
+}
+.footer_wrapper {
+    padding: 2em 0 0.5em 0;
+    display: flex;
+    margin: 0;
+}
+
+.footer_cards img{
+    opacity: 0.1
+}
+.support_block_wrapper div {
+    display: flex;
+}
+
+.support_block_wrapper a {
+    margin: 1em;
+    padding: 0;
+}
+
+/*-------------------------------USER-PAGE-----------------------------*/
+.user_page_upper {
+    padding: 1em 14em;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+}
+
+    .user_page_upper p {
+        font-weight: 600;
+        font-size: 45px;
+        line-height: 40px;
+    }
+
+.user_button_wrapper button {
+    color: rgb(190, 91, 4) !important;
+    font-weight: 600;
+    font-size: 16px;
+    background: white;
+    border-radius: 10px;
+    border: none;
+    padding: 0.5em 1em 1.25em 1em;
+}
+
+.user_page_lower {
+    background: #ffffffde;
+    margin-top: -1.5em;
+}
+
+.user_page_lower_wrapper {
+    padding: 2.5em 14em;
+    display: flex;
+}
+
+    .user_page_lower_wrapper .blocks {
+        width: 100%;
+    }
+
+.inner_content_block {
+    margin: 2em 1em;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 0px 32px #d6d4d4;
+}
+
+    .inner_content_block .main_button {
+        margin-top: 0.5em;
+        background: white;
+        width: 100%;
+        align-items: center;
+        font-family: "Fira Sans", sans-serif;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+        font-weight: 600;
+        color: rgb(179, 77, 0);
+        border: 2px solid rgb(179, 77, 0);
+        padding: 4px 8px;
+        border-radius: 8px;
+        line-height: 20px;
+    }
+
+.wrapper_content_inner_block {
+    padding: 1em;
+    width: 100%;
+}
+
+.img_wrapper {
+    text-align: center;
+    width: 100%;
+}
+
+    .img_wrapper img {
+        margin: 0.5em 1em 1em 1em;
+        border-radius: 20px;
+    }
+
+.wrapper_content_inner_block small {
+    color: rgb(89, 89, 89);
+    font-size: 14px;
+    width: 100%;
+    padding-top: 1em;
+    text-align: center;
+    margin: 0;
+}
+
+.wrapper_content_inner_block span {
+    margin: 1em 0;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+}
+
+.wrapper_content_inner_block p {
+    padding-top: 0.5em;
+    line-height: 24px;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+}
+
+.checkbox_wrapper label {
+    padding: 0.5em;
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    text-align: left;
+    line-height: 24px;
+    font-family: Fira Sans,Roboto,system-ui,serif
+}
+
+.checkbox_wrapper input {
+    margin: 0 0.5em
+}
+
+.form_label {
+    line-height: 10px;
+    margin: 1.5em 0 2.5em 0;
+}
+
+.inner_button {
+    align-items: center;
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(190, 91, 4);
+    border: none;
+}
+
+.color_block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5em;
+    margin: 0;
+    border-radius: 10px;
+    margin-top: 0.5em;
+}
+
+    .color_block p {
+        padding: 0.2em;
+        margin: 0;
+    }
+
+/*-------------------------------USER-PAGE-2----------------------------*/
+.no_sub_text {
+    background: white;
+    padding: 1em 1.5em;
+    margin: 0 3em;
+}
+
+    .no_sub_text p {
+        font-family: "Fira Sans", sans-serif;
+        padding-top: 1em;
+        color: rgb(0, 0, 0);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+    }
+
+.flex_block {
+    border-radius: 20px;
+    display: flex;
+    box-shadow: 0px 0px 32px #d6d4d4;
+    margin: 3em auto 5em auto;
+}
+
+    .flex_block img {
+        width: 400px;
+        border-radius: 0 20px 20px 0;
+    }
+
+.spec_but {
+    align-items: center;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px none;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(rgb(255, 129, 0), rgb(228, 75, 3));
+    padding: 12px 16px;
+    border-radius: 12px;
+    line-height: 24px;
+}
+
+    .spec_but:hover {
+        align-items: center;
+        font-family: "Fira Sans", sans-serif;
+        font-weight: 600;
+        white-space: nowrap;
+        cursor: pointer;
+        border: 2px none;
+        color: white;
+        background: linear-gradient(rgb(255, 169, 0), rgb(235, 75, 3));
+        padding: 12px 16px;
+        border-radius: 12px;
+        line-height: 24px;
+    }
+/*-------------------------------HISTORY----------------------------*/
+.sub_table_wrapper {
+    padding: 1em 14em 3em 14em;
+}
+
+    .sub_table_wrapper table {
+        background: white;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+td {
+    padding: 1em 2em;
+}
+
+.title_tr {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 38px;
+    border-bottom: 1px solid #c9c7c7;
+}
+
+table td {
+    font-size: 14px;
+}
+/*-----------------------------REGISTRATION----------------------------*/
+.wrapper_modal_content {
+    background: white;
+    font-family: "Fira Sans", sans-serif;
+    padding: 3em 2em;
+    width: 430px;
+    border: thin solid rgba(18, 34, 88, 0.12);
+    border-radius: 15px;
+    box-shadow: 0px 0px 32px #d6d4d4;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.modal_view span {
+    position: relative;
+    font-size: 45px;
+    font-weight: bold;
+}
+.modal_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: thin solid rgba(18, 34, 88, 0.12);
+}
+
+.lock {
+    overflow: hidden;
+}
+
+.reg_button {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    background: linear-gradient(rgb(255, 215, 84), rgb(255, 199, 44));
+    color: rgb(0, 0, 0);
+    padding: 12px 16px;
+    border-radius: 12px;
+    line-height: 24px;
+    border: none;
+    width: 100%;
+}
+
+.signin_button {
+    margin: 1em 0;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    background: linear-gradient(93.87deg, rgb(8, 190, 77) 45.22%, rgb(139, 51, 194) 98.85%);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    line-height: 24px;
+    border: none;
+    width: 100%;
+}
+
+.lower_label {
+    padding: 2px 0 0 0;
+    color: rgb(57, 63, 69);
+    font-size: 13px;
+    line-height: 1.43em;
+}
+
+.modal_view .main_button {
+    margin-top: 0.5em;
+    background: white;
+    width: 100%;
+    align-items: center;
+    font-family: "Fira Sans", sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(179, 77, 0);
+    border: 2px solid rgb(179, 77, 0);
+    padding: 5px 8px;
+    border-radius: 8px;
+    line-height: 20px;
+}
+
+.modal_view p {
+    padding-top: 1em;
+    line-height: 22px;
+    font-weight: 600;
+    font-size: 14px;
+}
+/*----------------------------SIGN-IN----------------------------------*/
+/*---------------------------EDIT-SUBSCRIBES----------------------------*/
+.have_subscriptions {
+    background: linear-gradient(rgb(253, 241, 198), rgb(255, 231, 144));
+    width: 100%;
+    padding: 1.5em 0.75em;
+    border-radius: 20px;
+}
+
+.user_page_sub {
+    padding: 2.5em 14em;
+}
+
+    .user_page_sub .have_subscriptions {
+        margin: 1em 0;
+        padding: 1.5em;
+    }
+
+    .user_page_sub .name {
+        margin: 0px;
+        padding: 0px;
+        color: rgb(0, 0, 0);
+        font-family: Fira Sans,Roboto,system-ui,serif;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+    }
+
+    .user_page_sub label {
+        color: rgba(0,0,0,.65);
+        font-size: 14px;
+        line-height: 1.8;
+        padding-top: 0.5em;
+    }
+
+.label_border {
+    padding: 4px 8px;
+    width: 12%;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: rgb(255, 199, 44);
+}
+
+.card_info_wrapper {
+    margin-top: 1em;
+}
+
+.card_info {
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 1em;
+}
+
+.card_info_lower {
+    background-color: rgb(246, 246, 246);
+    border-radius: 0 0 20px 20px;
+    padding: 1em;
+    justify-content: space-between;
+    display: flex;
+}
+
+    .card_info_lower .main_button {
+        margin-top: 0.5em;
+        background: white;
+        align-items: center;
+        font-family: "Fira Sans", sans-serif;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+        font-weight: 600;
+        color: rgb(179, 77, 0);
+        border: 2px solid rgb(179, 77, 0);
+        padding: 5px 8px;
+        border-radius: 8px;
+        line-height: 20px;
+    }
+
+.upper_footer h1 {
+    padding: 0.5em 0;
+}
+
+.map_wrapper {
+    display: flex;
+}
+
+.map_content {
+    padding: 0 3em;
+}
+
+/*------------------about-author--------------------*/
+.about_author_wrapper {
+    display: flex;
+    padding: 2.5em 14em;
+}
+
+.photo {
+    width: 30%;
+    border-radius: 16px;
+}
+
+    .photo img {
+        border-radius: 16px;
+    }
+
+.info {
+    width: 70%;
+}
+
+    .info .main_button {
+        margin-top: 0.5em;
+        background: white;
+        width: 200px;
+        align-items: center;
+        font-family: "Fira Sans", sans-serif;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+        font-weight: 600;
+        color: rgb(179, 77, 0);
+        border: 2px solid rgb(179, 77, 0);
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        line-height: 20px;
+    }
+
+.authors_book {
+    padding: 0 14em 4em 14em;
+}
+
+.main_button:hover {
+    color: white;
+    background: rgb(179, 77, 0);
+    box-shadow: 0 0 20px #cfcccc;
+}
+
+/*-----------------admin--------------------*/
+.upper_header_admin nav {
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.admin_functional {
+    padding: 1.5em 14em 5em 14em;
+}
+
+    .admin_functional h2 {
+        padding-bottom: 1em;
+    }
+
+.users_information {
+    background: white;
+    border-radius: 16px;
+    padding: 1em 0;
+    margin: 1em 0;
+}
+
+    .users_information img {
+        width: 60px;
+        border-radius: 10px;
+    }
+
+.flex_but {
+    display: flex;
+}
+
+    .flex_but .spec_but {
+        padding: 3px 8px;
+        font-size: 12px;
+        margin: 0.1em 0.2em 0 0;
+    }
+
+.books_information {
+    background: white;
+    border-radius: 16px;
+    padding: 1em 0;
+    margin: 1em auto;
+}
+
+    .books_information img {
+        width: 100px;
+        border-radius: 5px;
+    }
+
+.sub_table_admin {
+    padding: 1em 14em 5em 14em;
+}
+
+.sub_table_content_admin {
+    background: white;
+    border-radius: 16px;
+    padding: 1em 0;
+    margin: 1em 0;
+    width: 100%;
+}
+
+.upper_table_row {
+    font-weight: bold;
+}
