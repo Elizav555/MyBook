@@ -1,4 +1,6 @@
-﻿namespace MyBook.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MyBook.Entities
 {
     public partial class User
     {
@@ -12,11 +14,11 @@
         }
 
         public int UserId { get; set; }
-        public string Login { get; set; } = null!;
-        public string Password { get; set; } = null!;
-        public string Salt { get; set; } = null!;
         public bool IsAdmin { get; set; }
         public virtual UserInfo Info { get; set; } = null!;
+
+        [ForeignKey("FK_user_identity_user_userId")]
+        public virtual UserIdentity IdentityInfo { get; set; } = null!;
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
         public virtual ICollection<History> Histories { get; set; }

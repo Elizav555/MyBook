@@ -6,19 +6,31 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MyBook.Migrations
 {
-    public partial class Initial : Migration
+    public partial class identity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "author",
                 columns: table => new
                 {
                     author_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
                     BirthDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -31,7 +43,6 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     book_center_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
@@ -48,10 +59,10 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     book_desc_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    PagesCount = table.Column<int>(type: "integer", nullable: false)
+                    PagesCount = table.Column<int>(type: "integer", nullable: false),
+                    Price = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,7 +74,6 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     genre_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -73,19 +83,61 @@ namespace MyBook.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "user_info",
+                name: "user",
                 columns: table => new
                 {
-                    user_info_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
+                    user_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false)
+                    IsAdmin = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_user_info", x => x.user_info_id);
+                    table.PrimaryKey("PK_user", x => x.user_id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoleId = table.Column<string>(type: "text", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "book",
+                columns: table => new
+                {
+                    book_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Language = table.Column<string>(type: "text", nullable: false),
+                    PublishedDate = table.Column<DateOnly>(type: "date", nullable: true),
+                    IsForAdult = table.Column<bool>(type: "boolean", nullable: false),
+                    IsPaid = table.Column<bool>(type: "boolean", nullable: false),
+                    DescriptionId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_book", x => x.book_id);
+                    table.ForeignKey(
+                        name: "FK_book_book_desc_DescriptionId",
+                        column: x => x.DescriptionId,
+                        principalTable: "book_desc",
+                        principalColumn: "book_desc_id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,11 +145,10 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     download_link_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BookDescId = table.Column<int>(type: "integer", nullable: false),
                     Format = table.Column<string>(type: "text", nullable: false),
-                    Url = table.Column<string>(type: "text", nullable: false)
+                    Url = table.Column<string>(type: "text", nullable: false),
+                    BookDescId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -115,11 +166,10 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     subscr_type_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    GenreId = table.Column<int>(type: "integer", nullable: true),
+                    ForPaid = table.Column<bool>(type: "boolean", nullable: false),
                     AuthorId = table.Column<int>(type: "integer", nullable: true),
-                    ForPaid = table.Column<bool>(type: "boolean", nullable: false)
+                    GenreId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -137,50 +187,34 @@ namespace MyBook.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "user",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    user_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Login = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false),
-                    Salt = table.Column<string>(type: "text", nullable: false),
-                    IsAdmin = table.Column<bool>(type: "boolean", nullable: false),
-                    InfoId = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    FK_user_identity_user_userId = table.Column<int>(type: "integer", nullable: false),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_user", x => x.user_id);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_user_user_info_InfoId",
-                        column: x => x.InfoId,
-                        principalTable: "user_info",
-                        principalColumn: "user_info_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "subscription",
-                columns: table => new
-                {
-                    subscr_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Price = table.Column<int>(type: "integer", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    TypeId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_subscription", x => x.subscr_id);
-                    table.ForeignKey(
-                        name: "FK_subscription_subscr_type_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "subscr_type",
-                        principalColumn: "subscr_type_id",
+                        name: "FK_AspNetUsers_user_FK_user_identity_user_userId",
+                        column: x => x.FK_user_identity_user_userId,
+                        principalTable: "user",
+                        principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -189,7 +223,6 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     fav_author_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AuthorId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false)
@@ -216,7 +249,6 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     fav_genre_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     GenreId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false)
@@ -239,21 +271,22 @@ namespace MyBook.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "rating",
+                name: "user_info",
                 columns: table => new
                 {
-                    rating_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
+                    user_info_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Points = table.Column<double>(type: "double precision", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: false)
+                    FirstName = table.Column<string>(type: "text", nullable: false),
+                    LastName = table.Column<string>(type: "text", nullable: false),
+                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    FK_user_info_user_userId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_rating", x => x.rating_id);
+                    table.PrimaryKey("PK_user_info", x => x.user_info_id);
                     table.ForeignKey(
-                        name: "FK_rating_user_UserId",
-                        column: x => x.UserId,
+                        name: "FK_user_info_user_FK_user_info_user_userId",
+                        column: x => x.FK_user_info_user_userId,
                         principalTable: "user",
                         principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
@@ -264,20 +297,12 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     user_subscr_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    SubscriptionId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_user_subscr", x => x.user_subscr_id);
-                    table.ForeignKey(
-                        name: "FK_user_subscr_subscription_SubscriptionId",
-                        column: x => x.SubscriptionId,
-                        principalTable: "subscription",
-                        principalColumn: "subscr_id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_user_subscr_user_UserId",
                         column: x => x.UserId,
@@ -287,42 +312,10 @@ namespace MyBook.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "book",
-                columns: table => new
-                {
-                    book_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    RatingId = table.Column<int>(type: "integer", nullable: false),
-                    Language = table.Column<string>(type: "text", nullable: false),
-                    PublishedDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    DescriptionId = table.Column<int>(type: "integer", nullable: false),
-                    IsForAdult = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_book", x => x.book_id);
-                    table.ForeignKey(
-                        name: "FK_book_book_desc_DescriptionId",
-                        column: x => x.DescriptionId,
-                        principalTable: "book_desc",
-                        principalColumn: "book_desc_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_book_rating_RatingId",
-                        column: x => x.RatingId,
-                        principalTable: "rating",
-                        principalColumn: "rating_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "author_book",
                 columns: table => new
                 {
                     author_book_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AuthorId = table.Column<int>(type: "integer", nullable: false),
                     BookId = table.Column<int>(type: "integer", nullable: false)
@@ -349,10 +342,9 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     book_genre_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    GenreId = table.Column<int>(type: "integer", nullable: false),
-                    BookId = table.Column<int>(type: "integer", nullable: false)
+                    BookId = table.Column<int>(type: "integer", nullable: false),
+                    GenreId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -376,7 +368,6 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     history_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     BookId = table.Column<int>(type: "integer", nullable: false),
@@ -404,12 +395,11 @@ namespace MyBook.Migrations
                 columns: table => new
                 {
                     img_link_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'0', '1', '0', '', 'False', '1'")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BookId = table.Column<int>(type: "integer", nullable: true),
-                    AuthorId = table.Column<int>(type: "integer", nullable: true),
                     Resolution = table.Column<string>(type: "text", nullable: true),
-                    Url = table.Column<string>(type: "text", nullable: false)
+                    Url = table.Column<string>(type: "text", nullable: false),
+                    AuthorId = table.Column<int>(type: "integer", nullable: true),
+                    BookId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -426,6 +416,191 @@ namespace MyBook.Migrations
                         principalColumn: "book_id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "rating",
+                columns: table => new
+                {
+                    rating_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Points = table.Column<double>(type: "double precision", nullable: false),
+                    FK_rating_user_userId = table.Column<int>(type: "integer", nullable: false),
+                    FK_rating_book_bookId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_rating", x => x.rating_id);
+                    table.ForeignKey(
+                        name: "FK_rating_book_FK_rating_book_bookId",
+                        column: x => x.FK_rating_book_bookId,
+                        principalTable: "book",
+                        principalColumn: "book_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_rating_user_FK_rating_user_userId",
+                        column: x => x.FK_rating_user_userId,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "text", nullable: false),
+                    ProviderKey = table.Column<string>(type: "text", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    RoleId = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    LoginProvider = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "subscription",
+                columns: table => new
+                {
+                    subscr_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Price = table.Column<int>(type: "integer", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    FK_subscr_type_typeId = table.Column<int>(type: "integer", nullable: false),
+                    FK_subscr_user_subscr_user_subscr_id = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_subscription", x => x.subscr_id);
+                    table.ForeignKey(
+                        name: "FK_subscription_subscr_type_FK_subscr_type_typeId",
+                        column: x => x.FK_subscr_type_typeId,
+                        principalTable: "subscr_type",
+                        principalColumn: "subscr_type_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_subscription_user_subscr_FK_subscr_user_subscr_user_subscr_~",
+                        column: x => x.FK_subscr_user_subscr_user_subscr_id,
+                        principalTable: "user_subscr",
+                        principalColumn: "user_subscr_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_FK_user_identity_user_userId",
+                table: "AspNetUsers",
+                column: "FK_user_identity_user_userId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true);
+
             migrationBuilder.CreateIndex(
                 name: "IX_author_book_AuthorId",
                 table: "author_book",
@@ -440,12 +615,6 @@ namespace MyBook.Migrations
                 name: "IX_book_DescriptionId",
                 table: "book",
                 column: "DescriptionId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_book_RatingId",
-                table: "book",
-                column: "RatingId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -504,9 +673,14 @@ namespace MyBook.Migrations
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_rating_UserId",
+                name: "IX_rating_FK_rating_book_bookId",
                 table: "rating",
-                column: "UserId");
+                column: "FK_rating_book_bookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_rating_FK_rating_user_userId",
+                table: "rating",
+                column: "FK_rating_user_userId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_subscr_type_AuthorId",
@@ -519,21 +693,21 @@ namespace MyBook.Migrations
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_subscription_TypeId",
+                name: "IX_subscription_FK_subscr_type_typeId",
                 table: "subscription",
-                column: "TypeId",
+                column: "FK_subscr_type_typeId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_InfoId",
-                table: "user",
-                column: "InfoId",
+                name: "IX_subscription_FK_subscr_user_subscr_user_subscr_id",
+                table: "subscription",
+                column: "FK_subscr_user_subscr_user_subscr_id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_subscr_SubscriptionId",
-                table: "user_subscr",
-                column: "SubscriptionId",
+                name: "IX_user_info_FK_user_info_user_userId",
+                table: "user_info",
+                column: "FK_user_info_user_userId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -544,6 +718,21 @@ namespace MyBook.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
             migrationBuilder.DropTable(
                 name: "author_book");
 
@@ -569,25 +758,31 @@ namespace MyBook.Migrations
                 name: "img_link");
 
             migrationBuilder.DropTable(
-                name: "user_subscr");
-
-            migrationBuilder.DropTable(
-                name: "book");
+                name: "rating");
 
             migrationBuilder.DropTable(
                 name: "subscription");
 
             migrationBuilder.DropTable(
-                name: "book_desc");
+                name: "user_info");
 
             migrationBuilder.DropTable(
-                name: "rating");
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "book");
 
             migrationBuilder.DropTable(
                 name: "subscr_type");
 
             migrationBuilder.DropTable(
-                name: "user");
+                name: "user_subscr");
+
+            migrationBuilder.DropTable(
+                name: "book_desc");
 
             migrationBuilder.DropTable(
                 name: "author");
@@ -596,7 +791,7 @@ namespace MyBook.Migrations
                 name: "genre");
 
             migrationBuilder.DropTable(
-                name: "user_info");
+                name: "user");
         }
     }
 }

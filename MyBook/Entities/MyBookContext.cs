@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyBook.Entities
 {
-    public partial class MyBookContext : DbContext
+    public partial class MyBookContext : IdentityDbContext<UserIdentity>
     {
         public MyBookContext()
         {
@@ -28,7 +29,8 @@ namespace MyBook.Entities
         public virtual DbSet<Rating> Ratings { get; set; } = null!;
         public virtual DbSet<SubscrType> SubscrTypes { get; set; } = null!;
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!; //я нэ понимаю что он тут хочет своей подсказкой 
+                                                                // Предупреждение CS0114	"MyBookContext.Users" скрывает наследуемый член "IdentityUserContext<IdentityUser, string, IdentityUserClaim<string>, IdentityUserLogin<string>, IdentityUserToken<string>>.Users". Чтобы текущий член переопределял эту реализацию, добавьте ключевое слово override. В противном случае добавьте ключевое слово new
         public virtual DbSet<UserInfo> UserInfos { get; set; } = null!;
         public virtual DbSet<UserSubscr> UserSubscrs { get; set; } = null!;
 
@@ -118,8 +120,7 @@ namespace MyBook.Entities
                 entity.ToTable("fav_author");
 
                 entity.Property(e => e.FavAuthorId)
-                    .HasColumnName("fav_author_id")
-                    ;
+                    .HasColumnName("fav_author_id");
 
                 entity.HasOne(d => d.Author)
                     .WithMany(p => p.FavAuthors);
@@ -232,6 +233,9 @@ namespace MyBook.Entities
 
                 entity.HasOne(d => d.Info)
                     .WithOne(p => p.User);
+
+                entity.HasOne(d => d.IdentityInfo)
+                    .WithOne(p => p.User);
             });
 
             modelBuilder.Entity<UserInfo>(entity =>
@@ -258,9 +262,7 @@ namespace MyBook.Entities
                     .WithMany(p => p.UserSubscrs);
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

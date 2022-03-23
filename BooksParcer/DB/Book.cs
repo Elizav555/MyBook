@@ -11,6 +11,7 @@ namespace BooksParcer
             BookGenres = new HashSet<BookGenre>();
             Histories = new HashSet<History>();
             ImgLinks = new HashSet<ImgLink>();
+            Ratings = new HashSet<Rating>();
         }
 
         public int BookId { get; set; }
@@ -19,13 +20,13 @@ namespace BooksParcer
         public DateOnly? PublishedDate { get; set; }
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
-
         public int DescriptionId { get; set; }
+
         public virtual BookDesc Description { get; set; } = null!;
-        public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
         public virtual ICollection<BookGenre> BookGenres { get; set; }
         public virtual ICollection<History> Histories { get; set; }
         public virtual ICollection<ImgLink> ImgLinks { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
