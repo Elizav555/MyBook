@@ -49,12 +49,15 @@
 .postcard_img_link{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
+
 .postcard_img{
     border-radius: 10px;
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
     width: 150px;
-    object-fit: cover;
+    object-fit: contain;
+    height: 100%;
 }
 
 .BookPreviewTitle{
