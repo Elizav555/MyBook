@@ -1,0 +1,23 @@
+﻿@model MyBook.ViewModels.LibraryVIewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Библиотека</title>
+</head>
+<body>
+<div>
+    <div class="customCarousel container mb-4">
+        <h1 class="h1 ms-4 mb-2">Все книги</h1>
+        <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
+        @await Component.InvokeAsync("BooksCarousel", Model.AllBooks)
+    </div>
+    <div class="customCarousel container mb-4">
+            <h1 class="h1 ms-4 mb-2">Все авторы</h1>
+            <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllAuthors.Count() авторов</h3>
+            @await Component.InvokeAsync("AuthorsCarousel", Model.AllAuthors)
+        </div>
+</div>
+</body>
+</html>
