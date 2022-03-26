@@ -82,3 +82,55 @@ button.accept-policy {
   cursor: pointer;
   color: rgb(168, 76, 0) !important;
 }
+
+.postcard_mini {
+  display: flex;
+
+  max-width: 260px;
+  min-height: 77px;
+  max-height: 87px;
+
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  background-color: rgb(255,255,255);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-right: 8px;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #ffffff;
+
+  box-sizing: content-box;
+}
+
+.GenreTitle{
+  display: flex;
+  align-items: center;
+}
+
+.genreName {
+  color: rgb(0, 0, 0) !important;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-right: 80px;
+}
+
+.genreNumber {
+  color: rgb(0, 0, 0) !important;
+  max-width: 60px;
+  min-height: 5px;
+  max-height: 10px;
+
+  margin-left: 20px;
+}
+
+.genre_img{
+  border-radius: 10px;
+  width: 150px;
+  object-fit: contain;
+  height: 100%;
+}

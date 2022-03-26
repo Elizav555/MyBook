@@ -9,12 +9,27 @@
 <body>
 <div>
     <div class="container">
+        <h3 class="h3"><b>Популярные категории</b></h3>
+        <div class="row">
+            <article class="postcard_mini">
+                <div class="-columns">
+                <p class="genreName"><b>Фантастика</b></p>0
+                </div>
+                <img class="genre_img" src="~/assets/img/fantastic.png" alt="">
+            </article>
+            <article class="postcard_mini">
+                <p class="genreName"><b>Фэнтези</b></p>
+                <img class="genre_img" src="~/assets/img/fantasy.png" alt="">
+            </article>
+        </div>
+    </div>
+    <div class="container">
         <h1 class="h1">Все бесплатные книги</h1>
         <h5 class="h5">@Model.Count() книг</h5>
         <a asp-controller="FreeBooks" asp-action="FreeBooks"></a>
         @foreach (var book in Model)
         {
-            @await Component.InvokeAsync("BookPreview",book)
+            @await Component.InvokeAsync("BookPreview", book)
         }
     </div>
 </div>
