@@ -25,19 +25,19 @@
                         <label class="lower_label">Не менее 8 символов, цифры и буквы.</label>
                         <span asp-validation-for="Password"></span>
                     </div>
-                    <div>
+                    <div class="form-group form_label_reg">
                         <label asp-for="LastName">Фамилия: </label><br />
-                        <input type="text" asp-for="LastName">
+                        <input class="form-control" type="text" asp-for="LastName">
                         <span asp-validation-for="LastName" />
                     </div>
-                    <div>
+                    <div class="form-group form_label_reg">
                         <label asp-for="FirstName">Имя: </label><br />
-                        <input type="text" asp-for="FirstName">
+                        <input class="form-control" type="text" asp-for="FirstName">
                         <span asp-validation-for="FirstName" />
                     </div>
-                    <div>
+                    <div class="form-group form_label_reg">
                         <label asp-for="BirthDate">Дата рождения: </label><br />
-                        <input type="date" id="datepicker" asp-for="BirthDate">
+                        <input  class="form-control" type="date" id="datepicker" asp-for="BirthDate">
                         <span asp-validation-for="BirthDate" class="text-danger" />
                     </div>
                     <button type="submit" class="reg_button">Зарегистрироваться</button>
