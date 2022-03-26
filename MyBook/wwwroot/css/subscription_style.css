@@ -43,8 +43,10 @@ body{
     border-radius: 12px;
     box-shadow: rgb(232 232 232) 0px 0px 0px 1px;
     width:70%;
+    background: white;
     text-align: center;
     max-width: 100%;
+    margin-bottom: 5em;
 }
 
 .col-3{
@@ -67,18 +69,20 @@ body{
 
 .input-group{
     overflow: hidden;
-    padding-top: 25px;
-   
+    padding: 5em !important;
     color:#FFC72C;
 }
 
 .form-control{
     overflow: hidden;
 }
-
-.btn-outline-primary{
+.change_subc{
+    padding: 0.5em 0 0 0 
+}
+.btn-outline-primary {
     color: black;
-    height:38px;
+    padding: 0.5em;
+    margin-top: -2px;
     overflow: hidden;
 }
 
@@ -86,6 +90,7 @@ body{
     width: 100%;
     background-color: #FFC72C;
     overflow: hidden;
+    border: none;
 }
 
 #selecttheme{
@@ -220,9 +225,11 @@ body{
     
 }
 #postcard{
-    margin:2% 30% 0 20%;
+    padding: 2em;
+    margin:2% 30% 1% 20%;
     background-color: white;
     width: 65%;
+    border-radius: 10px;
 }
 #postcard img{
     display: block;
