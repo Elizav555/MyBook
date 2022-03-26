@@ -42,7 +42,7 @@ namespace MyBook.Controllers
                     {
                         IsAdmin = false,
                         Info = userInfo,
-                        //выдает ошибку уникальности IdentityInfo = user
+                        //IdentityInfo = user
                     };
                     user.User = userBook; //все ок, но у пользователя fk остается null
                     _bookContext.UserInfos.Add(userInfo);
