@@ -9,7 +9,8 @@ namespace BooksParcer
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public DateOnly BirthDate { get; set; }
-        
-        public virtual User User { get; set; } = null!;
+        public int FkUserInfoUserUserId { get; set; }
+
+        public virtual User FkUserInfoUserUser { get; set; } = null!;
     }
 }
