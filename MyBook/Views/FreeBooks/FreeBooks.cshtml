@@ -11,8 +11,12 @@
         <div class="row">
                 <div class="col-12 col-sm-6 col-md-8">
                     <h1 class="h1">Все бесплатные книги</h1>
-                    <h5 class="h5">110 000 книг</h5>
-                    @await Component.InvokeAsync("BookPreview", new Book())
+                    <h5 class="h5">@Model.Count() книг</h5>
+                    <a asp-controller="FreeBooks" asp-action="FreeBooks"></a>
+                    @foreach (var book in Model)
+                    {
+                        @await Component.InvokeAsync("BookPreview", book)
+                    }
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="filters">
