@@ -1,0 +1,38 @@
+﻿@model MyBook.ViewModels.LibraryVIewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Библиотека</title>
+</head>
+<body>
+<div>
+    <div class="container">
+            <h3 class="h3"><b>Популярные категории</b></h3>
+            <div class="row">
+                <article class="postcard_mini">
+                    <div class="-columns">
+                    <p class="genreName"><b>Фантастика</b></p>0
+                    </div>
+                    <img class="genre_img" src="~/assets/img/fantastic.png" alt="">
+                </article>
+                <article class="postcard_mini">
+                    <p class="genreName"><b>Фэнтези</b></p>
+                    <img class="genre_img" src="~/assets/img/fantasy.png" alt="">
+                </article>
+            </div>
+        </div>
+    <div class="customCarousel container mb-4">
+        <h1 class="h1 ms-4 mb-2">Все книги</h1>
+        <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
+        @await Component.InvokeAsync("BooksCarousel", Model.AllBooks)
+    </div>
+    <div class="customCarousel container mb-4">
+        <h1 class="h1 ms-4 mb-2">Все авторы</h1>
+        <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllAuthors.Count() авторов</h3>
+        @await Component.InvokeAsync("AuthorsCarousel", Model.AllAuthors)
+    </div>
+</div>
+</body>
+</html>

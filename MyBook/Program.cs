@@ -7,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MyBookContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
-    .AddScoped<IGenericRepository<Book>, EFGenericRepository<Book>>();
+    .AddScoped<IGenericRepository<Book>, EFGenericRepository<Book>>()
+    .AddScoped<IGenericRepository<Author>, EFGenericRepository<Author>>()
+    .AddScoped<IGenericRepository<Genre>, EFGenericRepository<Genre>>();
 
 builder.Services.AddIdentity<UserIdentity, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
