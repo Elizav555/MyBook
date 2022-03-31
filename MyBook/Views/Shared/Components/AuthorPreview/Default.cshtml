@@ -1,0 +1,20 @@
+﻿@model MyBook.Entities.Author
+
+<div class="container">
+    <article class="postcard">
+        <a class="postcard_img_link" href="#">
+            <img class="postcard_img" src="~/assets/img/king.jpg" alt="">
+        </a>
+        <div class="postcard_text">
+            <h3 class="h3 PreviewTitle">
+                <div class="me-4 Name">
+                    @Model.Name
+                </div>
+            </h3>
+            <p class="card-text oneLineDisplayText text-secondary">
+                            @Model.AuthorBooks.Count
+                            Книг
+                            </p>
+        </div>
+    </article>
+</div>

@@ -29,8 +29,8 @@
 				<div class="logo_wrapper"><img src="/assets/img/logo.png"></div>
 				    <ul class="navbar-nav mr-auto">
 				    	 <li class="nav-form">
-					    	<form class="form-inline">
-					    		<input class="form-control mr-sm-2" type="search" placeholder="Книга или автор" aria-label="Search">
+					    	<form asp-controller="Search" asp-action="SearchAll" class="formd-flex">
+						        <input name="SearchString" class="form-control mr-sm-2 customInput" type="search" placeholder="Книга или автор" aria-label="Search">
 						    </form>
 				      	</li>
 					    <li class="nav-item">
