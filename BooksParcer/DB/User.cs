@@ -15,12 +15,11 @@ namespace BooksParcer
         }
 
         public int UserId { get; set; }
-        public string Login { get; set; } = null!;
-        public string Password { get; set; } = null!;
-        public string Salt { get; set; } = null!;
         public bool IsAdmin { get; set; }
-        public int InfoId { get; set; }
-        public virtual UserInfo Info { get; set; } = null!;
+        public string? FkUserIdentityUserUserId { get; set; }
+
+        public virtual AspNetUser? FkUserIdentityUserUser { get; set; }
+        public virtual UserInfo UserInfo { get; set; } = null!;
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
         public virtual ICollection<History> Histories { get; set; }

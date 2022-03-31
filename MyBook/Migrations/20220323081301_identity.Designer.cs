@@ -12,56 +12,179 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBook.Migrations
 {
     [DbContext(typeof(MyBookContext))]
-    [Migration("20220309133108_Initial")]
-    partial class Initial
+    [Migration("20220323081301_identity")]
+    partial class identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseCollation("Russian_Russia.1251")
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("MyBook.Entities.Author", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("text");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("MyBook.Entities.Author", b =>
+                {
+                    b.Property<int>("AuthorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AuthorId"));
 
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
+                    b.HasKey("AuthorId");
 
                     b.ToTable("author", (string)null);
                 });
 
             modelBuilder.Entity("MyBook.Entities.AuthorBook", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AuthorBookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("author_book_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AuthorBookId"));
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer");
@@ -69,7 +192,7 @@ namespace MyBook.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("AuthorBookId");
 
                     b.HasIndex("AuthorId");
 
@@ -80,18 +203,20 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("book_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BookId"));
 
                     b.Property<int>("DescriptionId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("IsForAdult")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsPaid")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Language")
@@ -102,18 +227,12 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("PublishedDate")
+                    b.Property<DateOnly?>("PublishedDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("RatingId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
+                    b.HasKey("BookId");
 
                     b.HasIndex("DescriptionId")
-                        .IsUnique();
-
-                    b.HasIndex("RatingId")
                         .IsUnique();
 
                     b.ToTable("book", (string)null);
@@ -121,13 +240,12 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.BookCenter", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookCenterId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("book_center_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BookCenterId"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -145,20 +263,19 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("BookCenterId");
 
                     b.ToTable("book_center", (string)null);
                 });
 
-            modelBuilder.Entity("MyBook.Entities.BookDescription", b =>
+            modelBuilder.Entity("MyBook.Entities.BookDesc", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookDescId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("book_desc_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BookDescId"));
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -166,20 +283,22 @@ namespace MyBook.Migrations
                     b.Property<int>("PagesCount")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Price")
+                        .HasColumnType("text");
+
+                    b.HasKey("BookDescId");
 
                     b.ToTable("book_desc", (string)null);
                 });
 
             modelBuilder.Entity("MyBook.Entities.BookGenre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookGenreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("book_genre_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BookGenreId"));
 
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
@@ -187,7 +306,7 @@ namespace MyBook.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("BookGenreId");
 
                     b.HasIndex("BookId");
 
@@ -198,13 +317,12 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.DownloadLink", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("DownloadLinkId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("download_link_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("DownloadLinkId"));
 
                     b.Property<int>("BookDescId")
                         .HasColumnType("integer");
@@ -217,7 +335,7 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("DownloadLinkId");
 
                     b.HasIndex("BookDescId");
 
@@ -226,13 +344,12 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.FavAuthor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FavAuthorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("fav_author_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FavAuthorId"));
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer");
@@ -240,7 +357,7 @@ namespace MyBook.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("FavAuthorId");
 
                     b.HasIndex("AuthorId");
 
@@ -251,13 +368,12 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.FavGenre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FavGenreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("fav_genre_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FavGenreId"));
 
                     b.Property<int>("GenreId")
                         .HasColumnType("integer");
@@ -265,7 +381,7 @@ namespace MyBook.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("FavGenreId");
 
                     b.HasIndex("GenreId");
 
@@ -276,32 +392,30 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("genre_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GenreId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("GenreId");
 
                     b.ToTable("genre", (string)null);
                 });
 
             modelBuilder.Entity("MyBook.Entities.History", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("HistoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("history_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("HistoryId"));
 
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
@@ -312,7 +426,7 @@ namespace MyBook.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("HistoryId");
 
                     b.HasIndex("BookId");
 
@@ -323,13 +437,12 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.ImgLink", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ImgLinkId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("img_link_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ImgLinkId"));
 
                     b.Property<int?>("AuthorId")
                         .HasColumnType("integer");
@@ -344,7 +457,7 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ImgLinkId");
 
                     b.HasIndex("AuthorId");
 
@@ -355,36 +468,39 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.Rating", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RatingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("rating_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RatingId"));
+
+                    b.Property<int>("FK_rating_book_bookId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FK_rating_user_userId")
+                        .HasColumnType("integer");
 
                     b.Property<double>("Points")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.HasKey("RatingId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("FK_rating_book_bookId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("FK_rating_user_userId");
 
                     b.ToTable("rating", (string)null);
                 });
 
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SubscriptionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("subscr_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscriptionId"));
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -392,32 +508,37 @@ namespace MyBook.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("FK_subscr_type_typeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FK_subscr_user_subscr_user_subscr_id")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("integer");
+                    b.HasKey("SubscriptionId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("FK_subscr_type_typeId")
+                        .IsUnique();
 
-                    b.HasIndex("TypeId")
+                    b.HasIndex("FK_subscr_user_subscr_user_subscr_id")
                         .IsUnique();
 
                     b.ToTable("subscription", (string)null);
                 });
 
-            modelBuilder.Entity("MyBook.Entities.SubscriptionType", b =>
+            modelBuilder.Entity("MyBook.Entities.SubscrType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SubscrTypeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("subscr_type_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrTypeId"));
 
                     b.Property<int?>("AuthorId")
                         .HasColumnType("integer");
@@ -428,7 +549,7 @@ namespace MyBook.Migrations
                     b.Property<int?>("GenreId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("SubscrTypeId");
 
                     b.HasIndex("AuthorId");
 
@@ -439,52 +560,105 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("user_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
-
-                    b.Property<int>("InfoId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InfoId")
-                        .IsUnique();
+                    b.HasKey("UserId");
 
                     b.ToTable("user", (string)null);
                 });
 
+            modelBuilder.Entity("MyBook.Entities.UserIdentity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("FK_user_identity_user_userId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FK_user_identity_user_userId")
+                        .IsUnique();
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
             modelBuilder.Entity("MyBook.Entities.UserInfo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserInfoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("user_info_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserInfoId"));
 
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
+
+                    b.Property<int>("FK_user_info_user_userId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -494,47 +668,94 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserInfoId");
+
+                    b.HasIndex("FK_user_info_user_userId")
+                        .IsUnique();
 
                     b.ToTable("user_info", (string)null);
                 });
 
-            modelBuilder.Entity("MyBook.Entities.UserSubscriptions", b =>
+            modelBuilder.Entity("MyBook.Entities.UserSubscr", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserSubscrId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("user_subscr_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<int>("Id"), 0L, null, 0L, null, null, null);
-
-                    b.Property<int>("SubscriptionId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserSubscrId"));
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubscriptionId")
-                        .IsUnique();
+                    b.HasKey("UserSubscrId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("user_subscr", (string)null);
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("MyBook.Entities.UserIdentity", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("MyBook.Entities.UserIdentity", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBook.Entities.UserIdentity", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("MyBook.Entities.UserIdentity", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyBook.Entities.AuthorBook", b =>
                 {
                     b.HasOne("MyBook.Entities.Author", "Author")
-                        .WithMany("Books")
+                        .WithMany("AuthorBooks")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyBook.Entities.Book", "Book")
-                        .WithMany("Authors")
+                        .WithMany("AuthorBooks")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -546,33 +767,25 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.Book", b =>
                 {
-                    b.HasOne("MyBook.Entities.BookDescription", "Description")
+                    b.HasOne("MyBook.Entities.BookDesc", "Description")
                         .WithOne("Book")
                         .HasForeignKey("MyBook.Entities.Book", "DescriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyBook.Entities.Rating", "Rating")
-                        .WithOne("Book")
-                        .HasForeignKey("MyBook.Entities.Book", "RatingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Description");
-
-                    b.Navigation("Rating");
                 });
 
             modelBuilder.Entity("MyBook.Entities.BookGenre", b =>
                 {
                     b.HasOne("MyBook.Entities.Book", "Book")
-                        .WithMany("Genres")
+                        .WithMany("BookGenres")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyBook.Entities.Genre", "Genre")
-                        .WithMany("Books")
+                        .WithMany("BookGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -584,7 +797,7 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.DownloadLink", b =>
                 {
-                    b.HasOne("MyBook.Entities.BookDescription", "BookDesc")
+                    b.HasOne("MyBook.Entities.BookDesc", "BookDesc")
                         .WithMany("DownloadLinks")
                         .HasForeignKey("BookDescId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -596,7 +809,7 @@ namespace MyBook.Migrations
             modelBuilder.Entity("MyBook.Entities.FavAuthor", b =>
                 {
                     b.HasOne("MyBook.Entities.Author", "Author")
-                        .WithMany("Fans")
+                        .WithMany("FavAuthors")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -615,7 +828,7 @@ namespace MyBook.Migrations
             modelBuilder.Entity("MyBook.Entities.FavGenre", b =>
                 {
                     b.HasOne("MyBook.Entities.Genre", "Genre")
-                        .WithMany("Fans")
+                        .WithMany("FavGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -634,13 +847,13 @@ namespace MyBook.Migrations
             modelBuilder.Entity("MyBook.Entities.History", b =>
                 {
                     b.HasOne("MyBook.Entities.Book", "Book")
-                        .WithMany("Readers")
+                        .WithMany("Histories")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyBook.Entities.User", "User")
-                        .WithMany("History")
+                        .WithMany("Histories")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -653,11 +866,11 @@ namespace MyBook.Migrations
             modelBuilder.Entity("MyBook.Entities.ImgLink", b =>
                 {
                     b.HasOne("MyBook.Entities.Author", "Author")
-                        .WithMany("Images")
+                        .WithMany("ImgLinks")
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("MyBook.Entities.Book", "Book")
-                        .WithMany("Images")
+                        .WithMany("ImgLinks")
                         .HasForeignKey("BookId");
 
                     b.Navigation("Author");
@@ -667,34 +880,50 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.Rating", b =>
                 {
-                    b.HasOne("MyBook.Entities.User", "User")
-                        .WithMany("Marks")
-                        .HasForeignKey("UserId")
+                    b.HasOne("MyBook.Entities.Book", "Book")
+                        .WithMany("Ratings")
+                        .HasForeignKey("FK_rating_book_bookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MyBook.Entities.User", "User")
+                        .WithMany("Ratings")
+                        .HasForeignKey("FK_rating_user_userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
-                    b.HasOne("MyBook.Entities.SubscriptionType", "Type")
+                    b.HasOne("MyBook.Entities.SubscrType", "Type")
                         .WithOne("Subscription")
-                        .HasForeignKey("MyBook.Entities.Subscription", "TypeId")
+                        .HasForeignKey("MyBook.Entities.Subscription", "FK_subscr_type_typeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBook.Entities.UserSubscr", "UserSubscr")
+                        .WithOne("Subscription")
+                        .HasForeignKey("MyBook.Entities.Subscription", "FK_subscr_user_subscr_user_subscr_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Type");
+
+                    b.Navigation("UserSubscr");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.SubscriptionType", b =>
+            modelBuilder.Entity("MyBook.Entities.SubscrType", b =>
                 {
                     b.HasOne("MyBook.Entities.Author", "Author")
-                        .WithMany("Followers")
+                        .WithMany("SubscrTypes")
                         .HasForeignKey("AuthorId");
 
                     b.HasOne("MyBook.Entities.Genre", "Genre")
-                        .WithMany("Followers")
+                        .WithMany("SubscrTypes")
                         .HasForeignKey("GenreId");
 
                     b.Navigation("Author");
@@ -702,59 +931,64 @@ namespace MyBook.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.User", b =>
+            modelBuilder.Entity("MyBook.Entities.UserIdentity", b =>
                 {
-                    b.HasOne("MyBook.Entities.UserInfo", "UserInfo")
-                        .WithOne("User")
-                        .HasForeignKey("MyBook.Entities.User", "InfoId")
+                    b.HasOne("MyBook.Entities.User", "User")
+                        .WithOne("IdentityInfo")
+                        .HasForeignKey("MyBook.Entities.UserIdentity", "FK_user_identity_user_userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserInfo");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.UserSubscriptions", b =>
+            modelBuilder.Entity("MyBook.Entities.UserInfo", b =>
                 {
-                    b.HasOne("MyBook.Entities.Subscription", "Subscription")
-                        .WithOne("User")
-                        .HasForeignKey("MyBook.Entities.UserSubscriptions", "SubscriptionId")
+                    b.HasOne("MyBook.Entities.User", "User")
+                        .WithOne("Info")
+                        .HasForeignKey("MyBook.Entities.UserInfo", "FK_user_info_user_userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyBook.Entities.UserSubscr", b =>
+                {
                     b.HasOne("MyBook.Entities.User", "User")
-                        .WithMany("Subscriptions")
+                        .WithMany("UserSubscrs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Subscription");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Author", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("AuthorBooks");
 
-                    b.Navigation("Fans");
+                    b.Navigation("FavAuthors");
 
-                    b.Navigation("Followers");
+                    b.Navigation("ImgLinks");
 
-                    b.Navigation("Images");
+                    b.Navigation("SubscrTypes");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Book", b =>
                 {
-                    b.Navigation("Authors");
+                    b.Navigation("AuthorBooks");
 
-                    b.Navigation("Genres");
+                    b.Navigation("BookGenres");
 
-                    b.Navigation("Images");
+                    b.Navigation("Histories");
 
-                    b.Navigation("Readers");
+                    b.Navigation("ImgLinks");
+
+                    b.Navigation("Ratings");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.BookDescription", b =>
+            modelBuilder.Entity("MyBook.Entities.BookDesc", b =>
                 {
                     b.Navigation("Book")
                         .IsRequired();
@@ -764,26 +998,14 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.Genre", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("BookGenres");
 
-                    b.Navigation("Fans");
+                    b.Navigation("FavGenres");
 
-                    b.Navigation("Followers");
+                    b.Navigation("SubscrTypes");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.Rating", b =>
-                {
-                    b.Navigation("Book")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MyBook.Entities.Subscription", b =>
-                {
-                    b.Navigation("User")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MyBook.Entities.SubscriptionType", b =>
+            modelBuilder.Entity("MyBook.Entities.SubscrType", b =>
                 {
                     b.Navigation("Subscription")
                         .IsRequired();
@@ -795,16 +1017,22 @@ namespace MyBook.Migrations
 
                     b.Navigation("FavGenres");
 
-                    b.Navigation("History");
+                    b.Navigation("Histories");
 
-                    b.Navigation("Marks");
+                    b.Navigation("IdentityInfo")
+                        .IsRequired();
 
-                    b.Navigation("Subscriptions");
+                    b.Navigation("Info")
+                        .IsRequired();
+
+                    b.Navigation("Ratings");
+
+                    b.Navigation("UserSubscrs");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.UserInfo", b =>
+            modelBuilder.Entity("MyBook.Entities.UserSubscr", b =>
                 {
-                    b.Navigation("User")
+                    b.Navigation("Subscription")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

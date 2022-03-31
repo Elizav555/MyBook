@@ -7,6 +7,9 @@ namespace BooksParcer
     {
         public int SubscrTypeId { get; set; }
         public bool ForPaid { get; set; }
+        public int? AuthorId { get; set; }
+        public int? GenreId { get; set; }
+
         public virtual Author? Author { get; set; }
         public virtual Genre? Genre { get; set; }
         public virtual Subscription Subscription { get; set; } = null!;
