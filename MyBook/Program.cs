@@ -1,15 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MyBookContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
-    .AddScoped<IGenericRepository<Book>, EFGenericRepository<Book>>()
-    .AddScoped<IGenericRepository<Author>, EFGenericRepository<Author>>()
-    .AddScoped<IGenericRepository<Genre>, EFGenericRepository<Genre>>();
+    .AddScoped<IGenericRepository<Book>, EfGenericRepository<Book>>()
+    .AddScoped<IGenericRepository<Author>, EfGenericRepository<Author>>()
+    .AddScoped<IGenericRepository<Genre>, EfGenericRepository<Genre>>()
+    .AddScoped<EfBookRepository>()
+    .AddScoped<EfAuthorRepository>();
 
 builder.Services.AddIdentity<UserIdentity, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
