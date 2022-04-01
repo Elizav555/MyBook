@@ -98,7 +98,6 @@ button.accept-policy {
   margin-left: 16px;
   margin-right: 8px;
   padding: 10px;
-  overflow: hidden;
   position: relative;
   color: #ffffff;
 
@@ -116,7 +115,7 @@ button.accept-policy {
   margin-bottom: 5px;
   margin-top: 10px;
   margin-left: 16px;
-  margin-right: 80px;
+  margin-right: 10px;
 }
 
 .genreNumber {
@@ -129,8 +128,40 @@ button.accept-policy {
 }
 
 .genre_img{
+  position:absolute;
+  right: 0;
+  bottom: 3px;
   border-radius: 10px;
-  width: 150px;
+  width: 100px;
   object-fit: contain;
   height: 100%;
+}
+
+.show_more {
+  display: flex;
+
+  width: 1080px;
+  height: 40px;
+  
+  border: 2px solid rgb(179, 77, 0);
+  background: rgb(256, 256, 256) !important;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  position: relative;
+  text-align:  center;
+  
+  box-sizing: content-box;
+}
+.show_more_button{
+  background: rgb(256, 256, 256) !important;
+  border:none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35em;
+  font-size: 25px;
+  color: rgb(179, 77, 0);
 }

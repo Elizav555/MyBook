@@ -13,12 +13,16 @@
         <div class="row">
             <article class="postcard_mini">
                 <div class="-columns">
-                <p class="genreName"><b>Фантастика</b></p>0
+                <p class="genreName"><b>Фантастика</b></p>0.
                 </div>
                 <img class="genre_img" src="~/assets/img/fantastic.png" alt="">
             </article>
             <article class="postcard_mini">
                 <p class="genreName"><b>Фэнтези</b></p>
+                <img class="genre_img" src="~/assets/img/fantasy.png" alt="">
+            </article>
+            <article class="postcard_mini">
+                <p class="genreName"><b>Бизнес-книги</b></p>
                 <img class="genre_img" src="~/assets/img/fantasy.png" alt="">
             </article>
         </div>
@@ -31,6 +35,10 @@
         {
             @await Component.InvokeAsync("BookPreview", book)
         }
+        <article class="show_more">
+            <button class="show_more_button">Показать ещё</button>
+        </article>
+        
     </div>
 </div>
 </body>
