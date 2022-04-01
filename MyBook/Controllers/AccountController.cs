@@ -7,11 +7,11 @@ namespace MyBook.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<UserIdentity> _userManager;
-        private readonly SignInManager<UserIdentity> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly MyBookContext _bookContext;
 
-        public AccountController(UserManager<UserIdentity> userManager, SignInManager<UserIdentity> signInManager, MyBookContext db)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MyBookContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -28,25 +28,17 @@ namespace MyBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserIdentity user = new UserIdentity { Email = model.Email, UserName = model.Email };
+                User user = new User
+                {
+                    Email = model.Email,
+                    UserName = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    BirthDate = model.BirthDate,
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var userInfo = new UserInfo
-                    {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        BirthDate = model.BirthDate,
-                    };
-                    var userBook = new User
-                    {
-                        IsAdmin = false,
-                        Info = userInfo,
-                        //IdentityInfo = user
-                    };
-                    user.User = userBook; //все ок, но у пользователя fk остается null
-                    _bookContext.UserInfos.Add(userInfo);
-                    _bookContext.Users.Add(userBook);
                     _bookContext.SaveChanges();
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");

@@ -9,7 +9,7 @@ builder.Services.AddDbContext<MyBookContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
     .AddScoped<IGenericRepository<Book>, EFGenericRepository<Book>>();
 
-builder.Services.AddIdentity<UserIdentity, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
