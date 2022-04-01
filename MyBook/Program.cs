@@ -11,7 +11,14 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IGenericRepository<Author>, EFGenericRepository<Author>>()
     .AddScoped<IGenericRepository<Genre>, EFGenericRepository<Genre>>();
 
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
+builder.Services.AddIdentity<User, IdentityRole>(opts => {
+    opts.Password.RequiredLength = 6;   // минимальная длина
+    opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
+    opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
+    opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+    opts.Password.RequireDigit = true; // требуются ли цифры
+    opts.User.RequireUniqueEmail = true;    // уникальный email
+}).AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

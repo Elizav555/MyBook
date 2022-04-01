@@ -17,27 +17,27 @@
                     <div class="form-group form_label_reg">
                         <label asp-for="Email" for="nameForm">Ваша электронная почта:</label>
                         <input asp-for="Email" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
-                        <span asp-validation-for="Email"></span>
+                        <span asp-validation-for="Email"class="text-danger"></span>
                     </div>
                     <div class="form-group form_label_reg">
                         <label asp-for="Password" for="surnameForm">Придумайте пароль, пожалуйста:</label>
                         <input asp-for="Password" type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
                         <label class="lower_label">Не менее 8 символов, цифры и буквы.</label>
-                        <span asp-validation-for="Password"></span>
+                        <span asp-validation-for="Password"class="text-danger"></span>
                     </div>
                     <div class="form-group form_label_reg">
                         <label asp-for="LastName">Фамилия: </label><br />
                         <input class="form-control" type="text" asp-for="LastName">
-                        <span asp-validation-for="LastName" />
+                        <span asp-validation-for="LastName"class="text-danger" />
                     </div>
                     <div class="form-group form_label_reg">
                         <label asp-for="FirstName">Имя: </label><br />
                         <input class="form-control" type="text" asp-for="FirstName">
-                        <span asp-validation-for="FirstName" />
+                        <span asp-validation-for="FirstName" class="text-danger"/>
                     </div>
                     <div class="form-group form_label_reg">
                         <label asp-for="BirthDate">Дата рождения: </label><br />
-                        <input  class="form-control" type="date" id="datepicker" asp-for="BirthDate">
+                        <input  class="form-control" type="date" min="1922-04-01" max="2020-04-30" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" id="datepicker" asp-for="BirthDate">
                         <span asp-validation-for="BirthDate" class="text-danger" />
                     </div>
                     <button type="submit" class="reg_button">Зарегистрироваться</button>
