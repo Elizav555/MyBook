@@ -11,7 +11,7 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IGenericRepository<Author>, EFGenericRepository<Author>>()
     .AddScoped<IGenericRepository<Genre>, EFGenericRepository<Genre>>();
 
-builder.Services.AddIdentity<UserIdentity, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

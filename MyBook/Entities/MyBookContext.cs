@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MyBook.Entities
 {
-    public partial class MyBookContext : IdentityDbContext<UserIdentity>
+    public partial class MyBookContext : IdentityDbContext<User>
     {
         public MyBookContext()
         {
@@ -29,9 +29,7 @@ namespace MyBook.Entities
         public virtual DbSet<Rating> Ratings { get; set; } = null!;
         public virtual DbSet<SubscrType> SubscrTypes { get; set; } = null!;
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!; //я нэ понимаю что он тут хочет своей подсказкой 
-                                                                // Предупреждение CS0114	"MyBookContext.Users" скрывает наследуемый член "IdentityUserContext<IdentityUser, string, IdentityUserClaim<string>, IdentityUserLogin<string>, IdentityUserToken<string>>.Users". Чтобы текущий член переопределял эту реализацию, добавьте ключевое слово override. В противном случае добавьте ключевое слово new
-        public virtual DbSet<UserInfo> UserInfos { get; set; } = null!;
+        public virtual DbSet<Type> Types { get; set; } = null!;
         public virtual DbSet<UserSubscr> UserSubscrs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -204,11 +202,8 @@ namespace MyBook.Entities
                     .HasColumnName("subscr_type_id")
                     ;
 
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.SubscrTypes);
-
-                entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.SubscrTypes);
+                entity.HasOne(d => d.Type).WithMany(p => p.SubscrTypes);
+                entity.HasOne(d => d.Subscription).WithMany(p => p.SubscrTypes);
             });
 
             modelBuilder.Entity<Subscription>(entity =>
@@ -218,33 +213,15 @@ namespace MyBook.Entities
                 entity.Property(e => e.SubscriptionId)
                     .HasColumnName("subscr_id")
                     ;
-
-                entity.HasOne(d => d.Type)
-                    .WithOne(p => p.Subscription);
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Type>(entity =>
             {
-                entity.ToTable("user");
+                entity.ToTable("types");
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("user_id")
-                    ;
+                entity.Property(e => e.TypeId)
+                    .HasColumnName("type_id");
 
-                entity.HasOne(d => d.Info)
-                    .WithOne(p => p.User);
-
-                entity.HasOne(d => d.IdentityInfo)
-                    .WithOne(p => p.User);
-            });
-
-            modelBuilder.Entity<UserInfo>(entity =>
-            {
-                entity.ToTable("user_info");
-
-                entity.Property(e => e.UserInfoId)
-                    .HasColumnName("user_info_id")
-                    ;
             });
 
             modelBuilder.Entity<UserSubscr>(entity =>
