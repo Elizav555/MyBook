@@ -7,7 +7,7 @@
             <h1 class="h1 text-capitalize">Книги</h1>
             <h3 class="h3 m-0 ms-3 text-info">@Model.Books.Count</h3>
         </div>
-        @foreach (var book in Model.Books.Skip(300))
+        @foreach (var book in Model.Books)
         {
             @await Component.InvokeAsync("BookPreview", book)
         }
@@ -16,7 +16,7 @@
                 <h1 class="h1 text-capitalize">Авторы</h1>
                 <h3 class="h3 m-0 ms-3 text-info">@Model.Authors.Count</h3>
             </div>
-        @foreach (var author in Model.Authors.Skip(300))
+        @foreach (var author in Model.Authors)
         {
             @await Component.InvokeAsync("AuthorPreview",author)
         }
