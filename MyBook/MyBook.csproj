@@ -26,7 +26,11 @@
     <_ContentIncludedByDefault Remove="Pages\Components\BookPreview\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Components\BookSmallPreview\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Components\BooksCarousel\Default.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Components\AuthorPreview\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
+
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MyBook.Entities
+﻿namespace MyBook.Entities
 {
     public partial class Subscription
     {

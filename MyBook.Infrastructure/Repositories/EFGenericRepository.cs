@@ -1,48 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http.Features;
+﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using MyBook.Entities;
+using Repositories;
 
-namespace Repositories
+namespace MyBook.Infrastructure.Repositories
 {
-    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class EfGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        MyBookContext _context;
-        DbSet<TEntity> _dbSet;
+        protected readonly MyBookContext Context;
+        protected readonly DbSet<TEntity> DbSet;
         
-        public EFGenericRepository(MyBookContext context)
+        public EfGenericRepository(MyBookContext context)
         {
-            _context = context;
-            _dbSet = context.Set<TEntity>();
+            Context = context;
+            DbSet = context.Set<TEntity>();
         }
 
         public IEnumerable<TEntity> Get()
         {
-            return _dbSet.AsNoTracking().ToList();
+            return DbSet.AsNoTracking().ToList();
         }
 
         public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
         {
-            return _dbSet.AsNoTracking().Where(predicate).ToList();
+            return DbSet.AsNoTracking().Where(predicate).ToList();
         }
 
-        public async Task<TEntity> FindById(int id) => await _dbSet.FindAsync(id);
+        public async Task<TEntity> FindById(int id) => await DbSet.FindAsync(id);
 
         public async Task Create(TEntity item)
         {
-            _context.Entry(item).State = EntityState.Added;
-            await _dbSet.AddAsync(item);
-            await _context.SaveChangesAsync();
+            Context.Entry(item).State = EntityState.Added;
+            await DbSet.AddAsync(item);
+            await Context.SaveChangesAsync();
         }
 
         public async Task Update(TEntity item, List<string> excluded = null)
         {
-            var entity = _context.Entry(item);
+            var entity = Context.Entry(item);
             entity.State = EntityState.Modified;
 
             if (excluded != null)
@@ -51,20 +47,20 @@ namespace Repositories
                     entity.Property(name).IsModified = false;
                 }
 
-            await _context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
         public async Task Remove(TEntity item)
         {
-            _dbSet.Remove(item);
-            await _context.SaveChangesAsync();
+            DbSet.Remove(item);
+            await Context.SaveChangesAsync();
         }
 
         public async Task RemoveById(int id)
         {
             var entity = await FindById(id);
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
+            DbSet.Remove(entity);
+            await Context.SaveChangesAsync();
         }
 
         public IQueryable<TEntity> GetWithInclude(
@@ -82,7 +78,7 @@ namespace Repositories
         
         private IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
         {
-            var query = _dbSet.AsNoTracking();
+            var query = DbSet.AsNoTracking();
             return includeProperties
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
@@ -93,7 +89,7 @@ namespace Repositories
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
             bool disableTracking = true)
         {
-            IQueryable<TEntity> query = _dbSet;
+            IQueryable<TEntity> query = DbSet;
             if (disableTracking)
             {
                 query = query.AsNoTracking();
