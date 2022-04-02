@@ -5,12 +5,12 @@ using Repositories;
 
 namespace MyBook.ViewModels;
 
-public class LibraryVIewModel
+public class LibraryViewModel
 {
     public List<Book> AllBooks { get; set; }
     public List<Author> AllAuthors { get; set; }
 
-    public LibraryVIewModel(
+    public LibraryViewModel(
         EfBookRepository bookRepository,
         EfAuthorRepository authorRepository)
     {

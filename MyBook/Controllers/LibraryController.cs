@@ -8,18 +8,18 @@ namespace MyBook.Controllers;
 
 public class LibraryController: Controller
 {
-    private readonly LibraryVIewModel _vIewModel;
+    private readonly LibraryViewModel _viewModel;
     
     public LibraryController(
         EfBookRepository bookRepository,
         EfAuthorRepository authorRepository)
     {
-        _vIewModel = new LibraryVIewModel(bookRepository,authorRepository);
+        _viewModel = new LibraryViewModel(bookRepository,authorRepository);
     }
 
     public async Task<IActionResult> Index()
     {
-        return View(_vIewModel);
+        return View(_viewModel);
     } 
     
     
