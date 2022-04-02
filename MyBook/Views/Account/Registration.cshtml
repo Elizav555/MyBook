@@ -9,42 +9,43 @@
 <body>
     <section class="modal_wrapper">
         <div class="main_content_page">
-            <div  class="wrapper_modal_content">
+            <div class="wrapper_modal_content">
                 <div class="modal_view">
                     <span>Регистрация</span>
                     <form method="post" asp-controller="Account" asp-action="Registration">
-                    <div asp-validation-summary="ModelOnly"></div>
-                    <div class="form-group form_label_reg">
-                        <label asp-for="Email" for="nameForm">Ваша электронная почта:</label>
-                        <input asp-for="Email" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
-                        <span asp-validation-for="Email"class="text-danger"></span>
-                    </div>
-                    <div class="form-group form_label_reg">
-                        <label asp-for="Password" for="surnameForm">Придумайте пароль, пожалуйста:</label>
-                        <input asp-for="Password" type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
-                        <label class="lower_label">Не менее 8 символов, цифры и буквы.</label>
-                        <span asp-validation-for="Password"class="text-danger"></span>
-                    </div>
-                    <div class="form-group form_label_reg">
-                        <label asp-for="LastName">Фамилия: </label><br />
-                        <input class="form-control" type="text" asp-for="LastName">
-                        <span asp-validation-for="LastName"class="text-danger" />
-                    </div>
-                    <div class="form-group form_label_reg">
-                        <label asp-for="FirstName">Имя: </label><br />
-                        <input class="form-control" type="text" asp-for="FirstName">
-                        <span asp-validation-for="FirstName" class="text-danger"/>
-                    </div>
-                    <div class="form-group form_label_reg">
-                        <label asp-for="BirthDate">Дата рождения: </label><br />
-                        <input  class="form-control" type="date" min="1922-04-01" max="2020-04-30" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" id="datepicker" asp-for="BirthDate">
-                        <span asp-validation-for="BirthDate" class="text-danger" />
-                    </div>
-                    <button type="submit" class="reg_button">Зарегистрироваться</button>
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group form_label_reg">
+                            <label asp-for="Email" for="nameForm">Ваша электронная почта:</label>
+                            <input asp-for="Email" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form_label_reg">
+                            <label asp-for="Password" for="surnameForm">Придумайте пароль, пожалуйста:</label>
+                            <input asp-for="Password" type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+                            <label class="lower_label">Не менее 8 символов, цифры и буквы.</label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form_label_reg">
+                            <label asp-for="LastName">Фамилия: </label><br />
+                            <input class="form-control" type="text" asp-for="LastName">
+                            <span asp-validation-for="LastName" class="text-danger" />
+                        </div>
+                        <div class="form-group form_label_reg">
+                            <label asp-for="FirstName">Имя: </label><br />
+                            <input class="form-control" type="text" asp-for="FirstName">
+                            <span asp-validation-for="FirstName" class="text-danger" />
+                        </div>
+                        <div class="form-group form_label_reg">
+                            <label asp-for="BirthDate">Дата рождения: </label><br />
+                            <input class="form-control" type="date" min="1922-04-01" max="2020-04-30" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" id="datepicker" asp-for="BirthDate">
+                            <span asp-validation-for="BirthDate" class="text-danger" />
+                        </div>
+                        <button type="submit" class="reg_button">Зарегистрироваться</button>
                     </form>
                     <button class="signin_button">Регистрация с помощью VK</button>
                     <form method="get" asp-controller="Account" asp-action="SignIn">
-                    <button class="main_button">Войти</button></form>
+                        <button class="main_button">Войти</button>
+                    </form>
                     <p>Регистрируясь, вы принимаете публичную оферту и условия использования MyBook</p>
                 </div>
             </div>
