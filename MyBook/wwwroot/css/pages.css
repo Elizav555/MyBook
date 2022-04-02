@@ -525,10 +525,17 @@ table td {
     z-index: 2;
 }
 
-.modal_view span {
+.modal_view h4 {
     position: relative;
     font-size: 45px;
     font-weight: bold;
+}
+
+.modal_view span {
+    position: relative;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
 }
 .modal_wrapper {
     position: fixed;
