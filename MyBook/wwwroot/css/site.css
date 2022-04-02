@@ -82,3 +82,8 @@ button.accept-policy {
   cursor: pointer;
   color: rgb(168, 76, 0) !important;
 }
+
+.customInput{
+  max-width: 310px;
+  width: 100%;
+}
