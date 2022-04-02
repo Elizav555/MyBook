@@ -14,7 +14,7 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<EfBookRepository>()
     .AddScoped<EfAuthorRepository>();
 
-builder.Services.AddIdentity<UserIdentity, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

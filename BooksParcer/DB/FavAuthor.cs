@@ -7,9 +7,9 @@ namespace BooksParcer
     {
         public int FavAuthorId { get; set; }
         public int AuthorId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
         public virtual Author Author { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual AspNetUser User { get; set; } = null!;
     }
 }

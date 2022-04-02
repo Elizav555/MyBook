@@ -26,7 +26,7 @@
     padding-bottom: 0;
 }
 
-.bookName{
+.Name{
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -60,8 +60,40 @@
     height: 100%;
 }
 
-.BookPreviewTitle{
+.PreviewTitle{
     display: flex;
     align-items: center;
 }
 
+.filters{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.dropdown{
+    margin-top: 5%;
+    font-family: "Fira Sans", sans-serif;
+}
+
+#btn-lng-flt{
+    background-color: white;
+    color:black;
+    width: 70%;
+    border-radius: 7px;
+    text-align: left;
+}
+
+#btn-lng-flt:hover{
+    background-color: #FFFDF0;
+    color:black;
+}
+
+#btn-lng-flt:active{
+    background-color: #FFFDF0;
+    color:black;
+}
+
+#btn-lng-flt:focus{
+    background-color: #FFFDF0;
+    color:black;
+}

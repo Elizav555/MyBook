@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
+
   </ItemGroup>
 
 </Project>
