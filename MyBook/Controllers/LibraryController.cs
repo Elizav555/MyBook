@@ -25,17 +25,17 @@ namespace MyBook.Controllers
             _genreRepository = genreRepository;
         }
 
-        public async Task<IActionResult> Index(string filter)
+        public async Task<IActionResult> Index(string langFilter)
         {
 
-            if (String.IsNullOrEmpty(filter) || filter=="Все")
+            if (String.IsNullOrEmpty(langFilter) || langFilter=="Все")
             {
                 _viewModel = new LibraryVIewModel(_bookRepository, _authorRepository, _genreRepository);
             }
             else
             {
                 _viewModel = new LibraryVIewModel(_bookRepository, _authorRepository,
-                    _genreRepository, filter);
+                    _genreRepository, langFilter);
             }
 
             return View(_viewModel);

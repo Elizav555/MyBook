@@ -18,8 +18,8 @@ namespace MyBook.ViewModels
         private readonly string _filter;
         public List<Book> Books { get; set; } = new();
 
-        public  List<SelectListItem> dropdownItems = new List<SelectListItem>();
-
+        public  List<SelectListItem> Languages = new List<SelectListItem>();
+        public  List<SelectListItem> Genres = new List<SelectListItem>();
 
         private List<Book> GetFilterBooks()
         {
@@ -42,7 +42,8 @@ namespace MyBook.ViewModels
         {
             _bookRepository = bookRepository;
             _filter = filter;
-            dropdownItems = GetLanguages();
+            Languages = GetLanguages();
+            Genres = GetGenres();
             AllBooks = GetFilterBooks();
             AllAuthors = GetAllAuthors(authorRepository);
             AllGenres = genreRepository.Get().ToList();
@@ -59,13 +60,14 @@ namespace MyBook.ViewModels
             AllAuthors = GetAllAuthors(authorRepository);
             AllGenres = genreRepository.Get().ToList();
             Books = GetFilterBooks();
-            dropdownItems = GetLanguages();
+            Languages = GetLanguages();
+            Genres = GetGenres();
         }
 
 
         private List<SelectListItem> GetLanguages()
         {
-            dropdownItems.Add(new SelectListItem() {Text = "Все", Value = "Все"});
+            Languages.Add(new SelectListItem() {Text = "Все", Value = "Все"});
             List<Book> allBooks = GetAllBooks(_bookRepository);
             List<string> languages = new List<string>();
             foreach (var book in allBooks)
@@ -78,10 +80,24 @@ namespace MyBook.ViewModels
             foreach (var lang in languages)
             {
                 var item = new SelectListItem() {Text = $"{lang}", Value = $"{lang}"};
-                dropdownItems.Add(item);
+                Languages.Add(item);
             }
-            return dropdownItems;
+            return Languages;
         }
+        
+        private List<SelectListItem> GetGenres()
+        {
+           Genres.Add(new SelectListItem() {Text = "Все", Value = "Все"});
+           foreach (var genre in AllGenres)
+           {
+               var genreName = genre.Name;
+               var item = new SelectListItem() {Text = $"{genreName}", Value = $"{genreName}"};
+               Genres.Add(item);
+           }
+
+           return Genres;
+        } 
+        
         private List<Book> GetAllBooks(IGenericRepository<Book> bookRepository)
         {
             return bookRepository.GetWithMultiIncluding(
