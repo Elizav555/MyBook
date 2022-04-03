@@ -15,7 +15,7 @@ namespace MyBook.ViewModels
         public List<Genre> AllGenres { get; set; }
 
         private readonly IGenericRepository<Book> _bookRepository;
-        private readonly string _searchString;
+        private readonly string _filter;
         public List<Book> Books { get; set; } = new();
 
         public  List<SelectListItem> dropdownItems = new List<SelectListItem>();
@@ -25,7 +25,7 @@ namespace MyBook.ViewModels
         {
             return _bookRepository.GetWithMultiIncluding(
                 book => book,
-                book => book.Language.EndsWith(_searchString),
+                book => book.Language.EndsWith(_filter),
                 books =>
                     books.Include(book => book.AuthorBooks)
                         .ThenInclude(authorBook => authorBook.Author)
@@ -38,10 +38,10 @@ namespace MyBook.ViewModels
             IGenericRepository<Book> bookRepository,
             IGenericRepository<Author> authorRepository,
             IGenericRepository<Genre> genreRepository,
-            string searchString)
+            string filter)
         {
             _bookRepository = bookRepository;
-            _searchString = searchString;
+            _filter = filter;
             dropdownItems = GetLanguages();
             AllBooks = GetFilterBooks();
             AllAuthors = GetAllAuthors(authorRepository);

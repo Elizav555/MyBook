@@ -14,7 +14,7 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Book> _bookRepository;
         private readonly IGenericRepository<Author> _authorRepository;
         private readonly IGenericRepository<Genre> _genreRepository;
-        private LibraryVIewModel _vIewModel;
+        private LibraryVIewModel _viewModel;
 
         public LibraryController(IGenericRepository<Book> bookRepository,
             IGenericRepository<Author> authorRepository,
@@ -25,20 +25,20 @@ namespace MyBook.Controllers
             _genreRepository = genreRepository;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string filter)
         {
 
-            if (String.IsNullOrEmpty(searchString) || searchString=="Все")
+            if (String.IsNullOrEmpty(filter) || filter=="Все")
             {
-                _vIewModel = new LibraryVIewModel(_bookRepository, _authorRepository, _genreRepository);
+                _viewModel = new LibraryVIewModel(_bookRepository, _authorRepository, _genreRepository);
             }
             else
             {
-                _vIewModel = new LibraryVIewModel(_bookRepository, _authorRepository,
-                    _genreRepository, searchString);
+                _viewModel = new LibraryVIewModel(_bookRepository, _authorRepository,
+                    _genreRepository, filter);
             }
 
-            return View(_vIewModel);
+            return View(_viewModel);
         }
     }
 }
