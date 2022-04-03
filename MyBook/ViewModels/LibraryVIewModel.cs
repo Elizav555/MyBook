@@ -15,6 +15,7 @@ namespace MyBook.ViewModels
         public List<Genre> AllGenres { get; set; }
 
         private readonly IGenericRepository<Book> _bookRepository;
+        
         private readonly string _filter;
         public List<Book> Books { get; set; } = new();
 
@@ -26,13 +27,14 @@ namespace MyBook.ViewModels
             return _bookRepository.GetWithMultiIncluding(
                 book => book,
                 book => book.Language.EndsWith(_filter),
-                books =>
+                        books =>
                     books.Include(book => book.AuthorBooks)
                         .ThenInclude(authorBook => authorBook.Author)
                         .Include(book => book.ImgLinks)
                         .Include(book => book.Description)
             ).ToList();
         }
+        
 
         public LibraryVIewModel(
             IGenericRepository<Book> bookRepository,
@@ -42,12 +44,12 @@ namespace MyBook.ViewModels
         {
             _bookRepository = bookRepository;
             _filter = filter;
-            Languages = GetLanguages();
-            Genres = GetGenres();
             AllBooks = GetFilterBooks();
             AllAuthors = GetAllAuthors(authorRepository);
             AllGenres = genreRepository.Get().ToList();
             Books = GetFilterBooks();
+            Languages = GetLanguages();
+            Genres = GetGenres();
         }
         
         public LibraryVIewModel(
