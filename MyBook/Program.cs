@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using Repositories;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,11 @@ builder.Services.AddDbContext<MyBookContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ReadersOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Reader"));
+    options.AddPolicy("AdminsOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
