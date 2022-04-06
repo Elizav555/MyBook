@@ -7,13 +7,25 @@
     color: black;
     font-family: 'Fira Sans', sans-serif;
 }
+*, *:after, *:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: .5s ease-in-out;
+}
+.container {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+}
+/*-----------------header--------------------*/
 
-    /*-----------------header--------------------*/
-
-    body header {
-        padding: 1em 15em;
-        font-size: 14px;
-    }
+header {
+    font-size: 14px;
+    padding-top: 1em;
+    width: 100%;
+    position: relative;
+}
 
 header a {
     color: rgb(179, 77, 0) !important;
@@ -22,7 +34,7 @@ header a {
 
 .navbar-nav li {
     font-weight: bold;
-    padding: 0 2.7em;
+    padding: 0 3.5em;
     white-space: nowrap;
 }
 
@@ -31,19 +43,14 @@ header a {
     padding-right: 2em;
 }
 
-.navbar form {
-    padding: 0 2em;
-}
-
-.navbar input {
-    padding: 1.2em 2.9em;
+.navbar input { 
     color: grey;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
 }
 /*----------lower_header-----------------*/
 .wrapper_lower_header {
-    padding: 2.5em 1em;
+    padding: 1em 1em;
 }
 
 .lower_header a {
