@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
 using MyBook.Models;
+using System.Security.Claims;
 
 namespace MyBook.Controllers
 {
@@ -39,6 +40,7 @@ namespace MyBook.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Reader"));
                     _bookContext.SaveChanges();
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
