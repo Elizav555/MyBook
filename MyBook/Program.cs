@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
+using MyBook.Validation;
 using Repositories;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient<IUserValidator<User>, UserValidator>()
+    .AddTransient<IPasswordValidator<User>,PasswordValidator>();
 
 builder.Services.AddDbContext<MyBookContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
