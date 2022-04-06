@@ -1,15 +1,19 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using Repositories;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MyBookContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
-    .AddScoped<IGenericRepository<Book>, EFGenericRepository<Book>>()
-    .AddScoped<IGenericRepository<Author>, EFGenericRepository<Author>>()
-    .AddScoped<IGenericRepository<Genre>, EFGenericRepository<Genre>>();
+    .AddScoped<IGenericRepository<Book>, EfGenericRepository<Book>>()
+    .AddScoped<IGenericRepository<Author>, EfGenericRepository<Author>>()
+    .AddScoped<IGenericRepository<Genre>, EfGenericRepository<Genre>>()
+    .AddScoped<EfBookRepository>()
+    .AddScoped<EfAuthorRepository>();
 
 builder.Services.AddIdentity<User, IdentityRole>(opts => {
     opts.Password.RequiredLength = 6;   // минимальная длина
@@ -21,6 +25,11 @@ builder.Services.AddIdentity<User, IdentityRole>(opts => {
 }).AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ReadersOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Reader"));
+    options.AddPolicy("AdminsOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

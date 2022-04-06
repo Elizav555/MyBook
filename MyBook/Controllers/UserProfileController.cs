@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyBook.Controllers
 {
+    [Authorize(Policy = "ReadersOnly")]
     public class UserProfileController : Controller
     {
         public IActionResult EditProfile()

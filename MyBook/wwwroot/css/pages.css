@@ -11,7 +11,6 @@
     /*-----------------header--------------------*/
 
     body header {
-        padding: 1em 15em;
         font-size: 14px;
     }
 
@@ -41,6 +40,7 @@ header a {
     border: 1px solid #d9d9d9;
     border-radius: 8px;
 }
+
 /*----------lower_header-----------------*/
 .wrapper_lower_header {
     padding: 2.5em 1em;

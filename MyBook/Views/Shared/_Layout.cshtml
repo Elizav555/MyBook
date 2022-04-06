@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -23,14 +22,14 @@
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css">
 </head>
 <body>
-<header>
+<header class="customHeader">
 		<div class="upper_header">
 			<nav class="navbar navbar-expand-lg">
 				<div class="logo_wrapper"><img src="/assets/img/logo.png"></div>
 				    <ul class="navbar-nav mr-auto">
 				    	 <li class="nav-form">
-					    	<form class="form-inline">
-					    		<input class="form-control mr-sm-2" type="search" placeholder="Книга или автор" aria-label="Search">
+					    	<form asp-controller="Search" asp-action="SearchAll" class="d-flex">
+						        <input name="SearchString" class="form-control mr-sm-2 customInput w-100" type="search" placeholder="Книга или автор" aria-label="Search">
 						    </form>
 				      	</li>
 					    <li class="nav-item">
@@ -58,8 +57,7 @@
 		<div class="wrapper_lower_header">
 			<ul>
 				<li>
-					<a asp-area="" asp-controller="Home" asp-action="Index">📖 Книги</a>
-				</li>
+					<a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
 				<li>
 					<a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
 				</li>

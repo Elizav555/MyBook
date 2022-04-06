@@ -28,4 +28,9 @@
     <_ContentIncludedByDefault Remove="Pages\Components\BooksCarousel\Default.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
+
+  </ItemGroup>
+
 </Project>
