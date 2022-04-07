@@ -6,13 +6,19 @@ namespace MyBook.Validation
 {
     public class UserValidator : IUserValidator<User>
     {
-        DateOnly minDate = DateOnly.Parse("06.04.1922");
+        DateTime minDate = DateTime.Parse("06.04.1922");
         const string letters = @"^([А-Я][а-яё]{2,50}|[A-Z][a-z]{2,50})$";
         const string email = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
         public Task<IdentityResult> ValidateAsync(UserManager<User> manager, User user)
         {
             List<IdentityError> errors = new List<IdentityError>();
-
+            if(manager.Users.Any(userIdentity=>userIdentity.Email==user.Email))
+            {
+                errors.Add(new IdentityError
+                {
+                    Description = "Пользователь с таким email уже существует"
+                });
+            }
             if (!Regex.IsMatch(user.Email, email))
             {
                 errors.Add(new IdentityError
@@ -27,7 +33,8 @@ namespace MyBook.Validation
                     Description = "Имя и фамилия должны состоять только из букв и начинаться с большой буквы"
                 });
             }
-            if (user.BirthDate.CompareTo(DateTime.Now.Date)>0 || user.BirthDate.CompareTo(minDate) < 0) 
+            var date = DateTime.Parse(user.BirthDate);
+            if (date.CompareTo(DateTime.Now.Date)>0 || date.CompareTo(minDate) < 0) 
             {
                 errors.Add(new IdentityError
                 {

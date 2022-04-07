@@ -32,10 +32,12 @@ namespace MyBook.Validation
                     Description = "You cannot use your username as your password"
                 });
             }
-            
-            string pattern = @"^(?=.*\d)(?=.*[a - z])(?=.*[A - Z])(?!.*\s).*$";
 
-            if (!Regex.IsMatch(password, pattern))
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasLowerChar = new Regex(@"[a-z]+");
+
+            if (!(hasLowerChar.IsMatch(password)&& hasUpperChar.IsMatch(password)&& hasNumber.IsMatch(password)))
             {
                 errors.Add(new IdentityError
                 {

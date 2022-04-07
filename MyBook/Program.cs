@@ -9,7 +9,7 @@ using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IUserValidator<User>, UserValidator>()
-    .AddTransient<IPasswordValidator<User>,PasswordValidator>();
+    .AddTransient<IPasswordValidator<User>,PasswordValidator>(serv => new PasswordValidator(6));
 
 builder.Services.AddDbContext<MyBookContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
@@ -19,14 +19,7 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<EfBookRepository>()
     .AddScoped<EfAuthorRepository>();
 
-builder.Services.AddIdentity<User, IdentityRole>(opts => {
-    opts.Password.RequiredLength = 6;   // минимальная длина
-    opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
-    opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
-    opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
-    opts.Password.RequireDigit = true; // требуются ли цифры
-    opts.User.RequireUniqueEmail = true;    // уникальный email
-}).AddEntityFrameworkStores<MyBookContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthorization(options =>

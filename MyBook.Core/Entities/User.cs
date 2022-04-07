@@ -7,7 +7,7 @@ namespace MyBook.Entities
     {
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
-        public DateOnly BirthDate { get; set; }
+        public string BirthDate { get; set; }
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
         public virtual ICollection<History> Histories { get; set; }

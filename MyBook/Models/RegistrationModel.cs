@@ -20,7 +20,7 @@ namespace MyBook.Models
         [Display(Name = "LastName")]
         public string LastName { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateOnly BirthDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
     }
 }

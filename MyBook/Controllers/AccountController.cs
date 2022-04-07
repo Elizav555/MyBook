@@ -37,7 +37,7 @@ namespace MyBook.Controllers
                     UserName = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    BirthDate = DateOnly.ParseExact(model.BirthDate.ToString(),dateFormat,CultureInfo.InvariantCulture)
+                    BirthDate = model.BirthDate.ToShortDateString()
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
