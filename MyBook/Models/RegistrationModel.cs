@@ -4,26 +4,23 @@ namespace MyBook.Models
 {
     public class RegistrationModel
     {
-        [Required]
+        [Required(ErrorMessage = "Введите email") ]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите пароль")]
         [DataType(DataType.Password)]
-        [MinLength(8)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "FirstName")]
+        [Required(ErrorMessage = "Не указано имя"), DataType(DataType.Text)][Display(Name = "FirstName")]
         public string FirstName { get; set; }
-        [Required]
-        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Не указана фамилия"), DataType(DataType.Text)]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
         [Required]
-        public DateOnly BirthDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
     }
 }

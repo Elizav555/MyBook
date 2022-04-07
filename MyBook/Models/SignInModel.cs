@@ -4,7 +4,7 @@ namespace MyBook.Models
 {
     public class SignInModel
     {
-        [Required]
+        [Required(ErrorMessage = "Введите email")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
