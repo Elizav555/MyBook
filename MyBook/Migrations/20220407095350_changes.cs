@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MyBook.Migrations
 {
-    public partial class changesAgain : Migration
+    public partial class changes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace MyBook.Migrations
                     Id = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
-                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    BirthDate = table.Column<string>(type: "text", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -59,7 +59,7 @@ namespace MyBook.Migrations
                     author_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false)
+                    BirthDate = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -501,29 +501,69 @@ namespace MyBook.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "subsc_genre",
+                columns: table => new
+                {
+                    subscr_genre_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    GenreId = table.Column<int>(type: "integer", nullable: false),
+                    SubscriptionId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_subsc_genre", x => x.subscr_genre_id);
+                    table.ForeignKey(
+                        name: "FK_subsc_genre_genre_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "genre",
+                        principalColumn: "genre_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_subsc_genre_subscription_SubscriptionId",
+                        column: x => x.SubscriptionId,
+                        principalTable: "subscription",
+                        principalColumn: "subscr_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "subscr_author",
+                columns: table => new
+                {
+                    subscr_author_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    AuthorId = table.Column<int>(type: "integer", nullable: false),
+                    SubscriptionId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_subscr_author", x => x.subscr_author_id);
+                    table.ForeignKey(
+                        name: "FK_subscr_author_author_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "author",
+                        principalColumn: "author_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_subscr_author_subscription_SubscriptionId",
+                        column: x => x.SubscriptionId,
+                        principalTable: "subscription",
+                        principalColumn: "subscr_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "subscr_type",
                 columns: table => new
                 {
                     subscr_type_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     SubscriptionId = table.Column<int>(type: "integer", nullable: false),
-                    TypeId = table.Column<int>(type: "integer", nullable: false),
-                    AuthorId = table.Column<int>(type: "integer", nullable: true),
-                    GenreId = table.Column<int>(type: "integer", nullable: true)
+                    TypeId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_subscr_type", x => x.subscr_type_id);
-                    table.ForeignKey(
-                        name: "FK_subscr_type_author_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "author",
-                        principalColumn: "author_id");
-                    table.ForeignKey(
-                        name: "FK_subscr_type_genre_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "genre",
-                        principalColumn: "genre_id");
                     table.ForeignKey(
                         name: "FK_subscr_type_subscription_SubscriptionId",
                         column: x => x.SubscriptionId,
@@ -657,14 +697,24 @@ namespace MyBook.Migrations
                 column: "FK_rating_user_userId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_subscr_type_AuthorId",
-                table: "subscr_type",
+                name: "IX_subsc_genre_GenreId",
+                table: "subsc_genre",
+                column: "GenreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_subsc_genre_SubscriptionId",
+                table: "subsc_genre",
+                column: "SubscriptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_subscr_author_AuthorId",
+                table: "subscr_author",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_subscr_type_GenreId",
-                table: "subscr_type",
-                column: "GenreId");
+                name: "IX_subscr_author_SubscriptionId",
+                table: "subscr_author",
+                column: "SubscriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_subscr_type_SubscriptionId",
@@ -733,6 +783,12 @@ namespace MyBook.Migrations
                 name: "rating");
 
             migrationBuilder.DropTable(
+                name: "subsc_genre");
+
+            migrationBuilder.DropTable(
+                name: "subscr_author");
+
+            migrationBuilder.DropTable(
                 name: "subscr_type");
 
             migrationBuilder.DropTable(
@@ -742,10 +798,10 @@ namespace MyBook.Migrations
                 name: "book");
 
             migrationBuilder.DropTable(
-                name: "author");
+                name: "genre");
 
             migrationBuilder.DropTable(
-                name: "genre");
+                name: "author");
 
             migrationBuilder.DropTable(
                 name: "subscription");
