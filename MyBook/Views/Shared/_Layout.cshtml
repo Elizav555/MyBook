@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyBook</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -22,65 +21,64 @@
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css">
 </head>
 <body>
-    <header class="customHeader">
-        <div class="upper_header">
-            <nav class="navbar navbar-expand-lg">
-                <div class="logo_wrapper"><img src="/assets/img/logo.png"></div>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-form">
-                        <form asp-controller="Search" asp-action="SearchAll" class="d-flex">
-                            <input name="SearchString" class="form-control mr-sm-2 customInput w-100" type="search" placeholder="Книга или автор" aria-label="Search">
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">О нас</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Подписка
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-area="" asp-controller="Subscription" asp-action="Subscription">Купить подписку</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="SubscriptionGift" asp-action="SubscriptionGift">Подарить подписку</a>
+    <header>
+        <div class="container">
+            <div class="header">
+                <div class="upper_header">
+                    <nav class="navbar navbar-expand-lg ">
+                        <div class="logo_wrapper">
+                            <img src="/assets/img/logo.png">
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        @if (User.Identity?.IsAuthenticated == true)
-                        {
-                            <a class="nav-link " asp-area="" asp-controller="UserProfile" asp-action="EditProfile">Личный кабинет</a>
-                        }
-                        else
-                        {
-                            <a class="nav-link " asp-area="" asp-controller="Account" asp-action="SignIn">Войти</a>
-                        }
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="lower_header">
-            <div class="wrapper_lower_header">
-                <ul>
-                    <li>
-                        <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
-                    <li>
-                        <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
-                    </li>
-                </ul>
+                        <div class="nav-form">
+                            <form asp-controller="Search" asp-action="SearchAll" class="formd-flex">
+                                <input name="SearchString" class="form-control customInput" type="search" placeholder="Книга или автор" aria-label="Search">
+                            </form>
+                        </div>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">О нас</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Подписка
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Subscription" asp-action="Subscription">Купить подписку</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="SubscriptionGift" asp-action="SubscriptionGift">Подарить подписку</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="Account" asp-action="SignIn">Войти</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lower_header">
+                    <div class="wrapper_lower_header">
+                        <ul>
+                            <li>
+                                <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
+                            <li>
+                                <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="render_content">
-        <main role="main" class="pb-3">
+        <main role="main" class="">
             @RenderBody()
         </main>
     </div>
