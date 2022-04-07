@@ -12,7 +12,7 @@ builder.Services.AddTransient<IUserValidator<User>, UserValidator>()
     .AddTransient<IPasswordValidator<User>,PasswordValidator>(serv => new PasswordValidator(6));
 
 builder.Services.AddDbContext<MyBookContext>(options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString")), ServiceLifetime.Transient)
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"),options=>options.MigrationsAssembly("MyBook")), ServiceLifetime.Transient)
     .AddScoped<IGenericRepository<Book>, EfGenericRepository<Book>>()
     .AddScoped<IGenericRepository<Author>, EfGenericRepository<Author>>()
     .AddScoped<IGenericRepository<Genre>, EfGenericRepository<Genre>>()

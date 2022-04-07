@@ -13,5 +13,8 @@ namespace MyBook.Entities
         public virtual ICollection<SubscrType> SubscrTypes { get; set; }
         [ForeignKey("FK_subscr_user_subscr_user_subscr_id")]
         public virtual UserSubscr UserSubscr { get; set; } = null!;
+
+        public virtual ICollection<SubscrAuthor>? SubscrAuthors { get; set; }
+        public virtual ICollection<SubscrGenre>? SubscrGenres { get; set; }
     }
 }
