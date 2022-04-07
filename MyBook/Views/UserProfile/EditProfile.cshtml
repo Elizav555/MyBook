@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model MyBook.Models.EditProfileViewModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,25 +20,31 @@
             <div class="blocks">
                 <div class="inner_content_block">
                     <div class="wrapper_content_inner_block">
-                        <form action="#">
+                        <form method="post" asp-controller="UserProfile" asp-action="EditProfile">
+                            <div asp-validation-summary="ModelOnly"></div>
                             <span>Ваши данные</span>
+                             <input type="hidden" asp-for="Id" />
                             <div class="form-group form_label">
-                                <label for="nameForm">Имя</label>
-                                <input type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
+                                <label asp-for="FirstName" for="nameForm">Имя</label>
+                                <input asp-for="FirstName" type="text" value="@Model.FirstName" class="form-control" id="nameForm" aria-describedby="emailHelp">
+                                <span asp-validation-for="FirstName" class="text-danger" />
                             </div>
                             <div class="form-group form_label">
-                                <label for="surnameForm">Фамилия</label>
-                                <input type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+                                <label asp-for="LastName" for="surnameForm">Фамилия</label>
+                                <input  asp-for="LastName" type="text"value="@Model.LastName" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+                                 <span asp-validation-for="LastName" class="text-danger" />
                             </div>
                             <div class="form-group form_label">
-                                <label for="surnameForm">Электронная почта</label>
-                                <input type="text" class="form-control" id="emailForm" aria-describedby="emailHelp">
+                                <label  asp-for="Email" for="surnameForm">Электронная почта</label>
+                                <input  asp-for="Email" type="text"value="@Model.Email" class="form-control" id="emailForm" aria-describedby="emailHelp">
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group form_label">
-                                <label for="surnameForm">Дата рождения</label>
-                                <input type="text" class="form-control" id="dateForm" aria-describedby="emailHelp">
+                                <label  asp-for="BirthDate" for="surnameForm">Дата рождения</label>
+                                <input  asp-for="BirthDate" type="date"value="@Model.BirthDate.ToString("yyyy-MM-dd")" class="form-control" id="dateForm"  min="1922-04-01" max="2020-04-30" aria-describedby="emailHelp">
+                                <span asp-validation-for="BirthDate" class="text-danger" />
                             </div>
-                            <button class="main_button">Сохранить</button>
+                            <button class="main_button" type="submit">Сохранить</button>
                         </form>
                     </div>
                 </div>
@@ -56,24 +63,7 @@
                 </div>
             </div>
 
-            <div class="blocks">
-                <div class="inner_content_block">
-                    <div class="wrapper_content_inner_block">
-                        <form action="#">
-                            <span>Изменить пароль</span>
-                            <div class="form-group form_label">
-                                <label for="nameForm">Старый пароль</label>
-                                <input type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
-                            </div>
-                            <div class="form-group form_label">
-                                <label for="surnameForm">Новый пароль</label>
-                                <input type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
-                            </div>
-                            <button class="main_button">Изменить</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            @await Html.PartialAsync("_EditPassword",new EditPasswordViewModel{ Id = Model.Id})
         </div>
     </section>
 </body>
