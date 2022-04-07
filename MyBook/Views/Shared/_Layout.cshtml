@@ -25,53 +25,55 @@
 <body>
     <header>
         <div class="container">
-            <div class="upper_header">
-                <nav class="navbar navbar-expand-lg ">
-                    <div class="logo_wrapper">
-                        <img src="/assets/img/logo.png">
+            <div class="header">
+                <div class="upper_header">
+                    <nav class="navbar navbar-expand-lg ">
+                        <div class="logo_wrapper">
+                            <img src="/assets/img/logo.png">
+                        </div>
+                        <div class="nav-form">
+                            <form asp-controller="Search" asp-action="SearchAll" class="formd-flex">
+                                <input name="SearchString" class="form-control customInput" type="search" placeholder="Книга или автор" aria-label="Search">
+                            </form>
+                        </div>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">О нас</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Подписка
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Subscription" asp-action="Subscription">Купить подписку</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="SubscriptionGift" asp-action="SubscriptionGift">Подарить подписку</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="Account" asp-action="SignIn">Войти</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="lower_header">
+                    <div class="wrapper_lower_header">
+                        <ul>
+                            <li>
+                                <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
+                            <li>
+                                <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="nav-form">
-                        <form asp-controller="Search" asp-action="SearchAll" class="formd-flex">
-                            <input name="SearchString" class="form-control customInput" type="search" placeholder="Книга или автор" aria-label="Search">
-                        </form>
-                    </div>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">О нас</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Подписка
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Subscription" asp-action="Subscription">Купить подписку</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="SubscriptionGift" asp-action="SubscriptionGift">Подарить подписку</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Account" asp-action="SignIn">Войти</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="lower_header">
-                <div class="wrapper_lower_header">
-                    <ul>
-                        <li>
-                            <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
-                        <li>
-                            <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
