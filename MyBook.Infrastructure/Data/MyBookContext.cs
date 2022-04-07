@@ -31,6 +31,8 @@ namespace MyBook.Entities
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
         public virtual DbSet<Type> Types { get; set; } = null!;
         public virtual DbSet<UserSubscr> UserSubscrs { get; set; } = null!;
+        public virtual DbSet<SubscrAuthor> SubscrAuthors { get; set; }
+        public virtual DbSet<SubscrGenre> SubscrGenres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -238,7 +240,34 @@ namespace MyBook.Entities
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserSubscrs);
             });
+            modelBuilder.Entity<SubscrAuthor>(entity =>
+            {
+                entity.ToTable("subscr_author");
 
+                entity.Property(e => e.SubscrAuthorId)
+                    .HasColumnName("subscr_author_id");
+
+                entity.HasOne(d => d.Author)
+                    .WithMany(p => p.SubscrAuthors);
+
+                entity.HasOne(d => d.Subscr)
+                    .WithMany(p => p.SubscrAuthors);
+            });
+
+            modelBuilder.Entity<SubscrGenre>(entity =>
+            {
+                entity.ToTable("subsc_genre");
+
+                entity.Property(e => e.SubscrGenreId)
+                    .HasColumnName("subscr_genre_id")
+                    ;
+
+                entity.HasOne(d => d.Genre)
+                    .WithMany(p => p.SubscrGenres);
+
+                entity.HasOne(d => d.Subscr)
+                    .WithMany(p => p.SubscrGenres);
+            });
             base.OnModelCreating(modelBuilder);
         }
     }

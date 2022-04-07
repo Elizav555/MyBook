@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
 using MyBook.Models;
+using System.Globalization;
+using System.Security.Claims;
 
 namespace MyBook.Controllers
 {
@@ -11,6 +13,7 @@ namespace MyBook.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly MyBookContext _bookContext;
 
+        const string dateFormat = "yyyy-MM-dd";
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MyBookContext db)
         {
             _userManager = userManager;
@@ -34,11 +37,12 @@ namespace MyBook.Controllers
                     UserName = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    BirthDate = model.BirthDate,
+                    BirthDate = model.BirthDate.ToShortDateString()
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Reader"));
                     _bookContext.SaveChanges();
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");

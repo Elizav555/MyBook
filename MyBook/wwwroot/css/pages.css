@@ -29,6 +29,7 @@ header {
 .header{
     padding: 0.2em 5em
 }
+
 header a {
     color: rgb(179, 77, 0) !important;
     text-decoration: none;
@@ -50,6 +51,7 @@ header a {
     border: 1px solid #d9d9d9;
     border-radius: 8px;
 }
+
 /*----------lower_header-----------------*/
 .wrapper_lower_header {
     padding: 1em 1em;

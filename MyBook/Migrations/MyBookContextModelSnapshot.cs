@@ -163,8 +163,8 @@ namespace MyBook.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AuthorId"));
 
-                    b.Property<DateOnly>("BirthDate")
-                        .HasColumnType("date");
+                    b.Property<string>("BirthDate")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -495,6 +495,54 @@ namespace MyBook.Migrations
                     b.ToTable("rating", (string)null);
                 });
 
+            modelBuilder.Entity("MyBook.Entities.SubscrAuthor", b =>
+                {
+                    b.Property<int>("SubscrAuthorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("subscr_author_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrAuthorId"));
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SubscrAuthorId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("subscr_author", (string)null);
+                });
+
+            modelBuilder.Entity("MyBook.Entities.SubscrGenre", b =>
+                {
+                    b.Property<int>("SubscrGenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("subscr_genre_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrGenreId"));
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SubscrGenreId");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("subsc_genre", (string)null);
+                });
+
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
                     b.Property<int>("SubscriptionId")
@@ -536,12 +584,6 @@ namespace MyBook.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrTypeId"));
 
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("GenreId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("SubscriptionId")
                         .HasColumnType("integer");
 
@@ -549,10 +591,6 @@ namespace MyBook.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("SubscrTypeId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("GenreId");
 
                     b.HasIndex("SubscriptionId");
 
@@ -587,8 +625,9 @@ namespace MyBook.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<DateOnly>("BirthDate")
-                        .HasColumnType("date");
+                    b.Property<string>("BirthDate")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -876,6 +915,44 @@ namespace MyBook.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MyBook.Entities.SubscrAuthor", b =>
+                {
+                    b.HasOne("MyBook.Entities.Author", "Author")
+                        .WithMany("SubscrAuthors")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBook.Entities.Subscription", "Subscr")
+                        .WithMany("SubscrAuthors")
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Subscr");
+                });
+
+            modelBuilder.Entity("MyBook.Entities.SubscrGenre", b =>
+                {
+                    b.HasOne("MyBook.Entities.Genre", "Genre")
+                        .WithMany("SubscrGenres")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBook.Entities.Subscription", "Subscr")
+                        .WithMany("SubscrGenres")
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("Subscr");
+                });
+
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
                     b.HasOne("MyBook.Entities.UserSubscr", "UserSubscr")
@@ -889,14 +966,6 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.SubscrType", b =>
                 {
-                    b.HasOne("MyBook.Entities.Author", null)
-                        .WithMany("SubscrTypes")
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("MyBook.Entities.Genre", null)
-                        .WithMany("SubscrTypes")
-                        .HasForeignKey("GenreId");
-
                     b.HasOne("MyBook.Entities.Subscription", "Subscription")
                         .WithMany("SubscrTypes")
                         .HasForeignKey("SubscriptionId")
@@ -933,7 +1002,7 @@ namespace MyBook.Migrations
 
                     b.Navigation("ImgLinks");
 
-                    b.Navigation("SubscrTypes");
+                    b.Navigation("SubscrAuthors");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Book", b =>
@@ -963,11 +1032,15 @@ namespace MyBook.Migrations
 
                     b.Navigation("FavGenres");
 
-                    b.Navigation("SubscrTypes");
+                    b.Navigation("SubscrGenres");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
+                    b.Navigation("SubscrAuthors");
+
+                    b.Navigation("SubscrGenres");
+
                     b.Navigation("SubscrTypes");
                 });
 

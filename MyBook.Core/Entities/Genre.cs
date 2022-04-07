@@ -6,7 +6,6 @@
         {
             BookGenres = new HashSet<BookGenre>();
             FavGenres = new HashSet<FavGenre>();
-            SubscrTypes = new HashSet<SubscrType>();
         }
 
         public int GenreId { get; set; }
@@ -14,6 +13,6 @@
 
         public virtual ICollection<BookGenre> BookGenres { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
-        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
+        public virtual ICollection<SubscrGenre> SubscrGenres { get; set; }
     }
 }
