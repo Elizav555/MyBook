@@ -12,13 +12,6 @@ namespace MyBook.Validation
         public Task<IdentityResult> ValidateAsync(UserManager<User> manager, User user)
         {
             List<IdentityError> errors = new List<IdentityError>();
-            if(manager.Users.Any(userIdentity=>userIdentity.Email==user.Email))
-            {
-                errors.Add(new IdentityError
-                {
-                    Description = "Пользователь с таким email уже существует"
-                });
-            }
             if (!Regex.IsMatch(user.Email, email))
             {
                 errors.Add(new IdentityError

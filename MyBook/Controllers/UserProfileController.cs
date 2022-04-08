@@ -39,11 +39,18 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(EditProfileViewModel model)
         {
+            //Почему то валидацию для каждого отдельного инпута не показывает
+            //а валидацию для модели показывает и тут и на паролях
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
+                    if (_userManager.Users.Any(userIdentity => userIdentity.Email == model.Email && userIdentity.UserName != user.UserName))
+                    {
+                        ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
+                        return View(model);
+                    }
                     user.Email = model.Email;
                     user.UserName = model.Email;
                     user.BirthDate = model.BirthDate.ToShortDateString();
@@ -70,6 +77,7 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPassword(EditPasswordViewModel model)
         {
+            //Почему то не показывает ошибки 
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
@@ -78,19 +86,20 @@ namespace MyBook.Controllers
                     var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("EditProfile",model.Id);
+                        return RedirectToAction("EditProfile", new { model.Id });
                     }
                     else
                     {
                         foreach (var error in result.Errors)
                         {
-                            // ModelState.AddModelError(string.Empty, "Введите верный старый пароль");
-                            ModelState.AddModelError(string.Empty, error.Description);
+                            if (error.Description == "Incorrect password.")
+                                ModelState.AddModelError(string.Empty, "Введите верный старый пароль");
+                            else ModelState.AddModelError(string.Empty, error.Description);
                         }
                     }
                 }
             }
-            return RedirectToAction("EditProfile");
+            return RedirectToAction("EditProfile", new { model.Id });
         }
 
         public IActionResult EditSubscription()
