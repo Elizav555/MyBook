@@ -32,6 +32,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: initial;
+    color: black;
 }
 
 .author{

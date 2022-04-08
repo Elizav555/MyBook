@@ -2,14 +2,16 @@
 
 <div class="container">
     <article class="postcard">
-        <a class="postcard_img_link" href="#">
+        <a class="postcard_img_link" asp-controller="Author" asp-action="Author" asp-route-authorId="@Model.AuthorId">
             <img class="postcard_img" src="~/assets/img/king.jpg" alt="">
         </a>
         <div class="postcard_text">
             <h3 class="h3 PreviewTitle">
-                <div class="me-4 Name">
-                    @Model.Name
-                </div>
+                <a asp-controller="Author" asp-action="Author" asp-route-authorId="@Model.AuthorId">
+                    <div class="me-4 Name">
+                        @Model.Name
+                    </div>     
+                </a>
             </h3>
             <p class="card-text oneLineDisplayText text-secondary">
                             @Model.AuthorBooks.Count
