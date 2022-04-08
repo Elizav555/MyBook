@@ -334,11 +334,15 @@ b {
     color: rgb(102, 37, 0);
 }
 
+.bookAuthor{
+    font-size: 26px;
+}
 .button-sub-add {
     margin-top: 16px;
     margin-bottom: 16px;
 }
 .language {
+    font-size: 24px;
     margin-top: 24px;
     margin-bottom: 0px;
 }
@@ -354,7 +358,7 @@ b {
 .book-photo-block img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .book-preview-vert {
@@ -375,11 +379,17 @@ b {
     max-width: 100%;
 }
 .book-genre {
-    height: 26px;
-    border-radius: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 3px 14px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Fira Sans", serif;
+    border-radius: 20px;
+    border: 1px #ffbf61 solid;
+}
+
+.book-genre:hover{
+    cursor: pointer;
+    background: #ffbf61;
 }
 
 .book-sub-wrapper {
@@ -596,7 +606,7 @@ b {
     padding: 2%;
 }
 .book-annotation {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 22px;
     color: rgb(0, 0, 0);
     overflow: hidden;

@@ -25,7 +25,7 @@ foreach (var bookJSON in booksJSON)
         {
             Name = bookJSON.Name,
             Language = bookJSON.Language != null ? bookJSON.Language : "en",
-            PublishedDate = bookJSON.PublishedDate,
+            PublishedDate = bookJSON.PublishedDate.ToString(),
             IsForAdult = bookJSON.IsForAdult,
             IsPaid = bookJSON.IsPaid,
             ImgLinks = bookImages,

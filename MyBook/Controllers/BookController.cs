@@ -1,13 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 
 namespace MyBook.Controllers
 {
     public class BookController : Controller
     {
-        // GET
-        public IActionResult Book()
+        private readonly EfBookRepository _bookRepository;
+
+        public BookController(EfBookRepository bookRepository)
         {
-            return View();
+            _bookRepository = bookRepository;
+        }
+        // GET
+        [Route("Book/{bookId:int}")]
+        public IActionResult Book(int bookId)
+        {
+            var resultBook = _bookRepository.GetFullBook(bookId);
+            return View(resultBook);
         }
     }
 }

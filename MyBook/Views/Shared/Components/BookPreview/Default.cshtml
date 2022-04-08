@@ -1,7 +1,7 @@
 ﻿@model MyBook.Entities.Book
 <div class="container">
     <article class="postcard">
-        <a class="postcard_img_link" href="#">
+        <a class="postcard_img_link" asp-controller="Book" asp-action="Book" asp-route-bookId="@Model.BookId">
             <img class="postcard_img" src="@Model.ImgLinks.FirstOrDefault(link => link.Resolution=="thumbnail")?.Url" alt="">
         </a>
         <div class="postcard_text">

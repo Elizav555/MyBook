@@ -17,5 +17,15 @@ public class EfAuthorRepository: EfGenericRepository<Author>,IAuthorRepository
             .Include(author => author.ImgLinks);
     }
 
+    public Author GetFullAuthor(int authorId)
+    {
+        return DbSet
+            .Where(author => author.AuthorId == authorId)
+            .Include(author => author.AuthorBooks)
+            .ThenInclude(book => book.Book)
+            .ThenInclude(book => book.ImgLinks)
+            .Include(author => author.ImgLinks)
+            .FirstOrDefault()!;
+    }
 }
 
