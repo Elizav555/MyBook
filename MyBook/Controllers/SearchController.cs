@@ -22,7 +22,6 @@ public class SearchController : Controller
     }
     public async Task<IActionResult> SearchAll(string searchString)
     {
-        
         if (!String.IsNullOrEmpty(searchString))
         {
             _vIewModel = new SearchViewModel(_bookRepository,_authorRepository,searchString);
@@ -33,5 +32,38 @@ public class SearchController : Controller
         }
 
         return View(_vIewModel);
+    }
+
+    public IActionResult SearchBooks(string searchString)
+    {
+        if (!String.IsNullOrEmpty(searchString))
+        {
+            _vIewModel = new SearchViewModel(_bookRepository,searchString);
+        }
+        else
+        {
+            _vIewModel = new SearchViewModel(_bookRepository, "");
+        }
+        
+        return View(_vIewModel);
+    }
+
+    public IActionResult SearchAuthors(string searchString)
+    {
+        if (!String.IsNullOrEmpty(searchString))
+        {
+            _vIewModel = new SearchViewModel(_authorRepository,searchString);
+        }
+        else
+        {
+            _vIewModel = new SearchViewModel(_authorRepository, "");
+        }
+        
+        return View(_vIewModel);
+    }
+
+    public IActionResult SearchGenres()
+    {
+        throw new NotImplementedException();
     }
 }
