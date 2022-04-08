@@ -45,9 +45,16 @@
                     📚 Выберите автора и получите доступ ко всем его произведениям
                     <br>
                     <br>
-                    <form class="input-group" method="post" asp-action="SearchAuthor">
-                        <input type="search" class="form-control rounded" placeholder="Искать" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="submit" class="btn btn-outline-primary">искать</button>
+                    <form class="seldiv" method="post" asp-action="SubscrForAuthor">
+                        <label>Выберите автора: </label>
+                        <input list="author-list" class="form-control" id="author-input">
+                        <datalist id="author-list">
+                            @foreach (var author in Model.Authors)
+                            {
+                                <option value="@author.Name"></option>
+                            }
+                        </datalist>
+                        <button type="submit"></button>
                     </form>
                 </div>
             </div>
@@ -67,15 +74,14 @@
                     <br>
                     <form class="seldiv" method="post" asp-action="SubscrForGenre">
                         <label>Выберите жанр: </label>
-                        <select id="selecttheme">
-                            <input list="genre-list" class="form-control" id="genre-input">
-                            <datalist id="genres-list">
-                                @foreach (var genre in Model.Genres)
-                                {
-                                    <option value="@genre.GenreId">@genre.Name</option>
-                                }
-                            </datalist>
-                        </select>
+                        <input list="genre-list" class="form-control" id="genre-input">
+                        <datalist id="genre-list">
+                            @foreach (var genre in Model.Genres)
+                            {
+                                <option value="@genre.Name"></option>
+                            }
+                        </datalist>
+                        <button type="submit"></button>
                     </form>
                 </div>
             </div>

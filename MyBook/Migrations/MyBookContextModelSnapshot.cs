@@ -225,8 +225,8 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly?>("PublishedDate")
-                        .HasColumnType("date");
+                    b.Property<string>("PublishedDate")
+                        .HasColumnType("text");
 
                     b.HasKey("BookId");
 

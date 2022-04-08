@@ -24,7 +24,7 @@ namespace MyBook.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubscrForGenre(int GenreId)
+        public IActionResult SubscrForGenre(string GenreName)
         {
             //if (!String.IsNullOrEmpty(searchString))
             //{
