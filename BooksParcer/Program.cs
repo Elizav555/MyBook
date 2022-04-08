@@ -9,7 +9,7 @@ foreach (var bookJSON in booksJSON)
 {
     using (var db = new MyBookContext())
     {
-        var rating = new Rating { Points = rnd.NextDouble() * rnd.Next(5), FkRatingUserUser = db.AspNetUsers.ToList().First(user => user.UserName == "lizagarkina5@gmail.com") };
+        var rating = new Rating { Points = rnd.NextDouble() * rnd.Next(5), FkRatingUserUser = db.AspNetUsers.ToList().First() };
         var authorBooks = new List<AuthorBook>();
         var bookGenres = new List<BookGenre>();
         var bookImages = new List<ImgLink>();
@@ -21,7 +21,6 @@ foreach (var bookJSON in booksJSON)
             Price = bookJSON.Price,
             DownloadLinks = bookJSON.DownloadLinks
         };
-
         var book = new Book
         {
             Name = bookJSON.Name,

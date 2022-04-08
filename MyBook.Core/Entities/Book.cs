@@ -13,7 +13,7 @@
         public int BookId { get; set; }
         public string Name { get; set; } = null!;
         public string Language { get; set; } = null!;
-        public DateOnly? PublishedDate { get; set; }
+        public string? PublishedDate { get; set; }
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
 

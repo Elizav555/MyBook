@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBook.Migrations
 {
     [DbContext(typeof(MyBookContext))]
-    [Migration("20220407095350_changes")]
-    partial class changes
+    [Migration("20220408150208_typesUpdate")]
+    partial class typesUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,8 +227,8 @@ namespace MyBook.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly?>("PublishedDate")
-                        .HasColumnType("date");
+                    b.Property<string>("PublishedDate")
+                        .HasColumnType("text");
 
                     b.HasKey("BookId");
 
