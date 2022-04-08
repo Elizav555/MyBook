@@ -29,8 +29,14 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(RegistrationModel model)
         {
+            //Почему то валидацию для каждого отдельного инпута не показывает
             if (ModelState.IsValid)
             {
+                if (_userManager.Users.Any(userIdentity => userIdentity.Email == model.Email))
+                {
+                    ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
+                    return View(model);
+                }
                 User user = new User
                 {
                     Email = model.Email,
@@ -67,6 +73,7 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(SignInModel model)
         {
+            //Почему то валидацию для каждого отдельного инпута не показывает
             if (ModelState.IsValid)
             {
                 var result =
