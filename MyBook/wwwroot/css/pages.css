@@ -64,6 +64,13 @@
         font-size: 10px !important;
         padding: 0;
     }
+    .border_picture h1{
+        font-size: 40px !important;
+    }
+    .inline_wrapper {
+        display: flex;
+        padding: 3em 4em !important;
+    }
 }
 
 @media (max-width: 992px) {
@@ -90,11 +97,45 @@
         font-size: 9px !important;
         padding: 0;
     }
+
     .form-inline .nav-item {
         margin: 0 0.5em;
         padding: 0.4em !important;
     }
+
+    .inline_wrapper {
+        flex-wrap: wrap;
+    }
+
+    .picture_wrapper {
+        margin: 5.5em 0;
+    }
+
+    .inner_block_wrapper {
+        display: none !important;
+    }
+
+    .inner_block {
+        position: relative;
+        top: -38em !important;
+        padding: 0 5em !important;
+    }
+
+    .text_info {
+        padding: 3em 5em !important;
+    }
+
+    .upper_footer {
+        padding: 2em 5em !important;
+    }
+    .map_wrapper{
+        flex-wrap: wrap;
+    }
+    .right_block{
+        display: none;
+    }
 }
+//
 
 @media (max-width: 480px) {
     .navbar-collapse {
@@ -104,6 +145,12 @@
     footer h4 {
         padding: 0;
         margin: 0;
+    }
+    .inner_block_wrapper {
+        display: none;
+    }
+    .border_picture{
+        background: red;
     }
 }
 
@@ -182,13 +229,13 @@ a:hover {
 }
 /*-------------border_picture----------------*/
 .border_picture {
-    margin: 0;
-    padding: 0 5em;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .inline_wrapper {
     display: flex;
-    padding: 3em 2em;
+    padding: 3em 9em;
 }
 
 .content_wrapper h1 {
@@ -202,7 +249,6 @@ a:hover {
     padding: 0 15em;
     margin: 0;
 }
-
 .content_wrapper img {
     width: 27em;
 }
@@ -276,6 +322,9 @@ span {
 .customBookCard div {
     margin-top: 8px;
     padding: 2px 3px;
+} 
+.carousel-item{
+    flex-wrap: wrap;
 }
 /*------------phone_content_wrapper------------------*/
 .wrapper_img img {
