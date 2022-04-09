@@ -26,7 +26,6 @@
             <div class="header">
                 <div class="upper_header">
                     <nav class="navbar navbar-expand-lg">
-
                         <div class="container d-flex mb-1.5">
                             <div class="logo_wrapper">
                                 <img src="/assets/img/logo.png">
@@ -66,22 +65,21 @@
                                 </li>
                             </ul>
                         </div>
-
-
                     </nav>
                 </div>
                 <div class="lower_header">
                     <div class="wrapper_lower_header">
-                        <ul>
-                            <li>
+                        <ul class="form-inline">
+                            <li class="nav-item">
                                 <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
-                            <li>
+                            </li>
+                            <li class="nav-item">
                                 <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
                             </li>
                         </ul>
@@ -97,12 +95,11 @@
         </main>
     </div>
 
-
     <div class="container">
         <footer>
             <div class="footer">
-                <div>
-                    <h3>Служба поддержки</h3>
+                <div class="information">
+                    <h4>Служба поддержки</h4>
                     <pre>8 800 333 27 37     support@mybook.ru</pre>
                 </div>
             </div>
