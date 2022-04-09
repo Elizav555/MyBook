@@ -7,18 +7,101 @@
     color: black;
     font-family: 'Fira Sans', sans-serif;
 }
+
 *, *:after, *:before {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     transition: .5s ease-in-out;
 }
+
 .container {
     margin: 0 auto;
     width: 100%;
     padding: 0;
 }
+
+.nav-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-form {
+    width: 25em;
+}
+
+.customInput {
+    width: 100%;
+}
 /*-----------------header--------------------*/
+@media (max-width: 1400px) {
+    .header {
+        font-size: 12px;
+    }
+
+    .customInput {
+        font-size: 12px;
+    }
+
+    .render_content {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .header {
+        font-size: 10px;
+    }
+
+    .customInput {
+        font-size: 10px;
+    }
+
+    .render_content {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-collapse {
+        margin-top: 2em;
+        margin-left: -3.5em;
+    }
+
+    .nav-form {
+        margin-bottom: 1em;
+    }
+
+    .render_content {
+        display: none;
+    }
+
+    footer h3 {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .render_content {
+        display: none;
+    }
+
+    .navbar-collapse {
+        margin-top: 2em;
+    }
+
+    footer h3 {
+        padding: 0;
+        margin: 0;
+    }
+}
 
 header {
     font-size: 14px;
@@ -26,7 +109,8 @@ header {
     width: 100%;
     position: relative;
 }
-.header{
+
+.header {
     padding: 0.2em 5em
 }
 
@@ -46,7 +130,7 @@ header a {
     padding-right: 2em;
 }
 
-.navbar input { 
+.navbar input {
     color: grey;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
@@ -266,23 +350,27 @@ span {
 /*--------------------footer-----------------------*/
 
 footer {
-    padding: 0em 14em;
+    background: white;
     position: absolute;
     bottom: 0;
-    width: 100%;
-}
-.render_content{
-    margin-bottom: 7em;
-}
-.footer_wrapper {
-    padding: 2em 0 0.5em 0;
-    display: flex;
-    margin: 0;
+    padding: 2em 0;
+    background: white;
 }
 
-.footer_cards img{
+.render_content {
+    margin-bottom: 7em;
+}
+
+.footer {
+    display: flex;
+    margin: 0;
+    padding: 0em 5em;
+}
+
+.footer_cards img {
     opacity: 0.1
 }
+
 .support_block_wrapper div {
     display: flex;
 }
@@ -551,6 +639,7 @@ table td {
     font-weight: bold;
     color: red;
 }
+
 .modal_wrapper {
     position: fixed;
     top: 0;
