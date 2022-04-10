@@ -11,12 +11,15 @@
     <div class="container">
         <h3 class="h3"><b>Популярные категории</b></h3>
         <div class="row">
-            <article class="postcard_mini">
-                <div class="-columns">
-                <p class="genreName"><b>Фантастика</b></p>0.
-                </div>
-                <img class="genre_img" src="~/assets/img/fantastic.png" alt="">
-            </article>
+            @foreach (var book in Model)
+                    {
+                        <article class="postcard_mini">
+                            <div class="-columns">
+                                <p class="genreName"><b>@book.Name</b></p>
+                            </div>
+                            <img class="genre_img" src="~/assets/img/fantastic.png" alt="">
+                        </article>
+                    }
             <article class="postcard_mini">
                 <p class="genreName"><b>Фэнтези</b></p>
                 <img class="genre_img" src="~/assets/img/fantasy.png" alt="">
