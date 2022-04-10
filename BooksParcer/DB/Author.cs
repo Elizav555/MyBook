@@ -15,7 +15,7 @@ namespace BooksParcer
 
         public int AuthorId { get; set; }
         public string Name { get; set; } = null!;
-        public DateOnly BirthDate { get; set; }
+        public string? BirthDate { get; set; }
 
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }

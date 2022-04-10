@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿@model MyBook.Entities.Book
+
+@{
+   string? imgLink = Model.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;
+}
+<!doctype html>
 <html>
    <head>
       <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -9,15 +14,13 @@
          <div class="ant-col book-wrapper book-back ant-col-xs-12 ant-col-xs-order-1 ant-col-xl-3 ant-col-xl-order-2">
             <div class="side-panel">
                <div class="photo-background">
-                  <img width="560" src="https://cdn1.ozone.ru/s3/multimedia-b/6055181711.jpg" class="book-photo">
+                  <img width="560" src="@imgLink" class="book-photo">
                </div>
                <div class="book-blur book-cover">
                   <div class="book-content book-preview">
                      <div class="book-content-wrap book-preview-vert">
                         <div height="378" width="0" class="book-photo-block">
-                           <picture>
-                              <img srcset="https://cdn1.ozone.ru/s3/multimedia-b/6055181711.jpg"   alt="Название книги">
-                           </picture>
+                              <img src="@imgLink"   alt="Название книги">
                         </div>
                      </div>
                   </div>
@@ -25,13 +28,12 @@
             </div>
          </div>
          <div class="ant-col main-content main-content-text ant-col-xs-12 ant-col-xs-order-4 ant-col-xl-3">
-        
             <div class="language">
                <div class="lang-block">
                   <div type="flex" class="ant-row lang-block-add">
                      <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                               <div class="lang-block-add-text-head">
-                                    Язык
+                                    @Model.Language
                               </div>
                      </div>
                   </div>
@@ -41,19 +43,22 @@
          <div class="ant-col book-description-block ant-col-xs-12 ant-col-xs-order-3 ant-col-xl-6">
                   <div type="flex" class="ant-row book-name">
                      <div class="ant-col ant-col-xs-11 ant-col-md-11 ant-col-xl-12">
-                           <h1>Название книги</h1>
+                           <h1>@Model.Name</h1>
                      </div>
                      <div class="ant-col  ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                           <a href="/ссылканаавтора">
-                                 <div class="lang-block-add-text-head-main">
-                                    Автор
+                           <a asp-controller="Author" asp-action="Author" asp-route-authorId="@(Model.AuthorBooks.FirstOrDefault()!.Author.AuthorId)" >
+                                 <div class="lang-block-add-text-head-main bookAuthor">
+                                    @foreach (var book in Model.AuthorBooks)
+                                    {
+                                       @book.Author.Name
+                                    }
                                  </div>
                            </a>
                      </div>
                      <div class="ant-col pages ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                        <p>Количество страниц</p>
-                        <p>****<!-- -->&nbsp;<!-- -->год </p>
-                        <p> Возраст<!-- -->+ </p>
+                        <p>@Model.Description.PagesCount</p>
+                        <p>@Model.PublishedDate</p>
+                        <p>@(Model.IsForAdult?"18":"6") +</p>
                      </div>
                      <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                                     <div class="button-sub-add">
@@ -91,16 +96,17 @@
                            О&nbsp;книге
                            </div>
                            <div class="book-annotation">
-                              Аннотация
+                              @Model.Description.Description
                            </div>
                         <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                               <div level="h3" class="book-genres">
                                  Жанры
                               </div>
                               <div class="book-genre-wrapper">
-                                 <div class="book-genre">
-                                    Жанр
-                                 </div>
+                                    @foreach (var book in Model.BookGenres)
+                                    {
+                                       <div class="book-genre">@book.Genre.Name</div>;
+                                    }
                               </div>
                            </div>
                      </div>

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyBook.Controllers
 {
+    [Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         public IActionResult EditAuthor()

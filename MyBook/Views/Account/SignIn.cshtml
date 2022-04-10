@@ -1,0 +1,44 @@
+﻿@model MyBook.Models.SignInModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Sign in"] - MyBook</title>
+</head>
+<body class="lock">
+    <section class="modal_wrapper">
+        <div class="main_content_page">
+        <div class="wrapper_modal_content">
+            <div class="modal_view">
+                <h4>Вход</h4>
+                <form method="post" asp-controller="Account" asp-action="SignIn"
+                      asp-route-returnUrl="@Model.ReturnUrl">
+
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group form_label_reg">
+                        <label asp-for="Email" for="nameForm">Почта:</label>
+                        <input asp-for="Email" type="text" class="form-control" id="nameForm" aria-describedby="emailHelp">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="form-group form_label_reg">
+                        <label asp-for="Password" for="surnameForm">Пароль:</label>
+                        <input asp-for="Password" type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div class="form-group form_label_reg">
+                        <label asp-for="RememberMe"></label><br />
+                        <input asp-for="RememberMe" />
+                    </div>
+                    <button type="submit" class="reg_button">Войти</button>
+                </form>
+                <button class="signin_button">Вход с помощью VK</button>
+                <form  method="get" asp-controller="Account" asp-action="Registration" >
+                    <button type="submit" class="main_button" >Зарегистрироваться</button>
+                </form><button class="main_button">Забыл пароль</button>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+</html>

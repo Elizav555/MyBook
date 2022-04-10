@@ -82,3 +82,32 @@ button.accept-policy {
   cursor: pointer;
   color: rgb(168, 76, 0) !important;
 }
+
+.customInput{
+  max-width: 310px;
+  width: 100%;
+}
+
+.customHeader{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.searchChoices{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+.searchChoice{
+  border: 2px rgb(168, 76, 0) solid;
+  padding: 5px 16px;
+  border-radius: 8px;
+  background: white;
+}
+.searchChoice{
+  margin-left: 14px;
+}
+
