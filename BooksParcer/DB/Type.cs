@@ -12,6 +12,8 @@ namespace BooksParcer
 
         public int TypeId { get; set; }
         public string TypeName { get; set; } = null!;
+        public string? Description { get; set; }
+        public int Price { get; set; }
 
         public virtual ICollection<SubscrType> SubscrTypes { get; set; }
     }

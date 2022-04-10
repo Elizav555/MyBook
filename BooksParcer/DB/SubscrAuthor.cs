@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace BooksParcer
 {
-    public partial class SubscrType
+    public partial class SubscrAuthor
     {
-        public int SubscrTypeId { get; set; }
+        public int SubscrAuthorId { get; set; }
+        public int AuthorId { get; set; }
         public int SubscriptionId { get; set; }
-        public int TypeId { get; set; }
 
+        public virtual Author Author { get; set; } = null!;
         public virtual Subscription Subscription { get; set; } = null!;
-        public virtual Type Type { get; set; } = null!;
     }
 }

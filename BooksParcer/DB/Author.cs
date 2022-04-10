@@ -10,7 +10,7 @@ namespace BooksParcer
             AuthorBooks = new HashSet<AuthorBook>();
             FavAuthors = new HashSet<FavAuthor>();
             ImgLinks = new HashSet<ImgLink>();
-            SubscrTypes = new HashSet<SubscrType>();
+            SubscrAuthors = new HashSet<SubscrAuthor>();
         }
 
         public int AuthorId { get; set; }
@@ -20,6 +20,6 @@ namespace BooksParcer
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
         public virtual ICollection<FavAuthor> FavAuthors { get; set; }
         public virtual ICollection<ImgLink> ImgLinks { get; set; }
-        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
+        public virtual ICollection<SubscrAuthor> SubscrAuthors { get; set; }
     }
 }

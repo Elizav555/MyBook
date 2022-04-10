@@ -9,7 +9,7 @@ namespace BooksParcer
         {
             BookGenres = new HashSet<BookGenre>();
             FavGenres = new HashSet<FavGenre>();
-            SubscrTypes = new HashSet<SubscrType>();
+            SubscGenres = new HashSet<SubscGenre>();
         }
 
         public int GenreId { get; set; }
@@ -17,6 +17,6 @@ namespace BooksParcer
 
         public virtual ICollection<BookGenre> BookGenres { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
-        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
+        public virtual ICollection<SubscGenre> SubscGenres { get; set; }
     }
 }

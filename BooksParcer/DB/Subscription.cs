@@ -7,17 +7,19 @@ namespace BooksParcer
     {
         public Subscription()
         {
+            SubscGenres = new HashSet<SubscGenre>();
+            SubscrAuthors = new HashSet<SubscrAuthor>();
             SubscrTypes = new HashSet<SubscrType>();
         }
 
         public int SubscrId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public int Price { get; set; }
-        public string? Description { get; set; }
+        public string StartDate { get; set; } = null!;
+        public string EndDate { get; set; } = null!;
         public int FkSubscrUserSubscrUserSubscrId { get; set; }
 
         public virtual UserSubscr FkSubscrUserSubscrUserSubscr { get; set; } = null!;
+        public virtual ICollection<SubscGenre> SubscGenres { get; set; }
+        public virtual ICollection<SubscrAuthor> SubscrAuthors { get; set; }
         public virtual ICollection<SubscrType> SubscrTypes { get; set; }
     }
 }

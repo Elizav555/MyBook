@@ -35,6 +35,8 @@ namespace BooksParcer
         public virtual DbSet<History> Histories { get; set; } = null!;
         public virtual DbSet<ImgLink> ImgLinks { get; set; } = null!;
         public virtual DbSet<Rating> Ratings { get; set; } = null!;
+        public virtual DbSet<SubscGenre> SubscGenres { get; set; } = null!;
+        public virtual DbSet<SubscrAuthor> SubscrAuthors { get; set; } = null!;
         public virtual DbSet<SubscrType> SubscrTypes { get; set; } = null!;
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
         public virtual DbSet<Type> Types { get; set; } = null!;
@@ -322,27 +324,55 @@ namespace BooksParcer
                     .HasForeignKey(d => d.FkRatingUserUserId);
             });
 
+            modelBuilder.Entity<SubscGenre>(entity =>
+            {
+                entity.HasKey(e => e.SubscrGenreId);
+
+                entity.ToTable("subsc_genre");
+
+                entity.HasIndex(e => e.GenreId, "IX_subsc_genre_GenreId");
+
+                entity.HasIndex(e => e.SubscriptionId, "IX_subsc_genre_SubscriptionId");
+
+                entity.Property(e => e.SubscrGenreId).HasColumnName("subscr_genre_id");
+
+                entity.HasOne(d => d.Genre)
+                    .WithMany(p => p.SubscGenres)
+                    .HasForeignKey(d => d.GenreId);
+
+                entity.HasOne(d => d.Subscription)
+                    .WithMany(p => p.SubscGenres)
+                    .HasForeignKey(d => d.SubscriptionId);
+            });
+
+            modelBuilder.Entity<SubscrAuthor>(entity =>
+            {
+                entity.ToTable("subscr_author");
+
+                entity.HasIndex(e => e.AuthorId, "IX_subscr_author_AuthorId");
+
+                entity.HasIndex(e => e.SubscriptionId, "IX_subscr_author_SubscriptionId");
+
+                entity.Property(e => e.SubscrAuthorId).HasColumnName("subscr_author_id");
+
+                entity.HasOne(d => d.Author)
+                    .WithMany(p => p.SubscrAuthors)
+                    .HasForeignKey(d => d.AuthorId);
+
+                entity.HasOne(d => d.Subscription)
+                    .WithMany(p => p.SubscrAuthors)
+                    .HasForeignKey(d => d.SubscriptionId);
+            });
+
             modelBuilder.Entity<SubscrType>(entity =>
             {
                 entity.ToTable("subscr_type");
-
-                entity.HasIndex(e => e.AuthorId, "IX_subscr_type_AuthorId");
-
-                entity.HasIndex(e => e.GenreId, "IX_subscr_type_GenreId");
 
                 entity.HasIndex(e => e.SubscriptionId, "IX_subscr_type_SubscriptionId");
 
                 entity.HasIndex(e => e.TypeId, "IX_subscr_type_TypeId");
 
                 entity.Property(e => e.SubscrTypeId).HasColumnName("subscr_type_id");
-
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.AuthorId);
-
-                entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.GenreId);
 
                 entity.HasOne(d => d.Subscription)
                     .WithMany(p => p.SubscrTypes)
