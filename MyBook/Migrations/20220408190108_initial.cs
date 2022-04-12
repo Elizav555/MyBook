@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MyBook.Migrations
 {
-    public partial class changes : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -282,7 +282,7 @@ namespace MyBook.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Language = table.Column<string>(type: "text", nullable: false),
-                    PublishedDate = table.Column<DateOnly>(type: "date", nullable: true),
+                    PublishedDate = table.Column<string>(type: "text", nullable: true),
                     IsForAdult = table.Column<bool>(type: "boolean", nullable: false),
                     IsPaid = table.Column<bool>(type: "boolean", nullable: false),
                     DescriptionId = table.Column<int>(type: "integer", nullable: false)

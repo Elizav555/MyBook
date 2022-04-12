@@ -35,7 +35,8 @@ namespace BooksParcer
         public virtual DbSet<History> Histories { get; set; } = null!;
         public virtual DbSet<ImgLink> ImgLinks { get; set; } = null!;
         public virtual DbSet<Rating> Ratings { get; set; } = null!;
-        public virtual DbSet<SubscrType> SubscrTypes { get; set; } = null!;
+        public virtual DbSet<SubscGenre> SubscGenres { get; set; } = null!;
+        public virtual DbSet<SubscrAuthor> SubscrAuthors { get; set; } = null!;
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
         public virtual DbSet<Type> Types { get; set; } = null!;
         public virtual DbSet<UserSubscr> UserSubscrs { get; set; } = null!;
@@ -45,7 +46,7 @@ namespace BooksParcer
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyBook;Username=postgres;Password=password");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyBook;Username=postgres;Password=postgres");
             }
         }
 
@@ -322,35 +323,44 @@ namespace BooksParcer
                     .HasForeignKey(d => d.FkRatingUserUserId);
             });
 
-            modelBuilder.Entity<SubscrType>(entity =>
+            modelBuilder.Entity<SubscGenre>(entity =>
             {
-                entity.ToTable("subscr_type");
+                entity.HasKey(e => e.SubscrGenreId);
 
-                entity.HasIndex(e => e.AuthorId, "IX_subscr_type_AuthorId");
+                entity.ToTable("subsc_genre");
 
-                entity.HasIndex(e => e.GenreId, "IX_subscr_type_GenreId");
+                entity.HasIndex(e => e.GenreId, "IX_subsc_genre_GenreId");
 
-                entity.HasIndex(e => e.SubscriptionId, "IX_subscr_type_SubscriptionId");
+                entity.HasIndex(e => e.SubscriptionId, "IX_subsc_genre_SubscriptionId");
 
-                entity.HasIndex(e => e.TypeId, "IX_subscr_type_TypeId");
-
-                entity.Property(e => e.SubscrTypeId).HasColumnName("subscr_type_id");
-
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.AuthorId);
+                entity.Property(e => e.SubscrGenreId).HasColumnName("subscr_genre_id");
 
                 entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.SubscrTypes)
+                    .WithMany(p => p.SubscGenres)
                     .HasForeignKey(d => d.GenreId);
 
                 entity.HasOne(d => d.Subscription)
-                    .WithMany(p => p.SubscrTypes)
+                    .WithMany(p => p.SubscGenres)
                     .HasForeignKey(d => d.SubscriptionId);
+            });
 
-                entity.HasOne(d => d.Type)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.TypeId);
+            modelBuilder.Entity<SubscrAuthor>(entity =>
+            {
+                entity.ToTable("subscr_author");
+
+                entity.HasIndex(e => e.AuthorId, "IX_subscr_author_AuthorId");
+
+                entity.HasIndex(e => e.SubscriptionId, "IX_subscr_author_SubscriptionId");
+
+                entity.Property(e => e.SubscrAuthorId).HasColumnName("subscr_author_id");
+
+                entity.HasOne(d => d.Author)
+                    .WithMany(p => p.SubscrAuthors)
+                    .HasForeignKey(d => d.AuthorId);
+
+                entity.HasOne(d => d.Subscription)
+                    .WithMany(p => p.SubscrAuthors)
+                    .HasForeignKey(d => d.SubscriptionId);
             });
 
             modelBuilder.Entity<Subscription>(entity =>
@@ -359,17 +369,7 @@ namespace BooksParcer
 
                 entity.ToTable("subscription");
 
-                entity.HasIndex(e => e.FkSubscrUserSubscrUserSubscrId, "IX_subscription_FK_subscr_user_subscr_user_subscr_id")
-                    .IsUnique();
-
-                entity.Property(e => e.SubscrId).HasColumnName("subscr_id");
-
-                entity.Property(e => e.FkSubscrUserSubscrUserSubscrId).HasColumnName("FK_subscr_user_subscr_user_subscr_id");
-
-                entity.HasOne(d => d.FkSubscrUserSubscrUserSubscr)
-                    .WithOne(p => p.Subscription)
-                    .HasForeignKey<Subscription>(d => d.FkSubscrUserSubscrUserSubscrId)
-                    .HasConstraintName("FK_subscription_user_subscr_FK_subscr_user_subscr_user_subscr_~");
+                entity.HasOne(d => d.Type).WithMany(p => p.Subscriptions);
             });
 
             modelBuilder.Entity<Type>(entity =>

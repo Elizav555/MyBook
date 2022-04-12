@@ -2,6 +2,7 @@
 using BooksParcer;
 using System.Text.Json;
 
+#region BooksParcer
 var booksJSON = Parcer.ParceJSONBooks();
 var rnd = new Random();
 
@@ -70,3 +71,30 @@ foreach (var bookJSON in booksJSON)
         db.SaveChanges();
     }
 }
+#endregion
+
+#region AddSubscr
+using (var db = new MyBookContext())
+{
+    var type = new BooksParcer.Type
+    {
+        TypeName = "Премиум",
+        Price = 899,
+        Description = "Доступ ко всем книгам без ограничений",
+    };
+    var type1 = new BooksParcer.Type
+    {
+        TypeName = "Подписка на автора",
+        Price = 399,
+        Description = "Выберите автора и получите доступ ко всем его произведениям",
+    };
+    var type2 = new BooksParcer.Type
+    {
+        TypeName = "Подписка на жанр",
+        Price = 399,
+        Description = "Выберите жанр и получите доступ ко всем произведениям, относящимся к нему",
+    };
+    db.Types.AddRange(type, type1, type2);
+    db.SaveChanges();
+}
+#endregion

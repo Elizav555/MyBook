@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBook.Migrations
 {
     [DbContext(typeof(MyBookContext))]
-    [Migration("20220408150208_typesUpdate")]
-    partial class typesUpdate
+    [Migration("20220411093228_migration")]
+    partial class migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -554,51 +554,28 @@ namespace MyBook.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscriptionId"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("EndDate")
+                        .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("FK_subscr_user_subscr_user_subscr_id")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("integer");
+                    b.Property<string>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("integer");
 
                     b.HasKey("SubscriptionId");
 
                     b.HasIndex("FK_subscr_user_subscr_user_subscr_id")
                         .IsUnique();
 
-                    b.ToTable("subscription", (string)null);
-                });
-
-            modelBuilder.Entity("MyBook.Entities.SubscrType", b =>
-                {
-                    b.Property<int>("SubscrTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("subscr_type_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrTypeId"));
-
-                    b.Property<int>("SubscriptionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("SubscrTypeId");
-
-                    b.HasIndex("SubscriptionId");
-
                     b.HasIndex("TypeId");
 
-                    b.ToTable("subscr_type", (string)null);
+                    b.ToTable("subscription", (string)null);
                 });
 
             modelBuilder.Entity("MyBook.Entities.Type", b =>
@@ -609,6 +586,12 @@ namespace MyBook.Migrations
                         .HasColumnName("type_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TypeId"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
 
                     b.Property<string>("TypeName")
                         .IsRequired()
@@ -963,26 +946,15 @@ namespace MyBook.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserSubscr");
-                });
-
-            modelBuilder.Entity("MyBook.Entities.SubscrType", b =>
-                {
-                    b.HasOne("MyBook.Entities.Subscription", "Subscription")
-                        .WithMany("SubscrTypes")
-                        .HasForeignKey("SubscriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MyBook.Entities.Type", "Type")
-                        .WithMany("SubscrTypes")
+                        .WithMany("Subscriptions")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Subscription");
-
                     b.Navigation("Type");
+
+                    b.Navigation("UserSubscr");
                 });
 
             modelBuilder.Entity("MyBook.Entities.UserSubscr", b =>
@@ -1042,13 +1014,11 @@ namespace MyBook.Migrations
                     b.Navigation("SubscrAuthors");
 
                     b.Navigation("SubscrGenres");
-
-                    b.Navigation("SubscrTypes");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Type", b =>
                 {
-                    b.Navigation("SubscrTypes");
+                    b.Navigation("Subscriptions");
                 });
 
             modelBuilder.Entity("MyBook.Entities.User", b =>

@@ -4,7 +4,9 @@
     {
         public int TypeId { get; set; }
         public string TypeName { get; set; }
+        public int Price { get; set; }
+        public string? Description { get; set; }
 
-        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

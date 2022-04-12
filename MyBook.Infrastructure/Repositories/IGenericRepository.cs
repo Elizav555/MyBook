@@ -8,6 +8,7 @@ namespace Repositories
 {
     public interface IGenericRepository<TEntity>  where TEntity : class 
     {
+        Task CreateAll(List<TEntity> items);
         Task Create(TEntity item);
         Task<TEntity> FindById(int id);
         IEnumerable<TEntity> Get();
