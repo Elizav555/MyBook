@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using Repositories;
 
 namespace MyBook.ViewModels;
 
 public class SearchViewModel
 {
-    private readonly IGenericRepository<Book> _bookRepository;
-    private readonly IGenericRepository<Author> _authorRepository;
-    private readonly string _searchString;
+    private readonly IGenericRepository<Book>? _bookRepository;
+    private readonly IGenericRepository<Author>? _authorRepository;
+    public readonly string SearchString;
     public List<Book> Books { get; set; } = new();
     public List<Author> Authors { get; set; } = new();
 
@@ -19,17 +20,37 @@ public class SearchViewModel
     {
         _bookRepository = bookRepository;
         _authorRepository = authorRepository;
-        _searchString = searchString;
+        SearchString = searchString;
 
-        Books = GetSearchBooks();
-        Authors = GetSearchAuthors();
+        Books = GetSearchBooks()!;
+        Authors = GetSearchAuthors()!;
+    }
+    
+    public SearchViewModel(
+        IGenericRepository<Author> authorRepository,
+        string searchString)
+    {
+        _authorRepository = authorRepository;
+        SearchString = searchString;
+
+        Authors = GetSearchAuthors()!;
+    }
+    
+    public SearchViewModel(
+        IGenericRepository<Book> bookRepository,
+        string searchString)
+    {
+        _bookRepository = bookRepository;
+        SearchString = searchString;
+
+        Books = GetSearchBooks()!;
     }
 
-    private List<Book> GetSearchBooks()
+    private List<Book>? GetSearchBooks()
     {
-        return _bookRepository.GetWithMultiIncluding(
+        return _bookRepository?.GetWithMultiIncluding(
             book => book,
-            book => book.Name.Contains(_searchString),
+            book => book.Name.Contains(SearchString),
             books => 
                 books.Include(book => book.AuthorBooks)
                     .ThenInclude(authorBook =>  authorBook.Author)
@@ -38,11 +59,11 @@ public class SearchViewModel
         ).ToList();
     }
     
-    private List<Author> GetSearchAuthors()
+    private List<Author>? GetSearchAuthors()
     {
-        return _authorRepository.GetWithMultiIncluding(
+        return _authorRepository?.GetWithMultiIncluding(
             author => author,
-            author => author.Name.Contains(_searchString),
+            author => author.Name.Contains(SearchString),
             authors => 
                 authors.Include(author => author.AuthorBooks)
                     .ThenInclude(authorBook =>  authorBook.Book)

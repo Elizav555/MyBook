@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Compile Remove="Migrations\MyBookContextModelSnapshot.cs" />
   </ItemGroup>
 
 </Project>
