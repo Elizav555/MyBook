@@ -17,7 +17,8 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IGenericRepository<Author>, EfGenericRepository<Author>>()
     .AddScoped<IGenericRepository<Genre>, EfGenericRepository<Genre>>()
     .AddScoped<EfBookRepository>()
-    .AddScoped<EfAuthorRepository>();
+    .AddScoped<EfAuthorRepository>().AddScoped<IGenericRepository<MyBook.Entities.Type>, EfGenericRepository<MyBook.Entities.Type>>()
+    .AddScoped<EFTypeRepository>().AddScoped<IGenericRepository<object>,EfGenericRepository<object>>();
 
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.

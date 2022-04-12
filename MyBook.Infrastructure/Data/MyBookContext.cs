@@ -27,7 +27,6 @@ namespace MyBook.Entities
         public virtual DbSet<History> Histories { get; set; } = null!;
         public virtual DbSet<ImgLink> ImgLinks { get; set; } = null!;
         public virtual DbSet<Rating> Ratings { get; set; } = null!;
-        public virtual DbSet<SubscrType> SubscrTypes { get; set; } = null!;
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
         public virtual DbSet<Type> Types { get; set; } = null!;
         public virtual DbSet<UserSubscr> UserSubscrs { get; set; } = null!;
@@ -67,7 +66,7 @@ namespace MyBook.Entities
 
                 entity.HasOne(d => d.Description)
                     .WithOne(p => p.Book)
-                    .HasForeignKey<Book>(b => b.DescriptionId);
+                    .HasForeignKey<Book>(b => b.BookDescId);
             });
 
             modelBuilder.Entity<BookCenter>(entity =>
@@ -196,18 +195,6 @@ namespace MyBook.Entities
                     .WithMany(b => b.Ratings);
             });
 
-            modelBuilder.Entity<SubscrType>(entity =>
-            {
-                entity.ToTable("subscr_type");
-
-                entity.Property(e => e.SubscrTypeId)
-                    .HasColumnName("subscr_type_id")
-                    ;
-
-                entity.HasOne(d => d.Type).WithMany(p => p.SubscrTypes);
-                entity.HasOne(d => d.Subscription).WithMany(p => p.SubscrTypes);
-            });
-
             modelBuilder.Entity<Subscription>(entity =>
             {
                 entity.ToTable("subscription");
@@ -215,6 +202,7 @@ namespace MyBook.Entities
                 entity.Property(e => e.SubscriptionId)
                     .HasColumnName("subscr_id")
                     ;
+                entity.HasOne(d => d.Type).WithMany(p => p.Subscriptions);
             });
 
             modelBuilder.Entity<Type>(entity =>

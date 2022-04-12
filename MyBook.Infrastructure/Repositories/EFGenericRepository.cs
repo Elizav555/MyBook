@@ -107,5 +107,11 @@ namespace MyBook.Infrastructure.Repositories
 
             return query.Select(selector);
         }
+
+        public Task CreateAll(List<TEntity> items)
+        {
+            Context.AddRange(items);
+            return  Context.SaveChangesAsync();
+        }
     }
 }

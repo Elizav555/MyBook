@@ -6,9 +6,9 @@ namespace MyBook.Entities
     {
         public int RatingId { get; set; }
         public double Points { get; set; }
-        [ForeignKey("FK_rating_user_userId")]
+        public string UserId { get; set; }
         public virtual User User { get; set; } = null!;
-        [ForeignKey("FK_rating_book_bookId")]
+        public int BookId { get; set; }
         public virtual Book Book { get; set; } = null!;
     }
 }

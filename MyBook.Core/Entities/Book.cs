@@ -17,7 +17,7 @@
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
 
-        public int DescriptionId { get; set; }
+        public int BookDescId { get; set; }
         public virtual BookDesc Description { get; set; } = null!;
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; }

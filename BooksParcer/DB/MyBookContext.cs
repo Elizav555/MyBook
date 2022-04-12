@@ -37,7 +37,6 @@ namespace BooksParcer
         public virtual DbSet<Rating> Ratings { get; set; } = null!;
         public virtual DbSet<SubscGenre> SubscGenres { get; set; } = null!;
         public virtual DbSet<SubscrAuthor> SubscrAuthors { get; set; } = null!;
-        public virtual DbSet<SubscrType> SubscrTypes { get; set; } = null!;
         public virtual DbSet<Subscription> Subscriptions { get; set; } = null!;
         public virtual DbSet<Type> Types { get; set; } = null!;
         public virtual DbSet<UserSubscr> UserSubscrs { get; set; } = null!;
@@ -364,42 +363,13 @@ namespace BooksParcer
                     .HasForeignKey(d => d.SubscriptionId);
             });
 
-            modelBuilder.Entity<SubscrType>(entity =>
-            {
-                entity.ToTable("subscr_type");
-
-                entity.HasIndex(e => e.SubscriptionId, "IX_subscr_type_SubscriptionId");
-
-                entity.HasIndex(e => e.TypeId, "IX_subscr_type_TypeId");
-
-                entity.Property(e => e.SubscrTypeId).HasColumnName("subscr_type_id");
-
-                entity.HasOne(d => d.Subscription)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.SubscriptionId);
-
-                entity.HasOne(d => d.Type)
-                    .WithMany(p => p.SubscrTypes)
-                    .HasForeignKey(d => d.TypeId);
-            });
-
             modelBuilder.Entity<Subscription>(entity =>
             {
                 entity.HasKey(e => e.SubscrId);
 
                 entity.ToTable("subscription");
 
-                entity.HasIndex(e => e.FkSubscrUserSubscrUserSubscrId, "IX_subscription_FK_subscr_user_subscr_user_subscr_id")
-                    .IsUnique();
-
-                entity.Property(e => e.SubscrId).HasColumnName("subscr_id");
-
-                entity.Property(e => e.FkSubscrUserSubscrUserSubscrId).HasColumnName("FK_subscr_user_subscr_user_subscr_id");
-
-                entity.HasOne(d => d.FkSubscrUserSubscrUserSubscr)
-                    .WithOne(p => p.Subscription)
-                    .HasForeignKey<Subscription>(d => d.FkSubscrUserSubscrUserSubscrId)
-                    .HasConstraintName("FK_subscription_user_subscr_FK_subscr_user_subscr_user_subscr_~");
+                entity.HasOne(d => d.Type).WithMany(p => p.Subscriptions);
             });
 
             modelBuilder.Entity<Type>(entity =>

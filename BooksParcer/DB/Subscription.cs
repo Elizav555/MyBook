@@ -9,7 +9,6 @@ namespace BooksParcer
         {
             SubscGenres = new HashSet<SubscGenre>();
             SubscrAuthors = new HashSet<SubscrAuthor>();
-            SubscrTypes = new HashSet<SubscrType>();
         }
 
         public int SubscrId { get; set; }
@@ -20,6 +19,6 @@ namespace BooksParcer
         public virtual UserSubscr FkSubscrUserSubscrUserSubscr { get; set; } = null!;
         public virtual ICollection<SubscGenre> SubscGenres { get; set; }
         public virtual ICollection<SubscrAuthor> SubscrAuthors { get; set; }
-        public virtual ICollection<SubscrType> SubscrTypes { get; set; }
+        public virtual Type Type { get; set; }
     }
 }
