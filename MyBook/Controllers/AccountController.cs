@@ -65,13 +65,13 @@ namespace MyBook.Controllers
         }
 
         [HttpGet]
-        public IActionResult SignIn(string returnUrl = null)
+        public IActionResult Login(string returnUrl = null)
         {
             return View(new SignInModel { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInModel model)
+        public async Task<IActionResult> Login(SignInModel model)
         {
             //Почему то валидацию для каждого отдельного инпута не показывает
             if (ModelState.IsValid)

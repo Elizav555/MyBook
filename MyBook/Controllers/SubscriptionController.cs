@@ -33,6 +33,18 @@ namespace MyBook.Controllers
             return View(new BuySubscrViewModel { Genres = GetGenres(), Authors = GetAuthors(), SubscrTypes = GetTypes() });
         }
 
+        [HttpGet]
+        public IActionResult SubscrForAuthor()
+        {
+            return RedirectToAction("Subscription");
+        }
+
+        [HttpGet]
+        public IActionResult SubscrForGenre()
+        {
+            return RedirectToAction("Subscription");
+        }
+
         [Authorize(Policy = "ReadersOnly")]
         [HttpPost]
         public async Task<IActionResult> SubscrForGenre(string GenreName)
@@ -80,7 +92,6 @@ namespace MyBook.Controllers
         }
 
         [Authorize(Policy = "ReadersOnly")]
-        [HttpPost]
         public async Task<IActionResult> SubscrForPremium()
         {
             var type = GetTypes().First(it => it.TypeName == "Премиум");
@@ -95,7 +106,6 @@ namespace MyBook.Controllers
             await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
         }
-
 
         private List<Genre> GetGenres()
         {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Sign in"] - MyBook</title>
+    <title>@ViewData["Login"] - MyBook</title>
 </head>
 <body class="lock">
     <section class="modal_wrapper">
@@ -12,7 +12,7 @@
         <div class="wrapper_modal_content">
             <div class="modal_view">
                 <h4>Вход</h4>
-                <form method="post" asp-controller="Account" asp-action="SignIn"
+                <form method="post" asp-controller="Account" asp-action="Login"
                       asp-route-returnUrl="@Model.ReturnUrl">
 
                     <div asp-validation-summary="ModelOnly"></div>
