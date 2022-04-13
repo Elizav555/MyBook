@@ -107,7 +107,17 @@ button.accept-policy {
   border-radius: 8px;
   background: white;
 }
+
+.searchChoice:hover{
+  cursor: pointer;
+  background: rgb(245, 144, 60);
+}
+
 .searchChoice{
   margin-left: 14px;
+}
+
+#list{
+  list-style: none;
 }
 

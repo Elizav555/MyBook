@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
+using MyBook.Models;
 using MyBook.ViewModels;
 using Repositories;
 
@@ -34,29 +35,32 @@ public class SearchController : Controller
         return View(_vIewModel);
     }
 
-    public IActionResult SearchBooks(string searchString)
+    [HttpGet]
+    [Route("[controller]/[action]")]
+    public IActionResult SearchBooks(int page,string searchString)
     {
+        if (page == 0) page = 1;
         if (!String.IsNullOrEmpty(searchString))
         {
-            _vIewModel = new SearchViewModel(_bookRepository,searchString);
+            _vIewModel = new SearchViewModel(_bookRepository,searchString,page);
         }
         else
         {
-            _vIewModel = new SearchViewModel(_bookRepository, "");
+            _vIewModel = new SearchViewModel(_bookRepository,"",page);
         }
         
         return View(_vIewModel);
     }
-
+    
     public IActionResult SearchAuthors(string searchString)
     {
         if (!String.IsNullOrEmpty(searchString))
         {
-            _vIewModel = new SearchViewModel(_authorRepository,searchString);
+            _vIewModel = new SearchViewModel(_authorRepository,searchString,1);
         }
         else
         {
-            _vIewModel = new SearchViewModel(_authorRepository, "");
+            _vIewModel = new SearchViewModel(_authorRepository, "",1);
         }
         
         return View(_vIewModel);

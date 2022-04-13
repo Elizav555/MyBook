@@ -1,17 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
+using MyBook.Models;
 using Repositories;
 
 namespace MyBook.ViewModels;
 
 public class SearchViewModel
 {
+    public PageViewModel PageViewModel { get; set; }
     private readonly IGenericRepository<Book>? _bookRepository;
     private readonly IGenericRepository<Author>? _authorRepository;
     public readonly string SearchString;
-    public List<Book> Books { get; set; } = new();
-    public List<Author> Authors { get; set; } = new();
+    public IQueryable<Book> Books { get; set; }
+    public IQueryable<Author> Authors { get; set; }
 
     public SearchViewModel(
         IGenericRepository<Book> bookRepository,
@@ -21,32 +23,37 @@ public class SearchViewModel
         _bookRepository = bookRepository;
         _authorRepository = authorRepository;
         SearchString = searchString;
-
+        
         Books = GetSearchBooks()!;
         Authors = GetSearchAuthors()!;
+
     }
     
     public SearchViewModel(
         IGenericRepository<Author> authorRepository,
-        string searchString)
+        string searchString,
+        int pageNumber)
     {
         _authorRepository = authorRepository;
         SearchString = searchString;
 
         Authors = GetSearchAuthors()!;
+        PageViewModel = new PageViewModel(Authors.Count(), pageNumber);
     }
     
     public SearchViewModel(
         IGenericRepository<Book> bookRepository,
-        string searchString)
+        string searchString,
+        int pageNumber)
     {
         _bookRepository = bookRepository;
         SearchString = searchString;
-
-        Books = GetSearchBooks()!;
+        
+        Books = GetSearchBooks()!.Skip((pageNumber-1)*10).Take(10);
+        PageViewModel = new PageViewModel(Books.Count(), pageNumber);
     }
-
-    private List<Book>? GetSearchBooks()
+    
+    private IQueryable<Book>? GetSearchBooks()
     {
         return _bookRepository?.GetWithMultiIncluding(
             book => book,
@@ -56,10 +63,10 @@ public class SearchViewModel
                     .ThenInclude(authorBook =>  authorBook.Author)
                     .Include(book => book.ImgLinks)
                     .Include(book=>book.Description)
-        ).ToList();
+        );
     }
     
-    private List<Author>? GetSearchAuthors()
+    private IQueryable<Author>? GetSearchAuthors()
     {
         return _authorRepository?.GetWithMultiIncluding(
             author => author,
@@ -68,6 +75,6 @@ public class SearchViewModel
                 authors.Include(author => author.AuthorBooks)
                     .ThenInclude(authorBook =>  authorBook.Book)
                     .Include(author => author.ImgLinks)
-        ).ToList();
+        );
     }
 }
