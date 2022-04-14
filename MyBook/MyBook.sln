@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBook.Infrastructure", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBook.SharedKernel", "..\MyBook.SharedKernel\MyBook.SharedKernel.csproj", "{8FA2F766-1A85-44BA-A7F7-A2DD7FBD19C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBook.Parser", "..\MyBook.Parser\MyBook.Parser.csproj", "{ABFFD572-7AC9-4B1A-B1FB-9C47C63967A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8FA2F766-1A85-44BA-A7F7-A2DD7FBD19C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FA2F766-1A85-44BA-A7F7-A2DD7FBD19C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FA2F766-1A85-44BA-A7F7-A2DD7FBD19C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABFFD572-7AC9-4B1A-B1FB-9C47C63967A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABFFD572-7AC9-4B1A-B1FB-9C47C63967A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABFFD572-7AC9-4B1A-B1FB-9C47C63967A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABFFD572-7AC9-4B1A-B1FB-9C47C63967A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
