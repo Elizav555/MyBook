@@ -52,15 +52,15 @@ public class SearchController : Controller
         return View(_vIewModel);
     }
     
-    public IActionResult SearchAuthors(string searchString)
+    public IActionResult SearchAuthors(int page,string searchString)
     {
         if (!String.IsNullOrEmpty(searchString))
         {
-            _vIewModel = new SearchViewModel(_authorRepository,searchString,1);
+            _vIewModel = new SearchViewModel(_authorRepository,searchString,page);
         }
         else
         {
-            _vIewModel = new SearchViewModel(_authorRepository, "",1);
+            _vIewModel = new SearchViewModel(_authorRepository, "",page);
         }
         
         return View(_vIewModel);
