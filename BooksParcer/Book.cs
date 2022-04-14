@@ -20,9 +20,9 @@ namespace BooksParcer
         public string? PublishedDate { get; set; }
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
-        public int DescriptionId { get; set; }
+        public int BookDescId { get; set; }
 
-        public virtual BookDesc Description { get; set; } = null!;
+        public virtual BookDesc BookDesc { get; set; } = null!;
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
         public virtual ICollection<BookGenre> BookGenres { get; set; }
         public virtual ICollection<History> Histories { get; set; }

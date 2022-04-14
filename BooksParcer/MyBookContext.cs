@@ -161,14 +161,14 @@ namespace BooksParcer
             {
                 entity.ToTable("book");
 
-                entity.HasIndex(e => e.DescriptionId, "IX_book_DescriptionId")
+                entity.HasIndex(e => e.BookDescId, "IX_book_BookDescId")
                     .IsUnique();
 
                 entity.Property(e => e.BookId).HasColumnName("book_id");
 
-                entity.HasOne(d => d.Description)
+                entity.HasOne(d => d.BookDesc)
                     .WithOne(p => p.Book)
-                    .HasForeignKey<Book>(d => d.DescriptionId);
+                    .HasForeignKey<Book>(d => d.BookDescId);
             });
 
             modelBuilder.Entity<BookCenter>(entity =>
@@ -304,19 +304,17 @@ namespace BooksParcer
             {
                 entity.ToTable("rating");
 
-                entity.HasIndex(e => e.FkRatingBookBookId, "IX_rating_FK_rating_book_bookId");
+                entity.HasIndex(e => e.BookId, "IX_rating_BookId");
 
                 entity.HasIndex(e => e.FkRatingUserUserId, "IX_rating_FK_rating_user_userId");
 
                 entity.Property(e => e.RatingId).HasColumnName("rating_id");
 
-                entity.Property(e => e.FkRatingBookBookId).HasColumnName("FK_rating_book_bookId");
-
                 entity.Property(e => e.FkRatingUserUserId).HasColumnName("FK_rating_user_userId");
 
-                entity.HasOne(d => d.FkRatingBookBook)
+                entity.HasOne(d => d.Book)
                     .WithMany(p => p.Ratings)
-                    .HasForeignKey(d => d.FkRatingBookBookId);
+                    .HasForeignKey(d => d.BookId);
 
                 entity.HasOne(d => d.FkRatingUserUser)
                     .WithMany(p => p.Ratings)
@@ -369,7 +367,13 @@ namespace BooksParcer
 
                 entity.ToTable("subscription");
 
-                entity.HasOne(d => d.Type).WithMany(p => p.Subscriptions);
+                entity.HasIndex(e => e.TypeId, "IX_subscription_TypeId");
+
+                entity.Property(e => e.SubscrId).HasColumnName("subscr_id");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.Subscriptions)
+                    .HasForeignKey(d => d.TypeId);
             });
 
             modelBuilder.Entity<Type>(entity =>
@@ -383,9 +387,16 @@ namespace BooksParcer
             {
                 entity.ToTable("user_subscr");
 
+                entity.HasIndex(e => e.SubscriptionId, "IX_user_subscr_SubscriptionId")
+                    .IsUnique();
+
                 entity.HasIndex(e => e.UserId, "IX_user_subscr_UserId");
 
                 entity.Property(e => e.UserSubscrId).HasColumnName("user_subscr_id");
+
+                entity.HasOne(d => d.Subscription)
+                    .WithOne(p => p.UserSubscr)
+                    .HasForeignKey<UserSubscr>(d => d.SubscriptionId);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserSubscrs)

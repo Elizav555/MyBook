@@ -7,8 +7,9 @@ namespace BooksParcer
     {
         public int UserSubscrId { get; set; }
         public string UserId { get; set; } = null!;
+        public int SubscriptionId { get; set; }
 
-        public virtual AspNetUser User { get; set; } = null!;
         public virtual Subscription Subscription { get; set; } = null!;
+        public virtual AspNetUser User { get; set; } = null!;
     }
 }

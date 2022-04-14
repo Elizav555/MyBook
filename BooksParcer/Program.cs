@@ -30,7 +30,7 @@ foreach (var bookJSON in booksJSON)
             IsForAdult = bookJSON.IsForAdult,
             IsPaid = bookJSON.IsPaid,
             ImgLinks = bookImages,
-            Description = desc,
+            BookDesc = desc,
             Ratings = new List<Rating>() { rating }
         };
         if (bookJSON.Authors != null)

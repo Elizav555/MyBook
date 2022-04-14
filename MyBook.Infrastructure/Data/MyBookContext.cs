@@ -189,10 +189,12 @@ namespace MyBook.Entities
                     .HasColumnName("rating_id");
 
                 entity.HasOne(p => p.Book)
-                    .WithMany(b => b.Ratings);
+                    .WithMany(b => b.Ratings)
+                    .HasForeignKey(e => e.RatingId);
 
                 entity.HasOne(p => p.User)
-                    .WithMany(b => b.Ratings);
+                    .WithMany(b => b.Ratings)
+                    .HasForeignKey(e => e.UserId);
             });
 
             modelBuilder.Entity<Subscription>(entity =>
@@ -228,6 +230,7 @@ namespace MyBook.Entities
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserSubscrs);
             });
+
             modelBuilder.Entity<SubscrAuthor>(entity =>
             {
                 entity.ToTable("subscr_author");
