@@ -104,6 +104,10 @@ namespace MyBook.Controllers
             }
             return RedirectToAction("EditProfile", new { model.Id });
         }
+        public IActionResult EditProfile()
+        {
+            return View();
+        }
 
         public IActionResult EditSubscription()
         {
