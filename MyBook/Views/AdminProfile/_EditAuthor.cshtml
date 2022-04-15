@@ -1,0 +1,40 @@
+﻿@model MyBook.Models.Admin.EditAuthorViewModel
+<section class="admin_functional">
+    <h2>Получить информацию об авторе</h2>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Найти автора" aria-label="Search">
+    </form>
+    <div class="author_information">
+        <div class="author_information">
+            <table>
+                <tr class="upper_table_row">
+                    <td>Фотография</td>
+                    <td>Имя</td>
+                    <td>Дата рождения</td>
+                    <td>Количество книг</td>
+                    <td>Действия</td>
+                </tr>
+                @foreach (var author in Model.Authors.Take(10))
+                {
+                    @*  string? imgLink = author.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;*@
+
+                    <tr>
+                        <td><img src="/assets/img/non.png"></td>
+                        <td>@author.Name</td>
+                        <td>@author.BirthDate</td>
+                        <td>@author.AuthorBooks.Count</td>
+                        <td>
+                            <div class="flex_but">
+                                <button class="spec_but">Редактировать</button>
+                                <button class="spec_but">Удалить</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="add_author">
+        <button class="spec_but">Добавить автора</button>
+    </div>
+</section>

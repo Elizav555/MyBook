@@ -1,0 +1,40 @@
+﻿@model MyBook.Models.Admin.EditUserViewModel
+<section class="admin_functional">
+    <h2>Получить информацию о пользователе</h2>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Найти пользователя" aria-label="Search">
+    </form>
+    <div class="user_information">
+        <div class="users_information">
+            <table>
+                <tr class="upper_table_row">
+                    <td>Почта</td>
+                    <td>Имя</td>
+                    <td>Подписка</td>
+                    <td>Истекает</td>
+                </tr>
+                @foreach (var user in Model.Users)
+                {
+                    var name = user.FirstName + " " + user.LastName;
+                    var subscrs = user.UserSubscrs.Select(it => it.Subscription).Where(it => DateTime.Parse(it.EndDate).CompareTo(DateTime.Now) > 0);
+                    <tr>
+                        <td>@user.Email</td>
+                        <td>@name</td>
+
+                        @foreach (var subscr in subscrs)
+                        {
+                            <td>
+                                @subscr.Type.TypeName
+                                <div class="flex_but">
+                                    <button class="spec_but">Удалить</button>
+                                    <button class="spec_but">Добавить</button>
+                                </div>
+                            </td>
+                            <td>@subscr.EndDate</td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Admin"] - MyBook</title>
+</head>
+<body>
+    <header>
+        <div class="lower_header">
+            <div class="wrapper_lower_header">
+                <ul>
+                    <li>
+                        <a id="subscr" @*asp-action="EditSubscription"*@>Управлять подпиской</a>
+                    </li>
+                    <li>
+                        <a id="book" @*asp-action="EditBook"*@>Изменить информацию о книге</a>
+                    </li>
+                    <li>
+                        <a id="author" @*asp-action="EditAuthor"*@>Редактировать информацию об авторе</a>
+                    </li>
+                    <li>
+                        <a id="bookCenter" @*asp-action="EditBookCenter"*@>Изменить информацию о магазине</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div id="container">
+    </div>
+</body>
+</html>
+@section Scripts
+{
+<script src="~/js/admin.js"></script>
+}

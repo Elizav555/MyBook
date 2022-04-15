@@ -53,6 +53,10 @@ namespace MyBook.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Reader"));
+                    if (user.Email == "lizagarkina5@gmail.com")
+                    {
+                        await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Admin"));
+                    }
                     _bookContext.SaveChanges();
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
