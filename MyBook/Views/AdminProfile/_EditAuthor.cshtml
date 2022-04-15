@@ -1,5 +1,4 @@
-﻿
-
+﻿@model MyBook.Models.Admin.EditAuthorViewModel
 <section class="admin_functional">
     <h2>Получить информацию об авторе</h2>
     <form class="form-inline">
@@ -10,47 +9,26 @@
             <table>
                 <tr class="upper_table_row">
                     <td>Фотография</td>
-                    <td>ФИО</td>
+                    <td>Имя</td>
                     <td>Дата рождения</td>
                     <td>Количество книг</td>
                     <td>Действия</td>
                 </tr>
-                <tr>
-                    <td><img src="/assets/img/non.png"></td>
-                    <td>Стивен Кинг</td>
-                    <td>22.04.2022</td>
-                    <td>22</td>
-                    <td>
-                        <div class="flex_but">
-                            <button class="spec_but">Редактировать</button>
-                            <button class="spec_but">Удалить</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/non.png"></td>
-                    <td>Стивен Кинг</td>
-                    <td>22.04.2022</td>
-                    <td>22</td>
-                    <td>
-                        <div class="flex_but">
-                            <button class="spec_but">Редактировать</button>
-                            <button class="spec_but">Удалить</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/non.png"></td>
-                    <td>Стивен Кинг</td>
-                    <td>22.04.2022</td>
-                    <td>22</td>
-                    <td>
-                        <div class="flex_but">
-                            <button class="spec_but">Редактировать</button>
-                            <button class="spec_but">Удалить</button>
-                        </div>
-                    </td>
-                </tr>
+                @foreach (var author in Model.Authors)
+                {
+                    <tr>
+                        <td><img src="/assets/img/non.png"></td>
+                        <td>@author.Name</td>
+                        <td>@author.BirthDate</td>
+                        <td>@author.AuthorBooks.Count</td>
+                        <td>
+                            <div class="flex_but">
+                                <button class="spec_but">Редактировать</button>
+                                <button class="spec_but">Удалить</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
             </table>
         </div>
     </div>

@@ -1,4 +1,5 @@
-﻿<section class="user_page_upper">
+﻿@model MyBook.Models.Admin.EditSubscrViewModel
+<section class="user_page_upper">
     <p>Управлять подпиской</p>
 </section>
 
@@ -9,55 +10,25 @@
                 <td>Подписка</td>
                 <td>Описание</td>
                 <td>Стоимость</td>
-                <td>Период</td>
                 <td>Действия</td>
             </tr>
-            <tr>
-                <td>Стандарт</td>
-                <td>
-                    <p>Ограниченный каталог книг</p>
-                    <p>Персональные рекомендации</p>
-                </td>
-                <td>229 руб</td>
-                <td>1 месяц</td>
-                <td>
-                    <div class="flex_but">
-                        <button class="spec_but">Удалить</button>
-                        <button class="spec_but">Редактировать</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Премиум</td>
-                <td>
-                    <p>Все книги</p>
-                    <p>Персональные рекомендации</p>
-                </td>
-                <td>549 руб</td>
-                <td>1 месяц</td>
-                <td>
-                    <div class="flex_but">
-                        <button class="spec_but">Удалить</button>
-                        <button class="spec_but">Редактировать</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Семейная</td>
-                <td>
-                    <p> 3 аккаунта с премиум-подпиской</p>
-                    <p>Другие участники не будут знать, что вы читаете</p>
-                    <p>Сохраним оставшиеся дни активной подписки</p>
-                </td>
-                <td>899 руб</td>
-                <td>1 месяц</td>
-                <td>
-                    <div class="flex_but">
-                        <button class="spec_but">Удалить</button>
-                        <button class="spec_but">Редактировать</button>
-                    </div>
-                </td>
-            </tr>
+
+            @foreach (var type in Model.SubscrTypes)
+            {
+                <tr>
+                    <td>@type.TypeName</td>
+                    <td>
+                        <p>@type.Description</p>
+                    </td>
+                    <td>@type.Price руб</td>
+                    <td>
+                        <div class="flex_but">
+                            <button class="spec_but">Удалить</button>
+                            <button class="spec_but">Редактировать</button>
+                        </div>
+                    </td>
+                </tr>
+            }
         </table>
     </div>
     <button class="spec_but">Создать новую подписку</button>

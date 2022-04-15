@@ -1,5 +1,4 @@
-﻿@model MyBook.Models.AdminViewModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,21 +11,26 @@
             <div class="wrapper_lower_header">
                 <ul>
                     <li>
-                        <a asp-action="EditSubscription">Управлять подпиской</a>
+                        <a id="subscr" @*asp-action="EditSubscription"*@>Управлять подпиской</a>
                     </li>
                     <li>
-                        <a asp-action="EditBook">Изменить информацию о книге</a>
+                        <a id="book" @*asp-action="EditBook"*@>Изменить информацию о книге</a>
                     </li>
                     <li>
-                        <a asp-action="EditAuthor">Редактировать информацию об авторе</a>
+                        <a id="author" @*asp-action="EditAuthor"*@>Редактировать информацию об авторе</a>
                     </li>
                     <li>
-                        <a asp-action="EditBookCenter">Изменить информацию о магазине</a>
+                        <a id="bookCenter" @*asp-action="EditBookCenter"*@>Изменить информацию о магазине</a>
                     </li>
                 </ul>
             </div>
         </div>
     </header>
-    @await Html.PartialAsync(@Model.PartialName)
+    <div id="container">
+    </div>
 </body>
 </html>
+@section Scripts
+{
+<script src="~/js/admin.js"></script>
+}
