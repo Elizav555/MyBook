@@ -1,4 +1,4 @@
-﻿
+﻿@model MyBook.Models.Admin.EditUserViewModel
 <section class="admin_functional">
     <h2>Получить информацию о пользователе</h2>
     <form class="form-inline">
@@ -8,64 +8,32 @@
         <div class="users_information">
             <table>
                 <tr class="upper_table_row">
-                    <td>Аватар</td>
                     <td>Почта</td>
-                    <td>ФИО</td>
+                    <td>Имя</td>
                     <td>Подписка</td>
-                    <td>Период</td>
-                    <td>Стоимость</td>
-                    <td>Оплата</td>
-                    <td>Статус</td>
+                    <td>Истекает</td>
+                </tr>
+                @foreach (var user in Model.Users)
+                {
+                    var name = user.FirstName + " " + user.LastName;
+                    var subscrs = user.UserSubscrs.Select(it => it.Subscription).Where(it => DateTime.Parse(it.EndDate).CompareTo(DateTime.Now) > 0);
+                    <tr>
+                        <td>@user.Email</td>
+                        <td>@name</td>
 
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/avatar.png"></td>
-                    <td>ivanov@mail.ru</td>
-                    <td>Иванов Иван Иванович</td>
-                    <td>
-                        Премиум
-                        <div class="flex_but">
-                            <button class="spec_but">Удалить</button>
-                            <button class="spec_but">Добавить</button>
-                        </div>
-                    </td>
-                    <td>1 месяц</td>
-                    <td>300 руб.</td>
-                    <td>iTunes</td>
-                    <td>Текущая</td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/avatar.png"></td>
-                    <td>pupa@mail.ru</td>
-                    <td>Пупкин Вася Иванович</td>
-                    <td>
-                        Пробная
-                        <div class="flex_but">
-                            <button class="spec_but">Удалить</button>
-                            <button class="spec_but">Добавить</button>
-                        </div>
-                    </td>
-                    <td>14 дней</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>Текущая</td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/avatar.png"></td>
-                    <td>pupa@mail.ru</td>
-                    <td>Пупкин Вася Иванович</td>
-                    <td>
-                        Стандарт
-                        <div class="flex_but">
-                            <button class="spec_but">Удалить</button>
-                            <button class="spec_but">Добавить</button>
-                        </div>
-                    </td>
-                    <td>21день</td>
-                    <td>150руб</td>
-                    <td>iTunes</td>
-                    <td>Не действует</td>
-                </tr>
+                        @foreach (var subscr in subscrs)
+                        {
+                            <td>
+                                @subscr.Type.TypeName
+                                <div class="flex_but">
+                                    <button class="spec_but">Удалить</button>
+                                    <button class="spec_but">Добавить</button>
+                                </div>
+                            </td>
+                            <td>@subscr.EndDate</td>
+                        }
+                    </tr>
+                }
             </table>
         </div>
     </div>

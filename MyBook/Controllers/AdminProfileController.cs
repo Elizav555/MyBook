@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
 using MyBook.Models.Admin;
 using Repositories;
@@ -11,12 +13,19 @@ namespace MyBook.Controllers
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
-        private readonly IGenericRepository<Author> _authorRepository;
+        private readonly EfAuthorRepository _authorRepository;
+        private readonly EfBookRepository _bookRepository;
+        private readonly UserManager<User> _userManager;
 
-        public AdminProfileController(IGenericRepository<Type> typeRep, IGenericRepository<Author> authorsRep)
+        public AdminProfileController(IGenericRepository<Type> typeRep,
+        EfAuthorRepository authorRepository,
+            EfBookRepository bookRepository,
+            UserManager<User> userManager)
         {
             _typeRepository = typeRep;
-            _authorRepository = authorsRep;
+            _authorRepository = authorRepository;
+            _bookRepository = bookRepository;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -31,17 +40,17 @@ namespace MyBook.Controllers
 
         public IActionResult EditBook()
         {
-            return PartialView("_EditBook");
+            return PartialView("_EditBook", new EditBookViewModel { Books = GetBooks() });
         }
 
         public IActionResult EditUser()
         {
-            return PartialView("_EditUser");
+            return PartialView("_EditUser", new EditUserViewModel { Users = GetUsers() });
         }
 
         public IActionResult EditBookCenter()
         {
-            return PartialView("_EditBookCenter");
+            return PartialView("_EditBookCenter", new EditCenterViewModel { Centers = GetCenters() });
         }
 
         public IActionResult EditSubscription()
@@ -57,7 +66,22 @@ namespace MyBook.Controllers
 
         private List<Author> GetAuthors()
         {
-            return _authorRepository.Get().ToList();
+            return _authorRepository.GetAllAuthors().ToList();
+        }
+
+        private List<Book> GetBooks()
+        {
+            return _bookRepository.GetAllBooks().ToList();
+        }
+
+        private List<User> GetUsers()
+        {
+            return _userManager.Users.ToList();
+        }
+
+        private List<BookCenter> GetCenters()
+        {
+            return new List<BookCenter>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Text
+@model MyBook.Models.Admin.EditBookViewModel
 <section class="admin_functional">
     <h2>Получить информацию о книге</h2>
     <form class="form-inline">
@@ -11,39 +12,32 @@
                     <td>Обложка</td>
                     <td>Название</td>
                     <td>Автор</td>
-                    <td>Дата публикации</td>
                     <td>Жанр</td>
-                    <td>Рейтинг</td>
                     <td>Действия</td>
-
                 </tr>
-                <tr>
-                    <td><img src="/assets/img/book3.jpg"></td>
-                    <td>Путь</td>
-                    <td>Стивен Кинг</td>
-                    <td>12.12.2001</td>
-                    <td>Ужасы</td>
-                    <td>4.8</td>
-                    <td><button class="spec_but">Удалить</button></td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/book3.jpg"></td>
-                    <td>Вот тут такая классная книга вот</td>
-                    <td>Стивен Кинг</td>
-                    <td>12.12.2001</td>
-                    <td>Ужасы</td>
-                    <td>4.8</td>
-                    <td><button class="spec_but">Удалить</button></td>
-                </tr>
-                <tr>
-                    <td><img src="/assets/img/book3.jpg"></td>
-                    <td>Путь</td>
-                    <td>Стивен Кинг</td>
-                    <td>12.12.2001</td>
-                    <td>Ужасы</td>
-                    <td>4.8</td>
-                    <td><button class="spec_but">Удалить</button></td>
-                </tr>
+                @foreach (var book in Model.Books.Take(10))
+                {
+                    var authors = new StringBuilder();
+                    authors.AppendJoin(" , ", book.AuthorBooks.Select(it => it.Author.Name));
+                    var genres = new StringBuilder();
+                    genres.AppendJoin(" , ", book.BookGenres.Select(it => it.Genre.Name));
+                    @*var rating = book.Ratings != null ? Math.Round(book.Ratings.Select(it => it.Points).Sum() / book.Ratings.Count, 2) : 0.0;
+                        var isPaid = book.IsPaid ? "Да" : "Нет";
+                        var isAdult = book.IsForAdult ? "Да" : "Нет";*@
+                    string? imgLink = book.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;
+                    <tr>
+                        <td><img src="@imgLink"></td>
+                        <td>@book.Name</td>
+                        <td>@authors.ToString()</td>
+                        <td>@genres.ToString()</td>
+                        <td>
+                            <div class="flex_but">
+                                <button class="spec_but">Редактировать</button>
+                                <button class="spec_but">Удалить</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
             </table>
         </div>
         <button class="spec_but">Добавить книгу</button>

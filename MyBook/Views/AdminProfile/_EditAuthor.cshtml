@@ -14,8 +14,10 @@
                     <td>Количество книг</td>
                     <td>Действия</td>
                 </tr>
-                @foreach (var author in Model.Authors)
+                @foreach (var author in Model.Authors.Take(10))
                 {
+                    @*  string? imgLink = author.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;*@
+
                     <tr>
                         <td><img src="/assets/img/non.png"></td>
                         <td>@author.Name</td>
