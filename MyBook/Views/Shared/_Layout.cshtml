@@ -56,16 +56,16 @@
                                 {
                                     if (User.IsInRole("Admin"))
                                     {
-                                        <a class="nav-link " asp-area="" asp-controller="AdminProfile" asp-action="EditUser">Личный кабинет администратора</a>
+                                                        <a class="nav-link " asp-area="" asp-controller="AdminProfile" asp-action="Index">Личный кабинет администратора</a>
                                     }
                                     else
                                     {
-                                        <a class="nav-link " asp-area="" asp-controller="UserProfile" asp-route-id="@User.Claims.FirstOrDefault()?.Value" asp-action="EditProfile">Личный кабинет</a>
+                                                        <a class="nav-link " asp-area="" asp-controller="UserProfile" asp-route-id="@User.Claims.FirstOrDefault()?.Value" asp-action="EditProfile">Личный кабинет</a>
                                     }
                                 }
                                 else
                                 {
-                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                                            <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
                                 }
                             </li>
                         </ul>
