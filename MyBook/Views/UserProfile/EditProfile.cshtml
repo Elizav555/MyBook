@@ -23,26 +23,26 @@
                         <form method="post" asp-controller="UserProfile" asp-action="EditProfile">
                             <div asp-validation-summary="ModelOnly"></div>
                             <span>Ваши данные</span>
-                             <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Id" />
                             <div class="form-group form_label">
                                 <label asp-for="FirstName" for="nameForm">Имя</label>
                                 <input asp-for="FirstName" type="text" value="@Model.FirstName" class="form-control" id="nameForm" aria-describedby="emailHelp">
-                                <span asp-validation-for="FirstName" class="text-danger" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                             <div class="form-group form_label">
                                 <label asp-for="LastName" for="surnameForm">Фамилия</label>
-                                <input  asp-for="LastName" type="text"value="@Model.LastName" class="form-control" id="surnameForm" aria-describedby="emailHelp">
-                                 <span asp-validation-for="LastName" class="text-danger" />
+                                <input asp-for="LastName" type="text" value="@Model.LastName" class="form-control" id="surnameForm" aria-describedby="emailHelp">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                             <div class="form-group form_label">
-                                <label  asp-for="Email" for="surnameForm">Электронная почта</label>
-                                <input  asp-for="Email" type="text"value="@Model.Email" class="form-control" id="emailForm" aria-describedby="emailHelp">
+                                <label asp-for="Email" for="surnameForm">Электронная почта</label>
+                                <input asp-for="Email" type="text" value="@Model.Email" class="form-control" id="emailForm" aria-describedby="emailHelp">
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group form_label">
-                                <label  asp-for="BirthDate" for="surnameForm">Дата рождения</label>
-                                <input  asp-for="BirthDate" type="date"value="@Model.BirthDate.ToString("yyyy-MM-dd")" class="form-control" id="dateForm"  min="1922-04-01" max="2020-04-30" aria-describedby="emailHelp">
-                                <span asp-validation-for="BirthDate" class="text-danger" />
+                                <label asp-for="BirthDate" for="surnameForm">Дата рождения</label>
+                                <input asp-for="BirthDate" type="date" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" class="form-control" id="dateForm" min="1922-04-01" max="2020-04-30" aria-describedby="emailHelp">
+                                <span asp-validation-for="BirthDate" class="text-danger"></span>
                             </div>
                             <button class="main_button" type="submit">Сохранить</button>
                         </form>
@@ -66,5 +66,8 @@
             @await Html.PartialAsync("_EditPassword",new EditPasswordViewModel{ Id = Model.Id})
         </div>
     </section>
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
 </body>
 </html>
