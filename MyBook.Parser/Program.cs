@@ -1,6 +1,7 @@
-﻿using System.Linq;
-using BooksParcer;
-using System.Text.Json;
+﻿using MyBook.Entities;
+using MyBook.Parser;
+using Type = MyBook.Entities.Type;
+
 
 #region BooksParcer
 var booksJSON = Parcer.ParceJSONBooks();
@@ -10,7 +11,7 @@ foreach (var bookJSON in booksJSON)
 {
     using (var db = new MyBookContext())
     {
-        var rating = new Rating { Points = rnd.NextDouble() * rnd.Next(5), FkRatingUserUser = db.AspNetUsers.ToList().First() };
+        var rating = new Rating { Points = rnd.Next(5), User = db.Users.First() };
         var authorBooks = new List<AuthorBook>();
         var bookGenres = new List<BookGenre>();
         var bookImages = new List<ImgLink>();
@@ -30,7 +31,7 @@ foreach (var bookJSON in booksJSON)
             IsForAdult = bookJSON.IsForAdult,
             IsPaid = bookJSON.IsPaid,
             ImgLinks = bookImages,
-            BookDesc = desc,
+            Description = desc,
             Ratings = new List<Rating>() { rating }
         };
         if (bookJSON.Authors != null)
@@ -41,7 +42,11 @@ foreach (var bookJSON in booksJSON)
                 if (dbAuthor == null)
                 {
                     db.Authors.Add(author);
-                    authorBooks.Add(new AuthorBook { Author = author, Book = book });
+                    authorBooks.Add(new AuthorBook
+                    {
+                        Author = author,
+                        Book = book
+                    });
                 }
                 else
                 {
@@ -76,19 +81,19 @@ foreach (var bookJSON in booksJSON)
 #region AddSubscr
 using (var db = new MyBookContext())
 {
-    var type = new BooksParcer.Type
+    var type = new Type
     {
         TypeName = "Премиум",
         Price = 899,
         Description = "Доступ ко всем книгам без ограничений",
     };
-    var type1 = new BooksParcer.Type
+    var type1 = new Type
     {
         TypeName = "Подписка на автора",
         Price = 399,
         Description = "Выберите автора и получите доступ ко всем его произведениям",
     };
-    var type2 = new BooksParcer.Type
+    var type2 = new Type
     {
         TypeName = "Подписка на жанр",
         Price = 399,

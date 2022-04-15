@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MyBook.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BooksParcer
+namespace MyBook.Parser
 {
     public class BookJson
     {
@@ -22,26 +23,4 @@ namespace BooksParcer
         public ICollection<ImgLink> Images { get; set; }
         public ICollection<DownloadLink> DownloadLinks { get; set; }
     }
-
-    //public class DownloadLinkJson
-    //{
-    //    public string Format { get; set; }
-    //    public string Url { get; set; }
-    //}
-
-    //public class ImgLinkJson
-    //{
-    //    public string? Resolution { get; set; }
-    //    public string Url { get; set; }
-    //}
-
-    //public class AuthorBookJson
-    //{
-    //    public string Name { get; set; } = "";
-    //}
-
-    //public class BookGenreJson
-    //{
-    //    public string Name { get; set; } = "";
-    //}
 }

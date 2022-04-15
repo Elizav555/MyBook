@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MyBook.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace BooksParcer
+namespace MyBook.Parser
 {
     public static class Parcer
     {
