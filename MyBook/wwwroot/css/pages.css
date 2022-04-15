@@ -293,6 +293,24 @@ footer {
 }
 
 /*-------------------------------USER-PAGE-----------------------------*/
+.lk_out{
+    display: flex;
+    justify-content: space-between;
+}
+.sign_out {
+    align-items: center;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px none;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(rgb(255, 129, 0), rgb(228, 75, 3));
+    padding: 0em 1em;
+    border-radius: 12px;
+    margin: 0;
+    height: 50px;
+}
 .user_page_upper {
     padding: 1em 14em;
     font-family: Fira Sans,Roboto,system-ui,serif;
@@ -303,8 +321,22 @@ footer {
         font-size: 45px;
         line-height: 40px;
     }
+.user_links_wrapper ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.user_links_wrapper li {
+    margin: 0 0.3em;
+}
 
-.user_button_wrapper button {
+    .user_links_wrapper li :hover {
+        box-shadow:
+            -23px 0 20px -23px rgba(0, 0, 0, .8),
+            23px 0 20px -23px rgba(0, 0, 0, .8)
+    }
+.user_links_wrapper a{
     color: rgb(190, 91, 4) !important;
     font-weight: 600;
     font-size: 16px;
@@ -496,13 +528,15 @@ footer {
     }
 /*-------------------------------HISTORY----------------------------*/
 .sub_table_wrapper {
-    padding: 1em 14em 3em 14em;
+    padding: 1em 14em 1em 14em;
 }
 
     .sub_table_wrapper table {
+        margin: 3em 0;
         background: white;
         width: 100%;
         border-radius: 20px;
+        box-shadow: 0 0 10px #cfcccc;
     }
 
 td {

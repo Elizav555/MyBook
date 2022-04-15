@@ -7,12 +7,25 @@
 </head>
 <body>
     <section class="user_page_upper">
-		<p>Личный кабинет</p>
-		<div class="user_button_wrapper">
-			<button>Профиль</button>
-			<button>Подписка</button>
-		</div>
-	</section>
+         <div class="lk_out">
+            <p>Личный кабинет</p>
+            <button class="sign_out">Покинуть страницу</button>
+        </div>
+       <nav class="user_links_wrapper">
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="EditProfile">Профиль</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="History">История</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="EditSubscription">Подписки</a>
+                </li>
+                </
+            </ul>
+        </nav>
+    </section>
 
 	<section class="user_page_lower">
 		<div class="user_page_sub">
