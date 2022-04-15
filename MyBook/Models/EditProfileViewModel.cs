@@ -16,9 +16,9 @@ namespace MyBook.Models
         [Required(ErrorMessage = "Не указана фамилия"), DataType(DataType.Text)]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        [Required(ErrorMessage = "Не указана дата рождения")]
+        [DataType(DataType.Date, ErrorMessage = "Введите корректную дату рождения")]
+        public DateTime? BirthDate { get; set; }
     }
 
     public class EditPasswordViewModel

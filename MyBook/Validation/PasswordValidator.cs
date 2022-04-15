@@ -29,7 +29,7 @@ namespace MyBook.Validation
                 errors.Add(new IdentityError
                 {
                     Code = "UsernameAsPassword",
-                    Description = "You cannot use your username as your password"
+                    Description = "Вы не можете использовать ваш логин в качестве пароля"
                 });
             }
 

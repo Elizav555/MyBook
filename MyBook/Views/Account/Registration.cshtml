@@ -23,33 +23,37 @@
                             <label asp-for="Password" for="surnameForm">Придумайте пароль, пожалуйста:</label>
                             <input asp-for="Password" type="text" class="form-control" id="surnameForm" aria-describedby="emailHelp">
                             <label class="lower_label">Не менее 8 символов, цифры и буквы.</label>
+                            <br />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <div class="form-group form_label_reg">
                             <label asp-for="LastName">Фамилия: </label><br />
                             <input class="form-control" type="text" asp-for="LastName">
-                            <span asp-validation-for="LastName" class="text-danger" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                         <div class="form-group form_label_reg">
                             <label asp-for="FirstName">Имя: </label><br />
                             <input class="form-control" type="text" asp-for="FirstName">
-                            <span asp-validation-for="FirstName" class="text-danger" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="form-group form_label_reg">
                             <label asp-for="BirthDate">Дата рождения: </label><br />
                             <input class="form-control" type="date" min="1922-04-01" max="2020-04-30" id="datepicker" asp-for="BirthDate">
-                            <span asp-validation-for="BirthDate" class="text-danger" />
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
                         </div>
                         <button type="submit" class="reg_button">Зарегистрироваться</button>
                     </form>
                     <button class="signin_button">Регистрация с помощью VK</button>
                     <form method="get" asp-controller="Account" asp-action="Login">
-                        <button class="main_button">Войти</button>
+                        <button class="main_button" type="submit">Войти</button>
                     </form>
                     <p>Регистрируясь, вы принимаете публичную оферту и условия использования MyBook</p>
                 </div>
             </div>
         </div>
     </section>
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
 </body>
 </html>

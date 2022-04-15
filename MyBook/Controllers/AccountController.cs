@@ -29,12 +29,16 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(RegistrationModel model)
         {
-            //Почему то валидацию для каждого отдельного инпута не показывает
             if (ModelState.IsValid)
             {
                 if (_userManager.Users.Any(userIdentity => userIdentity.Email == model.Email))
                 {
                     ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
+                    return View(model);
+                }
+                if (model.BirthDate == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Введите корректную дату рождения");
                     return View(model);
                 }
                 User user = new User
@@ -43,7 +47,7 @@ namespace MyBook.Controllers
                     UserName = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    BirthDate = model.BirthDate.ToShortDateString()
+                    BirthDate = model.BirthDate?.ToShortDateString()
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -73,7 +77,6 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(SignInModel model)
         {
-            //Почему то валидацию для каждого отдельного инпута не показывает
             if (ModelState.IsValid)
             {
                 var result =

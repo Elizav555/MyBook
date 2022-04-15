@@ -39,8 +39,6 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(EditProfileViewModel model)
         {
-            //Почему то валидацию для каждого отдельного инпута не показывает
-            //а валидацию для модели показывает и тут и на паролях
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
@@ -51,9 +49,14 @@ namespace MyBook.Controllers
                         ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
                         return View(model);
                     }
+                    if (model.BirthDate == null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Введите корректную дату рождения");
+                        return View(model);
+                    }
                     user.Email = model.Email;
                     user.UserName = model.Email;
-                    user.BirthDate = model.BirthDate.ToShortDateString();
+                    user.BirthDate = model.BirthDate?.ToShortDateString();
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
 
@@ -77,7 +80,7 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPassword(EditPasswordViewModel model)
         {
-            //Почему то не показывает ошибки 
+            //Почему то не отображается валидация
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
