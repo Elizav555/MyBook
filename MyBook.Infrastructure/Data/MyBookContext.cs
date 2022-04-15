@@ -14,6 +14,14 @@ namespace MyBook.Entities
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyBook;Username=postgres;Password=postgres");
+            }
+        }
+
         public virtual DbSet<Author> Authors { get; set; } = null!;
         public virtual DbSet<AuthorBook> AuthorBooks { get; set; } = null!;
         public virtual DbSet<Book> Books { get; set; } = null!;

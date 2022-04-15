@@ -11,7 +11,7 @@ foreach (var bookJSON in booksJSON)
 {
     using (var db = new MyBookContext())
     {
-        var rating = new Rating { Points = rnd.NextDouble() * rnd.Next(5), User = db.Users.First() };
+        var rating = new Rating { Points = rnd.Next(5), User = db.Users.First() };
         var authorBooks = new List<AuthorBook>();
         var bookGenres = new List<BookGenre>();
         var bookImages = new List<ImgLink>();
