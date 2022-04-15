@@ -6,6 +6,7 @@ namespace MyBook.Entities
     {
         public int RatingId { get; set; }
         public double Points { get; set; }
+        [Column("UserId")]
         public string UserId { get; set; }
         public virtual User User { get; set; } = null!;
         public int BookId { get; set; }

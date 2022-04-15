@@ -33,8 +33,4 @@
 
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\MyBookContextModelSnapshot.cs" />
-  </ItemGroup>
-
 </Project>
