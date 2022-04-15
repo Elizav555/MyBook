@@ -1,0 +1,3152 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 773,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "f1BfP4AsARcC",
+      "etag": "cRDFnfcIVfE",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/f1BfP4AsARcC",
+      "volumeInfo": {
+        "title": "Sex Missae Novae",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "KBNL:UBU000030108"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "printType": "BOOK",
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=f1BfP4AsARcC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=f1BfP4AsARcC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=f1BfP4AsARcC&pg=PT4&dq=sex&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=f1BfP4AsARcC&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Missae_Novae.html?hl=&id=f1BfP4AsARcC"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=f1BfP4AsARcC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "ma8VEAAAQBAJ",
+      "etag": "BxXinc27Ek8",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/ma8VEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Sex 21",
+        "authors": [
+          "Валерия Жакар"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2021-01-18",
+        "description": "Короткие легкие тексты про секс, взросление и способы легко пережить мужской климакс. Рецепты преодоления посткоитальной депрессии, методики поиска смысла жизни до и после сорока. Развод, обмороки, одержимость, ожидание возмездия и значение синатропных организмов в выборе партнера. Неуклюжесть живых женщин и навигатор с ранимой душой. Нападение в лифте и девичья честь как меняющаяся ценность. Любовь без смысла, жизнь без пощады, страсть без снисхождения.Красивая лаконичная проза. Никакого постмодерна, без кокетства, для чтения в очередях, самолетах и на работе.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785457684430"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5457684431"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=ma8VEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=ma8VEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=ma8VEAAAQBAJ&pg=PT4&dq=sex&hl=&cd=2&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=ma8VEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=ma8VEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 80.38,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 72.34,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=ma8VEAAAQBAJ&rdid=book-ma8VEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 80380000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 72340000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_21-sample-epub.acsm?id=ma8VEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_21-sample-pdf.acsm?id=ma8VEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=ma8VEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Она: «<b>Sex</b> 21». Ну, понятное дело, при таком-то наставнике. Я, признаться, не люблю, когда женщины на подобные темы пишут. Это обычно салонные дуры с цирковым макияжем, норовящие на светских приемах сфотографироваться на пресс волле и&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "pfaeBAAAQBAJ",
+      "etag": "gce4QvprNgM",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/pfaeBAAAQBAJ",
+      "volumeInfo": {
+        "title": "Disorders of Sex Development in Gynaecology (Russian edition)",
+        "authors": [
+          "Zograb Makiyan"
+        ],
+        "publisher": "Lulu.com",
+        "publishedDate": "2013-01",
+        "description": "Harywenne formnrobannr nona (cnn.: anomannn raebntnr nona, disorders of sex development) - eto broxdennoe coctornne, nrn kotorom raebntne xromocomnogo, gonadnogo nnn anatomnueckogo nona atnnnuno. Onncana taktnka oneratnbnogo neuennr naunentob c narywennrmn formnrobannr nona, otnecennbix k xenckomy nony; barnantbi femnnnenry wen nnactnkn y naunentob c bncekcyanbnbim ctroennem naryxnbix genntannn. Cnctematneaunr noebonret nrobectn dnfferenunanbny dnagnoctnky n bbibratb ontnmanbny taktnky xnryrgnueckon korrekunn.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781300603726"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1300603720"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 166,
+        "printType": "BOOK",
+        "categories": [
+          "Science"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.0.0.0.preview.1",
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=pfaeBAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=pfaeBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=pfaeBAAAQBAJ&pg=PA147&dq=sex&hl=&cd=3&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=pfaeBAAAQBAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Disorders_of_Sex_Development_in_Gynaecol.html?hl=&id=pfaeBAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=pfaeBAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Prenatal <b>sex</b> hormone effects on child and adult <b>sex</b>-typed behavior: methods and findings. Neurosci Biobehav Rev. 2005;29 :353 –384 Cohen-Kettenis PT. Gender change in 46,XYpersons with 5-alpha-reductase-2 deficiency and&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "QLJhEAAAQBAJ",
+      "etag": "nLGdlCQhPFg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/QLJhEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Sex Pistols. Гнев – это энергия: моя жизнь без купюр",
+        "authors": [
+          "Джон Лайдон"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2022-03-01",
+        "description": "Жизнь фронтмена Sex Pistols Джона Лайдона никогда не была похожа на красочные фильмы о рок-звёздах. Мальчик вырос в трущобах Лондона среди насилия и бедности, а музыкантом стал, скорее, в знак протеста, нежели ради денег и славы. И он не боится об этом открыто говорить. Пронзительная и откровенная история о суровой жизни Лайдона в Англии, о жизни в Sex Pistols и за её пределами.В формате PDF A4 сохранен издательский макет.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785044151680"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5044151688"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Biography & Autobiography"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=QLJhEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=QLJhEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=QLJhEAAAQBAJ&pg=PT755&dq=sex&hl=&cd=4&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=QLJhEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=QLJhEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 573.85,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 516.46,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=QLJhEAAAQBAJ&rdid=book-QLJhEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 573850000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 516460000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_Pistols_%D0%93%D0%BD%D0%B5%D0%B2_%D1%8D%D1%82%D0%BE_%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8-sample-epub.acsm?id=QLJhEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_Pistols_%D0%93%D0%BD%D0%B5%D0%B2_%D1%8D%D1%82%D0%BE_%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8-sample-pdf.acsm?id=QLJhEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=QLJhEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "101 Знаменитые британские панки, музыкальная группа, образованная в 1976 г. в Лондоне на волне популярности <b>Sex</b> Pistols. Вернуться 102 Стивен Филип Джонс (род. в 1955 г.) – британский рокгитарист и певец, более всего известен как один&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "0nO2pfOctvsC",
+      "etag": "ha1t+gjHt4Y",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/0nO2pfOctvsC",
+      "volumeInfo": {
+        "title": "Sex and Violence",
+        "authors": [
+          "Владимир Козлов"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2017-09-05",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785457310315"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5457310310"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.2.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=0nO2pfOctvsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=0nO2pfOctvsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=0nO2pfOctvsC&pg=PP2&dq=sex&hl=&cd=5&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=0nO2pfOctvsC&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=0nO2pfOctvsC"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 25,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 22.5,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=0nO2pfOctvsC&rdid=book-0nO2pfOctvsC&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 25000000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 22500000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_and_Violence-sample-epub.acsm?id=0nO2pfOctvsC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_and_Violence-sample-pdf.acsm?id=0nO2pfOctvsC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=0nO2pfOctvsC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Владимир Козлов. Владимир Козлов <b>Sex</b> and Violence Во дворе девятиэтажного дома, возле гаражей-«ракушек», четверо подростков – им."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "NmseEAAAQBAJ",
+      "etag": "cPJd+7VopWA",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/NmseEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Sex салатики rock-n-roll",
+        "authors": [
+          "Дмитрий Миронов"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2021-10-28",
+        "description": "Желание сменить обстановку может возникнуть у каждого. И каждый разбирается с ним на свое усмотрение: кто-то ныряет с балкона, кто-то просто оставляет привычный быт, берет сумку с вещами и уезжает в неизвестном направлении. Герой повести «Sex салатики rock-n-roll», выбрал для себя второй вариант. Он уезжает из Петербурга, чтобы начать все сначала. В небольшом городке с дворцами и парками, раскидавшем щупальца автострад, он устраивается на работу, где знакомится с симпатичной девулей... Это была бы обычная книга про «любовь», акробатику голых туловищ под музыку в стиле инди-рок. И банальном поиске себя, размышлений, попыток понять, что будет дальше, если сделать решительный шаг в сторону от привычного маршрута. Но, нет. По этим страницам бродит Инопланетянин, лишает разума всех, кто встал у него на пути. Произведение начинает приобретать шизофренический оттенок, и сюжет закручивает пружину действия, с каждой строкой погружает читателя в настоящий транс.Содержит нецензурную брань.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785043302038"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5043302038"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.6.6.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=NmseEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=NmseEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=NmseEAAAQBAJ&pg=PP1&dq=sex&hl=&cd=6&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=NmseEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=NmseEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 171.35,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 154.22,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=NmseEAAAQBAJ&rdid=book-NmseEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 171350000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 154220000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B8%D0%BA%D0%B8_rock_n_roll-sample-epub.acsm?id=NmseEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B8%D0%BA%D0%B8_rock_n_roll-sample-pdf.acsm?id=NmseEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=NmseEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Дмитрий Миронов. ДМИТРИЙ МИР <b>SEX</b> Сдатики ROLL -N . RaCH - M СОДЕРЖИТ НЕЦЕНЗУРНУЮ БРАНЕ , 18+ Дмитрий Миронов <b>Sex</b> салатики rock-n-roll. Front Cover."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "8cm3DwAAQBAJ",
+      "etag": "5PWZSEa/5kk",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/8cm3DwAAQBAJ",
+      "volumeInfo": {
+        "title": "Rotten. Вход воспрещен. Культовая биография фронтмена Sex Pistols Джонни Лайдона",
+        "authors": [
+          "Джон Лайдон"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2021-12-29",
+        "description": "Сумасшедшая, веселая, протестная, агрессивная автобиография отца британского панка Джонни Лайдона. Солист легендарной панк-группы Sex Pistols, более известный как Роттен, рассказывает полную историю своей жизни, начиная с неблагополучного детства и заканчивая годами рассвета в статусе настоящей иконы панка и культового явления в музыке, культуре и моде. Почему Роттен ненавидел Нэнси Спанжен, презирал Вивьен Вествуд, а к Сиду Вишесу относился как к ребенку? Чего Sex Pistols стоило постоянно играть с огнем и ходить по самой грани допустимого, оставаясь в топе рейтингов и под прицелом вездесущих медиа? Обо всем этом в первой автобиографии легенды.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785041913694"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5041913692"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Biography & Autobiography"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.4.4.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=8cm3DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=8cm3DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=8cm3DwAAQBAJ&pg=PT444&dq=sex&hl=&cd=7&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=8cm3DwAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=8cm3DwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 389.85,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 350.86,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=8cm3DwAAQBAJ&rdid=book-8cm3DwAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 389850000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 350860000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Rotten_%D0%92%D1%85%D0%BE%D0%B4_%D0%B2%D0%BE%D1%81%D0%BF%D1%80%D0%B5%D1%89%D0%B5%D0%BD_%D0%9A%D1%83-sample-epub.acsm?id=8cm3DwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Rotten_%D0%92%D1%85%D0%BE%D0%B4_%D0%B2%D0%BE%D1%81%D0%BF%D1%80%D0%B5%D1%89%D0%B5%D0%BD_%D0%9A%D1%83-sample-pdf.acsm?id=8cm3DwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=8cm3DwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "В Британии <b>Sex</b> Pistols охватывали все, абсолютно все классы и возрасты. Мы разрушили эти стереотипы. Панк вообще не относился к какому-либо классу. Это комбинация всего выброшенного на помойку, вытряхнутого и потом снова выброшенного."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "rO1NDwAAQBAJ",
+      "etag": "qovg7xzsGQQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/rO1NDwAAQBAJ",
+      "volumeInfo": {
+        "title": "SEX: Повысить мужскую силу. 18+",
+        "authors": [
+          "Альберт Альчербад"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2018-02-23",
+        "description": "Сейчас очень многих интересует и даже больше волнует вопрос «повышения своих сексуальных возможностей, мощной потенции, крепкой эрекции, причём в любом возрасте», что разнообразной информации по этому поводу – огромное множество – её невероятно много, и в ней можно очень сильно запутаться. Теперь есть новая универсальная методика-система «SEX: Повысить мужскую силу», а содержание полностью соответствует этому названию и превосходит его по своей простоте, лёгкости и понятливости.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785040226665"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5040226667"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Health & Fitness"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=rO1NDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=rO1NDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=rO1NDwAAQBAJ&pg=PT27&dq=sex&hl=&cd=8&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=rO1NDwAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=rO1NDwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 110.4,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 99.36,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=rO1NDwAAQBAJ&rdid=book-rO1NDwAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 110400000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 99360000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/SEX_%D0%9F%D0%BE%D0%B2%D1%8B%D1%81%D0%B8%D1%82%D1%8C_%D0%BC%D1%83%D0%B6%D1%81%D0%BA%D1%83%D1%8E_%D1%81%D0%B8-sample-epub.acsm?id=rO1NDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/SEX_%D0%9F%D0%BE%D0%B2%D1%8B%D1%81%D0%B8%D1%82%D1%8C_%D0%BC%D1%83%D0%B6%D1%81%D0%BA%D1%83%D1%8E_%D1%81%D0%B8-sample-pdf.acsm?id=rO1NDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=rO1NDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "<b>Sex</b>-Level. (Новый. СексУровень). ДОБРО ПОЖАЛОВАТЬ НА СЛЕДУЮЩИЙ СЕКС-УРОВЕНЬ ВАШЕГО «СЕКС-Я»! А, если вы всё-таки хотите получить нечто повыше уровнем (касательно вашей МУЖСКОЙ мега-сексуальной привлекательности), советую вам также&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "0HkVEAAAQBAJ",
+      "etag": "/0FS1hkH2ZU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/0HkVEAAAQBAJ",
+      "volumeInfo": {
+        "title": "How to be, if no sex with husband. What if my husband does not have sex?",
+        "authors": [
+          "Alice Meyer"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2021-01-18",
+        "description": "Many women mistakenly think that getting married and is the ultimate goal of the relationship between a man and a woman. However, it’s not a secret that the most interesting thing begins next: relations in marriage need not just be preserved, but it is also desirable to strengthen them. It’s here that it becomes clear that even after the wedding, you should not relax especially.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785041224233"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5041224234"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Psychology"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=0HkVEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=0HkVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=0HkVEAAAQBAJ&pg=PP1&dq=sex&hl=&cd=9&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=0HkVEAAAQBAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/How_to_be_if_no_sex_with_husband_What_if.html?hl=&id=0HkVEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/How_to_be_if_no_sex_with_husband_What_if-sample-epub.acsm?id=0HkVEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/How_to_be_if_no_sex_with_husband_What_if-sample-pdf.acsm?id=0HkVEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=0HkVEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Alice Meyer. How to be, if no <b>sex</b> with husband What if my husband does not have <b>sex</b>? Alice Meyer © Alice Meyer, 2018 ISBN 978-5-4493-0909-9 Создано в интеллектуальной издательской Front Cover."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "L6p7BgAAQBAJ",
+      "etag": "H0Mu8aBR+HM",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/L6p7BgAAQBAJ",
+      "volumeInfo": {
+        "title": "Sex: реальный и виртуальный",
+        "authors": [
+          "Евгений Кащенко"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2019-10-31",
+        "description": "Данная книжка состоит из трех частей. В каждой из них дается авторский взгляд на мир интимных отношений и рассматриваются вопросы жизни как без секса, так и с ним. Основные проявления изощренного секса: оральный, анальный, групповой и виртуальный описываются подробно. Советы и рекомендации, психологические проблемы и социальные вопросы, сравнительный анализ и нравственные воззрения представлены на страницах книги доступным и популярным языком. Для широкого круга читателей.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785457708846"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5457708845"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Medical"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.5.6.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=L6p7BgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=L6p7BgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=L6p7BgAAQBAJ&pg=PT415&dq=sex&hl=&cd=10&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=L6p7BgAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=L6p7BgAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 115,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 103.5,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=L6p7BgAAQBAJ&rdid=book-L6p7BgAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 115000000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 103500000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D1%80%D0%B5%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%B8_%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C-sample-epub.acsm?id=L6p7BgAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D1%80%D0%B5%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%B8_%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C-sample-pdf.acsm?id=L6p7BgAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=L6p7BgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "... в статье «Виртуальный секс набирает обороты» (от 24.07. 2003). Вернуться 8. http://www.compulenta.ru/ Вернуться 9 http://www.<b>sex</b>.ru/fun/vistavki/www.techno-feng-shui.nm.ru Вернуться."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "ziBVEAAAQBAJ",
+      "etag": "3n42xauwR0s",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/ziBVEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Sex-дневник Кати Морозовой",
+        "authors": [
+          "Лена Сокол"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2021-12-16",
+        "description": "Жизнь преуспевающей журналистки Кати Морозовой в один миг превращается в катастрофу: жених предал, из модного глянца со скандалом уволили, а тут еще и пожар в гостиничном номере, который уничтожил почти все ее личные вещи.Любая другая точно отчаялась бы. Но только не остроумная, находчивая и сильная духом Катерина: она ставит себе цель вернуть контроль над собственной жизнью, добиться успеха в карьере и непременно встретить, наконец, того, кто сделает ее счастливой.Кем окажется тот единственный? Симпатичным фотографом, улыбчивым банкиром или сексуальным пожарным? Расскажет ее дневник.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785043843036"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5043843039"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=ziBVEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=ziBVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=ziBVEAAAQBAJ&pg=PT70&dq=sex&hl=&cd=11&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=ziBVEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=ziBVEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 251.85,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 226.66,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=ziBVEAAAQBAJ&rdid=book-ziBVEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 251850000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 226660000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA_%D0%9A%D0%B0%D1%82%D0%B8_%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%D0%BE-sample-epub.acsm?id=ziBVEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA_%D0%9A%D0%B0%D1%82%D0%B8_%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%D0%BE-sample-pdf.acsm?id=ziBVEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=ziBVEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "А далее ты возьмешь на себя работу над рубрикой «<b>Sex</b>». Для нее нужен свежий взгляд и человек с нестандартным мышлением. Думаю, прежнюю рубрику ты давно переросла. – Я... – Пришлешь мне завтра тему для колонки и первые наброски. – Но.."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "5_cwDwAAQBAJ",
+      "etag": "A31ilQAxn7c",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/5_cwDwAAQBAJ",
+      "volumeInfo": {
+        "title": "Sex-чеки для влюбленных. Я хочу тебя!",
+        "publisher": "Litres",
+        "publishedDate": "2017-09-05",
+        "description": "С этой чековой книжкой вас ждут 32 незабываемые бессонные ночи! Насыщенность каждой страницы страстью, огнем и пикантностью зашкаливает! Готовы ли вы и ваша вторая половинка к сексуальному путешествию? Ведь на страницах этой книги вы найдете 32 чека с горячими заданиями, обязательными к выполнению, которые разнообразят вашу интимную жизнь, внесут в нее еще больше космоса! Выписывайте чеки своей любви и выполняйте те чеки, которые выпишет вам ваша любовь! Будьте раскованней! Будьте рискованней! Все в ваших руках!",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785040725106"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5040725108"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Games & Activities"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=5_cwDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=5_cwDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=5_cwDwAAQBAJ&pg=PP2&dq=sex&hl=&cd=12&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=5_cwDwAAQBAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_%D1%87%D0%B5%D0%BA%D0%B8_%D0%B4%D0%BB%D1%8F_%D0%B2%D0%BB%D1%8E%D0%B1%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D1%85.html?hl=&id=5_cwDwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_%D1%87%D0%B5%D0%BA%D0%B8_%D0%B4%D0%BB%D1%8F_%D0%B2%D0%BB%D1%8E%D0%B1%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D1%85-sample-pdf.acsm?id=5_cwDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=5_cwDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "П-32 <b>Sex</b>-чеки для влюбленных. Я хочу тебя!/ Е. А. Пилипенко — Москва: Издательство АСТ, 2017. — 64 с. — (Чеки счастья) ISBN 978-5-17-096077-4 УДК 686.81 ББК я6 18+ Издание для досуга Серия «Чеки счастья» Автор-составитель Е.А. Пилипенко&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "c-g2DwAAQBAJ",
+      "etag": "vEga34cgKIQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/c-g2DwAAQBAJ",
+      "volumeInfo": {
+        "title": "Кнопка Власти. Sex. Addict. #Признания манипулятора",
+        "authors": [
+          "Виктория Исаева"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2020-08-04",
+        "description": "История блестящего психологического мошенничества! Самые действенные и простые методы достижения целей, для успешного использования которых не обязательно быть магистром психологии! Что обычно делают влюбленные, решившие связать свою жизнь и свить семейное гнездышко в Москве? Правильно! Устраиваются на работу (а лучше на несколько) и начинают мучительно копить деньги на покупку ВСЕГО. А что если нет времени и желания играть по правилам? Что если у вас сводит скулы при мысли о «нормальной жизни»? Что если вы открыли другой путь к благополучию и финансовой обеспеченности? Что если вы обладаете талантом, способным быстро обеспечить вам безбедное существование и яркую жизнь? И пока сотни людей прилежно изучают психологию, чтобы бороться с собственными комплексами, парочка аферистов решают использовать последние достижения психологии как оружие в гонке на выживание. Это непридуманная история двух профессиональных манипуляторов, которые не постеснялись использовать собственные таланты и познания для обогащения.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785040803460"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "504080346X"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Business & Economics"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.2.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=c-g2DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=c-g2DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=c-g2DwAAQBAJ&pg=PT166&dq=sex&hl=&cd=13&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=c-g2DwAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=c-g2DwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 286.35,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 257.72,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=c-g2DwAAQBAJ&rdid=book-c-g2DwAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 286350000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 257720000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/%D0%9A%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0_%D0%92%D0%BB%D0%B0%D1%81%D1%82%D0%B8_Sex_Addict_%D0%9F-sample-epub.acsm?id=c-g2DwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/%D0%9A%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0_%D0%92%D0%BB%D0%B0%D1%81%D1%82%D0%B8_Sex_Addict_%D0%9F-sample-pdf.acsm?id=c-g2DwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=c-g2DwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "... усмехнулась Даша и, подняв бокал, чокнулась с Толиком. – Тебя зовут Даша, да? – уточнил он. – Ну, за знакомство. Я – Анатолий... * * * XXI век в столице был объявлен эрой олигархов, шопинга, глянцевых журналов, интрижек в стиле «<b>Sex</b>&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "qer7ic8z03IC",
+      "etag": "l8PMC6w7ta0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/qer7ic8z03IC",
+      "volumeInfo": {
+        "title": "SEX + SUCCESS. Самоучитель от self-made woman",
+        "authors": [
+          "Ирина Хакамада"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2019-08-02",
+        "description": "Впервые! Две книги – в одном томе: «Succes (успех) в большом городе» и «Sex в большой политике».Ирина Хакамада делится с читателем искусством выживания в большой политике и новейшей методикой карьерного (и личного) счастья.Легкий и эмоциональный, с курьезами и анекдотами, точными наблюдениями и ироничным взглядом на известных лиц, «Самоучитель от self-made woman» понравится всем: как любителям серьезной литературы, так и поклонникам развлекательного чтения.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785457197770"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5457197778"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 787,
+        "printType": "BOOK",
+        "categories": [
+          "Biography & Autobiography"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.6.7.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=qer7ic8z03IC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=qer7ic8z03IC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=qer7ic8z03IC&pg=PT184&dq=sex&hl=&cd=14&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=qer7ic8z03IC&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=qer7ic8z03IC"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 309.35,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 278.42,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=qer7ic8z03IC&rdid=book-qer7ic8z03IC&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 309350000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 278420000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/SEX_+_SUCCESS_%D0%A1%D0%B0%D0%BC%D0%BE%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D1%8C_%D0%BE-sample-epub.acsm?id=qer7ic8z03IC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/SEX_+_SUCCESS_%D0%A1%D0%B0%D0%BC%D0%BE%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D1%8C_%D0%BE-sample-pdf.acsm?id=qer7ic8z03IC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=qer7ic8z03IC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Ирина Хакамада. Часть вторая <b>Sex</b> в Большой политике Тема первая Синхронный перевод с кремлевского Никто не знает его."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "txZ9DwAAQBAJ",
+      "etag": "phjMl37T4ww",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/txZ9DwAAQBAJ",
+      "volumeInfo": {
+        "title": "Агентство «ОКО». Sex... Наркотики... Рок-н-ролл...",
+        "authors": [
+          "Тамара Гайдамащук"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2018-12-02",
+        "description": "Рутина полицейских будней, мрачные, напряжённые, полные опасностей дни – таков был распорядок дней в течение долгих лет жизни Тони и Кит. Он психолог, она аналитик. Счастливая супружеская пара решает оставить работу в полиции и открыть агентство. Главным орудием служит им мышление. Опыт психолога Тони, аналитический склад ума Кит – идеальное сочетание для дальнейшего успеха и процветания в профессиональной деятельности главных героев.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785041454203"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5041454205"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=txZ9DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=txZ9DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=txZ9DwAAQBAJ&pg=PP1&dq=sex&hl=&cd=15&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=txZ9DwAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=txZ9DwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 460,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 414,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=txZ9DwAAQBAJ&rdid=book-txZ9DwAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 460000000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 414000000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/%D0%90%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE_%D0%9E%D0%9A%D0%9E_Sex_%D0%9D%D0%B0%D1%80%D0%BA%D0%BE-sample-epub.acsm?id=txZ9DwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/%D0%90%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE_%D0%9E%D0%9A%D0%9E_Sex_%D0%9D%D0%B0%D1%80%D0%BA%D0%BE-sample-pdf.acsm?id=txZ9DwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=txZ9DwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Тамара Гайдамащук. Ламара уайдамацук Агентство Агентство «ОКО» <b>Sex</b>... Наркотики... Рок-н-ролл... Тамара Гайдамащук © Тамара Гайдамащук,. Front Cover."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "rmUuEAAAQBAJ",
+      "etag": "qaXLCw+DTys",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/rmUuEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Tantra - Discovering the Power of Pre-Orgasmic Sex (Russian Translation)",
+        "authors": [
+          "Yogani"
+        ],
+        "publisher": "AYP Publishing",
+        "description": "Tantra - Discovering the Power of Pre-Orgasmic Sex is a common-sense guide on how to utilize sexuality to complement a full-scope system of yoga practices. Practical techniques are provided which enable both couples and solo practitioners to utilize the sexual response to cultivate ecstatic energy to its highest levels of spiritual manifestation. Finally, here is a no-nonsense book that takes the mystery out of sexuality and its relationship to yoga and the spiritual path. Yogani is the author of two landmark books on the world's most effective spiritual practices: Advanced Yoga Practices - Easy Lessons for Ecstatic Living, a comprehensive user-friendly textbook, and The Secrets of Wilder, a powerful spiritual novel. The AYP Enlightenment Series makes these profound practices available for the first time in a series of concise instruction books. Tantra is the third book in the series. The second in the series is Spinal Breathing Pranayama - Journey to inner Space. The first is Deep Meditation - Pathway to Personal Freedom.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781938594557"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "193859455X"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 130,
+        "printType": "BOOK",
+        "categories": [
+          "Religion"
+        ],
+        "maturityRating": "MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=rmUuEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=rmUuEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=rmUuEAAAQBAJ&pg=PA126&dq=sex&hl=&cd=16&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=rmUuEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=rmUuEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 697.23,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 697.23,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=rmUuEAAAQBAJ&rdid=book-rmUuEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 697230000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 697230000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Tantra_Discovering_the_Power_of_Pre_Orga-sample-pdf.acsm?id=rmUuEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=rmUuEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "... Тантра : раскрытие силы дооргазменного секса » ( Tantra — Discovering the Power of PreOrgasmic <b>Sex</b> ) « Асаны , мудры и бандхи : пробуждение экстатической энергии кундалини » ( Asanas , Mudras &amp; Bandhas — Awakening Ecstatic Kundalini )&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "HfE3AAAAIAAJ",
+      "etag": "OTeQjRVr2ME",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/HfE3AAAAIAAJ",
+      "volumeInfo": {
+        "title": "Sex Education",
+        "subtitle": "Rationale and Reaction",
+        "authors": [
+          "Rogers"
+        ],
+        "publisher": "CUP Archive",
+        "publishedDate": "1974-06-13",
+        "description": "Rex Rogers adopts a fresh and helpful approach to sex education and provides empirical analysis.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "0521098580"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9780521098588"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 283,
+        "printType": "BOOK",
+        "categories": [
+          "Medical"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.2.3.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=HfE3AAAAIAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=HfE3AAAAIAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=HfE3AAAAIAAJ&pg=PA36&dq=sex&hl=&cd=17&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=HfE3AAAAIAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Education.html?hl=&id=HfE3AAAAIAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=HfE3AAAAIAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Other recommendations include : that <b>sex</b> education schemes in schools should be paralleled by advisory programmes for parents on the physical and emotional problems of their children ; that religious instruction has a role in helping&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "6hzsWwz1aLAC",
+      "etag": "C56R+synInI",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/6hzsWwz1aLAC",
+      "volumeInfo": {
+        "title": "The Psychology of Sex Differences",
+        "authors": [
+          "Eleanor E. Maccoby",
+          "Carol Nagy Jacklin"
+        ],
+        "publisher": "Stanford University Press",
+        "publishedDate": "1978",
+        "description": "Lijvig en bijzonder goed gedocumenteerd werk over de verschillen tussen de seksen, wat betreft psychologisch functioneren. Met name bepaalde intellectuele capaciteiten en sociale gedragingen, waarvan algemeen wordt aangenomen dat ze verschillend zijn voor mannen en vrouwen, worden onder de loep genomen. De auteurs willen immers een onderscheid maken tussen enerzijds de meningen over sekseverschillen die een soliede feitenbasis hebben en anderzijds deze die louter gebaseerd zijn op veronderstellingen. Het boek doorprikt enkele mythen en geeft ook de sociale implicaties van deze 'ontmaskering' aan. In verband met onderwijs, is vooral het hoofdstuk over intellectuele capaciteiten en cognitieve stijlen van belang (p. 63-134).",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "0804709742"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9780804709743"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 416,
+        "printType": "BOOK",
+        "categories": [
+          "Psychology"
+        ],
+        "maturityRating": "MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.7.4.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=6hzsWwz1aLAC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=6hzsWwz1aLAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=6hzsWwz1aLAC&pg=PA275&dq=sex&hl=&cd=18&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=6hzsWwz1aLAC&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Psychology_of_Sex_Differences.html?hl=&id=6hzsWwz1aLAC"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=6hzsWwz1aLAC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "PART THREE On the Origins of Psychological <b>Sex</b> Differences In the preceding chapters , we have presented and summarized a large body of evidence concerning how the sexes differ psychologically , and how psychological <b>sex</b> differentiation&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "eggoAQAAMAAJ",
+      "etag": "CPAhBcJHMQA",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/eggoAQAAMAAJ",
+      "volumeInfo": {
+        "title": "Educating for Sex Equity",
+        "subtitle": "A Handbook for Teachers",
+        "publishedDate": "1980",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "IND:30000102926148"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Sex discrimination in education"
+        ],
+        "averageRating": 5,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=eggoAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=eggoAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=eggoAQAAMAAJ&q=sex&dq=sex&hl=&cd=19&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=eggoAQAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Educating_for_Sex_Equity.html?hl=&id=eggoAQAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=eggoAQAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Interview a variety of people on the topic of <b>sex</b> equity or &quot;equal learning-equal earning.&quot; Make an audio tape of interviews or of sexist situations. Make a video tape of people discussing their opinions about <b>sex</b> equity or Title IX and&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "4ec6AQAAMAAJ",
+      "etag": "rOl54Qq2WbQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/4ec6AQAAMAAJ",
+      "volumeInfo": {
+        "title": "Adult Sex Offenders in Oregon",
+        "subtitle": "Trends and Characteristics",
+        "publishedDate": "1994",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "NWU:35559003868183"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 54,
+        "printType": "BOOK",
+        "categories": [
+          "Sex offenders"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "2.0.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=4ec6AQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=4ec6AQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=4ec6AQAAMAAJ&q=sex&dq=sex&hl=&cd=20&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=4ec6AQAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Adult_Sex_Offenders_in_Oregon.html?hl=&id=4ec6AQAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=4ec6AQAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "The largest proportion of felony <b>sex</b> offenders (42%) are convicted of <b>sex</b> abuse as their most serious <b>sex</b> offense. One-third were convicted of other first-degree <b>sex</b> offenses, while about one-fifth were convicted of second or third&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "IIIEAQAAIAAJ",
+      "etag": "xb6A2DGJZqQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/IIIEAQAAIAAJ",
+      "volumeInfo": {
+        "title": "Sex and Gender",
+        "subtitle": "The Human Experience",
+        "authors": [
+          "James A. Doyle",
+          "Michele Antoinette Paludi"
+        ],
+        "publisher": "WCB/McGraw-Hill",
+        "publishedDate": "1991",
+        "description": "Well-organized and highly readable Sex and Gender: The Human Experience provides a current, multicultural analysis of gender-related issues, theories, and research. The authors' clear presentation of the perspectives and issues related to sex and gender studies enables students to easily comprehend the material. Further, a highly practical approach prompts students to examine their self-awareness and social tolerance. Sex and Gender: The Human Experience is appropriate as a primary or supplementary text in Psychology, Family Studies, or Women's Studies curricula.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UCSC:32106010272455"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 378,
+        "printType": "BOOK",
+        "categories": [
+          "Feminism"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.2.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=IIIEAQAAIAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=IIIEAQAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=IIIEAQAAIAAJ&q=sex&dq=sex&hl=&cd=21&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=IIIEAQAAIAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_and_Gender.html?hl=&id=IIIEAQAAIAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=IIIEAQAAIAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Inquiry into one&#39;s <b>sex</b> and gender is a wondrous study but one that can be filled with misconceptions, prejudice, and bias. To begin our discussion of <b>sex</b> and gender, then, we need to discuss these terms and some of the misunderstandings&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "37ieAAAAMAAJ",
+      "etag": "4u7+tYdNxig",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/37ieAAAAMAAJ",
+      "volumeInfo": {
+        "title": "Handbook for Achieving Sex Equity Through Education",
+        "authors": [
+          "Susan S. Klein"
+        ],
+        "publishedDate": "1985",
+        "description": "This handbook of collected papers is intended to aid in the achievement of sex equity in education, and in society through education. It is divided into six parts, each with a separate editor (or editors) and contains the following chapters: (1) Examining the Achievement of Sex Equity in and through Education (S. S. Klein, and others); (2) Economic Considerations for Achieving Sex Equity through Education (G. Harvey, E. Noble); (3) Sex Equity as a Philosophical Problem (M. Greene); (4) The New Scholarship on Women (S.K. Biklen, C. Shakeshaft); (5) Facts and Assumptions about the Nature of Sex Differences (M.C. Linn, A.C. Petersen); (6) Educational Equity and Sex Role Development (C.G. Schau); (7) Administrative Strategies for Institutionalizing Sex Equity in Education and the Role of Government (P.A. Schmuck, and others); (8) Strategies for Overcoming the Barriers to Women in Educational Administration (C. Shakeshaft); (9) The Treatment of Sex Equity in Teacher Education (D. Sadker, M.Sadker); (10) Sex Equity in Testing (E.E. Diamond, C.K. Tittle); (11) Sex Equity in Classroom Organization and Climate (M.E. Lockheed); (12) Sex Equity and Sex Bias in Instructional Materials (K.P. Scott, C.G. Schau); (13) Increasing the Participation and Achievement of Girls and Women in Mathematics, Science, and Engineering (E.K. Stage, and others); (14) Sex Equity in Reading and Communication skills (K. P. Scott, and others); (15) Sex Equity in Social Studies (C.L. Hahn, J. Bernard-Powers); (16) Sex Equity in Visual Arts Education (R. Sandell, and others); (17) Sex Equity in Physical Education and Athletics (P.A. Geadelmann); (18) Sex Equity in Career and Vocational Education (H.S. Farmer, J.S. Sidney); (19) Achieving Sex Equity for Minority Women (S. Lewis); (20) Gifted Girls and Women in Education (B.J.A. Gordon, L. Addison); (21) Rural Women and Girls (S.A. Rosenfeld); (22) Educational Programs for Adult Women (R.B. Ekstrom, M.G. Marvel); (23) Educational Equity in Early Education Environments (S. Greenberg); (24) Improving Sex Equity in Postsecondary Education (K. Bogart); and (25) Summary and Recommendations for the Continued Achievement of Sex Equity in and through Education (S. S. Klein, and others). Data and recommendations are presented on 17 tables. A list of editors and major authors is included. (BJV)",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015035318057"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 544,
+        "printType": "BOOK",
+        "categories": [
+          "Educational equalization"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.2.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=37ieAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=37ieAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=37ieAAAAMAAJ&q=sex&dq=sex&hl=&cd=22&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=37ieAAAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Handbook_for_Achieving_Sex_Equity_Throug.html?hl=&id=37ieAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=37ieAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "<b>Sex</b> Equity Handbook for Schools. 157 <b>Sex</b> Equity in Education. 133 <b>Sex</b> Equity in Education Leadership (SEEL), 131-134, 136-141 <b>sex</b>-equity resources, classroom use, WEEA demonstration project findings on, 113- 114 <b>sex</b>-fair, definition,&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "kTwpAAAAYAAJ",
+      "etag": "en5BBlM1q0A",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/kTwpAAAAYAAJ",
+      "volumeInfo": {
+        "title": "Measuring Sex Stereotypes",
+        "subtitle": "A Multination Study",
+        "authors": [
+          "John E. Williams",
+          "Deborah L. Best"
+        ],
+        "publisher": "SAGE Publications, Incorporated",
+        "publishedDate": "1990-04",
+        "description": "An exploration of contemporary sex stereotypes and their prevalence in different cultures is provided in this volume. The authors surpass previous studies in three areas: their data covers thirty nations; they test both children and adults and they examine their findings from three theoretical perspectives - affective meanings, ego states and psychological needs. They also examine the practical implications of pan-cultural stereotypes. Since the publication of the original 1982 edition, new adult data from Singapore and Portugal have also been included.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UVA:X001845181"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 380,
+        "printType": "BOOK",
+        "categories": [
+          "Psychology"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=kTwpAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=kTwpAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=kTwpAAAAYAAJ&q=sex&dq=sex&hl=&cd=23&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=kTwpAAAAYAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Measuring_Sex_Stereotypes.html?hl=&id=kTwpAAAAYAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=kTwpAAAAYAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "284-286 Self-esteem, and <b>sex</b>-typing, 298-299 Self-fulfilling prophesy, 277 <b>Sex</b> differences, physical and behavioral, 231-234 <b>Sex</b>-role stereotypes, children&#39;s knowledge of, 24, 43, 302; defined, 16 <b>Sex</b> Role Stereotype Questionnaire&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "cD9aAAAAYAAJ",
+      "etag": "nF/3RzxlmcU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/cD9aAAAAYAAJ",
+      "volumeInfo": {
+        "title": "Sex",
+        "subtitle": "A Philosophical Primer : with New Material on Same-sex Marriage",
+        "authors": [
+          "Irving Singer"
+        ],
+        "publisher": "Rowman & Littlefield Pub Incorporated",
+        "publishedDate": "2004",
+        "description": "In the first edition of Sex: A Philosophical Primer, Singer offered a new conception of sex, locating it within a spectrum that also includes love and compassion. He suggested that this conception improves upon the work of theorists who tend to relegate sex, love, and compassion to separate and distinct compartments. Singer further argues that sex in human beings is normally--perhaps always in some degree--a composite of the appetitive and the interpersonal, a view that becomes the basis for his later remarks about the relative value of individual sex acts, as well as their place within the aesthetic and moral dimensions of human nature. In the present, expanded edition, Singer supplements the 2001 chapters with a timely and stimulating essay that focuses upon marriage, particularly same-sex marriage. Singer maintains that questions about sex are fundamental in all thinking about the marital condition, and addresses the problem of same-sex legitimization and rights to material benefits by analyzing the nature of marriage, union, and family in their relation to sexuality and love. For first-time and seasoned readers alike, Singer's lucid new reflections will clarify current and emerging issues in the philosophy of sex. Irving Singer is professor of philosophy at Massachusetts Institute of Technology and the author of many books, among them Explorations in Love and Sex, Feeling and Imagination, and his trilogies Meaning in Life and The Nature of Love.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "PSU:000054511866"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 135,
+        "printType": "BOOK",
+        "categories": [
+          "Philosophy"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.0.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=cD9aAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=cD9aAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=cD9aAAAAYAAJ&q=sex&dq=sex&hl=&cd=24&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=cD9aAAAAYAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex.html?hl=&id=cD9aAAAAYAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=cD9aAAAAYAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "A Philosophical Primer : with New Material on Same-<b>sex</b> Marriage Irving Singer. Preface to the Expanded Edition Marriage: Same-<b>Sex</b> and Opposite-<b>Sex</b> ven."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "kEkpAAAAYAAJ",
+      "etag": "Ngh+un7qYy8",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/kEkpAAAAYAAJ",
+      "volumeInfo": {
+        "title": "Sex Roles",
+        "subtitle": "Biological, Psychological, and Social Foundations",
+        "authors": [
+          "Shirley Weitz"
+        ],
+        "publisher": "New York : Oxford University Press",
+        "publishedDate": "1977",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UVA:X000152587"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 283,
+        "printType": "BOOK",
+        "categories": [
+          "Sex (Biology)."
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.2.3.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=kEkpAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=kEkpAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=kEkpAAAAYAAJ&q=sex&dq=sex&hl=&cd=25&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=kEkpAAAAYAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Roles.html?hl=&id=kEkpAAAAYAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=kEkpAAAAYAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "For example, one might single out the family as a key force in maintaining <b>sex</b> roles. Yet the family itself is a complex institution, having biological, psychological, economic, historical, and cultural roots. I have therefore opted to&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "6Vk76fiHoQ4C",
+      "etag": "PRUDhMUZobU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/6Vk76fiHoQ4C",
+      "volumeInfo": {
+        "title": "The Dangerous Sex Offender",
+        "subtitle": "A Report to the Joint State Government Commission, General Assembly of the Commonwealth of Pennsylvania",
+        "authors": [
+          "Pennsylvania. General Assembly. Joint State Government Commission. Panel of Medical Advisors on Health and Welfare"
+        ],
+        "publishedDate": "1963",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "COLUMBIA:HS65218329"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 40,
+        "printType": "BOOK",
+        "categories": [
+          "Sex crimes"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=6Vk76fiHoQ4C&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=6Vk76fiHoQ4C&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=6Vk76fiHoQ4C&q=sex&dq=sex&hl=&cd=26&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=6Vk76fiHoQ4C&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Dangerous_Sex_Offender.html?hl=&id=6Vk76fiHoQ4C"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=6Vk76fiHoQ4C&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Appendices Appendix I. A Comparison of Minimum and Maximum Penalties for Certain <b>Sex</b> Offenses in Pennsylvania and Other States . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Appendix II. Derivation of Cost Estimates."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Sl8_wW0d2uAC",
+      "etag": "4JTopurUxB4",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/Sl8_wW0d2uAC",
+      "volumeInfo": {
+        "title": "Sex, Breath, and Force",
+        "subtitle": "Sexual Difference in a Post-feminist Era",
+        "authors": [
+          "Ellen Mortensen"
+        ],
+        "publisher": "Lexington Books",
+        "publishedDate": "2006",
+        "description": "Provides a reassessment of the question of sexual difference, taking into account shifts in feminist thought, post-humanist theories, and queer studies. This collection of essays offers insights into the question of sexual difference from a post-feminist perspective, and how it is reformulated in various related areas of study, such as ontology.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "0739114670"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9780739114674"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 179,
+        "printType": "BOOK",
+        "categories": [
+          "Philosophy"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Sl8_wW0d2uAC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Sl8_wW0d2uAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=Sl8_wW0d2uAC&pg=PA132&dq=sex&hl=&cd=27&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=Sl8_wW0d2uAC&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Breath_and_Force.html?hl=&id=Sl8_wW0d2uAC"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_Breath_and_Force-sample-epub.acsm?id=Sl8_wW0d2uAC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Sex_Breath_and_Force-sample-pdf.acsm?id=Sl8_wW0d2uAC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Sl8_wW0d2uAC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "<b>sex</b> refers to biological sexual differences and gender to the discursive , cultural and social interpretation or construction of these differences . In her famous essay &quot; The Traffic in Women &quot; from 1975 ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "c3dqAAAAMAAJ",
+      "etag": "i9VnnkKS4D8",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/c3dqAAAAMAAJ",
+      "volumeInfo": {
+        "title": "Sex Incorporated",
+        "subtitle": "A Positive View of the Sexual Revolution",
+        "authors": [
+          "Hans F. Hofmann"
+        ],
+        "publishedDate": "1967",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015072107314"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 129,
+        "printType": "BOOK",
+        "categories": [
+          "Sex"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.3.3.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=c3dqAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=c3dqAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=c3dqAAAAMAAJ&q=sex&dq=sex&hl=&cd=28&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=c3dqAAAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Incorporated.html?hl=&id=c3dqAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=c3dqAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "The broader and deeper meaning of <b>sex</b> is indicated by the change it brings about in those who maintain a serious sexual relationship. Out of the exclusiveness of two people living in marriage arise the children who break the&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "xcRiAAAAQBAJ",
+      "etag": "Fqt3EZPGCjY",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/xcRiAAAAQBAJ",
+      "volumeInfo": {
+        "title": "Как сохранить SEX в супружестве",
+        "authors": [
+          "Александр Полеев"
+        ],
+        "publisher": "Litres",
+        "publishedDate": "2021-12-29",
+        "description": "Не секрет, что у многих супружеских пар после трех-пяти-десяти лет интимная жизнь не только теряет остроту и свежесть, а часто просто сходит на нет. Возможно ли пронести чувство страстной влюбленности через годы супружества? Как не допустить того, чтобы секс не стал надоедливым ритуалом или вообще исчез из семейных отношений? Может ли быть счастливым брак без секса? Известный российский врач-сексолог, психотерапевт Александр Полеев в течение 40 лет оказывает помощь парам, страдающим «сексуальной скукой». Из книги вы узнаете о причинах этого расстройства и конкретных способах его преодоления, а также о том, как сохранить насыщенную и разнообразную интимную жизнь и через 5, и через 20 лет. Все рекомендации и методы, изложенные в книге, используются автором на протяжении нескольких десятилетий и доказали свою эффективность у тысячи супружеских пар!",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9785457284043"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "5457284042"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 396,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.9.10.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=xcRiAAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=xcRiAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "ru",
+        "previewLink": "http://books.google.ru/books?id=xcRiAAAAQBAJ&pg=PP1&dq=sex&hl=&cd=29&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=xcRiAAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=xcRiAAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 240.35,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 216.32,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=xcRiAAAAQBAJ&rdid=book-xcRiAAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 240350000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 216320000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/%D0%9A%D0%B0%D0%BA_%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C_SEX_%D0%B2_%D1%81%D1%83%D0%BF-sample-epub.acsm?id=xcRiAAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/%D0%9A%D0%B0%D0%BA_%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C_SEX_%D0%B2_%D1%81%D1%83%D0%BF-sample-pdf.acsm?id=xcRiAAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=xcRiAAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "АЛЕКСАНДР ПОЛЕЕВ КАК СОХРАНИТЬ <b>SEX</b> 18+ В СУПРУЖЕСТВЕ И ЧЕРЕЗ 5 ЛЕТ ... И ЧЕРЕЗ 20 ЛЕТ ... СЕКРЕТЫ ОТ ИЗВЕСТНОГО ВРАЧА - СЕКСОЛОГА , О КОТОРЫХ ПРИВЫКЛИ МОЛЧАТЬ Александр Полеев Как сохранить <b>SEX</b> в супружестве. Front Cover."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "rhFsAAAAMAAJ",
+      "etag": "IjpnLewztCw",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/rhFsAAAAMAAJ",
+      "volumeInfo": {
+        "title": "Sex Therapy in Britain",
+        "authors": [
+          "Martin Cole",
+          "Windy Dryden"
+        ],
+        "publishedDate": "1988",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015014465150"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 365,
+        "printType": "BOOK",
+        "categories": [
+          "Medical"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=rhFsAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=rhFsAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=rhFsAAAAMAAJ&q=sex&dq=sex&hl=&cd=30&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=rhFsAAAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Therapy_in_Britain.html?hl=&id=rhFsAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=rhFsAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Some writers express the view that psychotherapy is an essential element of <b>sex</b> therapy and hence <b>sex</b> therapy trainees should already be trained and experienced psychotherapists or counsellors. Others take the view that <b>sex</b> therapy is&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "vjkEAQAAIAAJ",
+      "etag": "Glk1XdacxeU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/vjkEAQAAIAAJ",
+      "volumeInfo": {
+        "title": "Sex Work, Mobility, and Health in Europe",
+        "authors": [
+          "Sophie Day",
+          "Helen Ward"
+        ],
+        "publisher": "Routledge",
+        "publishedDate": "2004",
+        "description": "First published in 2004. Routledge is an imprint of Taylor & Francis, an informa company.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UCSC:32106018141843"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 281,
+        "printType": "BOOK",
+        "categories": [
+          "Literary Criticism"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=vjkEAQAAIAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=vjkEAQAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=vjkEAQAAIAAJ&q=sex&dq=sex&hl=&cd=31&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=vjkEAQAAIAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Work_Mobility_and_Health_in_Europe.html?hl=&id=vjkEAQAAIAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=vjkEAQAAIAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "determining access to health care, but at least as important is the legal framework in which <b>sex</b> work operates. Another important factor is the legal position of <b>sex</b> workers themselves, as people without formal rights of residency or&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Ku1FAAAAYAAJ",
+      "etag": "VvEW1Mlaezg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/Ku1FAAAAYAAJ",
+      "volumeInfo": {
+        "title": "Sex Errors of the Body and Related Syndromes",
+        "subtitle": "A Guide to Counseling Children, Adolescents, and Their Families",
+        "authors": [
+          "John Money"
+        ],
+        "publisher": "Paul H Brookes Publishing Company",
+        "publishedDate": "1994",
+        "description": "\"Professionals must deal with difficult questions when anomalies, or sex errors, occur during development: What factors should be considered when assigning sex to a newborn of indeterminate sex? How can one address the concerns of adolescents with intersexual anomalies such as androgen insensitivity syndrome (AIS) and congenital adrenal hyperplasia (CAH)? What guidance is there for an individual who is considering sex reassignment?\" \"Now, this fully revised and expanded edition helps professionals answer these questions, providing the basic knowledge needed to inform and counsel parents of babies born with sexological disabilities and affected individuals themselves as they grow older. This extensively illustrated resource simplifies complicated concepts but retains medical and technical detail. Also, sharing his decades of counseling experience, the author emphasizes the importance of helping individuals attribute problems associated with an anomaly to the anomaly, rather than to themselves.\" \"Pediatricians, physicians, psychologists, counselors, sex educators, and others in the helping professions will find Sex Errors of the Body and Related Syndromes indispensable as a text, as a reference, and as a counseling guide. In addition, individuals with developmental sexual disabilities and their families will turn to this reliable resource for the clear, concise information they need to help them make critical decisions.\"--BOOK JACKET.Title Summary field provided by Blackwell North America, Inc. All Rights Reserved",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "CORNELL:31924068958721"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 132,
+        "printType": "BOOK",
+        "categories": [
+          "Medical"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.3.3.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Ku1FAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Ku1FAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=Ku1FAAAAYAAJ&q=sex&dq=sex&hl=&cd=32&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=Ku1FAAAAYAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Errors_of_the_Body_and_Related_Syndr.html?hl=&id=Ku1FAAAAYAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Ku1FAAAAYAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Procreative <b>sex</b> impairments, 4 Progesterone, 23–24 Progestinic steroidal hormones, hermaphroditism induced by, 41, 41f Prostate surgery, sexual or erotic impairment after, 94 Pseudohermaphrodites, 4, 37 Psychopathology, with pubertal&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Q1BpAAAAIAAJ",
+      "etag": "++RY5DdwKh0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/Q1BpAAAAIAAJ",
+      "volumeInfo": {
+        "title": "Sex Roles and Personal Awareness",
+        "authors": [
+          "Barbara Forisha-Kovach",
+          "Barbara Lusk Forisha"
+        ],
+        "publisher": "Morristown, N.J. : General Learning Press",
+        "publishedDate": "1978",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "STANFORD:36105005322305"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 414,
+        "printType": "BOOK",
+        "categories": [
+          "Androgyny (Psychology)"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.4.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Q1BpAAAAIAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Q1BpAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=Q1BpAAAAIAAJ&q=sex&dq=sex&hl=&cd=33&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=Q1BpAAAAIAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Sex_Roles_and_Personal_Awareness.html?hl=&id=Q1BpAAAAIAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Q1BpAAAAIAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "The lack of empathy leads to the romanticization and mystification of each <b>sex</b> in the eyes of members of the opposite <b>sex</b>. As a result, through the haze of romanticization, members of each <b>sex</b> appear even more different and more remote."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "XGDABgAAQBAJ",
+      "etag": "tMYx/6T5zZc",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/XGDABgAAQBAJ",
+      "volumeInfo": {
+        "title": "Queer Sex Work",
+        "authors": [
+          "Mary Laing",
+          "Katy Pilcher",
+          "Nicola Smith"
+        ],
+        "publisher": "Routledge",
+        "publishedDate": "2015-03-05",
+        "description": "Sex work is a subject of significant contestation across academic disciplines, as well as within legal, medical, moral, feminist, political and socio-cultural discourses. A large body of research exists, but much of this focuses on the sale of sex by women to men and ignores other performances, practices, meanings and embodiments in the contemporary sex industry. A queer agenda is important in order to challenge hetero-centric gender norms and to develop new insights into how gender, sex, power, crime, work, migration, space/place, health and intimacy are understood in the context of commercial sexual encounters. Queer Sex Work explores what it might mean to ‘be’, ‘do’ and ‘think’ queer(ly) in the study and practice of commercial sex. It brings together a multiplicity of empirical case studies – including erotic dance venues, online sex working, pornography, grey sexual economies, and BSDM – and offers a variety of perspectives from academic scholars, policy practitioners, activists and sex workers themselves. In so doing, the book advances a queer politics of sex work that aims to disrupt heteronormative logics whilst also making space for different voices in academic and political debates about commercial sex. This unique and multidisciplinary volume will be indispensable for scholars and students of the global sex trade and of gender, sexuality, feminism and queer theory more broadly, as well as policymakers, activists and practitioners interested in the politics and practice of sex work in local, national and international contexts.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781134495481"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "113449548X"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 294,
+        "printType": "BOOK",
+        "categories": [
+          "Social Science"
+        ],
+        "maturityRating": "MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.3.4.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=XGDABgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=XGDABgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=XGDABgAAQBAJ&pg=PT345&dq=sex&hl=&cd=34&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=XGDABgAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=XGDABgAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 4163.91,
+          "currencyCode": "RUB"
+        },
+        "retailPrice": {
+          "amount": 4163.91,
+          "currencyCode": "RUB"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=XGDABgAAQBAJ&rdid=book-XGDABgAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 4163910000,
+              "currencyCode": "RUB"
+            },
+            "retailPrice": {
+              "amountInMicros": 4163910000,
+              "currencyCode": "RUB"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Queer_Sex_Work-sample-epub.acsm?id=XGDABgAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.ru/books/download/Queer_Sex_Work-sample-pdf.acsm?id=XGDABgAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=XGDABgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "... community <b>sex</b> work and 175–176 sensual femininity, mediacreated ideals of 97 Serano, Julia 71 serial fraud, case study of 250–251 &#39;Serious Crimes Analysis Section&#39;(SCAS) dataset 248 &#39;service&#39; work, affective loadedness of 25–26 <b>sex</b>,&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "-AidAAAAMAAJ",
+      "etag": "5Y+mRyaahug",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/-AidAAAAMAAJ",
+      "volumeInfo": {
+        "title": "The Sex Factor and the Management of Schools",
+        "authors": [
+          "Neal Gross",
+          "Neal Crasilneck Gross",
+          "Anne E. Trask"
+        ],
+        "publisher": "New York ; Toronto : Wiley",
+        "publishedDate": "1976",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015066031025"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 279,
+        "printType": "BOOK",
+        "categories": [
+          "School administrators"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.3.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=-AidAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=-AidAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=-AidAAAAMAAJ&q=sex&dq=sex&hl=&cd=35&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=-AidAAAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Sex_Factor_and_the_Management_of_Sch.html?hl=&id=-AidAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=-AidAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "cation of schools, 167-168 findings presented, 166-167 hypothesis, 165 reasoning, 165-166 measurement of, 166 Participation of women in work force, 6-8 Performance, of pupils, and <b>sex</b> of principal, findings discussed, 219-224 findings&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "bH0SAQAAMAAJ",
+      "etag": "NQ98lkq6h+Y",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/bH0SAQAAMAAJ",
+      "volumeInfo": {
+        "title": "Media, Sex, Violence, and Drugs in the Global Village",
+        "authors": [
+          "Yahya R. Kamalipour",
+          "Kuldip R. Rampal"
+        ],
+        "publisher": "Altamira Press",
+        "publishedDate": "2001",
+        "description": "Providing a multicultural analysis of the impact of globalized Western media, this guide specifically deals with sex, violence, and drugs. The text proposes a framework for understanding the political, social and economic problems that face media policy-makers in an age of globalization.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015053103563"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 293,
+        "printType": "BOOK",
+        "categories": [
+          "Social Science"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=bH0SAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=bH0SAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=bH0SAQAAMAAJ&q=sex&dq=sex&hl=&cd=36&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=bH0SAQAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Media_Sex_Violence_and_Drugs_in_the_Glob.html?hl=&id=bH0SAQAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=bH0SAQAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Ethical issues in conducting <b>sex</b> research on the Internet. Journal of <b>sex</b> research 36: 82-90. Blair, C. 1998. Netsex: Empowerment through discourse. In B. Ebo, ed., Cyberghetto or cybertopiaf Race, class, and gender on the Internet, pp."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "cTZW0qg-uecC",
+      "etag": "tRTvJQoIncQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/cTZW0qg-uecC",
+      "volumeInfo": {
+        "title": "1985-86 Degrees Granted by Sex and Ethnicity, University of California and the California State University",
+        "publishedDate": "1987",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UCSD:31822004871547"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 20,
+        "printType": "BOOK",
+        "categories": [
+          "College graduates"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=cTZW0qg-uecC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=cTZW0qg-uecC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=cTZW0qg-uecC&q=sex&dq=sex&hl=&cd=37&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=cTZW0qg-uecC&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/1985_86_Degrees_Granted_by_Sex_and_Ethni.html?hl=&id=cTZW0qg-uecC"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=cTZW0qg-uecC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "(July 1987) ed by <b>Sex</b> and Ethnicity, California Community Colleges (May 1987) ATSS 492-8031 1020 Twelfth Street 6 1984-85 Degrees and Certificates Grant. California Postsecondary Education Ethnicity, University of California and the&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "FvXZAAAAMAAJ",
+      "etag": "j5+3O4QESok",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/FvXZAAAAMAAJ",
+      "volumeInfo": {
+        "title": "Studies in Parental Sex Education",
+        "subtitle": "Paper",
+        "authors": [
+          "University of Minnesota. Social Hygiene Bureau"
+        ],
+        "publishedDate": "1931",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UOM:39015002674326"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "printType": "BOOK",
+        "categories": [
+          "Sex instruction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.3.3.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=FvXZAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=FvXZAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=FvXZAAAAMAAJ&q=sex&dq=sex&hl=&cd=38&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=FvXZAAAAMAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Studies_in_Parental_Sex_Education.html?hl=&id=FvXZAAAAMAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=FvXZAAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "A Community Service Program in Parental <b>Sex</b> Education . This paper states briefly what is included in a general social hygiene program . It lists the situations in which the community service program had its origin ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "DOVwDwAAQBAJ",
+      "etag": "a+PhBpro130",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/DOVwDwAAQBAJ",
+      "volumeInfo": {
+        "title": "How Sex Got Screwed Up: The Ghosts that Haunt Our Sexual Pleasure - Book Two",
+        "subtitle": "From Victoria to Our Own Times",
+        "authors": [
+          "Jon Knowles"
+        ],
+        "publisher": "Vernon Press",
+        "publishedDate": "2019-03-31",
+        "description": "The ghosts that haunt our sexual pleasure were born in the Stone Age. Sex and gender taboos were used by tribes to differentiate themselves from one another. These taboos filtered into the lives of Bronze and Iron Age men and women who lived in city-states and empires. For the early Christians, all sex play was turned into sin, instilled with guilt, and punished severely. With the invention of sin came the construction of women as subordinate beings to men. Despite the birth of romance in the late middle ages, Renaissance churches held inquisitions to seek out and destroy sex sinners, all of whom it saw as heretics. The Age of Reason saw the demise of these inquisitions. But, it was doctors who would take over the roles of priests and ministers as sex became defined by discourses of crime, degeneracy, and sickness. The middle of the 20th century saw these medical and religious teachings challenged for the first time as activists, such as Alfred Kinsey and Margaret Sanger, sought to carve out a place for sexual freedom in society. However, strong opposition to their beliefs and the growing exploitation of sex by the media at the close of the century would ultimately shape 21st century sexual ambivalence. Book Two of this two-part publication traces the history of sex from the Victorian Era to present day. Interspersed with ‘personal hauntings’ from his own life and the lives of friends and relatives, Knowles reveals how historical discourses of sex continue to haunt us today. This book is a page-turner in simple and plain language about ‘how sex got screwed up’ for millennia. For Knowles, if we know the history of sex, we can get over it.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781622734160"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1622734165"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 1034,
+        "printType": "BOOK",
+        "categories": [
+          "Psychology"
+        ],
+        "maturityRating": "MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=DOVwDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=DOVwDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=DOVwDwAAQBAJ&pg=PA999&dq=sex&hl=&cd=39&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=DOVwDwAAQBAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/How_Sex_Got_Screwed_Up_The_Ghosts_that_H.html?hl=&id=DOVwDwAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=DOVwDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "... 232 SESTA-FOSTA, Stop Enabling <b>Sex</b> Traffickers Act Fight Online <b>Sex</b> Trafficking Act, 741 Seton, ErnestT., 390 Seventeen, 470, 781 Severing of the Vasa Deferentia and Its Relation to the Neuropsychopathic Constitution, The, 443 <b>Sex</b>,&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "U-kaAAAAYAAJ",
+      "etag": "ByoaBK4s5SE",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/U-kaAAAAYAAJ",
+      "volumeInfo": {
+        "title": "A Complete Sex Education for Parents, Teenagers, and Young Adults",
+        "authors": [
+          "James Leslie McCary"
+        ],
+        "publishedDate": "1973",
+        "description": "Discusses the physical and psychological aspects of sex and includes chapters on such topics as fertilization, birth control, physical disorders and diseases, sex and the law, and common fallacies about sex.",
+        "industryIdentifiers": [
+          {
+            "type": "OTHER",
+            "identifier": "UVA:X000634796"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 206,
+        "printType": "BOOK",
+        "categories": [
+          "Sex"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.3.2.0.preview.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=U-kaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=U-kaAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.ru/books?id=U-kaAAAAYAAJ&q=sex&dq=sex&hl=&cd=40&source=gbs_api",
+        "infoLink": "http://books.google.ru/books?id=U-kaAAAAYAAJ&dq=sex&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/A_Complete_Sex_Education_for_Parents_Tee.html?hl=&id=U-kaAAAAYAAJ"
+      },
+      "saleInfo": {
+        "country": "RU",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "RU",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=U-kaAAAAYAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Teenagers are inclined to do that, but they ought to remember that the parents themselves are often filled with shame and guilt about <b>sex</b>. They are painfully uncertain as to what they understand and really believe about sexuality and&nbsp;..."
+      }
+    }
+  ]
+}
