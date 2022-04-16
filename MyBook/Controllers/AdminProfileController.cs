@@ -17,23 +17,31 @@ namespace MyBook.Controllers
         private readonly EfBookRepository _bookRepository;
         private readonly EFBookCenterRepository _bookCenterRepository;
         private readonly UserManager<User> _userManager;
-
+        private readonly SignInManager<User> _signInManager;
         public AdminProfileController(IGenericRepository<Type> typeRep,
         EfAuthorRepository authorRepository,
             EfBookRepository bookRepository,
              EFBookCenterRepository bookCenterRepository,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
         {
             _typeRepository = typeRep;
             _authorRepository = authorRepository;
             _bookRepository = bookRepository;
             _bookCenterRepository = bookCenterRepository;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult EditAuthor()
