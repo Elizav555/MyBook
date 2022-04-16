@@ -188,3 +188,17 @@
         display: none !important;
     }
 }
+/*---------------------modals_media-----------------*/
+
+
+@media (max-width: 765px) {
+    .modal_wrapper{
+        background: white;
+    }
+    .modals_footer{
+        display: none !important;
+    }
+    .wrapper_modal_content {
+        box-shadow: none !important;
+        border: none;
+    }
