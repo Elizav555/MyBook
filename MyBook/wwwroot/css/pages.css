@@ -15,21 +15,31 @@
     transition: .5s ease-in-out;
 }
 
+/*-----------------header--------------------*/
 .container {
     margin: 0 auto;
     width: 100%;
     padding: 0;
 }
-/*-----------------header--------------------*/
+
+.nav-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-form {
+    width: 25em;
+}
+
+.customInput {
+    width: 100%;
+}
 
 header {
     font-size: 14px;
-    padding-top: 1em;
     width: 100%;
     position: relative;
-}
-
-.header {
     padding: 0.2em 5em
 }
 
@@ -57,7 +67,7 @@ header a {
 
 /*----------lower_header-----------------*/
 .wrapper_lower_header {
-    padding: 1em 1em;
+    padding: 1em;
 }
 
 .lower_header a {
@@ -66,8 +76,9 @@ header a {
 }
 
 .lower_header {
-    padding: 0;
-    margin: 0;
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin-top: -2em;
 }
 
     .lower_header ul {
@@ -93,13 +104,13 @@ a:hover {
 }
 /*-------------border_picture----------------*/
 .border_picture {
-    margin: 0;
-    padding: 0 5em;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .inline_wrapper {
     display: flex;
-    padding: 3em 2em;
+    padding: 3em 9em;
 }
 
 .content_wrapper h1 {
@@ -269,20 +280,17 @@ span {
 /*--------------------footer-----------------------*/
 
 footer {
-    padding: 0em 14em;
     position: absolute;
     bottom: 0;
-    width: 100%;
 }
 
 .render_content {
-    margin-bottom: 7em;
+    margin-bottom: 10em;
 }
 
-.footer_wrapper {
-    padding: 2em 0 0.5em 0;
+.footer {
     display: flex;
-    margin: 0;
+    padding: 0em 5em;
 }
 
 .footer_cards img {
@@ -297,7 +305,6 @@ footer {
     margin: 1em;
     padding: 0;
 }
-
 /*-------------------------------USER-PAGE-----------------------------*/
 .lk_out {
     display: flex;
