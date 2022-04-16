@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
 using MyBook.Models;
+using MyBook.Models.UserProfile;
 using System.Text.RegularExpressions;
 
 namespace MyBook.Controllers
@@ -12,9 +13,15 @@ namespace MyBook.Controllers
     public class UserProfileController : Controller
     {
         private readonly UserManager<User> _userManager;
-        public UserProfileController(UserManager<User> userManager)
+        private readonly SignInManager<User> _signInManager;
+        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
+        }
+        public IActionResult Index(string id)
+        {
+            return View(new UserProfileViewModel { Id = id });
         }
 
         [HttpGet]
@@ -33,7 +40,7 @@ namespace MyBook.Controllers
                 Email = user.Email,
                 BirthDate = DateTime.Parse(user.BirthDate)
             };
-            return View(model);
+            return PartialView("_EditProfile", model);
         }
 
         [HttpPost]
@@ -47,12 +54,12 @@ namespace MyBook.Controllers
                     if (_userManager.Users.Any(userIdentity => userIdentity.Email == model.Email && userIdentity.UserName != user.UserName))
                     {
                         ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
-                        return View(model);
+                        //return PartialView("_EditProfile", model);
                     }
                     if (model.BirthDate == null)
                     {
                         ModelState.AddModelError(string.Empty, "Введите корректную дату рождения");
-                        return View(model);
+                        //  return PartialView("_EditProfile", model);
                     }
                     user.Email = model.Email;
                     user.UserName = model.Email;
@@ -63,7 +70,7 @@ namespace MyBook.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("EditProfile");
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -74,7 +81,7 @@ namespace MyBook.Controllers
                     }
                 }
             }
-            return View(model);
+            // return PartialView("_EditProfile", model);
         }
 
         [HttpPost]
@@ -104,24 +111,26 @@ namespace MyBook.Controllers
             }
             return RedirectToAction("EditProfile", new { model.Id });
         }
-        public IActionResult EditProfile()
+
+        public IActionResult EditSubscription(string id)
         {
-            return View();
+            return PartialView("_EditSubscription", new EditUserSubscrViewModel { Id = id });
         }
 
-        public IActionResult EditSubscription()
+        public IActionResult History(string id)
         {
-            return View();
-        }
-
-        public IActionResult History()
-        {
-            return View();
+            return PartialView("_History", new HistoryViewModel { Id = id });
         }
 
         public IActionResult NonSubscription()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
