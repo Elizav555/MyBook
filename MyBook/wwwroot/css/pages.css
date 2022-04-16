@@ -7,12 +7,14 @@
     color: black;
     font-family: 'Fira Sans', sans-serif;
 }
+
 *, *:after, *:before {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     transition: .5s ease-in-out;
 }
+
 .container {
     margin: 0 auto;
     width: 100%;
@@ -20,13 +22,28 @@
 }
 /*-----------------header--------------------*/
 
+.nav-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-form {
+    width: 25em;
+}
+
+.customInput {
+    width: 100%;
+}
+
 header {
     font-size: 14px;
     padding-top: 1em;
     width: 100%;
     position: relative;
 }
-.header{
+
+.header {
     padding: 0.2em 5em
 }
 
@@ -37,7 +54,7 @@ header a {
 
 .navbar-nav li {
     font-weight: bold;
-    padding: 0 3.5em;
+    padding: 0 3em;
     white-space: nowrap;
 }
 
@@ -46,7 +63,7 @@ header a {
     padding-right: 2em;
 }
 
-.navbar input { 
+.navbar input {
     color: grey;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
@@ -56,15 +73,15 @@ header a {
 .wrapper_lower_header {
     padding: 1em 1em;
 }
-
 .lower_header a {
     font-size: 14px;
     color: rgb(179, 77, 0);
 }
 
 .lower_header {
-    padding: 0;
-    margin: 0;
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin-top: -2em;
 }
 
     .lower_header ul {
@@ -76,8 +93,8 @@ header a {
             display: inline;
             border-radius: 8px;
             background: white;
-            padding: 0.9em;
-            margin: 0.7em 0.7em 0.7em 0;
+            padding: 0.5em 1em;
+            margin: 1em 1em 1em 0;
             color: black;
         }
 
@@ -90,13 +107,13 @@ a:hover {
 }
 /*-------------border_picture----------------*/
 .border_picture {
-    margin: 0;
-    padding: 0 5em;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .inline_wrapper {
     display: flex;
-    padding: 3em 2em;
+    padding: 3em 9em;
 }
 
 .content_wrapper h1 {
@@ -133,6 +150,10 @@ a:hover {
 
 .background_content {
     position: relative;
+}
+
+.best_books_wrapper .container-book {
+    width: 100%
 }
 
 .inner_block {
@@ -266,23 +287,23 @@ span {
 /*--------------------footer-----------------------*/
 
 footer {
-    padding: 0em 14em;
     position: absolute;
     bottom: 0;
-    width: 100%;
-}
-.render_content{
-    margin-bottom: 7em;
-}
-.footer_wrapper {
-    padding: 2em 0 0.5em 0;
-    display: flex;
-    margin: 0;
 }
 
-.footer_cards img{
+.render_content {
+    margin-bottom: 10em;
+}
+
+.footer {
+    display: flex;
+    padding: 0em 5em;
+}
+
+.footer_cards img {
     opacity: 0.1
 }
+
 .support_block_wrapper div {
     display: flex;
 }
@@ -291,12 +312,12 @@ footer {
     margin: 1em;
     padding: 0;
 }
-
 /*-------------------------------USER-PAGE-----------------------------*/
-.lk_out{
+.lk_out {
     display: flex;
     justify-content: space-between;
 }
+
 .sign_out {
     align-items: center;
     font-family: "Fira Sans", sans-serif;
@@ -311,6 +332,7 @@ footer {
     margin: 0;
     height: 50px;
 }
+
 .user_page_upper {
     padding: 1em 14em;
     font-family: Fira Sans,Roboto,system-ui,serif;
@@ -321,22 +343,23 @@ footer {
         font-size: 45px;
         line-height: 40px;
     }
+
 .user_links_wrapper ul {
     display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
+
 .user_links_wrapper li {
     margin: 0 0.3em;
 }
 
     .user_links_wrapper li :hover {
-        box-shadow:
-            -23px 0 20px -23px rgba(0, 0, 0, .8),
-            23px 0 20px -23px rgba(0, 0, 0, .8)
+        box-shadow: -23px 0 20px -23px rgba(0, 0, 0, .8), 23px 0 20px -23px rgba(0, 0, 0, .8)
     }
-.user_links_wrapper a{
+
+.user_links_wrapper a {
     color: rgb(190, 91, 4) !important;
     font-weight: 600;
     font-size: 16px;
@@ -558,12 +581,11 @@ table td {
 .wrapper_modal_content {
     background: white;
     font-family: "Fira Sans", sans-serif;
-    padding: 3em 2em;
+    padding: 2em;
     width: 430px;
     border: thin solid rgba(18, 34, 88, 0.12);
     border-radius: 15px;
     box-shadow: 0px 0px 32px #d6d4d4;
-    position: relative;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -573,18 +595,44 @@ table td {
     z-index: 2;
 }
 
+.modal_name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close_modal {
+    border: none;
+    background: none;
+}
+
 .modal_view h4 {
     position: relative;
-    font-size: 45px;
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
     font-weight: bold;
+}
+
+.modal_view .form_label_reg {
+    margin: 0.2em 0;
 }
 
 .modal_view span {
     position: relative;
-    font-size: 15px;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
     font-weight: bold;
     color: red;
 }
+
+.modal_view label {
+    position: relative;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
 .modal_wrapper {
     position: fixed;
     top: 0;
@@ -602,6 +650,10 @@ table td {
     overflow: hidden;
 }
 
+.modal_view .main_button {
+    margin: 0.2em 0 !important;
+}
+
 .reg_button {
     font-family: "Fira Sans", sans-serif;
     font-weight: 600;
@@ -610,11 +662,20 @@ table td {
     cursor: pointer;
     background: linear-gradient(rgb(255, 215, 84), rgb(255, 199, 44));
     color: rgb(0, 0, 0);
-    padding: 12px 16px;
+    padding: 10px 16px;
     border-radius: 12px;
     line-height: 24px;
     border: none;
     width: 100%;
+}
+
+.modal_view .reg_button {
+    padding: 7px 16px;
+    margin: 0 !important;
+}
+
+.modal_view .signin_button {
+    padding: 7px 16px;
 }
 
 .signin_button {
@@ -635,13 +696,11 @@ table td {
 
 .lower_label {
     padding: 2px 0 0 0;
-    color: rgb(57, 63, 69);
-    font-size: 13px;
-    line-height: 1.43em;
+    font-size: 10px !important;
 }
 
 .modal_view .main_button {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
     background: white;
     width: 100%;
     align-items: center;
@@ -662,6 +721,10 @@ table td {
     line-height: 22px;
     font-weight: 600;
     font-size: 14px;
+}
+
+.modal_view button {
+    margin: 0.7em 0;
 }
 /*----------------------------SIGN-IN----------------------------------*/
 /*---------------------------EDIT-SUBSCRIBES----------------------------*/
@@ -863,3 +926,5 @@ table td {
 .upper_table_row {
     font-weight: bold;
 }
+
+
