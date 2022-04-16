@@ -39,8 +39,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">О нас</a>
+                            <li class="nav-item" onclick="event.preventDefault()">
+                                <a class="nav-link" asp-area="#aboutus" asp-controller="Home" asp-action="Index" onclick="scrollMenu('#aboutus')">О нас</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -114,6 +114,7 @@
     <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/scroll.js"> </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
