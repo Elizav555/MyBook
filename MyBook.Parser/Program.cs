@@ -103,3 +103,34 @@ using (var db = new MyBookContext())
     db.SaveChanges();
 }
 #endregion
+
+
+#region AddBookCenters
+using (var db = new MyBookContext())
+{
+    //regex for phone ^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$
+    var center = new BookCenter
+    {
+        Name = "My Book Kazan Ямашева",
+        Address = "г.Казань, пр-т. Ямашева, дом 15/2 этаж 4",
+        Phone = "8-967-777-96-11",
+        Description = "Почта: MyBook.kazan@gmail.com",
+    };
+    var center1 = new BookCenter
+    {
+        Name = "My Book Moscow",
+        Address = "г.Москва, пр-т. Победы 92/4",
+        Phone = "8-905-557-23-11",
+        Description = "Почта: MyBook.moscow@gmail.com",
+    };
+    var center2 = new BookCenter
+    {
+        Name = "My Book Kazan Декабристов",
+        Address = "г.Казань, ул. Декабристов 182",
+        Phone = "(843) 563 17 90",
+        Description = "Почта: info@kazanbooks.ru. Предлагаем самый большой выбор учебной литературы.",
+    };
+    db.BookCenters.AddRange(center, center1, center2);
+    db.SaveChanges();
+}
+#endregion
