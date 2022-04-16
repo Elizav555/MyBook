@@ -1,6 +1,8 @@
 ﻿@media (max-width: 1400px) {
     .header {
         font-size: 12px;
+        padding: 0!important;
+        margin: 0 !important;
     }
 
     .customInput {
@@ -18,7 +20,7 @@
     }
 
     .header {
-        font-size: 9px;
+        font-size: 12px;
     }
 
     .customInput {
@@ -58,8 +60,8 @@
 
 @media (max-width: 992px) {
     .header {
-        margin: -1em 3em;
-        padding: 0;
+        margin: -1em 0em !important;
+        padding: 0 !important;
     }
 
     .lower_header {
@@ -95,7 +97,7 @@
     }
 
     .picture_wrapper {
-        margin: 5.5em 0;
+        display: none !important;
     }
 
     .inner_block_wrapper {
@@ -151,6 +153,10 @@
     .footer {
         display: flex;
         padding: 0em 3em;
+    }
+    .content_wrapper{
+        position: static !important;
+        margin: 0em 0 13em 0;
     }
 }
 
