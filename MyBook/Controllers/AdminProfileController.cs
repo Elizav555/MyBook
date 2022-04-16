@@ -15,16 +15,19 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Type> _typeRepository;
         private readonly EfAuthorRepository _authorRepository;
         private readonly EfBookRepository _bookRepository;
+        private readonly EFBookCenterRepository _bookCenterRepository;
         private readonly UserManager<User> _userManager;
 
         public AdminProfileController(IGenericRepository<Type> typeRep,
         EfAuthorRepository authorRepository,
             EfBookRepository bookRepository,
+             EFBookCenterRepository bookCenterRepository,
             UserManager<User> userManager)
         {
             _typeRepository = typeRep;
             _authorRepository = authorRepository;
             _bookRepository = bookRepository;
+            _bookCenterRepository = bookCenterRepository;
             _userManager = userManager;
         }
 
@@ -81,7 +84,7 @@ namespace MyBook.Controllers
 
         private List<BookCenter> GetCenters()
         {
-            return new List<BookCenter>();
+            return _bookCenterRepository.Get().ToList();
         }
     }
 }
