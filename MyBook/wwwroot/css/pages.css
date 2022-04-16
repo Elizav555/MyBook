@@ -15,6 +15,11 @@
     transition: .5s ease-in-out;
 }
 
+.container {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+}
 /*-----------------header--------------------*/
 
 .nav-form {
@@ -33,9 +38,13 @@
 
 header {
     font-size: 14px;
+    padding-top: 1em;
     width: 100%;
     position: relative;
-    padding: 0;
+}
+
+.header {
+    padding: 0.2em 5em
 }
 
 header a {
@@ -51,6 +60,7 @@ header a {
 
 .logo_wrapper img {
     width: 12em;
+    padding-right: 2em;
 }
 
 .navbar input {
@@ -61,9 +71,8 @@ header a {
 
 /*----------lower_header-----------------*/
 .wrapper_lower_header {
-    padding: 1em;
+    padding: 1em 1em;
 }
-
 .lower_header a {
     font-size: 14px;
     color: rgb(179, 77, 0);
@@ -84,8 +93,8 @@ header a {
             display: inline;
             border-radius: 8px;
             background: white;
-            padding: 0.9em;
-            margin: 0.7em 0.7em 0.7em 0;
+            padding: 0.5em 1em;
+            margin: 1em 1em 1em 0;
             color: black;
         }
 
@@ -141,6 +150,10 @@ a:hover {
 
 .background_content {
     position: relative;
+}
+
+.best_books_wrapper .container-book {
+    width: 100%
 }
 
 .inner_block {
