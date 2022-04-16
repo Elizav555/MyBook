@@ -1,30 +1,25 @@
 ﻿@media (max-width: 1400px) {
     .header {
-        font-size: 12px;
-        padding: 0!important;
-        margin: 0 !important;
+        font-size: 14px;
+       
     }
-
-    .customInput {
-        font-size: 12px;
-    }
-
     .inner_block_wrapper {
         margin-top: 4em;
+    }
+
+    .lower_header {
+        margin-left: 1em;
     }
 }
 
 @media (max-width: 1200px) {
-    lower_header {
-        font-size: 10px;
-    }
 
     .header {
         font-size: 12px;
     }
 
     .customInput {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .nav-item a {
@@ -45,6 +40,7 @@
         padding: 3em 5em !important;
     }
 
+
     .upper_footer {
         padding: 2em 5em !important;
     }
@@ -60,12 +56,13 @@
 
 @media (max-width: 992px) {
     .header {
-        margin: -1em 0em !important;
-        padding: 0 !important;
+        margin: 0 auto !important;
+        padding-left: 0 !important;
+        width: 100% !important;
     }
 
-    .lower_header {
-        margin-left: 1em;
+    header {
+        width: 100% !important;
     }
 
     .navbar-collapse {
@@ -92,10 +89,6 @@
         padding: 0.4em !important;
     }
 
-    .inline_wrapper {
-        flex-wrap: wrap;
-    }
-
     .picture_wrapper {
         display: none !important;
     }
@@ -106,8 +99,8 @@
 
     .inner_block {
         position: relative;
-        top: -38em !important;
-        padding: 0 5em !important;
+        top: -22em !important;
+        padding: 0 15em;
     }
 
     .text_info {
@@ -128,16 +121,12 @@
 
     .lefy_block {
         width: 100% !important;
+        justify-content: center;
+        text-align: center;
     }
 
     .text_info {
         justify-content: center;
-    }
-
-    .border_picture .picture_wrapper {
-        margin-top: -3em;
-        text-align: center;
-        justify-content: center !important;
     }
 
     .map_content {
@@ -154,12 +143,36 @@
         display: flex;
         padding: 0em 3em;
     }
-    .content_wrapper{
+    .inline_wrapper {
         position: static !important;
-        margin: 0em 0 13em 0;
+    }
+
+    .inner_block {
+        margin-bottom: 18em;
     }
 }
 
+@media (max-width: 765px) {
+
+    .inner_block {
+        position: relative;
+        top: -16em !important;
+        padding: 0 15em;
+        margin-bottom: 25em !important;
+    }
+    .wrapper_position{
+        flex-wrap: wrap;
+    }
+    .map_wrapper{
+        width: 100% !important;
+    }
+    .map_wrap {
+        display: none;
+    }
+    .map_content{
+        flex-wrap: wrap;
+    }
+}
 
 @media (max-width: 480px) {
     .navbar-collapse {
@@ -171,11 +184,7 @@
         margin: 0;
     }
 
-    .inner_block_wrapper {
-        display: none;
-    }
-
-    .border_picture {
-        background: red;
+    .best_books {
+        display: none !important;
     }
 }
