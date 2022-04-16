@@ -16,11 +16,6 @@
 }
 
 /*-----------------header--------------------*/
-.container {
-    margin: 0 auto;
-    width: 100%;
-    padding: 0;
-}
 
 .nav-form {
     width: 100%;
@@ -40,7 +35,7 @@ header {
     font-size: 14px;
     width: 100%;
     position: relative;
-    padding: 0.2em 5em
+    padding: 0;
 }
 
 header a {
@@ -56,7 +51,6 @@ header a {
 
 .logo_wrapper img {
     width: 12em;
-    padding-right: 2em;
 }
 
 .navbar input {
