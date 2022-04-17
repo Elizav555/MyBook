@@ -1,35 +1,45 @@
-﻿
+﻿@model MyBook.Models.PayViewModel
 <section class="modal_wrapper cointainer-xl">
+    <script>
+        $('#one').click(function () { $('#period').val(1); $('#monthsNumb').val("Кол-во месяцев: 1"); var total=$('#price').val()*1; $('#total').val(total +" руб.");});
+         $('#three').click(function () { $('#period').val(3); $('#monthsNumb').val("Кол-во месяцев: 3"); var total=$('#price').val()*3; $('#total').val(total +" руб.");});
+          $('#twelve').click(function () { $('#period').val(12); $('#monthsNumb').val("Кол-во месяцев: 12"); var total=$('#price').val()*12; $('#total').val(total +" руб.");});
+    </script>
     <div class="wrapper_modal_content">
         <div id="sub-pay">
             <div class="modal_name">
-                       <h2>Период оформления подписки</h2>
-                       <button class="close_modal">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="/assets/img/close.svg">
-                            </a>
-                        </button>
-                    </div>
-           
-            <div class="buttons_sub">
-                <button type="button" class="btn btn-warning btn-lg">
-                    1 месяц
-                    <br>
-                    <div class="price">229 руб. </div>
-                </button>
-                <button type="button" class="btn btn-warning btn-lg">
-                    3 месяца
-                    <br>
-                    <div class="price">649 руб.</div>
-                </button>
-                <button type="button" class="btn btn-warning btn-lg">
-                    12 месяцев
-                    <br>
-                    <div class="price"> 2290 руб.</div>
+                <h2>Период оформления подписки</h2>
+                <button class="close_modal">
+                    <a class="nav-link" asp-area="" asp-controller="Subscription" asp-action="Subscription">
+                        <img src="/assets/img/close.svg">
+                    </a>
                 </button>
             </div>
+            <form method="post" id="myForm" asp-action="Pay">
+                <div class="buttons_sub">
+                    <input type="hidden" asp-for="@Model.Period" id="period" />
+                    <input type="hidden" asp-for="@Model.Price" id="price" />
+                    @{
+                        var price = Model.Price; var triplePrice = price * 3; var yearPrice = price * 12;
+                    }
+                    <button type="button" class="btn btn-warning btn-lg" id="one">
+                        1 месяц
+                        <br>
+                        <div class="price">@price руб.</div>
+                    </button>
+                    <button type="button" class="btn btn-warning btn-lg" id="three">
+                        3 месяца
+                        <br>
+                        <div class="price">@triplePrice руб.</div>
+                    </button>
+                    <button type="button" class="btn btn-warning btn-lg" id="twelve">
+                        12 месяцев
+                        <br>
+                        <div class="price">@yearPrice руб.</div>
+                    </button>
+                </div>
+            </form>
         </div>
-
         <div class="row" id="pay-up">
             <h2>Способ оплаты</h2>
             <div class="pay_but">
@@ -45,14 +55,16 @@
                 </button>
             </div>
         </div>
-
         <div id="sum-up">
             <h4> Вы покупаете </h4>
-            <p> Стандартная подписка</p>
-             <p>1 месяц</p>
+            @{
+                string type = Model.TypeName == "Премиум" ? "Премиум подписка" : Model.TypeName + " , " + Model.SpecsName;
+            }
+            <p>@type</p>
+            <p id="monthsNumb">Кол-во месяцев: 1</p>
             <bold>Итого к оплате</bold>
-                <h5>229 руб.</h5>
+            <h5 id="total">299  руб.</h5>
         </div>
-        <button type="submit" class="reg_button mt-2">Оформить</button>
+        <button type="submit" class="reg_button mt-2" form="myForm">Оформить</button>
     </div>
 </section>
