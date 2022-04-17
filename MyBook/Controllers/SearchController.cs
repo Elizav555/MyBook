@@ -39,7 +39,7 @@ public class SearchController : Controller
     [Route("[controller]/[action]")]
     public IActionResult SearchBooks(int page,string searchString)
     {
-        if (page == 0) page = 1;
+        Console.WriteLine(page);
         if (!String.IsNullOrEmpty(searchString))
         {
             _vIewModel = new SearchViewModel(_bookRepository,searchString,page);

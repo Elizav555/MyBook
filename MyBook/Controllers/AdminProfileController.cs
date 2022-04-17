@@ -17,7 +17,7 @@ namespace MyBook.Controllers
         private readonly EfBookRepository _bookRepository;
         private readonly EFBookCenterRepository _bookCenterRepository;
         private readonly UserManager<User> _userManager;
-
+    
         public AdminProfileController(IGenericRepository<Type> typeRep,
         EfAuthorRepository authorRepository,
             EfBookRepository bookRepository,

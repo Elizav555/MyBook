@@ -1,9 +1,9 @@
-﻿let pageNumber = 0;
+﻿let pageNumber = 1;
 function showMoreBooks(){
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchBooks?page=${++pageNumber}`,
+            url:`/Search/SearchBooks?page=${pageNumber++}`,
             success: function (data) {
                 var $response=$(data);
                 console.log(data)

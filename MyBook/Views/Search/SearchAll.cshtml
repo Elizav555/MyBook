@@ -20,7 +20,7 @@
     @if (Model.Authors.Any())
             {
                 <div class="text-center mt-4">
-                    <a class="btn btn-lg btn-primary p-3" asp-controller="Search" asp-action="SearchBooks" asp-route-searchString="@ViewData["searchString"]">Показать все книги</a>
+                    <a class="btn btn-lg btn-primary p-3" asp-controller="Search" asp-action="SearchBooks" asp-route-searchString="@ViewData["searchString"]" asp-route-page=@(1)>Показать все книги</a>
                 </div>
             }
 
@@ -36,7 +36,7 @@
         if (Model.Authors.Any())
         {
             <div class="text-center mt-4">
-                <a class="btn btn-lg btn-primary p-3" asp-controller="Search" asp-action="SearchAuthors" asp-route-searchString="@ViewData["searchString"]">Показать всех авторов</a>
+                <a class="btn btn-lg btn-primary p-3" asp-controller="Search" asp-action="SearchAuthors" asp-route-searchString="@ViewData["searchString"]"  asp-route-page=@(1)>Показать всех авторов</a>
             </div>
         }
     }
