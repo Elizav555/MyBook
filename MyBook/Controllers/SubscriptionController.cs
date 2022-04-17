@@ -15,16 +15,18 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Genre> _genreRepository;
         private readonly IGenericRepository<MyBook.Entities.Type> _typeRepository;
         private readonly IGenericRepository<Object> _genericRepository;
-
+        private readonly UserManager<User> _userManager;
 
 
         public SubscriptionController(IGenericRepository<Author> authorRepository, IGenericRepository<Genre> genreRepository,
-            IGenericRepository<MyBook.Entities.Type> typeRepository, IGenericRepository<Object> genericRepository)
+            IGenericRepository<MyBook.Entities.Type> typeRepository, IGenericRepository<Object> genericRepository,
+            UserManager<User> userManager)
         {
             _authorRepository = authorRepository;
             _genreRepository = genreRepository;
             _typeRepository = typeRepository;
             _genericRepository = genericRepository;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -56,15 +58,11 @@ namespace MyBook.Controllers
                 StartDate = DateTime.Now.ToString(),
                 EndDate = DateTime.Now.AddMonths(1).ToString(),
                 TypeId = type.TypeId,
-                SubscrGenres = new List<SubscrGenre>()
+                GenreId = genre.First().GenreId
             };
-
-            var subscrGenre = new SubscrGenre { GenreId = genre.First().GenreId, SubscriptionId = subscr.SubscriptionId };
             var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.SubscrGenres.Add(subscrGenre);
             subscr.UserSubscr = userSubscr;
-
-            await _genericRepository.CreateAll(new List<object>() { subscr, subscrGenre, userSubscr, });
+            await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
         }
 
@@ -79,15 +77,12 @@ namespace MyBook.Controllers
                 StartDate = DateTime.Now.ToString(),
                 EndDate = DateTime.Now.AddMonths(1).ToString(),
                 TypeId = type.TypeId,
-                SubscrAuthors = new List<SubscrAuthor>()
+                AuthorId = author.First().AuthorId
             };
-
-            var subscrAuthor = new SubscrAuthor { AuthorId = author.First().AuthorId, SubscriptionId = subscr.SubscriptionId };
             var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.SubscrAuthors.Add(subscrAuthor);
             subscr.UserSubscr = userSubscr;
 
-            await _genericRepository.CreateAll(new List<object>() { subscr, subscrAuthor, userSubscr, });
+            await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
         }
 
@@ -106,6 +101,14 @@ namespace MyBook.Controllers
             await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
         }
+
+        //private async Task<IActionResult> CheckSubscr(Subscription subscr)
+        //{
+        //    //var user = await _userManager.GetUserAsync(User);
+        //    //if (user == null)
+        //    //    return null;
+        //    //if (user.UserSubscrs.Any(it => it.Subscription.Type == subscr.Type && it.Subscription. ))
+        //}
 
         private List<Genre> GetGenres()
         {
