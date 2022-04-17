@@ -13,6 +13,6 @@
 
         public virtual ICollection<BookGenre> BookGenres { get; set; }
         public virtual ICollection<FavGenre> FavGenres { get; set; }
-        public virtual ICollection<SubscrGenre> SubscrGenres { get; set; }
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }
