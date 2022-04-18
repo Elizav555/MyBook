@@ -2,14 +2,6 @@
 {
     public partial class Book
     {
-        public Book()
-        {
-            AuthorBooks = new HashSet<AuthorBook>();
-            BookGenres = new HashSet<BookGenre>();
-            Histories = new HashSet<History>();
-            ImgLinks = new HashSet<ImgLink>();
-        }
-
         public int BookId { get; set; }
         public string Name { get; set; } = null!;
         public string Language { get; set; } = null!;
@@ -19,10 +11,10 @@
 
         public int BookDescId { get; set; }
         public virtual BookDesc Description { get; set; } = null!;
-        public virtual ICollection<Rating> Ratings { get; set; }
-        public virtual ICollection<AuthorBook> AuthorBooks { get; set; }
-        public virtual ICollection<BookGenre> BookGenres { get; set; }
-        public virtual ICollection<History> Histories { get; set; }
-        public virtual ICollection<ImgLink> ImgLinks { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+        public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
+        public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
+        public virtual ICollection<History> Histories { get; set; }=new List<History>();
+        public virtual ICollection<ImgLink> ImgLinks { get; set; }= new List<ImgLink>();
     }
 }

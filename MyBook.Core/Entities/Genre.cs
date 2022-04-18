@@ -2,17 +2,11 @@
 {
     public partial class Genre
     {
-        public Genre()
-        {
-            BookGenres = new HashSet<BookGenre>();
-            FavGenres = new HashSet<FavGenre>();
-        }
-
         public int GenreId { get; set; }
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<BookGenre> BookGenres { get; set; }
-        public virtual ICollection<FavGenre> FavGenres { get; set; }
-        public virtual ICollection<SubscrGenre> SubscrGenres { get; set; }
+        public virtual ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
+        public virtual ICollection<FavGenre> FavGenres { get; set; } = new List<FavGenre>();
+        public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
     }
 }
