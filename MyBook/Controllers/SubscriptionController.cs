@@ -15,16 +15,18 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Genre> _genreRepository;
         private readonly IGenericRepository<MyBook.Entities.Type> _typeRepository;
         private readonly IGenericRepository<Object> _genericRepository;
-
+        private readonly EFUserRepository _userRepository;
 
 
         public SubscriptionController(IGenericRepository<Author> authorRepository, IGenericRepository<Genre> genreRepository,
-            IGenericRepository<MyBook.Entities.Type> typeRepository, IGenericRepository<Object> genericRepository)
+            IGenericRepository<MyBook.Entities.Type> typeRepository, IGenericRepository<Object> genericRepository,
+            EFUserRepository userRepository)
         {
             _authorRepository = authorRepository;
             _genreRepository = genreRepository;
             _typeRepository = typeRepository;
             _genericRepository = genericRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -56,15 +58,14 @@ namespace MyBook.Controllers
                 StartDate = DateTime.Now.ToString(),
                 EndDate = DateTime.Now.AddMonths(1).ToString(),
                 TypeId = type.TypeId,
-                SubscrGenres = new List<SubscrGenre>()
+                GenreId = genre.First().GenreId
             };
-
-            var subscrGenre = new SubscrGenre { GenreId = genre.First().GenreId, SubscriptionId = subscr.SubscriptionId };
-            var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.SubscrGenres.Add(subscrGenre);
+            var user = await CheckSubscr(subscr);
+            if (user == null)
+                return Redirect("Error");//TODO show modal that user already have subscr
+            var userSubscr = new UserSubscr { Subscription = subscr, UserId = user.Id };
             subscr.UserSubscr = userSubscr;
-
-            await _genericRepository.CreateAll(new List<object>() { subscr, subscrGenre, userSubscr, });
+            await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
         }
 
@@ -79,15 +80,16 @@ namespace MyBook.Controllers
                 StartDate = DateTime.Now.ToString(),
                 EndDate = DateTime.Now.AddMonths(1).ToString(),
                 TypeId = type.TypeId,
-                SubscrAuthors = new List<SubscrAuthor>()
+                AuthorId = author.First().AuthorId
             };
-
-            var subscrAuthor = new SubscrAuthor { AuthorId = author.First().AuthorId, SubscriptionId = subscr.SubscriptionId };
-            var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.SubscrAuthors.Add(subscrAuthor);
+            var user = await CheckSubscr(subscr);
+            if (user == null)
+                return Redirect("Error");//TODO show modal that user already have subscr
+            var userSubscr = new UserSubscr { Subscription = subscr, UserId = user.Id };
             subscr.UserSubscr = userSubscr;
-
-            await _genericRepository.CreateAll(new List<object>() { subscr, subscrAuthor, userSubscr, });
+            user.UserSubscrs.Add(userSubscr);
+            //await _userManager.UpdateAsync(user);
+            await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
         }
 
@@ -101,10 +103,25 @@ namespace MyBook.Controllers
                 EndDate = DateTime.Now.AddMonths(1).ToString(),
                 TypeId = type.TypeId,
             };
-            var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
+            var user = await CheckSubscr(subscr);
+            if (user == null)
+                return Redirect("Error");//TODO show modal that user already have subscr
+            var userSubscr = new UserSubscr { Subscription = subscr, UserId = user.Id };
             subscr.UserSubscr = userSubscr;
             await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             return RedirectToAction("Subscription");
+        }
+
+        private async Task<User?> CheckSubscr(Subscription subscr)
+        {
+            var user = _userRepository.GetUserWithSubscr(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (user == null)
+                return null;
+            if (user.UserSubscrs == null || !(user.UserSubscrs.Any(it =>
+                it.Subscription.TypeId == subscr.TypeId &&
+                ((it.Subscription.GenreId != null && it.Subscription.GenreId == subscr.GenreId) || (it.Subscription.AuthorId != null && it.Subscription.AuthorId == subscr.AuthorId)))))
+                return user;
+            else return null;
         }
 
         private List<Genre> GetGenres()

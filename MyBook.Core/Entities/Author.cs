@@ -7,8 +7,8 @@
         public String? BirthDate { get; set; }
 
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
-        public virtual ICollection<FavAuthor> FavAuthors { get; set; }
-        public virtual ICollection<SubscrAuthor> SubscrAuthors { get; set; }
-        public virtual ICollection<ImgLink> ImgLinks { get; set; }
+        public virtual ICollection<FavAuthor> FavAuthors { get; set; } = new List<FavAuthor>();
+        public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
+        public virtual ICollection<ImgLink> ImgLinks { get; set; } = new List<ImgLink>();
     }
 }
