@@ -55,11 +55,13 @@ public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
     
     public IQueryable<Book> GetFilterBooks(string filterLanguage, string filterGenre)
     {
-        return DbSet
+        var tempBooks = DbSet
             .Where(book => book.Language == filterLanguage)
             .Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author)
             .Include(book => book.ImgLinks)
             .Include(book => book.Description);
+        var resultBooks = tempBooks.Where(book => book.BookGenres.FirstOrDefault()!.Genre.Name == filterGenre);
+        return resultBooks;
     }
 }
