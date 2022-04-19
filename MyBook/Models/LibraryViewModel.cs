@@ -11,7 +11,6 @@ namespace MyBook.ViewModels;
 public class LibraryViewModel
 {
     private readonly EfBookRepository _bookRepository;
-    private readonly IGenericRepository<Book> bookRepository;
     private readonly IGenericRepository<Genre> genreRepository;
     public List<Book> AllBooks { get; set; }
     public List<Author> AllAuthors { get; set; }
@@ -24,25 +23,23 @@ public class LibraryViewModel
 
     public LibraryViewModel(
         EfBookRepository _bookRepository,
-        EfAuthorRepository authorRepository, IGenericRepository<Book> bookRepository,
+        EfAuthorRepository authorRepository,
         IGenericRepository<Genre> genreRepository)
     {
         this._bookRepository = _bookRepository;
         this.genreRepository = genreRepository;
         AllBooks = _bookRepository.GetAllBooks().ToList();
         AllAuthors = authorRepository.GetAllAuthors().ToList();
-        this.bookRepository = bookRepository;
         Languages = GetLanguages();
         Genres = GetGenres();
     }
 
     public LibraryViewModel(
         EfBookRepository _bookRepository,
-        EfAuthorRepository authorRepository, IGenericRepository<Book> bookRepository, string filterLanguage,
+        EfAuthorRepository authorRepository, string filterLanguage,
         IGenericRepository<Genre> genreRepository, string filterGenre)
     {
         this._bookRepository = _bookRepository;
-        this.bookRepository = bookRepository;
         this.genreRepository = genreRepository;
         FilterLanguage = filterLanguage;
         FilterGenre = filterGenre;

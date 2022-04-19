@@ -13,16 +13,14 @@ public class LibraryController: Controller
     private LibraryViewModel _viewModel;
     private readonly EfBookRepository _bookRepository;
     private readonly EfAuthorRepository _authorRepository;
-    private readonly IGenericRepository<Book> bookRepository;
     private readonly IGenericRepository<Genre> genreRepository;
     
     public LibraryController(
         EfBookRepository _bookRepository,
-        EfAuthorRepository _authorRepository, IGenericRepository<Book> bookRepository, IGenericRepository<Genre> genreRepository)
+        EfAuthorRepository _authorRepository, IGenericRepository<Genre> genreRepository)
     {
         this._bookRepository = _bookRepository;
         this._authorRepository = _authorRepository;
-        this.bookRepository = bookRepository;
         this.genreRepository = genreRepository;
     }
 
@@ -30,11 +28,11 @@ public class LibraryController: Controller
     {
         if (String.IsNullOrEmpty(filterLanguage) || filterLanguage=="Все")
         {
-            _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, bookRepository, genreRepository);
+            _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, genreRepository);
         }
         else
         {
-            _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, bookRepository, filterLanguage, genreRepository, filterGenre);
+            _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, filterLanguage, genreRepository, filterGenre);
         }
 
         return View(_viewModel);

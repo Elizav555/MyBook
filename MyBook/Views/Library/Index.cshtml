@@ -26,8 +26,8 @@
     <div class="row">
         <div class="col-md-8">
             <h1 class="h1 ms-4 mb-2">Все книги</h1>
-            <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
-            @await Component.InvokeAsync("BooksCarousel",new List<MyBook.Entities.Book>(Model.AllBooks))
+            <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count книг</h3>
+            @await Component.InvokeAsync("BooksCarousel",new List<Book>(Model.AllBooks))
         </div>
         <div class="col-6 col-md-4">
             <form asp-action="Index" asp-controller="Library" method="POST">
