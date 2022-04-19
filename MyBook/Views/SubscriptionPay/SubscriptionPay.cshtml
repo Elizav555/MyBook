@@ -1,10 +1,5 @@
 ﻿@model MyBook.Models.PayViewModel
 <section class="modal_wrapper cointainer-xl">
-    <script>
-        $('#one').click(function () { $('#period').val(1); $('#monthsNumb').val("Кол-во месяцев: 1"); var total=$('#price').val()*1; $('#total').val(total +" руб.");});
-         $('#three').click(function () { $('#period').val(3); $('#monthsNumb').val("Кол-во месяцев: 3"); var total=$('#price').val()*3; $('#total').val(total +" руб.");});
-          $('#twelve').click(function () { $('#period').val(12); $('#monthsNumb').val("Кол-во месяцев: 12"); var total=$('#price').val()*12; $('#total').val(total +" руб.");});
-    </script>
     <div class="wrapper_modal_content">
         <div id="sub-pay">
             <div class="modal_name">
@@ -19,6 +14,13 @@
                 <div class="buttons_sub">
                     <input type="hidden" asp-for="@Model.Period" id="period" />
                     <input type="hidden" asp-for="@Model.Price" id="price" />
+
+                    <input type="hidden" asp-for="@Model.SpecsId" />
+                    <input type="hidden" asp-for="@Model.SpecsName" />
+                    <input type="hidden" asp-for="@Model.TypeId" />
+                    <input type="hidden" asp-for="@Model.TypeName" />
+                    <input type="hidden" asp-for="@Model.UserId" />
+                    <input type="hidden" asp-for="@Model.SpecsName" />
                     @{
                         var price = Model.Price; var triplePrice = price * 3; var yearPrice = price * 12;
                     }
@@ -58,13 +60,17 @@
         <div id="sum-up">
             <h4> Вы покупаете </h4>
             @{
-                string type = Model.TypeName == "Премиум" ? "Премиум подписка" : Model.TypeName + " , " + Model.SpecsName;
+                string type = Model.TypeName == "Премиум" ? "Премиум подписка" : Model.TypeName + " , " + Model.SpecsName; 
             }
             <p>@type</p>
             <p id="monthsNumb">Кол-во месяцев: 1</p>
             <bold>Итого к оплате</bold>
-            <h5 id="total">299  руб.</h5>
+            <h5 id="total">@Model.Price руб.</h5>
         </div>
         <button type="submit" class="reg_button mt-2" form="myForm">Оформить</button>
     </div>
 </section>
+@section Scripts
+{
+<script src="~/js/pay.js"></script>
+}
