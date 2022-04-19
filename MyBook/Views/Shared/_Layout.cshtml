@@ -23,14 +23,14 @@
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css">
 </head>
 <body>
-    <header>
-        <div class="header container">
-            <div class="upper_header">
+    <header class="header container-fluid col-10">
+        <div class="row ">
+            <div class="upper_header row">
                 <nav class="navbar navbar-expand-lg">
-                    <div class="container d-flex mb-1.5">
-                        <div class="logo_wrapper">
+                    <div class="col-lg-2 hidden_menu">
+                        <div class="logo">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="/assets/img/logo.png">
+                                <img src="/assets/img/logo.png" alt="MyBook">
                             </a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -40,17 +40,17 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbarContent">
+                    <div class="collapse navbar-collapse col-lg-10" id="navbarContent">
                         <ul class="navbar-nav w-100">
-                            <li class="nav-form">
+                            <li class="nav-item pr-5">
                                 <form asp-controller="Search" asp-action="SearchAll">
                                     <input name="SearchString" class="form-control customInput" type="search" placeholder="Книга или автор" aria-label="Search">
                                 </form>
                             </li>
-                            <li class="nav-item">
+                            <li>
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                             </li>
-                            <li class="nav-item" onclick="event.preventDefault()">
+                            <li onclick="event.preventDefault()">
                                 <a class="nav-link" asp-area="#aboutus" asp-controller="Home" asp-action="Index" onclick="scrollMenu('#aboutus')">О нас</a>
                             </li>
                             <li class="nav-item dropdown">
@@ -84,23 +84,21 @@
                     </div>
                 </nav>
             </div>
-            <div class="lower_header">
-                <div class="wrapper_lower_header">
-                    <ul class="form-inline">
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="lower_header row">
+                <ul class="form-inline col-lg-6 col-md-12 w-100">
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Library" asp-action="Index">📖 Библиотека</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="FreeBooks" asp-action="FreeBooks">👌 Бесплатные книги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>

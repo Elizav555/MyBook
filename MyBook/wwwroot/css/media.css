@@ -1,4 +1,4 @@
-﻿@media (max-width: 1400px) {
+﻿/*@media (max-width: 1400px) {
     .header {
         font-size: 14px;
        
@@ -52,16 +52,15 @@
     .inner_block_wrapper {
         margin-top: 10%;
     }
+}*/
+
+/*@media (max-width: 992px) {
+    .header {
+        margin: 0 !important;
+    }*/
 }
 
-@media (max-width: 992px) {
-    .header {
-        margin: 0 auto !important;
-        padding-left: 0 !important;
-        width: 100% !important;
-    }
-
-    header {
+    /*header {
         width: 100% !important;
     }
 
@@ -187,7 +186,7 @@
     .best_books {
         display: none !important;
     }
-}
+}*/
 /*---------------------modals_media-----------------*/
 
 
