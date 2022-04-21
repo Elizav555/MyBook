@@ -1,42 +1,25 @@
 ﻿$(document).ready(function () {
-    $.get({
-        url: "/UserProfile/EditProfile/" + $('#userId').val(),
-        success: function (result) {
-            $('#container').html(result);
-        }
-    });
+    $('#containerProfile').show();
+    $('#containerSubscr').hide();
+    $('#containerHistory').hide();
 
     $('#subscr').click(function () {
-        $.get({
-            url: "/UserProfile/EditSubscription/" + $('#userId').val(),
-            success: function (result) {
-                $('#container').html(result);
-            }
-
-        });
+        $('#containerProfile').hide();
+        $('#containerSubscr').show();
+        $('#containerHistory').hide();
         return false;
     });
 
     $('#profile').click(function () {
-        $.get({
-            url: "/UserProfile/EditProfile/" + $('#userId').val(),
-            success: function (result) {
-                $('#container').html(result);
-            }
-
-        });
-        return false;
+        $('#containerProfile').show();
+        $('#containerSubscr').hide();
+        $('#containerHistory').hide();
     });
 
 
     $('#history').click(function () {
-        $.get({
-            url: "/UserProfile/History/" + $('#userId').val(),
-            success: function (result) {
-                $('#container').html(result);
-            }
-
-        });
-        return false;
+        $('#containerProfile').hide();
+        $('#containerSubscr').hide();
+        $('#containerHistory').show();
     });
 });

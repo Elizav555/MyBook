@@ -1,4 +1,4 @@
-﻿@model MyBook.Models.UserProfile.HistoryViewModel
+﻿@model MyBook.Models.UserProfileViewModel
 
 <section class="user_page_lower">
     <div class="sub_table">
@@ -9,16 +9,14 @@
                     <td>Дата скачивания</td>
                     <td>Стоимость</td>
                 </tr>
-                <tr>
-                    <td>Хорошая книга</td>
-                    <td>13.11.2020</td>
-                    <td>100 руб.</td>
-                </tr>
-                <tr>
-                    <td>Другая книга</td>
-                    <td>13.11.2020</td>
-                    <td>300 руб.</td>
-                </tr>
+                @foreach (var history in Model.Histories)
+                {
+                    <tr>
+                        <td>@history.Book.Name</td>
+                        <td>@history.DateTime.ToShortDateString()</td>
+                        <td>@history.Book.Description.Price руб.</td>
+                    </tr>
+                }
             </table>
         </div>
     </div>

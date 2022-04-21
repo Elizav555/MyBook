@@ -1,4 +1,5 @@
-﻿@model MyBook.Models.UserProfile.UserProfileViewModel
+﻿@using MyBook.Models
+@model MyBook.Models.UserProfileViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,21 @@
         </nav>
     </section>
 
-    <div id="container"></div>
+    <div id="containerProfile">
+        @{
+            await Html.RenderPartialAsync("_EditProfile", Model);
+        }
+    </div>
+    <div id="containerSubscr">
+        @{
+            await Html.RenderPartialAsync("_EditSubscription", Model);
+        }
+    </div>
+    <div id="containerHistory">
+        @{
+            await Html.RenderPartialAsync("_History", Model);
+        }
+    </div>
     @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="~/js/profile.js"></script>

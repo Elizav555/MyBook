@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
-using MyBook.Models.UserProfile;
 using System.Text.RegularExpressions;
 
 namespace MyBook.Controllers
@@ -14,37 +14,26 @@ namespace MyBook.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly EFHistoryRepository _historyRepository;
+        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager, EFHistoryRepository historyRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-        }
-        public IActionResult Index(string id)
-        {
-            return View(new UserProfileViewModel { Id = id });
+            _historyRepository = historyRepository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> EditProfile(string id)
+        public async Task<IActionResult> Index(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
-            EditProfileViewModel model = new EditProfileViewModel
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                BirthDate = DateTime.Parse(user.BirthDate)
-            };
-            return PartialView("_EditProfile", model);
+            return View(new UserProfileViewModel { Id = id, BirthDate = DateTime.Parse(user.BirthDate), Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Histories = GetHistories(user.Id) });
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProfile(EditProfileViewModel model)
+        public async Task<IActionResult> EditProfile(UserProfileViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -54,12 +43,12 @@ namespace MyBook.Controllers
                     if (_userManager.Users.Any(userIdentity => userIdentity.Email == model.Email && userIdentity.UserName != user.UserName))
                     {
                         ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
-                        //return PartialView("_EditProfile", model);
+                        return RedirectToAction("Index", new { model });
                     }
                     if (model.BirthDate == null)
                     {
                         ModelState.AddModelError(string.Empty, "Введите корректную дату рождения");
-                        //  return PartialView("_EditProfile", model);
+                        return RedirectToAction("Index", new { model });
                     }
                     user.Email = model.Email;
                     user.UserName = model.Email;
@@ -70,7 +59,7 @@ namespace MyBook.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", new { model });
                     }
                     else
                     {
@@ -81,7 +70,7 @@ namespace MyBook.Controllers
                     }
                 }
             }
-            // return PartialView("_EditProfile", model);
+            return View("Index", model);
         }
 
         [HttpPost]
@@ -96,7 +85,7 @@ namespace MyBook.Controllers
                     var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("EditProfile", new { model.Id });
+                        return RedirectToAction("Index", new { model.Id });
                     }
                     else
                     {
@@ -109,17 +98,7 @@ namespace MyBook.Controllers
                     }
                 }
             }
-            return RedirectToAction("EditProfile", new { model.Id });
-        }
-
-        public IActionResult EditSubscription(string id)
-        {
-            return PartialView("_EditSubscription", new EditUserSubscrViewModel { Id = id });
-        }
-
-        public IActionResult History(string id)
-        {
-            return PartialView("_History", new HistoryViewModel { Id = id });
+            return RedirectToAction("Index", new { model.Id });
         }
 
         public IActionResult NonSubscription()
@@ -131,6 +110,11 @@ namespace MyBook.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        private List<History> GetHistories(string userId)
+        {
+            return _historyRepository.GetHistories(userId).ToList();
         }
     }
 }
