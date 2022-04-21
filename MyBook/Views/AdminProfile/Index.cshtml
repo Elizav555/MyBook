@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model MyBook.Models.Admin.AdminViewModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,7 +28,30 @@
             </div>
         </div>
     </header>
-    <div id="container">
+    <div id="containerAuthor">
+        @{
+            await Html.RenderPartialAsync("_EditAuthor", Model);
+        }
+    </div>
+    <div id="containerBook">
+        @{
+            await Html.RenderPartialAsync("_EditBook", Model);
+        }
+    </div>
+    <div id="containerBookCenter">
+        @{
+            await Html.RenderPartialAsync("_EditBookCenter", Model);
+        }
+    </div>
+    <div id="containerSubscription">
+        @{
+            await Html.RenderPartialAsync("_EditSubscription", Model);
+        }
+    </div>
+    <div id="containerUser">
+        @{
+            await Html.RenderPartialAsync("_EditUser", Model);
+        }
     </div>
 </body>
 </html>

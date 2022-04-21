@@ -18,7 +18,7 @@ namespace MyBook.Controllers
         private readonly EFBookCenterRepository _bookCenterRepository;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        
+
         public AdminProfileController(IGenericRepository<Type> typeRep,
         EfAuthorRepository authorRepository,
             EfBookRepository bookRepository,
@@ -36,7 +36,14 @@ namespace MyBook.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new AdminViewModel
+            {
+                Authors = GetAuthors(),
+                Books = GetBooks(),
+                Centers = GetCenters(),
+                SubscrTypes = GetTypes(),
+                Users = GetUsers()
+            });
         }
 
         public async Task<IActionResult> Logout()
@@ -44,32 +51,6 @@ namespace MyBook.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
-        public IActionResult EditAuthor()
-        {
-            return PartialView("_EditAuthor", new EditAuthorViewModel { Authors = GetAuthors() });
-        }
-
-        public IActionResult EditBook()
-        {
-            return PartialView("_EditBook", new EditBookViewModel { Books = GetBooks() });
-        }
-
-        public IActionResult EditUser()
-        {
-            return PartialView("_EditUser", new EditUserViewModel { Users = GetUsers() });
-        }
-
-        public IActionResult EditBookCenter()
-        {
-            return PartialView("_EditBookCenter", new EditCenterViewModel { Centers = GetCenters() });
-        }
-
-        public IActionResult EditSubscription()
-        {
-            return PartialView("_EditSubscription", new EditSubscrViewModel { SubscrTypes = GetTypes() });
-        }
-
 
         private List<Type> GetTypes()
         {
