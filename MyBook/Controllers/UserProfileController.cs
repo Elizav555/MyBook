@@ -80,7 +80,7 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPassword(EditPasswordViewModel model)
         {
-            //Почему то не отображается валидация
+            //TODO Почему то не отображается валидация
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);

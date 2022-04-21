@@ -11,7 +11,16 @@
         <div class="main_content_page">
             <div class="wrapper_modal_content">
                 <div class="modal_view">
-                    <h4>Регистрация</h4>
+                    <div class="modal_name">
+                        <h4>Регистрация</h4>
+                       <button class="close_modal">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <img src="/assets/img/close.svg">
+                            </a>
+                        </button>
+                    </div>
+
+                   
                     <form method="post" asp-controller="Account" asp-action="Registration">
                         <div asp-validation-summary="ModelOnly"></div>
                         <div class="form-group form_label_reg">
