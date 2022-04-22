@@ -14,17 +14,16 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Author> _authorRepository;
         private readonly IGenericRepository<Genre> _genreRepository;
         private readonly IGenericRepository<MyBook.Entities.Type> _typeRepository;
-        private readonly IGenericRepository<Object> _genericRepository;
-
+        private readonly EFUserRepository _userRepository;
 
 
         public SubscriptionController(IGenericRepository<Author> authorRepository, IGenericRepository<Genre> genreRepository,
-            IGenericRepository<MyBook.Entities.Type> typeRepository, IGenericRepository<Object> genericRepository)
+            IGenericRepository<MyBook.Entities.Type> typeRepository, EFUserRepository userRepository)
         {
             _authorRepository = authorRepository;
             _genreRepository = genreRepository;
             _typeRepository = typeRepository;
-            _genericRepository = genericRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -51,21 +50,20 @@ namespace MyBook.Controllers
         {
             var type = GetTypes().First(it => it.TypeName == "Подписка на жанр");
             var genre = _genreRepository.Get(it => it.Name == GenreName);
-            var subscr = new Subscription
+            var user = await CheckSubscr(type.TypeId, genreId: genre.First().GenreId, authorId: null);
+            if (user == null)
+                return Redirect("Error");//TODO show modal that user already have subscr
+            var model = new PayViewModel
             {
-                StartDate = DateTime.Now.ToString(),
-                EndDate = DateTime.Now.AddMonths(1).ToString(),
+                UserId = user.Id,
+                Period = 1,
+                SpecsName = genre.First().Name,
+                SpecsId = genre.First().GenreId,
                 TypeId = type.TypeId,
-                SubscrGenres = new List<SubscrGenre>()
+                TypeName = type.TypeName,
+                Price = type.Price,
             };
-
-            var subscrGenre = new SubscrGenre { GenreId = genre.First().GenreId, SubscriptionId = subscr.SubscriptionId };
-            var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.SubscrGenres.Add(subscrGenre);
-            subscr.UserSubscr = userSubscr;
-
-            await _genericRepository.CreateAll(new List<object>() { subscr, subscrGenre, userSubscr, });
-            return RedirectToAction("Subscription");
+            return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
         }
 
         [Authorize(Policy = "ReadersOnly")]
@@ -74,37 +72,52 @@ namespace MyBook.Controllers
         {
             var type = GetTypes().First(it => it.TypeName == "Подписка на автора");
             var author = _authorRepository.Get(it => it.Name == AuthorName);
-            var subscr = new Subscription
+            var user = await CheckSubscr(type.TypeId, authorId: author.First().AuthorId, genreId: null);
+            if (user == null)
+                return Redirect("Error");//TODO show modal that user already have subsc
+            var model = new PayViewModel
             {
-                StartDate = DateTime.Now.ToString(),
-                EndDate = DateTime.Now.AddMonths(1).ToString(),
+                UserId = user.Id,
+                Period = 1,
+                SpecsName = author.First().Name,
+                SpecsId = author.First().AuthorId,
                 TypeId = type.TypeId,
-                SubscrAuthors = new List<SubscrAuthor>()
+                TypeName = type.TypeName,
+                Price = type.Price,
             };
-
-            var subscrAuthor = new SubscrAuthor { AuthorId = author.First().AuthorId, SubscriptionId = subscr.SubscriptionId };
-            var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.SubscrAuthors.Add(subscrAuthor);
-            subscr.UserSubscr = userSubscr;
-
-            await _genericRepository.CreateAll(new List<object>() { subscr, subscrAuthor, userSubscr, });
-            return RedirectToAction("Subscription");
+            return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
         }
 
         [Authorize(Policy = "ReadersOnly")]
         public async Task<IActionResult> SubscrForPremium()
         {
             var type = GetTypes().First(it => it.TypeName == "Премиум");
-            var subscr = new Subscription
+            var user = await CheckSubscr(type.TypeId, null, null);
+            if (user == null)
+                return Redirect("Error");//TODO show modal that user already have subscr
+            var model = new PayViewModel
             {
-                StartDate = DateTime.Now.ToString(),
-                EndDate = DateTime.Now.AddMonths(1).ToString(),
+                UserId = user.Id,
+                Period = 1,
+                SpecsName = null,
+                SpecsId = null,
                 TypeId = type.TypeId,
+                TypeName = type.TypeName,
+                Price = type.Price,
             };
-            var userSubscr = new UserSubscr { Subscription = subscr, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) };
-            subscr.UserSubscr = userSubscr;
-            await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
-            return RedirectToAction("Subscription");
+            return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
+        }
+
+        private async Task<User?> CheckSubscr(int typeId, int? genreId, int? authorId)
+        {
+            var user = _userRepository.GetUserWithSubscr(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (user == null)
+                return null;
+            if (user.UserSubscrs == null || !(user.UserSubscrs.Any(it =>
+                it.Subscription.TypeId == typeId &&
+                ((genreId != null && it.Subscription.GenreId == genreId) || (authorId != null && it.Subscription.AuthorId == authorId)))))
+                return user;
+            else return null;
         }
 
         private List<Genre> GetGenres()
