@@ -11,15 +11,7 @@
         <div class="main_content_page">
             <div class="wrapper_modal_content">
                 <div class="modal_view">
-                    <div class="modal_name">
-                        <h4>Вход</h4>
-                       <button class="close_modal">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="/assets/img/close.svg">
-                            </a>
-                        </button>
-                    </div>
-
+                    <h4>Вход</h4>
                     <form method="post" asp-controller="Account" asp-action="Login"
                           asp-route-returnUrl="@Model.ReturnUrl">
 

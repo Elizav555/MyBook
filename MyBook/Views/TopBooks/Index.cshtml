@@ -1,11 +1,7 @@
 ﻿@using MyBook.Entities
 @model System.Linq.IQueryable<MyBook.Entities.Book>
 
-<div class="container">
-    <div class="content_wrapper ">
-        <div class="customCarousel">
-            <h1 class="h1 ms-4 mb-4">Топ книги</h1>
-            @await Component.InvokeAsync("BooksCarousel", new List<Book>(Model.ToList()))
-        </div>
-    </div>
+<div class="customCarousel container">
+    <h1 class="h1 ms-4 mb-4">Топ книги</h1>
+    @await Component.InvokeAsync("BooksCarousel", new List<Book>(Model.ToList()))
 </div>

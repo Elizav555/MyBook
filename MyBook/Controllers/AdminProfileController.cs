@@ -31,7 +31,6 @@ namespace MyBook.Controllers
             _bookRepository = bookRepository;
             _bookCenterRepository = bookCenterRepository;
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -51,6 +50,12 @@ namespace MyBook.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult EditSubscription()
+        {
+            return PartialView("_EditSubscription", new EditSubscrViewModel { SubscrTypes = GetTypes() });
+        }
+
 
         private List<Type> GetTypes()
         {

@@ -494,6 +494,54 @@ namespace MyBook.Migrations
                     b.ToTable("rating", (string)null);
                 });
 
+            modelBuilder.Entity("MyBook.Entities.SubscrAuthor", b =>
+                {
+                    b.Property<int>("SubscrAuthorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("subscr_author_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrAuthorId"));
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SubscrAuthorId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("subscr_author", (string)null);
+                });
+
+            modelBuilder.Entity("MyBook.Entities.SubscrGenre", b =>
+                {
+                    b.Property<int>("SubscrGenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("subscr_genre_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscrGenreId"));
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SubscrGenreId");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("subsc_genre", (string)null);
+                });
+
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
                     b.Property<int>("SubscriptionId")
@@ -503,15 +551,9 @@ namespace MyBook.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SubscriptionId"));
 
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("EndDate")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int?>("GenreId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("StartDate")
                         .IsRequired()
@@ -521,10 +563,6 @@ namespace MyBook.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("SubscriptionId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("GenreId");
 
                     b.HasIndex("TypeId");
 
@@ -859,25 +897,51 @@ namespace MyBook.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.Subscription", b =>
+            modelBuilder.Entity("MyBook.Entities.SubscrAuthor", b =>
                 {
                     b.HasOne("MyBook.Entities.Author", "Author")
-                        .WithMany("Subscriptions")
-                        .HasForeignKey("AuthorId");
+                        .WithMany("SubscrAuthors")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("MyBook.Entities.Genre", "Genre")
-                        .WithMany("Subscriptions")
-                        .HasForeignKey("GenreId");
-
-                    b.HasOne("MyBook.Entities.Type", "Type")
-                        .WithMany("Subscriptions")
-                        .HasForeignKey("TypeId")
+                    b.HasOne("MyBook.Entities.Subscription", "Subscr")
+                        .WithMany("SubscrAuthors")
+                        .HasForeignKey("SubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");
 
+                    b.Navigation("Subscr");
+                });
+
+            modelBuilder.Entity("MyBook.Entities.SubscrGenre", b =>
+                {
+                    b.HasOne("MyBook.Entities.Genre", "Genre")
+                        .WithMany("SubscrGenres")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyBook.Entities.Subscription", "Subscr")
+                        .WithMany("SubscrGenres")
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Genre");
+
+                    b.Navigation("Subscr");
+                });
+
+            modelBuilder.Entity("MyBook.Entities.Subscription", b =>
+                {
+                    b.HasOne("MyBook.Entities.Type", "Type")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Type");
                 });
@@ -909,7 +973,7 @@ namespace MyBook.Migrations
 
                     b.Navigation("ImgLinks");
 
-                    b.Navigation("Subscriptions");
+                    b.Navigation("SubscrAuthors");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Book", b =>
@@ -939,11 +1003,15 @@ namespace MyBook.Migrations
 
                     b.Navigation("FavGenres");
 
-                    b.Navigation("Subscriptions");
+                    b.Navigation("SubscrGenres");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Subscription", b =>
                 {
+                    b.Navigation("SubscrAuthors");
+
+                    b.Navigation("SubscrGenres");
+
                     b.Navigation("UserSubscr")
                         .IsRequired();
                 });

@@ -7,6 +7,6 @@
         public int Price { get; set; }
         public string? Description { get; set; }
 
-        public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

@@ -1,90 +1,84 @@
-﻿* {
+﻿body {
+    background: #f5f5f5 !important;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: 'Fira Sans', sans-serif;
+}
+*, *:after, *:before {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    border: 0;
+    transition: .5s ease-in-out;
 }
-
-    *, *:after, *:before,  {
-        box-sizing: border-box;
-        transition: .5s ease-in-out;
-    }
-
-body {
-    background: #f5f5f5;
+.container {
+    margin: 0 auto;
     width: 100%;
-    height: 100%;
-    color: black;
-    line-height: 1;
-    font-family: 'Fira Sans', sans-serif;
+    padding: 0;
 }
-.content_wrapper {
-    padding: 2em;
-}
-.main_title{
-    height: 100%;
-    margin: auto 0;
-}
-/*---------------------Header------------------------*/
+/*-----------------header--------------------*/
+
 header {
-    top: 0;
-    left: 0;
+    font-size: 14px;
+    padding-top: 1em;
+    width: 100%;
+    position: relative;
 }
-    header a {
-        color: rgb(179, 77, 0) !important;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.header{
+    padding: 0.2em 5em
+}
+
+header a {
+    color: rgb(179, 77, 0) !important;
+    text-decoration: none;
+}
 
 .navbar-nav li {
     font-weight: bold;
+    padding: 0 3.5em;
     white-space: nowrap;
 }
-.navbar {
-    justify-content: right;
-    text-align: right;
-    width: 100%;
-}
-.navbar button{
-    justify-content: right;
-    text-align: right;
-    margin-bottom: 1em;
-}
-.navbar-nav {
-    width: 100%;
-    padding: 0 1em;
-    justify-content: space-around;
+
+.logo_wrapper img {
+    width: 12em;
+    padding-right: 2em;
 }
 
-.logo img {
-    width: 150px;
-    cursor: pointer;
-    padding: 0 1em;
+.navbar input { 
+    color: grey;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
 }
-.upper {
-    padding: 1em 0 0.4em 0;
-}
+
 /*----------lower_header-----------------*/
+.wrapper_lower_header {
+    padding: 1em 1em;
+}
+
 .lower_header a {
+    font-size: 14px;
     color: rgb(179, 77, 0);
-    padding: 1em;
 }
 
 .lower_header {
-    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
 }
 
     .lower_header ul {
-        padding: 0.4em 1em;
+        padding: 1em 1em 1em 0;
+        margin: 0;
     }
 
         .lower_header ul li {
             display: inline;
             border-radius: 8px;
-            margin: 0.2em 0.3em;
-            background: white !important;
+            background: white;
+            padding: 0.9em;
+            margin: 0.7em 0.7em 0.7em 0;
             color: black;
-            white-space: nowrap;
         }
 
             .lower_header ul li:hover {
@@ -95,14 +89,26 @@ a:hover {
     text-decoration: none;
 }
 /*-------------border_picture----------------*/
+.border_picture {
+    margin: 0;
+    padding: 0 5em;
+}
 
 .inline_wrapper {
     display: flex;
-    justify-content: space-between;
+    padding: 3em 2em;
 }
-.inline_wrapper h1 {
-    font-size: 3.5rem;
+
+.content_wrapper h1 {
+    color: rgb(0, 0, 0);
     font-weight: bold;
+    font-size: 48px;
+    font-family: Fira Sans,Roboto,system-ui,serif;
+}
+
+.border_picture {
+    padding: 0 15em;
+    margin: 0;
 }
 
 .content_wrapper img {
@@ -110,44 +116,41 @@ a:hover {
 }
 /*-----------------delete-it-----------------------*/
 .picture_wrapper svg {
-    min-width: 200px;
-    max-width: 500px;
+    margin-top: -4em;
+    padding: 0;
+    width: 30em;
 }
-.picture_wrapper {
-    padding: 1em;
-    height: 100%;
-    margin: 0 auto;
-    
-}
-/*-----------------best_books--best_books---------------------*/
-.container_inner_block{
-    height: 100px !important;
+/*-----------------best_books-----------------------*/
+.best_books {
+    padding: 0;
+    margin: 0;
 }
 
 .best_books_wrapper {
     padding-bottom: 0;
+    margin-bottom: -500px;
 }
 
 .background_content {
     position: relative;
 }
+
 .inner_block {
     position: relative;
-    padding: 0 1.5em;
-    top: -41em;
+    top: -34em;
+    padding: 0 15em;
 }
 
 .inner_block_wrapper ul {
-    padding: 0 12em;
     display: flex;
     list-style-type: none;
     text-align: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
     .inner_block_wrapper ul li {
+        margin-right: 5em;
         white-space: nowrap;
-        padding: 0 0.5em
     }
 
 span {
@@ -221,6 +224,8 @@ span {
 /*------------------text_info--------------------*/
 .text_info {
     background: white;
+    padding: 3em 15em;
+    display: flex;
 }
 
 .text_about_app {
@@ -231,12 +236,14 @@ span {
     left: auto;
 }
 
-.text_blocks{
-    justify-content: space-between;
+.right_block {
+    padding-left: 5em;
 }
 /*-------------------upper_footer---------------------*/
 .upper_footer {
     background: #faefd2;
+    display: flex;
+    padding: 2em 15em;
 }
 
     .upper_footer ul li {
@@ -258,13 +265,38 @@ span {
 
 /*--------------------footer-----------------------*/
 
+footer {
+    padding: 0em 14em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.render_content{
+    margin-bottom: 7em;
+}
+.footer_wrapper {
+    padding: 2em 0 0.5em 0;
+    display: flex;
+    margin: 0;
+}
+
+.footer_cards img{
+    opacity: 0.1
+}
+.support_block_wrapper div {
+    display: flex;
+}
+
+.support_block_wrapper a {
+    margin: 1em;
+    padding: 0;
+}
 
 /*-------------------------------USER-PAGE-----------------------------*/
-.lk_out {
+.lk_out{
     display: flex;
     justify-content: space-between;
 }
-
 .sign_out {
     align-items: center;
     font-family: "Fira Sans", sans-serif;
@@ -279,11 +311,8 @@ span {
     margin: 0;
     height: 50px;
 }
-
 .user_page_upper {
-    text-align: center;
-    justify-content: center;
-    width: 100%;
+    padding: 1em 14em;
     font-family: Fira Sans,Roboto,system-ui,serif;
 }
 
@@ -292,29 +321,22 @@ span {
         font-size: 45px;
         line-height: 40px;
     }
-
 .user_links_wrapper ul {
     display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-
-.lk_wrap {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-}
-
 .user_links_wrapper li {
     margin: 0 0.3em;
 }
 
     .user_links_wrapper li :hover {
-        box-shadow: -23px 0 20px -23px rgba(0, 0, 0, .8), 23px 0 20px -23px rgba(0, 0, 0, .8)
+        box-shadow:
+            -23px 0 20px -23px rgba(0, 0, 0, .8),
+            23px 0 20px -23px rgba(0, 0, 0, .8)
     }
-
-.user_links_wrapper a {
+.user_links_wrapper a{
     color: rgb(190, 91, 4) !important;
     font-weight: 600;
     font-size: 16px;
@@ -330,6 +352,11 @@ span {
     width: 100%
 }
 
+.user_page_lower_wrapper {
+    padding: 2.5em 26em 2.5em 16em;
+    display: flex;
+    justify-content: space-around;
+}
 
 
     .user_page_lower_wrapper .blocks {
@@ -337,7 +364,8 @@ span {
     }
 
 .inner_content_block {
-    margin: 1.5em 0em;
+    width: 450px;
+    margin: 1.5em 1em;
     border: none;
     border-radius: 20px;
     box-shadow: 0px 0px 32px #d6d4d4;
@@ -485,13 +513,6 @@ span {
     border-radius: 12px;
     line-height: 24px;
 }
-.spec_but a{
-    align-items: center;
-    color: rgb(255, 255, 255);
-}
-    .spec_but a:hover {
-        color: rgb(255, 255, 255);
-    }
 
     .spec_but:hover {
         align-items: center;
@@ -507,7 +528,9 @@ span {
         line-height: 24px;
     }
 /*-------------------------------HISTORY----------------------------*/
-
+.sub_table_wrapper {
+    padding: 1em 14em 1em 14em;
+}
 
     .sub_table_wrapper table {
         margin: 3em 0;
@@ -536,11 +559,12 @@ table td {
 .wrapper_modal_content {
     background: white;
     font-family: "Fira Sans", sans-serif;
-    padding: 2em;
+    padding: 3em 2em;
     width: 430px;
     border: thin solid rgba(18, 34, 88, 0.12);
     border-radius: 15px;
     box-shadow: 0px 0px 32px #d6d4d4;
+    position: relative;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -550,45 +574,18 @@ table td {
     z-index: 2;
 }
 
-
-.modal_name {
-    display: flex;
-    justify-content: space-between;
-}
-
-.close_modal {
-    border: none;
-    background: none;
-}
-
 .modal_view h4 {
     position: relative;
-    font-size: 40px;
-    padding: 0;
-    margin: 0;
+    font-size: 45px;
     font-weight: bold;
-}
-
-.modal_view .form_label_reg {
-    margin: 0.2em 0;
 }
 
 .modal_view span {
     position: relative;
-    font-size: 12px;
-    padding: 0;
-    margin: 0;
+    font-size: 15px;
     font-weight: bold;
     color: red;
 }
-
-.modal_view label {
-    position: relative;
-    font-size: 14px;
-    padding: 0;
-    margin: 0;
-}
-
 .modal_wrapper {
     position: fixed;
     top: 0;
@@ -606,10 +603,6 @@ table td {
     overflow: hidden;
 }
 
-.modal_view .main_button {
-    margin: 0.2em 0 !important;
-}
-
 .reg_button {
     font-family: "Fira Sans", sans-serif;
     font-weight: 600;
@@ -618,20 +611,11 @@ table td {
     cursor: pointer;
     background: linear-gradient(rgb(255, 215, 84), rgb(255, 199, 44));
     color: rgb(0, 0, 0);
-    padding: 10px 16px;
+    padding: 12px 16px;
     border-radius: 12px;
     line-height: 24px;
     border: none;
     width: 100%;
-}
-
-.modal_view .reg_button {
-    padding: 7px 16px;
-    margin: 0 !important;
-}
-
-.modal_view .signin_button {
-    padding: 7px 16px;
 }
 
 .signin_button {
@@ -652,11 +636,13 @@ table td {
 
 .lower_label {
     padding: 2px 0 0 0;
-    font-size: 10px !important;
+    color: rgb(57, 63, 69);
+    font-size: 13px;
+    line-height: 1.43em;
 }
 
 .modal_view .main_button {
-    margin-top: 0.3em;
+    margin-top: 0.5em;
     background: white;
     width: 100%;
     align-items: center;
@@ -678,10 +664,6 @@ table td {
     font-weight: 600;
     font-size: 14px;
 }
-
-.modal_view button {
-    margin: 0.7em 0;
-}
 /*----------------------------SIGN-IN----------------------------------*/
 /*---------------------------EDIT-SUBSCRIBES----------------------------*/
 .have_subscriptions {
@@ -691,35 +673,35 @@ table td {
     border-radius: 20px;
 }
 
-
-
-.user_page_sub .have_subscriptions {
-    margin: 1em 0;
-    padding: 1.5em;
+.user_page_sub {
+    padding: 2.5em 14em;
 }
 
-.user_page_sub .name {
-    margin: 0px;
-    padding: 0px;
-    color: rgb(0, 0, 0);
-    font-family: Fira Sans,Roboto,system-ui,serif;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 32px;
-}
+    .user_page_sub .have_subscriptions {
+        margin: 1em 0;
+        padding: 1.5em;
+    }
 
-.user_page_sub label {
-    color: rgba(0,0,0,.65);
-    font-size: 14px;
-    line-height: 1.8;
-    padding-top: 0.5em;
-}
+    .user_page_sub .name {
+        margin: 0px;
+        padding: 0px;
+        color: rgb(0, 0, 0);
+        font-family: Fira Sans,Roboto,system-ui,serif;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+    }
+
+    .user_page_sub label {
+        color: rgba(0,0,0,.65);
+        font-size: 14px;
+        line-height: 1.8;
+        padding-top: 0.5em;
+    }
 
 .label_border {
-    text-align: center;
-    justify-content: center;
     padding: 4px 8px;
-    white-space: nowrap;
+    width: 12%;
     font-size: 14px;
     font-weight: bold;
     border-radius: 20px;
@@ -765,7 +747,13 @@ table td {
     padding: 0.5em 0;
 }
 
+.map_wrapper {
+    display: flex;
+}
 
+.map_content {
+    padding: 0 3em;
+}
 
 /*------------------about-author--------------------*/
 .about_author_wrapper {
@@ -875,55 +863,4 @@ table td {
 
 .upper_table_row {
     font-weight: bold;
-}
-
-.connection{
-   padding: 1em;
-}
-/*-------------------new_book--------------------------*/
-.customCarousel {
-    background: white;
-    padding: 1em 2em;
-    border-radius: 16px;
-}
-/*-------------------popular_book--------------------------*/
-.main_title_book{
-    font-size: 3.2em;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
-}
-.popular_topick {
-    background: white;
-    margin: 2em 0;
-    border-radius: 16px;
-    padding: 2em 1em;
-    box-shadow: 0 0 15px #f2f2f2f5;
-}
-.top_block {
-    box-shadow: 6px 8px 25px #dededef5;
-    margin: 0.3em 0.8em;
-    padding: 1em 2.5em;
-    border-radius: 16px;
-    text-align: center;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-
-}
-.top_block p {
-    margin: 0;
-    padding: 0;
-    color: grey;
-}
-.top_block h5{
-    font-weight: bold;
-}
-    .top_block img {
-        width: 4em;
-    }
-.sub{
-    background: white;
 }

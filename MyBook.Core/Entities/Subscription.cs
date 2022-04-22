@@ -11,9 +11,8 @@ namespace MyBook.Entities
 
         public virtual Type Type { get; set; }
         public virtual UserSubscr UserSubscr { get; set; } = null!;
-        public int? AuthorId { get; set; }
-        public virtual Author? Author { get; set; }
-        public int? GenreId { get; set; }
-        public virtual Genre? Genre { get; set; }
+
+        public virtual ICollection<SubscrAuthor>? SubscrAuthors { get; set; }
+        public virtual ICollection<SubscrGenre>? SubscrGenres { get; set; }
     }
 }

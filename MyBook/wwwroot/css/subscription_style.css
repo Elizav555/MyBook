@@ -128,6 +128,27 @@ body{
     border-color: rgb(232 232 232);
 }
 
+#sub-pay{
+    margin:5% 25% 0 20%;
+    width:65%;
+    background-color: white;
+    padding: 20px 10px 10px 10px;
+    border-radius: 12px;
+}
+
+.btn-lg{
+    margin-right: 4%;
+    margin-left: 2%;
+    margin-top: 4%;
+    padding: 10px;
+    width: 220px;
+    border-radius: 15px;
+    color:black;
+    background-color: white;
+    border-color:  #FFC72C;
+    border-width: thick;
+}
+
 
 .btn-lg:hover{
     background-color: white;
@@ -140,85 +161,62 @@ body{
     font-weight: bold;
 }
 
-/*#ms img{
+#ms img{
     display: block;
     padding-left: 0;
     margin-left: 0;
     width: 200px;
     height: 60px;
-}*/
-/*#pp img{
+}
+#pp img{
     margin-left: 30px;
     display: block;
     padding-left: 0;
     width: 120px;
     height: 60px;
-}*/
-h2, h4 {
-    font-weight: 600;
-    padding: 0.3em 0;
 }
-.r-only {
-    font-size: 17px;
-    color: red;
-}
-bold{
-    font-weight: 600;
-}
-.pay_but button {
-    display: block !important;
-}
-.but_wrap {
-    background: white;
-    width: 100%;
-    box-shadow: 0 0 10px #cfcccc;
-    border-radius: 12px;
-    margin: 0.5em 0;
-    border: none;
-}
-.but_wrap img{
-    width: 160px;
 
+.r-only{
+    font-size: 17px;
+    color:rosybrown;
 }
-.spec_img img{
-    width: 100px !important;
-}
-/*#pay-up{
+
+
+#pay-up{
     margin:5% 25% 0 20%;
     width:65%;
     background-color: white;
     padding: 20px 10px 10px 10px;
     border-radius: 12px;
-}*/
-/*#sum-up{
+}
+
+#sum-up{
     margin:5% 25% 0 20%;
     width:65%;
     background-color: white;
     padding: 20px 10px 10px 10px;
     border-radius: 12px;
-}*/
-/*.sub-type-price{
+}
+.sub-type-price{
     margin-top: 100px;
     margin-left: 80%;
-}*/
-#sign-up {
-    margin: 2% 30% 0 20%;
-    width: 65%;
+}
+
+#sign-up{
+    margin:2% 30% 0 20%;
+    width:65%;
     border-radius: 12px;
     text-align: center;
 }
-#sum-up p{
-    padding: 0;
-    margin: 0;
+
+.register-form{
+    margin:1% 25% 0 25%;
 }
-.register-form {
-    margin: 1% 25% 0 25%;
-}
-/*.sign-in-text{
+.sign-in-text{
     margin:5% 25% 0 34%;
     width:35%;
     text-align: center;
-}*/
+}
 .btn-block{
     margin: 0;
     padding: 0;
@@ -357,18 +355,6 @@ bold{
     width:65%;
     border-radius: 12px;
     text-align: center;
-}
-
-.buttons_sub {
-    width: 100%;
-    justify-content: space-around;
-    display: flex;
-}
-
-.btn_text img {
-    background: red;
-    justify-content: center;
-    width: 100%;
 }
 
 @media (max-width: 980px) {
