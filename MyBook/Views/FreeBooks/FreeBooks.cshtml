@@ -11,26 +11,28 @@
         <div class="container">
             <div class="content_wrapper">
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-md-8">
-                        <h1 class="h1">Все бесплатные книги</h1>
-                        <h5 class="h5">@Model.Count() книг</h5>
-                        <a asp-controller="FreeBooks" asp-action="FreeBooks"></a>
-                        @foreach (var book in Model)
-                        {
-                            @await Component.InvokeAsync("BookPreview", book)
-                        }
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="filters">
-                            <svg viewBox="0 0 24 24" fill="#000" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.237 3.056A2 2 0 015 2h14a2 2 0 011.664 3.11L15 13.605V18a2 2 0 01-.8 1.6l-2 1.5A2 2 0 019 19.5v-5.894L3.336 5.109a2 2 0 01-.1-2.053zM11 13v6.5l2-1.5v-5l6-9H5l6 9z" fill="#000"></path></svg> &nbsp Фильтры
-                            <div class="container-fluid">
-                                <div class="dropdown">
-                                    <button id="btn-lng-flt" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Язык
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Русский</a>
-                                        <a class="dropdown-item" href="#">Английский</a>
+                    <div class="content_wrapper">
+                        <div class="col-12 col-sm-6 col-md-8">
+                            <h1 class="main_title">Все бесплатные книги</h1>
+                            <h5 class="h5">@Model.Count() книг</h5>
+                            <a asp-controller="FreeBooks" asp-action="FreeBooks"></a>
+                            @foreach (var book in Model)
+                            {
+                                @await Component.InvokeAsync("BookPreview", book)
+                            }
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="filters">
+                                <svg viewBox="0 0 24 24" fill="#000" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.237 3.056A2 2 0 015 2h14a2 2 0 011.664 3.11L15 13.605V18a2 2 0 01-.8 1.6l-2 1.5A2 2 0 019 19.5v-5.894L3.336 5.109a2 2 0 01-.1-2.053zM11 13v6.5l2-1.5v-5l6-9H5l6 9z" fill="#000"></path></svg> &nbsp Фильтры
+                                <div class="container-fluid">
+                                    <div class="dropdown">
+                                        <button id="btn-lng-flt" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Язык
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Русский</a>
+                                            <a class="dropdown-item" href="#">Английский</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

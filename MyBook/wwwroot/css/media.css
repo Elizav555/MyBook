@@ -50,6 +50,11 @@
         padding: 0em !important;
     }
 }
+@media (max-width: 520px) {
+    .map{
+        display: none;
+    }
+}
 @media (max-width: 480px) {
     .inner_block {
         display: none;
