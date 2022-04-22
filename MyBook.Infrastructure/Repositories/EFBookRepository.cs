@@ -9,7 +9,7 @@ using Repositories;
 
 namespace MyBook.Infrastructure.Repositories;
 
-public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
+public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
 {
     public EfBookRepository(MyBookContext context) : base(context)
     { }

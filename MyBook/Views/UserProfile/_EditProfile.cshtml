@@ -1,39 +1,10 @@
-﻿@model MyBook.Models.EditProfileViewModel
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Edit Profile"] - MyBook</title>
-</head>
-<body>
-    <section class="user_page_upper container ">
-        <div class="row lk_wrap col-12">
-            <div class="lk_out">
-                <p>Личный кабинет</p>
-                <button class="sign_out">Покинуть страницу</button>
-            </div>
-            <nav class="user_links_wrapper">
-                <ul>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="EditProfile">Профиль</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="History">История</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="EditSubscription">Подписки</a>
-                    </li>
-                    </
-                </ul>
-            </nav>
-        </div>
-    </section>
-
-    <section class="user_page_lower ">
-        <div class="user_page_lower_wrapper container">
-            <div class="blocks pt-4">
-                <div class="inner_content_block col-lg-5 col-md-9 col-sm-11 col-11">
+﻿@using MyBook.Models
+@model MyBook.Models.UserProfileViewModel
+<section class="user_page_lower">
+    <div class="user_page_lower_wrapper container">
+        <div class="row pt-5 pb-5">
+            <div class="col-5">
+                <div class="inner_content_block w-100">
                     <div class="wrapper_content_inner_block">
                         <form method="post" asp-controller="UserProfile" asp-action="EditProfile">
                             <div asp-validation-summary="ModelOnly"></div>
@@ -56,15 +27,15 @@
                             </div>
                             <div class="form-group form_label">
                                 <label asp-for="BirthDate" for="surnameForm">Дата рождения</label>
-                                <input asp-for="BirthDate" type="date" id="dateForm" min="1922-04-01" max="2020-04-30" aria-describedby="emailHelp">
+                                <input asp-for="BirthDate" type="date" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" class="form-control" id="dateForm" min="1922-04-01" max="2020-04-30" aria-describedby="emailHelp">
                                 <span asp-validation-for="BirthDate" class="text-danger"></span>
                             </div>
                             <button class="main_button" type="submit">Сохранить</button>
                         </form>
                     </div>
                 </div>
-                <div class="inner_content_block col-lg-5 col-md-9 col-sm-11 col-11">
-                    <div class="wrapper_content_inner_block ">
+                <div class="inner_content_block">
+                    <div class="wrapper_content_inner_block">
                         <span>Социальные сети</span>
                         <div class="color_block" style="background: rgb(59, 89, 152);">
                             <p>VK<p>
@@ -77,12 +48,14 @@
                     </div>
                 </div>
             </div>
-
-            @await Html.PartialAsync("_EditPassword",new EditPasswordViewModel{ Id = Model.Id})
+            <div class="col-4">
+                <div class="w-100">
+                    @await Html.PartialAsync("_EditPassword",new EditPasswordViewModel{ Id = Model.Id})
+                </div>
+            </div>
         </div>
-    </section>
-    @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    </div>
+</section>
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
     }
-</body>
-</html>

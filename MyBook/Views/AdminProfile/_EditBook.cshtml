@@ -1,5 +1,5 @@
 ﻿@using System.Text
-@model MyBook.Models.Admin.EditBookViewModel
+@model MyBook.Models.Admin.AdminViewModel
 <section class="admin_functional">
     <h2>Получить информацию о книге</h2>
     <form class="form-inline">
@@ -32,14 +32,18 @@
                         <td>@genres.ToString()</td>
                         <td>
                             <div class="flex_but">
-                                <button class="spec_but">Редактировать</button>
+                                <button class="spec_but" data-toggle="modal" data-target="#EditBookModal">
+                                    Редактировать
+                                </button>
                                 <button class="spec_but">Удалить</button>
                             </div>
                         </td>
                     </tr>
+                    <partial name="../Partials/_EditBookModal" model="book"></partial>
                 }
             </table>
         </div>
         <button class="spec_but">Добавить книгу</button>
     </div>
 </section>
+
