@@ -1,5 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using Repositories;
 
 namespace MyBook.Infrastructure.Repositories;
@@ -46,5 +51,17 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
             .ThenInclude(book => book.Genre)
             .Include(book => book.ImgLinks)
             .FirstOrDefault();
+    }
+    
+    public IQueryable<Book> GetFilterBooks(string filterLanguage, string filterGenre)
+    {
+        var tempBooks = DbSet
+            .Where(book => book.Language == filterLanguage)
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description);
+        var resultBooks = tempBooks.Where(book => book.BookGenres.FirstOrDefault()!.Genre.Name == filterGenre);
+        return resultBooks;
     }
 }
