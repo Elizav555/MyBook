@@ -8,7 +8,8 @@
     <title>@ViewData["Profile"] - MyBook</title>
 </head>
 <body>
-    <section class="user_page_upper">
+    <section class="user_page_upper container">
+        <div class="row lk_wrap col-12" >
         <div class="lk_out">
             <p>Личный кабинет</p>
             <form method="post" asp-action="Logout"><button type="submit" class="sign_out" asp-action="Logout">Выйти из аккаунта</button></form>
@@ -28,6 +29,7 @@
                 </
             </ul>
         </nav>
+        </div>
     </section>
 
     <div id="containerProfile">
