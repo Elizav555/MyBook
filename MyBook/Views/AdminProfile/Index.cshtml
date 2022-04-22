@@ -12,21 +12,30 @@
             <div class="wrapper_lower_header">
                 <ul>
                     <li>
-                        <a id="subscr" @*asp-action="EditSubscription"*@>Управлять подпиской</a>
+                        <a id="subscr">Управлять подпиской</a>
                     </li>
                     <li>
-                        <a id="book" @*asp-action="EditBook"*@>Изменить информацию о книге</a>
+                        <a id="book">Изменить информацию о книге</a>
                     </li>
                     <li>
-                        <a id="author" @*asp-action="EditAuthor"*@>Редактировать информацию об авторе</a>
+                        <a id="author">Редактировать информацию об авторе</a>
                     </li>
                     <li>
-                        <a id="bookCenter" @*asp-action="EditBookCenter"*@>Изменить информацию о магазине</a>
+                        <a id="bookCenter">Изменить информацию о магазине</a>
+                    </li>
+                    <li>
+                        <a id="user">Управлять пользователями</a>
                     </li>
                 </ul>
             </div>
         </div>
     </header>
+    <input type="hidden" asp-for="CurrentPage" id="current">
+    <div id="containerSubscription">
+        @{
+            await Html.RenderPartialAsync("_EditSubscription", Model);
+        }
+    </div>
     <div id="containerAuthor">
         @{
             await Html.RenderPartialAsync("_EditAuthor", Model);
@@ -40,11 +49,6 @@
     <div id="containerBookCenter">
         @{
             await Html.RenderPartialAsync("_EditBookCenter", Model);
-        }
-    </div>
-    <div id="containerSubscription">
-        @{
-            await Html.RenderPartialAsync("_EditSubscription", Model);
         }
     </div>
     <div id="containerUser">

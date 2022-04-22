@@ -26,7 +26,11 @@
                             <td>
                                 @subscr.Type.TypeName
                                 <div class="flex_but">
-                                    <button class="spec_but">Удалить</button>
+                                    <form method="post" asp-action="DeleteUserSubscr">
+                                        <input type="hidden" value="@user.Id" id="id">
+                                        <input type="hidden" value="@subscr" id="subscr">
+                                        <button class="spec_but" type="submit">Удалить</button>
+                                    </form>
                                     <button class="spec_but">Добавить</button>
                                 </div>
                             </td>

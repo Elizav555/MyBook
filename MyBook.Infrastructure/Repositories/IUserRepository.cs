@@ -11,5 +11,6 @@ namespace MyBook.Infrastructure.Repositories
     public interface IUserRepository : IGenericRepository<User>
     {
         public User GetUserWithSubscr(string userId);
+        public IQueryable<User> GetUsersWithSubscr();
     }
 }

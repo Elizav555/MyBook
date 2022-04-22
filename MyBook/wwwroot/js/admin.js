@@ -1,10 +1,28 @@
 ﻿$(document).ready(function () {
-    $('#containerAuthor').show();
+    $('#containerAuthor').hide();
     $('#containerSubscription').hide();
     $('#containerBook').hide();
     $('#containerBookCenter').hide();
     $('#containerUser').hide();
-
+    switch ($('#current').val()) {
+        case "Author":
+            $('#containerAuthor').show();
+            break;
+        case "Book":
+            $('#containerBook').show();
+            break;
+        case "BookCenter":
+            $('#containerBookCenter').show();
+            break;
+        case "User":
+            $('#containerUser').show();
+            break;
+        case "Subscription":
+            $('#containerSubscription').show();
+            break;
+        default:
+            $('#containerSubscription').show();
+    }
     $('#book').click(function () {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
@@ -40,6 +58,15 @@
         $('#containerBook').hide();
         $('#containerBookCenter').show();
         $('#containerUser').hide();
+        return false;
+    });
+
+    $('#user').click(function () {
+        $('#containerAuthor').hide();
+        $('#containerSubscription').hide();
+        $('#containerBook').hide();
+        $('#containerBookCenter').hide();
+        $('#containerUser').show();
         return false;
     });
 });
