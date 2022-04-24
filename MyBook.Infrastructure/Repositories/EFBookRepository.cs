@@ -53,10 +53,30 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
             .FirstOrDefault();
     }
     
-    public IQueryable<Book> GetFilterBooks(string filterLanguage, string filterGenre)
+    public IQueryable<Book> GetFilterBooksLanguageAndGenre(string filterLanguage, string filterGenre)
     {
         return DbSet
-            .Where(book => book.Language.EndsWith(filterLanguage) && book.BookGenres.First().Genre.Name == filterGenre)
+            .Where(book => book.Language.Contains(filterLanguage) && book.BookGenres.First().Genre.Name.Contains(filterGenre))
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description)
+            .Include(book => book.BookGenres);
+    }
+    public IQueryable<Book> GetFilterBooksLanguage(string filterLanguage)
+    {
+        return DbSet
+            .Where(book => book.Language.Contains(filterLanguage))
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description)
+            .Include(book => book.BookGenres);
+    }
+    public IQueryable<Book> GetFilterBooksGenre(string filterGenre)
+    {
+        return DbSet
+            .Where(book => book.BookGenres.First().Genre.Name.Contains(filterGenre))
             .Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author)
             .Include(book => book.ImgLinks)

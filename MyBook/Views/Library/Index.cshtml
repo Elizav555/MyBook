@@ -1,73 +1,84 @@
 ﻿@model MyBook.ViewModels.LibraryViewModel
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Библиотека</title>
-</head>
-<body>
-    <div>
-        <div class="container">
+   <head>
+      <title>Библиотека</title>
+   </head>
+   <body>
+      <div>
+         <div class="container">
             <div class="content_wrapper">
-                <h1 class="main_title_book">Популярные категории</h1>
-                <div class="popular_topick">
-                    <div class="row">
-                        <h2>Рейтинг категорий</h2>
-                        <div class="d-flex w-100">
-                            <div class="top_block">
-                                <div>
-                                    <h5>Фантастика</h5>
-                                    <p>201 книга</p>
-                                </div>
-                                <div>
-                                    <img src="/assets/img/first.png" alt="">
-                                </div>
-                            </div>
-                            <div class="top_block ">
-                                 <div>
-                                    <h5>Фентези</h5>
-                                    <p>531 книга</p>
-                                </div>
-                                <div>
-                                    <img src="/assets/img/second.png" alt="">
-                                </div>
-                                
-                            </div>
-                            <div class="top_block">
-                                <div>
-                                   <h5>Бизнес-книги</h5>
-                                    <p>121 книга</p>
-                                </div>
-                                <div>
-                                    <img src="/assets/img/third.png" alt="">
-                                </div>
-                                 
-                            </div>
-                            <div class="top_block">
-                                <div>
-                                   <h5>Романы</h5>
-                                    <p>563 книга</p>
-                                </div>
-                                <div>
-                                    <img src="/assets/img/fourth.png" alt="">
-                                </div>
-                            </div>
+               <h1 class="main_title_book">Популярные категории</h1>
+               <div class="popular_topick">
+                  <div class="row">
+                     <h2>Рейтинг категорий</h2>
+                     <div class="d-flex w-100">
+                        <div class="top_block">
+                           <div>
+                              <h5>Фантастика</h5>
+                              <p>201 книга</p>
+                           </div>
+                           <div>
+                              <img src="/assets/img/first.png" alt="">
+                           </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="top_block ">
+                           <div>
+                              <h5>Фентези</h5>
+                              <p>531 книга</p>
+                           </div>
+                           <div>
+                              <img src="/assets/img/second.png" alt="">
+                           </div>
+                        </div>
+                        <div class="top_block">
+                           <div>
+                              <h5>Бизнес-книги</h5>
+                              <p>121 книга</p>
+                           </div>
+                           <div>
+                              <img src="/assets/img/third.png" alt="">
+                           </div>
+                        </div>
+                        <div class="top_block">
+                           <div>
+                              <h5>Романы</h5>
+                              <p>563 книга</p>
+                           </div>
+                           <div>
+                              <img src="/assets/img/fourth.png" alt="">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
             <div class="content_wrapper">
-            <div class="customCarousel container mb-4">
-                <h1 class="h1 ms-4 mb-2">Все книги</h1>
-                <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
-                @await Component.InvokeAsync("BooksCarousel", Model.AllBooks)
+               <div class="customCarousel container mb-4">
+                  <h1 class="h1 ms-4 mb-2">Все книги</h1>
+                  <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
+                  <form asp-action="Index" asp-controller="Library" method="POST">
+                     <label class="Search">Язык </label>
+                     @Html.DropDownList("filterLanguage", Model.Languages as List
+                        <SelectListItem>
+                        )
+                     <br>
+                     <label class="Search">Жанр </label>
+                     @Html.DropDownList("filterGenre", Model.Genres as List
+                        <SelectListItem>
+                        )
+                     <br> 
+                     <input  name="filter" value="Отфильтровать" type="submit"  class="btn btn-default" /> 
+                  </form>
+                  @await Component.InvokeAsync("BooksCarousel", Model.AllBooks)
+               </div>
+               <div class="customCarousel container mb-4">
+                  <h1 class="h1 ms-4 mb-2">Все авторы</h1>
+                  <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllAuthors.Count() авторов</h3>
+                  @await Component.InvokeAsync("AuthorsCarousel", Model.AllAuthors)
+               </div>
             </div>
-            <div class="customCarousel container mb-4">
-                <h1 class="h1 ms-4 mb-2">Все авторы</h1>
-                <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllAuthors.Count() авторов</h3>
-                @await Component.InvokeAsync("AuthorsCarousel", Model.AllAuthors)
-            </div>
-            </div>
-        </div>
-    </div>
-</body>
+         </div>
+      </div>
+   </body>
 </html>

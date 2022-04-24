@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
+using MyBook.Infrastructure.Services;
 using MyBook.ViewModels;
 using Repositories;
 
@@ -12,29 +13,49 @@ public class LibraryController: Controller
 {
     private LibraryViewModel _viewModel;
     private readonly EfBookRepository _bookRepository;
+    private readonly EFGenreRepository _genreRepository;
     private readonly EfAuthorRepository _authorRepository;
-    private readonly IGenericRepository<Book> bookRepository;
-    private readonly IGenericRepository<Genre> genreRepository;
+
+    private readonly IGenresFilterGetter _genresFilterGetter;
+    private readonly ILanguageFilterGetter _languageFilterGetter;
+    
     
     public LibraryController(
-        EfBookRepository _bookRepository,
-        EfAuthorRepository _authorRepository, IGenericRepository<Book> bookRepository, IGenericRepository<Genre> genreRepository)
+        EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
+        EfAuthorRepository _authorRepository, 
+        IGenresFilterGetter genresFilterGetter, ILanguageFilterGetter languageFilterGetter)
     {
         this._bookRepository = _bookRepository;
+        this._genreRepository = _genreRepository;
         this._authorRepository = _authorRepository;
-        this.bookRepository = bookRepository;
-        this.genreRepository = genreRepository;
+        _genresFilterGetter = genresFilterGetter;
+        _languageFilterGetter = languageFilterGetter;
     }
 
     public async Task<IActionResult> Index(string filterLanguage, string filterGenre)
     {
-        if (String.IsNullOrEmpty(filterLanguage) || filterLanguage=="Все")
+        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage=="Все") && (String.IsNullOrEmpty(filterGenre) ||
+                filterGenre=="Все"))
         {
-            _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, bookRepository, genreRepository);
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository,
+                _genresFilterGetter, _languageFilterGetter);
+        }
+        else
+        if ((!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre) ||
+                filterGenre == "Все"))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage, 
+                filterGenre,  _genresFilterGetter, _languageFilterGetter);
+        }
+        else if (String.IsNullOrEmpty(filterLanguage) || filterLanguage=="Все")
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterGenre,
+                _genresFilterGetter, _languageFilterGetter);
         }
         else
         {
-            _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, bookRepository, filterLanguage, genreRepository, filterGenre);
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
+                _genresFilterGetter, _languageFilterGetter);
         }
 
         return View(_viewModel);
