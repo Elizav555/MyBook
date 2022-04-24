@@ -31,13 +31,6 @@ public class FreeBooksController : Controller
     [Route("[controller]/[action]/{pageCount:int?}")]
     public async Task<IActionResult> FreeBooks(string filterLanguage, string filterGenre)
     {
-        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
-                filterGenre == "Все"))
-        {
-            _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
-                _languageFilterGetter);
-        }
-        
         if ((!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre) ||
                 filterGenre == "Все"))
         {
@@ -55,7 +48,12 @@ public class FreeBooksController : Controller
             _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository,
                 _genresFilterGetter, _languageFilterGetter, filterGenre);
         }
-        
+        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
+                filterGenre == "Все"))
+        {
+            _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
+                _languageFilterGetter);
+        }
 
         return View(_viewModel);
     }

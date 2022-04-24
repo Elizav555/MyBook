@@ -31,15 +31,8 @@ public class LibraryController : Controller
 
     public async Task<IActionResult> Index(string filterLanguage, string filterGenre,string sortOrder)
     {
-        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
-        filterGenre == "Все"))
-        {
-            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
-                _languageFilterGetter);
-        }
-        else
         if ((!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre) ||
-        filterGenre == "Все"))
+                filterGenre == "Все"))
         {
             _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
                 filterGenre, _genresFilterGetter, _languageFilterGetter);
@@ -56,6 +49,13 @@ public class LibraryController : Controller
                 _genresFilterGetter, _languageFilterGetter, filterGenre);
         }
 
+        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
+                filterGenre == "Все"))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
+                _languageFilterGetter);
+        }
+        
         switch (sortOrder)
         {
             case "name":
