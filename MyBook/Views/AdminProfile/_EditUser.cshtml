@@ -32,6 +32,14 @@
                             </td>
                             <td>@subscr.EndDate</td>
                         }
+                        <td> </td>
+                        <td> </td>
+                        <td>
+                            <button class="spec_but" data-toggle="modal" data-target="#AddSubscriptionToUserModal">
+                                Назначить подписку
+                            </button>
+                        </td>
+                        <partial name="../Partials/_AddSubscriptionToUserModal" model="user"></partial>
                     </tr>
                 }
             </table>
