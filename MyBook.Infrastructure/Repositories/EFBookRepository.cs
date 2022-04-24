@@ -20,6 +20,13 @@ public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
         return DbSet.Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description);
     }
+    public IQueryable<Book> GetAllFreeBooks()
+    {
+        return DbSet
+            .Where(book => book.Description.Price == " ")
+            .Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
+            .Include(book => book.Description);
+    }
 
     public IQueryable<Book> GetFreeBooks()
     {
@@ -72,5 +79,29 @@ public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
             .Include(book => book.Description);
         var resultBooks = tempBooks.Where(book => book.BookGenres.FirstOrDefault()!.Genre.Name == filterGenre);
         return resultBooks;
+    }
+    
+    public IQueryable<Book> GetFilterFreeBooksLanguageAndGenre(string filterLanguage, string filterGenre)
+    {
+        return DbSet
+            .Where(book => book.Language.Contains(filterLanguage) &&
+                           book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.Description.Price == " ").Include(book => book.AuthorBooks)
+            
+            .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
+            .Include(book => book.Description).Include(book => book.BookGenres);
+    }
+
+    public IQueryable<Book> GetFilterFreeBooksLanguage(string filterLanguage)
+    {
+        return DbSet.Where(book => book.Language.Contains(filterLanguage) && book.Description.Price == " ").Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
+            .Include(book => book.Description).Include(book => book.BookGenres);
+    }
+
+    public IQueryable<Book> GetFilterFreeBooksGenre(string filterGenre)
+    {
+        return DbSet.Where(book => book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.Description.Price == " ")
+            .Include(book => book.AuthorBooks).ThenInclude(authorBook => authorBook.Author)
+            .Include(book => book.ImgLinks).Include(book => book.Description).Include(book => book.BookGenres);
     }
 }

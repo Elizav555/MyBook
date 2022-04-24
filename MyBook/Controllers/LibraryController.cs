@@ -44,15 +44,16 @@ public class LibraryController : Controller
             _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
                 filterGenre, _genresFilterGetter, _languageFilterGetter);
         }
-        else if (String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все")
-        {
-            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterGenre,
-                _genresFilterGetter, _languageFilterGetter);
-        }
-        else
+        if ((String.IsNullOrEmpty(filterGenre) || filterGenre == "Все") && (!String.IsNullOrEmpty(filterLanguage)))
         {
             _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
                 _genresFilterGetter, _languageFilterGetter);
+        }
+        
+        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre)))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository,
+                _genresFilterGetter, _languageFilterGetter, filterGenre);
         }
 
         return View(_viewModel);

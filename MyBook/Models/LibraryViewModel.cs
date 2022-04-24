@@ -46,7 +46,7 @@ public class LibraryViewModel
         _languageFilterGetter = languageFilterGetter;
         FilterLanguage = filterLanguage;
         FilterGenre = filterGenre;
-        AllBooks = GetFilterBooksLanguageAndGenres();
+        AllBooks = _bookRepository.GetFilterBooksLanguageAndGenre(FilterLanguage, FilterGenre).ToList();
         AllAuthors = authorRepository.GetAllAuthors().ToList();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
@@ -61,40 +61,24 @@ public class LibraryViewModel
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
         FilterLanguage = filterLanguage;
-        AllBooks = GetFilterBooksLanguage();
+        AllBooks = _bookRepository.GetFilterBooksLanguage(FilterLanguage).ToList();
         AllAuthors = authorRepository.GetAllAuthors().ToList();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
 
     public LibraryViewModel(EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
-        EfAuthorRepository authorRepository, IGenericRepository<Book> bookRepository,
-        IGenericRepository<Genre> genreRepository, string filterGenre, IGenresFilterGetter genresFilterGetter,
-        ILanguageFilterGetter languageFilterGetter)
+        EfAuthorRepository authorRepository, IGenresFilterGetter genresFilterGetter,
+        ILanguageFilterGetter languageFilterGetter, string filterGenre)
     {
         this._bookRepository = _bookRepository;
         this._genreRepository = _genreRepository;
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
         FilterGenre = filterGenre;
-        AllBooks = GetFilterBooksGenres();
+        AllBooks = _bookRepository.GetFilterBooksGenre(FilterGenre).ToList();
         AllAuthors = authorRepository.GetAllAuthors().ToList();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
-    }
-
-    public List<Book> GetFilterBooksLanguageAndGenres()
-    {
-        return _bookRepository.GetFilterBooksLanguageAndGenre(FilterLanguage, FilterGenre).ToList();
-    }
-
-    public List<Book> GetFilterBooksLanguage()
-    {
-        return _bookRepository.GetFilterBooksLanguage(FilterLanguage).ToList();
-    }
-
-    public List<Book> GetFilterBooksGenres()
-    {
-        return _bookRepository.GetFilterBooksGenre(FilterGenre).ToList();
     }
 }
