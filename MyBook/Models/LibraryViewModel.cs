@@ -12,8 +12,8 @@ public class LibraryViewModel
 {
     private readonly EfBookRepository _bookRepository;
     private readonly IGenericRepository<Genre> genreRepository;
-    public List<Book> AllBooks { get; set; }
-    public List<Author> AllAuthors { get; set; }
+    public IQueryable<Book> AllBooks { get; set; }
+    public IQueryable<Author> AllAuthors { get; set; }
 
     public readonly string FilterLanguage;
     public readonly string FilterGenre;
@@ -28,8 +28,8 @@ public class LibraryViewModel
     {
         this._bookRepository = _bookRepository;
         this.genreRepository = genreRepository;
-        AllBooks = _bookRepository.GetAllBooks().ToList();
-        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        AllBooks = _bookRepository.GetAllBooks();
+        AllAuthors = authorRepository.GetAllAuthors();
         Languages = GetLanguages();
         Genres = GetGenres();
     }
@@ -43,15 +43,15 @@ public class LibraryViewModel
         this.genreRepository = genreRepository;
         FilterLanguage = filterLanguage;
         FilterGenre = filterGenre;
-        AllBooks = GetFilterBooks().ToList();
-        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        AllBooks = GetFilterBooks();
+        AllAuthors = authorRepository.GetAllAuthors();
         Languages = GetLanguages();
         Genres = GetGenres();
     }
 
-    public List<Book> GetFilterBooks()
+    public IQueryable<Book> GetFilterBooks()
     {
-        return _bookRepository.GetFilterBooks(FilterLanguage, FilterGenre).ToList();
+        return _bookRepository.GetFilterBooks(FilterLanguage, FilterGenre);
     }
 
     private List<SelectListItem> GetLanguages()

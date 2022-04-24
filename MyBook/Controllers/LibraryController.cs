@@ -24,8 +24,10 @@ public class LibraryController: Controller
         this.genreRepository = genreRepository;
     }
 
-    public async Task<IActionResult> Index(string filterLanguage, string filterGenre)
+    public async Task<IActionResult> Index(string filterLanguage, string filterGenre,string sortOrder)
     {
+        if (String.IsNullOrEmpty(sortOrder))
+            sortOrder = "name";
         if (String.IsNullOrEmpty(filterLanguage) || filterLanguage=="Все")
         {
             _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, genreRepository);
@@ -35,6 +37,19 @@ public class LibraryController: Controller
             _viewModel = new LibraryViewModel(_bookRepository, _authorRepository, filterLanguage, genreRepository, filterGenre);
         }
 
+        switch (sortOrder)
+        {
+            case "name":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.Name);
+                break;
+            }
+            case "date":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.PublishedDate);
+                break;
+            }
+        }
         return View(_viewModel);
     } 
     
