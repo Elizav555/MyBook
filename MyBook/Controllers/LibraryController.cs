@@ -29,7 +29,7 @@ public class LibraryController : Controller
         _languageFilterGetter = languageFilterGetter;
     }
 
-    public async Task<IActionResult> Index(string filterLanguage, string filterGenre)
+    public async Task<IActionResult> Index(string filterLanguage, string filterGenre,string sortOrder)
     {
         if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
         filterGenre == "Все"))
@@ -56,6 +56,19 @@ public class LibraryController : Controller
                 _genresFilterGetter, _languageFilterGetter, filterGenre);
         }
 
+        switch (sortOrder)
+        {
+            case "name":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.Name);
+                break;
+            }
+            case "date":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.PublishedDate);
+                break;
+            }
+        }
         return View(_viewModel);
     }
 }
