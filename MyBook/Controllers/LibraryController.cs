@@ -29,33 +29,9 @@ public class LibraryController : Controller
         _languageFilterGetter = languageFilterGetter;
     }
 
-    public async Task<IActionResult> Index(string filterLanguage, string filterGenre,string sortOrder)
+    public async Task<IActionResult> Index(string filterLanguage, string filterGenre, string sortOrder)
     {
-        if ((!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre) ||
-                filterGenre == "Все"))
-        {
-            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
-                filterGenre, _genresFilterGetter, _languageFilterGetter);
-        }
-        if ((String.IsNullOrEmpty(filterGenre) || filterGenre == "Все") && (!String.IsNullOrEmpty(filterLanguage)))
-        {
-            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
-                _genresFilterGetter, _languageFilterGetter);
-        }
-        
-        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre)))
-        {
-            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository,
-                _genresFilterGetter, _languageFilterGetter, filterGenre);
-        }
-
-        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
-                filterGenre == "Все"))
-        {
-            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
-                _languageFilterGetter);
-        }
-        
+        _viewModel = InitializeViewModel(filterLanguage, filterGenre);
         switch (sortOrder)
         {
             case "name":
@@ -69,6 +45,59 @@ public class LibraryController : Controller
                 break;
             }
         }
+
         return View(_viewModel);
+    }
+
+    public bool IsInputEmpty(string filterLanguage, string filterGenre)
+    {
+        return (!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") &&
+               (!String.IsNullOrEmpty(filterGenre) || filterGenre == "Все");
+    }
+
+    public bool IsAllSelected(string filterLanguage, string filterGenre)
+    {
+        return (String.IsNullOrEmpty(filterGenre) || filterGenre == "Все") && (!String.IsNullOrEmpty(filterLanguage));
+    }
+
+    public bool IsGenreSelected(string filterLanguage, string filterGenre)
+    {
+        return (String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") &&
+               (!String.IsNullOrEmpty(filterGenre));
+    }
+
+    public bool IsLanguageSelected(string filterLanguage, string filterGenre)
+    {
+        return (String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") &&
+               (String.IsNullOrEmpty(filterGenre) || filterGenre == "Все");
+    }
+
+    public LibraryViewModel InitializeViewModel(string filterLanguage, string filterGenre)
+    {
+        if (IsInputEmpty(filterLanguage, filterGenre))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
+                filterGenre, _genresFilterGetter, _languageFilterGetter);
+        }
+
+        if (IsAllSelected(filterLanguage, filterGenre))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
+                _genresFilterGetter, _languageFilterGetter);
+        }
+
+        if (IsGenreSelected(filterLanguage, filterGenre))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
+                _languageFilterGetter, filterGenre);
+        }
+
+        if (IsLanguageSelected(filterLanguage, filterGenre))
+        {
+            _viewModel = new LibraryViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
+                _languageFilterGetter);
+        }
+
+        return _viewModel;
     }
 }

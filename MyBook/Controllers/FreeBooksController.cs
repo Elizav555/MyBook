@@ -27,35 +27,63 @@ public class FreeBooksController : Controller
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
     }
-    
+
     [Route("[controller]/[action]/{pageCount:int?}")]
     public async Task<IActionResult> FreeBooks(string filterLanguage, string filterGenre)
     {
-        if ((!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre) ||
-                filterGenre == "Все"))
+        _viewModel = InitializeViewModel(filterLanguage, filterGenre);
+        return View(_viewModel);
+    }
+
+    public bool IsInputEmpty(string filterLanguage, string filterGenre)
+    {
+        return (!String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") &&
+               (!String.IsNullOrEmpty(filterGenre) || filterGenre == "Все");
+    }
+
+    public bool IsAllSelected(string filterLanguage, string filterGenre)
+    {
+        return (String.IsNullOrEmpty(filterGenre) || filterGenre == "Все") && (!String.IsNullOrEmpty(filterLanguage));
+    }
+
+    public bool IsGenreSelected(string filterLanguage, string filterGenre)
+    {
+        return (String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") &&
+               (!String.IsNullOrEmpty(filterGenre));
+    }
+
+    public bool IsLanguageSelected(string filterLanguage, string filterGenre)
+    {
+        return (String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") &&
+               (String.IsNullOrEmpty(filterGenre) || filterGenre == "Все");
+    }
+
+    public FreeBooksViewModel InitializeViewModel(string filterLanguage, string filterGenre)
+    {
+        if (IsInputEmpty(filterLanguage, filterGenre))
         {
             _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
                 filterGenre, _genresFilterGetter, _languageFilterGetter);
         }
-        if ((String.IsNullOrEmpty(filterGenre) || filterGenre == "Все") && (!String.IsNullOrEmpty(filterLanguage)))
+
+        if (IsAllSelected(filterLanguage, filterGenre))
         {
             _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository, filterLanguage,
                 _genresFilterGetter, _languageFilterGetter);
         }
-        
-        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (!String.IsNullOrEmpty(filterGenre)))
+
+        if (IsGenreSelected(filterLanguage, filterGenre))
         {
             _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository,
                 _genresFilterGetter, _languageFilterGetter, filterGenre);
         }
-        if ((String.IsNullOrEmpty(filterLanguage) || filterLanguage == "Все") && (String.IsNullOrEmpty(filterGenre) ||
-                filterGenre == "Все"))
+
+        if (IsLanguageSelected(filterLanguage, filterGenre))
         {
-            _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository, _genresFilterGetter,
-                _languageFilterGetter);
+            _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository,
+                _genresFilterGetter, _languageFilterGetter);
         }
 
-        return View(_viewModel);
+        return _viewModel;
     }
-    
 }
