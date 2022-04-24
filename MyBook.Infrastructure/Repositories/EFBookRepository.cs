@@ -9,7 +9,7 @@ using Repositories;
 
 namespace MyBook.Infrastructure.Repositories;
 
-public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
+public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
 {
     public EfBookRepository(MyBookContext context) : base(context)
     { }
@@ -53,34 +53,15 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
             .FirstOrDefault();
     }
     
-    public IQueryable<Book> GetFilterBooksLanguageAndGenre(string filterLanguage, string filterGenre)
+    public IQueryable<Book> GetFilterBooks(string filterLanguage, string filterGenre)
     {
-        return DbSet
-            .Where(book => book.Language.Contains(filterLanguage) && book.BookGenres.First().Genre.Name.Contains(filterGenre))
+        var tempBooks = DbSet
+            .Where(book => book.Language == filterLanguage)
             .Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author)
             .Include(book => book.ImgLinks)
-            .Include(book => book.Description)
-            .Include(book => book.BookGenres);
-    }
-    public IQueryable<Book> GetFilterBooksLanguage(string filterLanguage)
-    {
-        return DbSet
-            .Where(book => book.Language.Contains(filterLanguage))
-            .Include(book => book.AuthorBooks)
-            .ThenInclude(authorBook => authorBook.Author)
-            .Include(book => book.ImgLinks)
-            .Include(book => book.Description)
-            .Include(book => book.BookGenres);
-    }
-    public IQueryable<Book> GetFilterBooksGenre(string filterGenre)
-    {
-        return DbSet
-            .Where(book => book.BookGenres.First().Genre.Name.Contains(filterGenre))
-            .Include(book => book.AuthorBooks)
-            .ThenInclude(authorBook => authorBook.Author)
-            .Include(book => book.ImgLinks)
-            .Include(book => book.Description)
-            .Include(book => book.BookGenres);
+            .Include(book => book.Description);
+        var resultBooks = tempBooks.Where(book => book.BookGenres.FirstOrDefault()!.Genre.Name == filterGenre);
+        return resultBooks;
     }
 }
