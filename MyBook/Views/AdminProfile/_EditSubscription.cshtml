@@ -1,4 +1,5 @@
-﻿@model MyBook.Models.Admin.AdminViewModel
+﻿@using MyBook.Entities
+@model MyBook.Models.Admin.AdminViewModel
 <section class="user_page_upper">
     <p>Управлять подпиской</p>
 </section>
@@ -24,12 +25,18 @@
                     <td>
                         <div class="flex_but">
                             <button class="spec_but">Удалить</button>
-                            <button class="spec_but">Редактировать</button>
+                            <button class="spec_but" data-toggle="modal" data-target="#EditSubscriptionModal">
+                                Редактировать
+                            </button>
                         </div>
                     </td>
                 </tr>
+                <partial name="../Partials/_EditSubscriptionModal" model="type"></partial>
+                <partial name="../Partials/_AddSubscriptionModal" model="type"></partial>
             }
         </table>
     </div>
-    <button class="spec_but">Создать новую подписку</button>
+    <button class="spec_but" data-toggle="modal" data-target="#AddSubscriptionModal">
+       Создать новую подписку
+    </button>
 </section>
