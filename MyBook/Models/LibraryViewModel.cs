@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
+using MyBook.Infrastructure.Services;
 using Repositories;
 
 namespace MyBook.ViewModels;
@@ -11,101 +12,89 @@ namespace MyBook.ViewModels;
 public class LibraryViewModel
 {
     private readonly EfBookRepository _bookRepository;
-    private readonly IGenericRepository<Genre> genreRepository;
+    private readonly EFGenreRepository _genreRepository;
+    private readonly IGenresFilterGetter _genresFilterGetter;
+    private readonly ILanguageFilterGetter _languageFilterGetter;
     public List<Book> AllBooks { get; set; }
     public List<Author> AllAuthors { get; set; }
-
     public readonly string FilterLanguage;
     public readonly string FilterGenre;
-
     public List<SelectListItem> Languages = new List<SelectListItem>();
     public List<SelectListItem> Genres = new List<SelectListItem>();
 
-    public LibraryViewModel(
-        EfBookRepository _bookRepository,
-        EfAuthorRepository authorRepository,
-        IGenericRepository<Genre> genreRepository)
+    public LibraryViewModel(EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
+        EfAuthorRepository authorRepository, IGenresFilterGetter genresFilterGetter,
+        ILanguageFilterGetter languageFilterGetter)
     {
         this._bookRepository = _bookRepository;
-        this.genreRepository = genreRepository;
+        this._genreRepository = _genreRepository;
         AllBooks = _bookRepository.GetAllBooks().ToList();
         AllAuthors = authorRepository.GetAllAuthors().ToList();
-        Languages = GetLanguages();
-        Genres = GetGenres();
+        _genresFilterGetter = genresFilterGetter;
+        _languageFilterGetter = languageFilterGetter;
+        Languages = _languageFilterGetter.GetItems(_bookRepository);
+        Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
 
-    public LibraryViewModel(
-        EfBookRepository _bookRepository,
-        EfAuthorRepository authorRepository, string filterLanguage,
-        IGenericRepository<Genre> genreRepository, string filterGenre)
+    public LibraryViewModel(EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
+        EfAuthorRepository authorRepository, string filterLanguage, string filterGenre,
+        IGenresFilterGetter genresFilterGetter, ILanguageFilterGetter languageFilterGetter)
     {
         this._bookRepository = _bookRepository;
-        this.genreRepository = genreRepository;
+        this._genreRepository = _genreRepository;
+        _genresFilterGetter = genresFilterGetter;
+        _languageFilterGetter = languageFilterGetter;
         FilterLanguage = filterLanguage;
         FilterGenre = filterGenre;
-        AllBooks = GetFilterBooks().ToList();
+        AllBooks = GetFilterBooksLanguageAndGenres();
         AllAuthors = authorRepository.GetAllAuthors().ToList();
-        Languages = GetLanguages();
-        Genres = GetGenres();
+        Languages = _languageFilterGetter.GetItems(_bookRepository);
+        Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
 
-    public List<Book> GetFilterBooks()
+    public LibraryViewModel(EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
+        EfAuthorRepository authorRepository, string filterLanguage, IGenresFilterGetter genresFilterGetter,
+        ILanguageFilterGetter languageFilterGetter)
     {
-        return _bookRepository.GetFilterBooks(FilterLanguage, FilterGenre).ToList();
+        this._bookRepository = _bookRepository;
+        this._genreRepository = _genreRepository;
+        _genresFilterGetter = genresFilterGetter;
+        _languageFilterGetter = languageFilterGetter;
+        FilterLanguage = filterLanguage;
+        AllBooks = GetFilterBooksLanguage();
+        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        Languages = _languageFilterGetter.GetItems(_bookRepository);
+        Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
 
-    private List<SelectListItem> GetLanguages()
+    public LibraryViewModel(EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
+        EfAuthorRepository authorRepository, IGenericRepository<Book> bookRepository,
+        IGenericRepository<Genre> genreRepository, string filterGenre, IGenresFilterGetter genresFilterGetter,
+        ILanguageFilterGetter languageFilterGetter)
     {
-        List<Book> allBooks = _bookRepository.GetAllBooks().ToList();
-        Languages.Add(new SelectListItem() {Text = "Все", Value = "Все"});
-        List<string> languages = new List<string>();
-        foreach (var book in allBooks)
-        {
-            if (!languages.Contains(book.Language))
-            {
-                languages.Add(book.Language);
-            }
-        }
-
-        foreach (var lang in languages)
-        {
-            var display = "";
-            switch (lang)
-            {
-                case "ru":
-                    display = "русский";
-                    break;
-                case "en":
-                    display = "английский";
-                    break;
-                case "de":
-                    display = "немецкий";
-                    break;
-                case "it":
-                    display = "итальянский";
-                    break;
-                default:
-                    display = lang;
-                    break;
-            }
-            var item = new SelectListItem() {Text = $"{display}", Value = $"{lang}"};
-            Languages.Add(item);
-        }
-
-        return Languages;
+        this._bookRepository = _bookRepository;
+        this._genreRepository = _genreRepository;
+        _genresFilterGetter = genresFilterGetter;
+        _languageFilterGetter = languageFilterGetter;
+        FilterGenre = filterGenre;
+        AllBooks = GetFilterBooksGenres();
+        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        Languages = _languageFilterGetter.GetItems(_bookRepository);
+        Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
 
-    private List<SelectListItem> GetGenres()
+    public List<Book> GetFilterBooksLanguageAndGenres()
     {
-        List<Genre> allGenres = genreRepository.Get().ToList();
-        Genres.Add(new SelectListItem() {Text = "Все", Value = "Все"});
-        foreach (var genre in allGenres)
-        {
-            var genreName = genre.Name;
-            var item = new SelectListItem() {Text = $"{genreName}", Value = $"{genreName}"};
-            Genres.Add(item);
-        }
+        return _bookRepository.GetFilterBooksLanguageAndGenre(FilterLanguage, FilterGenre).ToList();
+    }
 
-        return Genres;
+    public List<Book> GetFilterBooksLanguage()
+    {
+        return _bookRepository.GetFilterBooksLanguage(FilterLanguage).ToList();
+    }
+
+    public List<Book> GetFilterBooksGenres()
+    {
+        return _bookRepository.GetFilterBooksGenre(FilterGenre).ToList();
     }
 }
