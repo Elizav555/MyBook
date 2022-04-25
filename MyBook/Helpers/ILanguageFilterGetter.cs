@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyBook.Infrastructure.Repositories;
 using Repositories;
 
-namespace MyBook.Infrastructure.Services;
+namespace MyBook.Infrastructure.Helpers;
 
 public interface ILanguageFilterGetter
 {
