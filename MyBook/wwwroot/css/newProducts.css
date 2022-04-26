@@ -5,13 +5,12 @@
     border-radius: 10px;
     overflow: hidden;
 }
-
-.customBookCard{
+.customBookCard {
     overflow: hidden;
     border-radius: 15px;
 }
 
-.customBookCard_img_link{
+.customBookCard_img_link {
     height: 230px;
     display: flex;
     align-items: center;
@@ -21,6 +20,5 @@
 .customBookCard_img{
     border-radius: 10px;
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
-    width: 150px;
     object-fit: contain;
 }

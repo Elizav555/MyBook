@@ -3,18 +3,19 @@
 <link rel="stylesheet" href="~/css/newProducts.css">
 <link rel="stylesheet" href="~/css/BookPreview.css">
 <link rel="stylesheet" href="~/css/booksCarousel.css">
+
 <div id="carouselExampleIndicators" class="carousel carousel-dark slide container" data-bs-ride="carousel">
     <div class="carousel-inner w-100">
         @for (var i = 1; i < (Model.Count>7?(Model.Count / 7):(Model.Count+1)); i += 7)
         {
-            <div class="carousel-item @(i == 1 ? " active" : "") customCarouselItem">
+            <div class="carousel-item @(i == 1 ? " active" : "") customCarouselItem mb-3">
                 <div class="row">
                     @{
                         if (Model.Count > 7)
                         {
                             for (int j = i; j % 7 != 0; j++)
                             {
-                                <div class="col-md-2 col-4 mb-3">
+                                <div class=" col-2">
                                     @await Component.InvokeAsync("BookSmallPreview", Model[j])
                                 </div>
                             }
@@ -23,7 +24,7 @@
                         {
                             for (int j = i; j < Model.Count; j++)
                             {
-                                <div class="col-md-2 col-4 mb-3">
+                                <div class=" col-2">
                                     @await Component.InvokeAsync("BookSmallPreview", Model[j])
                                 </div>
                             }

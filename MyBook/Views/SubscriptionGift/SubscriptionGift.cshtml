@@ -3,170 +3,93 @@
 <html>
 <head>
     <title>subcription gift</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: #F5F5F5">
-<div class="wrapper">
-<div class="container-fluid" id="order-sub">
-    <h3>Оформление</h3>
-    <h3>подписки в подарок</h3>
-    Напишите теплые слова. Мы пришлем сертификат на указанную почту.
-</div>
-<div class="container-fluid" id="postcard">
-    <img src="https://i2.mybook.io/next/assets/buyGift/selectionImage0.png">
-    <textarea class="textarea-postcard" 
-maxlength="150" placeholder="Напишите сообщение получателю" name="text"></textarea>
-    <textarea class="textarea-postcard" 
-maxlength="150" placeholder="На какой e-mail отправить?" name="text"></textarea>
+<body>
+    <div class="container">
+        <div class="content_wrapper">
+            <div class="">
+                <h2>Оформление подписки в подарок</h2>
+                <p>Напишите теплые слова. Мы пришлем сертификат на указанную почту.</p>
+            </div>
+            <div class="postcard">
+                <img src="https://i2.mybook.io/next/assets/buyGift/selectionImage0.png">
+                <textarea class="textarea-postcard"
+                          maxlength="150" placeholder="Напишите сообщение получателю" name="text"></textarea>
+                <textarea class="textarea-postcard"
+                          maxlength="150" placeholder="На какой e-mail отправить?" name="text"></textarea>
+            </div>
 
-</div>
-<div class="container-fluid" id="subscription-gift">
+            <div class="container">
+                <h2>Выберите подписку</h2>
+                <div class="subscription_gift">
+                    <div class="row">
+                        <div class="col-3">
+                            <h3> Премиум </h3>
+                            <h5> 899 руб./месяц </h5>
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-warning" id="btn-subscr">
+                                <span>Оформить</span>
+                            </button>
+                        </div>
+                        <div class="col-9 info_card">
+                            📚 Все книги
+                            <br>
+                            💌 Персональные рекомендации
+                            <br>
+                        </div>
+                    </div>
 
-    <p>Выберите подписку</p>
-    <div class="row">
-        <div class="col-3">
-            <h3> Премиум </h3>
-            <h5> 899 руб./месяц </h5>
-            <br>
-            <br>
-            <button type="button" class="btn btn-primary" id="btn-subscr">
-                <span>Оформить</span>
-            </button>
-        </div>
-        <div class="col-9 ">
-            📚 Все книги
-            <br>
-            💌 Персональные рекомендации
-            <br>
-        </div>
-    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3> Выберите автора для подписки </h3>
+                            <h5> 399 руб./месяц </h5>
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-warning" id="btn-subscr">
+                                <span>Оформить</span>
+                            </button>
+                        </div>
+                        <div class="col-9 info_card">
+                            📚 Выберите автора и получите доступ ко всем его произведениям
+                            <div class="input-group">
+                                <input type="search" class="form-control rounded" placeholder="Искать" aria-label="Search" aria-describedby="search-addon" />
+                                <button type="button" class="btn btn-outline-primary">искать</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h3> Выберите жанр для подписки </h3>
+                            <h5> 399 руб./месяц </h5>
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-warning" id="btn-subscr">
+                                <span>Оформить</span>
+                            </button>
+                        </div>
+                        <div class="col-9 info_card">
+                            📚 Выберите жанр и получите доступ ко всем произведениям, относящимся к нему
+                            <br>
+                            <br>
+                            <div class="seldiv">
+                                <label>Выберите жанр: </label>
+                                <select id="selecttheme">
+                                    <option value="">Фэнтези</option>
+                                    <option value="">Детективы</option>
+                                    <option value="">Приключения</option>
+                                    <option value="">Классическая</option>
+                                    <option value="">Научно-популярная</option>
+                                </select>
 
-    <div class="row">
-        <div class="col-3">
-            <h3> Выберите автора для подписки </h3>
-            <h5> 399 руб./месяц </h5>
-            <br>
-            <br>
-            <button type="button" class="btn btn-primary" id="btn-subscr">
-                <span>Оформить</span>
-            </button>
-        </div>
-        <div class="col-9 ">
-            📚 Выберите автора и получите доступ ко всем его произведениям
-            <br>
-            <br>
-            <div class="input-group">
-                <input type="search" class="form-control rounded" placeholder="Искать" aria-label="Search" aria-describedby="search-addon"/>
-                <button type="button" class="btn btn-outline-primary">искать</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-3">
-            <h3> Выберите жанр для подписки </h3>
-            <h5> 399 руб./месяц </h5>
-            <br>
-            <br>
-            <button type="button" class="btn btn-primary" id="btn-subscr">
-                <span>Оформить</span>
-            </button>
-        </div>
-        <div class="col-9 ">
-            📚 Выберите жанр и получите доступ ко всем произведениям, относящимся к нему
-            <br>
-            <br>
-            <div class="seldiv">
-                <label>Выберите жанр: </label>
-                <select id="selecttheme">
-                    <option value="">Фэнтези</option>
-                    <option value="">Детективы</option>
-                    <option value="">Приключения</option>
-                    <option value="">Классическая</option>
-                    <option value="">Научно-популярная</option>
-                </select>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid" id="sub-pay">
-    <h4>Период оформления подписки</h4>
-    <button type="button" class="btn btn-secondary btn-lg">
-        1 месяц
-        <br>
-        <div class="price">229 руб. </div>
-    </button>
-    <button type="button" class="btn btn-secondary btn-lg">
-        3 месяца
-        <br>
-        <div class="price">649 руб.</div>
-    </button>
-    <button type="button" class="btn btn-secondary btn-lg">
-        12 месяцев
-        <br>
-        <div class="price"> 2290 руб.</div>
-    </button>
-</div>
-
-<div class="container-fluid" id="pay-up">
-    <h4>Способ оплаты</h4>
-    <button type="button" class="btn btn-secondary btn-lg" id="ms">
-        <img src="https://remeslov.eco/wp-content/uploads/2021/09/platezhnye-sistemy.jpg">
-    </button>
-    <button type="button" class="btn btn-secondary btn-lg" id="pp">
-        <img src="https://phrixboosting.com/itemshop/img/PayPal-Logo.png">
-    </button>
-    <button type="button" class="btn btn-secondary btn-lg">
-        <h5>СМС</h5>
-        <div class="r-only">Только для России</div>
-    </button>
-
-</div>
-
-<div class="container-fluid" id="sum-up">
-    <h4> Вы покупаете </h4>
-    <div class="sub-type">
-        Стандартная подписка
-        1 месяц
-    </div>
-    <div class="sub-type-price">
-        Итого к оплате
-
-        <h5>229 руб.</h5>
-    </div>
-</div>
-<div class="container-fluid" id="sign-in-text">
-    Чтобы оформить подписку необходимо
-    войти или зарегистрироваться на сайте.
-</div>
-<div class="container-fluid" id="sign-up">
-    <div class="register-form">
-        <form>
-
-            <div class="form-outline mb-4">
-                <input type="email" id="form2Example18" class="form-control form-control-lg"/>
-                <label class="form-label" for="form2Example18">Почта</label>
-            </div>
-
-            <div class="form-outline mb-4">
-                <input type="password" id="form2Example28" class="form-control form-control-lg"/>
-                <label class="form-label" for="form2Example28">Пароль</label>
-            </div>
-
-            <button type="button" class="ant-btn sc-1t4pdxh-0 kAlGSv cy-auth-form-submit ant-btn-primary ant-btn-lg ant-btn-block">
-                <span>Оформить подписку</span>
-            </button>
-            <br>
-            <button type="button" class="ant-btn sc-1t4pdxh-0 xSFQI cy-auth-form-toggle-button ant-btn-normal ant-btn-lg ant-btn-block">
-                <span>Зарегистрироваться</span>
-            </button>
-
-        </form>
-    </div>
-</div>
-<div class="container-fluid" id="sign-in-danger">
-    Оплачивая подписку, я принимаю условия оплаты, указнные в оферте и условия автоматического продления подписки на месяц вперед.
-</div>
-</div>
 </body>
 </html>

@@ -15,6 +15,9 @@
     .container_inner_block {
         height: 200px !important;
     }
+    .main_title_book {
+        font-size: 2.5em;
+    }
 }
 @media (max-width: 992px) {
     .inline_wrapper h1 {
@@ -34,7 +37,15 @@
         justify-content: center;
         width: 100%;
     }
-}
+    .main_title_book {
+        font-size: 2em;
+    }
+    .top_block img{
+        display: none;
+    }
+    .top_block {
+        padding: 1em;
+    }
 @media (max-width: 765px) {
     .inner_block {
         top: -20em;
@@ -48,6 +59,20 @@
     }
     .inline_wrapper .spec_but a{
         padding: 0em !important;
+    }
+    .main_title_book {
+        font-size: 1.5em;
+    }
+    .blocks{
+        flex-wrap: wrap !important
+    }
+    .text_block {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .top_block{
+        margin-top: 0.8em;
     }
 }
 @media (max-width: 520px) {

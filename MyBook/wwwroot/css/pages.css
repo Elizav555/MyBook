@@ -898,23 +898,28 @@ table td {
 }
 .popular_topick {
     background: white;
-    margin: 2em 0;
+    margin: 2em 0 1em;
     border-radius: 16px;
     padding: 2em 1em;
     box-shadow: 0 0 15px #f2f2f2f5;
 }
-.top_block {
-    box-shadow: 6px 8px 25px #dededef5;
-    margin: 0.3em 0.8em;
-    padding: 1em 2.5em;
-    border-radius: 16px;
-    text-align: center;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
+.popular_topick h2{
+    padding-left: 1em;
+}
+    .top_block {
+        box-shadow: 6px 8px 25px #dededef5;
+        margin: 0.3em 0.8em;
+        padding: 1em 2.5em;
+        border-radius: 16px;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+.popular_topick blocks{
     flex-wrap: wrap;
-    width: 100%;
-
 }
 .top_block p {
     margin: 0;
@@ -930,3 +935,8 @@ table td {
 .sub{
     background: white;
 }
+.text_block {
+    width: none;
+}
+
+/*-------------------library--------------------------*/

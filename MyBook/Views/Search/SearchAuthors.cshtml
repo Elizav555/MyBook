@@ -13,14 +13,14 @@
     </div>
     <ul id="list">
         @foreach (var author in Model.Authors)
-                {
-                    <li>
-                        @await Component.InvokeAsync("AuthorPreview",author)
-                    </li>
-                }
+        {
+            <li>
+                @await Component.InvokeAsync("AuthorPreview",author)
+            </li>
+        }
     </ul>
     <div class="text-center">
-                <button class="btn btn-lg w-100" onclick="showMoreAuthors()">Показать ещё</button>
-        </div>
-        
+        <button class="btn btn-lg w-100" onclick="showMoreAuthors()">Показать ещё</button>
+    </div>
+
 </div>

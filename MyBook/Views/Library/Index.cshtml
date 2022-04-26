@@ -9,12 +9,12 @@
         <div class="container">
             <div class="content_wrapper">
                 <h1 class="main_title_book">Популярные категории</h1>
-                <div class="popular_topick">
+                <div class="popular_topick w-100">
                     <div class="row">
                         <h2>Рейтинг категорий</h2>
-                        <div class="d-flex w-100">
+                        <div class="d-flex w-100 col-12 blocks">
                             <div class="top_block">
-                                <div>
+                                <div class="text_block">
                                     <h5>Фантастика</h5>
                                     <p>201 книга</p>
                                 </div>
@@ -22,30 +22,30 @@
                                     <img src="/assets/img/first.png" alt="">
                                 </div>
                             </div>
-                            <div class="top_block ">
-                                 <div>
+                            <div class="top_block">
+                                <div class="text_block">
                                     <h5>Фентези</h5>
                                     <p>531 книга</p>
                                 </div>
                                 <div>
                                     <img src="/assets/img/second.png" alt="">
                                 </div>
-                                
+
                             </div>
                             <div class="top_block">
-                                <div>
-                                   <h5>Бизнес-книги</h5>
+                                <div class="text_block">
+                                    <h5>Бизнес-книги</h5>
                                     <p>121 книга</p>
                                 </div>
                                 <div>
                                     <img src="/assets/img/third.png" alt="">
                                 </div>
-                                 
+
                             </div>
                             <div class="top_block">
-                                <div>
-                                   <h5>Романы</h5>
-                                    <p>563 книга</p>
+                                <div class="text_block">
+                                    <h5>Романы</h5>
+                                    <p>5632 книга</p>
                                 </div>
                                 <div>
                                     <img src="/assets/img/fourth.png" alt="">
@@ -56,16 +56,16 @@
                 </div>
             </div>
             <div class="content_wrapper">
-            <div class="customCarousel container mb-4">
-                <h1 class="h1 ms-4 mb-2">Все книги</h1>
-                <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
-                @await Component.InvokeAsync("BooksCarousel", Model.AllBooks)
-            </div>
-            <div class="customCarousel container mb-4">
-                <h1 class="h1 ms-4 mb-2">Все авторы</h1>
-                <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllAuthors.Count() авторов</h3>
-                @await Component.InvokeAsync("AuthorsCarousel", Model.AllAuthors)
-            </div>
+                <div class="customCarousel container mb-5">
+                    <h2 class=" ms-4 mb-2">Все книги</h2>
+                    <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllBooks.Count() книг</h3>
+                    @await Component.InvokeAsync("BooksCarousel", Model.AllBooks)
+                </div>
+                <div class="customCarousel container mb-5">
+                    <h2 class="ms-4 mb-2">Все авторы</h2>
+                    <h3 class="h3 ms-4 mb-4 text-secondary">@Model.AllAuthors.Count() авторов</h3>
+                    @await Component.InvokeAsync("AuthorsCarousel", Model.AllAuthors)
+                </div>
             </div>
         </div>
     </div>
