@@ -6,8 +6,6 @@ namespace MyBook.Models.Admin
     public class EditAuthorViewModel
     {
         const string letters = @"^([A-Za-z]|[А-Яа-яё])+((\s)?((\'|\-|\.)?([A-Za-z]|[А-Яа-яё])+))*$";
-        const string text = @"^([А-Я]|[а-яё]|\s|\d|[.,!?:;-])*";
-        const string price = @"^([1-9]+([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$";
         const string url = @"^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$";
         public int? AuthorId { get; set; }
         [Required(ErrorMessage = "Введите имя автора")]

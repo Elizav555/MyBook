@@ -20,6 +20,7 @@
                 </div>
                 <div class="modal-body">
                     <form asp-action="EditAuthor" asp-controller="AdminProfile">
+                        <div asp-validation-summary="ModelOnly"></div>
                         <input type="hidden" asp-for="AuthorId" id="authorId" />
                         <div class="form-group">
                             <label asp-for="Name" for="nameInput">Имя автора</label>
