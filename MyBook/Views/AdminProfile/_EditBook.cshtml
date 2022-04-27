@@ -40,10 +40,13 @@
                         </td>
                     </tr>
                     <partial name="../Partials/_EditBookModal" model="book"></partial>
+                    <partial name="../Partials/_AddBookModal" model="book"></partial>
                 }
             </table>
         </div>
-        <button class="spec_but">Добавить книгу</button>
+        <button class="spec_but" data-toggle="modal" data-target="#EditBookModal">
+           Добавить книгу
+        </button>
     </div>
 </section>
 

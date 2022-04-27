@@ -5,6 +5,7 @@ using MyBook.Infrastructure.Repositories;
 using MyBook.Validation;
 using Repositories;
 using System.Security.Claims;
+using MyBook.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,17 +13,22 @@ builder.Services.AddTransient<IUserValidator<User>, UserValidator>()
     .AddTransient<IPasswordValidator<User>, PasswordValidator>(serv => new PasswordValidator(6));
 
 builder.Services.AddDbContext<MyBookContext>(options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"), options => options.MigrationsAssembly("MyBook")), ServiceLifetime.Transient)
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"),
+            options => options.MigrationsAssembly("MyBook")), ServiceLifetime.Transient)
     .AddScoped<IGenericRepository<Book>, EfGenericRepository<Book>>()
     .AddScoped<IGenericRepository<Author>, EfGenericRepository<Author>>()
     .AddScoped<IGenericRepository<Genre>, EfGenericRepository<Genre>>()
     .AddScoped<EfBookRepository>()
-    .AddScoped<EfAuthorRepository>().AddScoped<IGenericRepository<MyBook.Entities.Type>, EfGenericRepository<MyBook.Entities.Type>>()
+    .AddScoped<EFGenreRepository>()
+    .AddScoped<EfAuthorRepository>()
+    .AddScoped<IGenericRepository<MyBook.Entities.Type>, EfGenericRepository<MyBook.Entities.Type>>()
     .AddScoped<EFTypeRepository>().AddScoped<IGenericRepository<object>, EfGenericRepository<object>>()
     .AddScoped<IGenericRepository<BookCenter>, EfGenericRepository<BookCenter>>()
     .AddScoped<EFBookCenterRepository>()
     .AddScoped<IGenericRepository<User>, EfGenericRepository<User>>().AddScoped<EFUserRepository>()
-    .AddScoped<IGenericRepository<History>, EfGenericRepository<History>>().AddScoped<EFHistoryRepository>();
+    .AddScoped<IGenericRepository<History>, EfGenericRepository<History>>().AddScoped<EFHistoryRepository>()
+    .AddScoped<ILanguageFilterGetter, LanguageFilterGetter>()
+    .AddScoped<IGenresFilterGetter, GenreFilterGetter>();
 
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.

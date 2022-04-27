@@ -25,16 +25,22 @@
                         <td>@author.AuthorBooks.Count</td>
                         <td>
                             <div class="flex_but">
-                                <button class="spec_but">Редактировать</button>
+                                <button class="spec_but" data-toggle="modal" data-target="#EditAuthorModal">
+                                    Редактировать
+                                </button>
                                 <button class="spec_but">Удалить</button>
                             </div>
                         </td>
                     </tr>
+                    <partial name="../Partials/_EditAuthorModal" model="author"></partial>
+                    <partial name="../Partials/_AddAuthorModal" model="author"></partial>
                 }
             </table>
         </div>
     </div>
     <div class="add_author">
-        <button class="spec_but">Добавить автора</button>
+        <button class="spec_but" data-toggle="modal" data-target="#AddAuthorModal">
+            Добавить автора
+        </button>
     </div>
 </section>

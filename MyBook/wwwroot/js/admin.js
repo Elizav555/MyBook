@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function() {
     $('#containerAuthor').hide();
     $('#containerSubscription').hide();
     $('#containerBook').hide();
@@ -23,7 +23,7 @@
         default:
             $('#containerSubscription').show();
     }
-    $('#book').click(function () {
+    $('#book').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
         $('#containerBook').show();
@@ -32,7 +32,7 @@
         return false;
     });
 
-    $('#author').click(function () {
+    $('#author').click(function() {
         $('#containerAuthor').show();
         $('#containerSubscription').hide();
         $('#containerBook').hide();
@@ -42,7 +42,7 @@
     });
 
 
-    $('#subscr').click(function () {
+    $('#subscr').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').show();
         $('#containerBook').hide();
@@ -52,7 +52,7 @@
     });
 
 
-    $('#bookCenter').click(function () {
+    $('#bookCenter').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
         $('#containerBook').hide();
@@ -61,7 +61,8 @@
         return false;
     });
 
-    $('#user').click(function () {
+
+    $('#user').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
         $('#containerBook').hide();

@@ -1,6 +1,6 @@
 ﻿@model MyBook.Models.Admin.AdminViewModel
 <section class="admin_functional">
-    <h2>Получить информацию о пользователе</h2>
+    <h2>Изменить информацию о пользователе</h2>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Найти пользователя" aria-label="Search">
     </form>
@@ -36,6 +36,14 @@
                             </td>
                             <td>@subscr.EndDate</td>
                         }
+                        <td> </td>
+                        <td> </td>
+                        <td>
+                            <button class="spec_but" data-toggle="modal" data-target="#AddSubscriptionToUserModal">
+                                Назначить подписку
+                            </button>
+                        </td>
+                        <partial name="../Partials/_AddSubscriptionToUserModal" model="user"></partial>
                     </tr>
                 }
             </table>

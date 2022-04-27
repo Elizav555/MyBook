@@ -5,8 +5,8 @@ namespace MyBook.ViewComponents;
 
 public class BooksCarouselViewComponent: ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync(List<Book> book)
+    public Task<IViewComponentResult> InvokeAsync(List<Book> book)
     {
-        return View(book);
+        return Task.FromResult<IViewComponentResult>(View(book));
     }
 }
