@@ -17,6 +17,7 @@ namespace MyBook.Controllers
         private readonly EfBookRepository _bookRepository;
         private readonly EFBookCenterRepository _bookCenterRepository;
         private readonly EFUserRepository _userRepository;
+        private readonly IGenericRepository<Object> _genericRepository;
         private readonly SignInManager<User> _signInManager;
 
         public AdminProfileController(IGenericRepository<Type> typeRep,
@@ -24,12 +25,14 @@ namespace MyBook.Controllers
             EfBookRepository bookRepository,
              EFBookCenterRepository bookCenterRepository,
             EFUserRepository userRepository,
+            IGenericRepository<object> genericRepository,
             SignInManager<User> signInManager)
         {
             _typeRepository = typeRep;
             _authorRepository = authorRepository;
             _bookRepository = bookRepository;
             _bookCenterRepository = bookCenterRepository;
+            _genericRepository = genericRepository;
             _userRepository = userRepository;
             _signInManager = signInManager;
         }
@@ -95,8 +98,8 @@ namespace MyBook.Controllers
                 var type = await _typeRepository.FindById((int)model.TypeId);
                 if (type == null)
                 {
-                    ModelState.AddModelError("TypeNotFound", "Type with this id wasn't found");
-                    return View("_EditSubscriptionModal", model);
+                    ModelState.AddModelError("TypeNotFound", "Тип с таким айди не был найден");
+                    return View("EditSubscriptionModal", model);
                 }
                 type.Description = model.Description;
                 type.Price = model.Price;
@@ -118,18 +121,58 @@ namespace MyBook.Controllers
             var page = "Author";
             return RedirectToAction("ShowCurrent", new { page });
         }
-
-        public async Task<IActionResult> AddAuthor()
+        public IActionResult EditAuthorModal(EditAuthorViewModel model)
         {
-            //TODO 
-            var page = "Author";
-            return RedirectToAction("ShowCurrent", new { page });
+            return View(model);
         }
-        public async Task<IActionResult> EditAuthor()
+
+        public IActionResult AddAuthorModal(EditAuthorViewModel model)
         {
-            //TODO 
-            var page = "Author";
-            return RedirectToAction("ShowCurrent", new { page });
+            return View(model);
+        }
+
+        public async Task<IActionResult> AddAuthor(EditAuthorViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var author = new Author { Name = model.Name, BirthDate = model.BirthDate?.ToShortDateString(), ImgLinks = new List<ImgLink>() };
+                if (model.ImageLink != null)
+                {
+                    var imageLink = new ImgLink { AuthorId = author.AuthorId, Url = model.ImageLink };
+                    author.ImgLinks.Add(imageLink);
+                    await _genericRepository.CreateAll(new List<object>() { author, imageLink });
+                }
+                else await _authorRepository.Create(author);
+                var page = "Author";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("AddAuthorModal", model);
+        }
+
+        public async Task<IActionResult> EditAuthor(EditAuthorViewModel model)
+        {
+            if (ModelState.IsValid && model.AuthorId != null)
+            {
+                var author = await _authorRepository.FindById((int)model.AuthorId);
+                if (author == null)
+                {
+                    ModelState.AddModelError("AuthorNotFound", "Автор с таким айди не был найден");
+                    return View("EditAuthorModal", model);
+                }
+                author.Name = model.Name;
+                if (model.BirthDate != null)
+                    author.BirthDate = model.BirthDate?.ToShortDateString();
+                if (model.ImageLink != null)
+                {
+                    var imageLink = new ImgLink { AuthorId = author.AuthorId, Url = model.ImageLink };
+                    await _genericRepository.CreateAll(new List<object>() { imageLink });
+                    author.ImgLinks = new List<ImgLink> { imageLink };
+                }
+                await _authorRepository.Update(author, null);
+                var page = "Author";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("EditAuthorModal", model);
         }
 
         #endregion
