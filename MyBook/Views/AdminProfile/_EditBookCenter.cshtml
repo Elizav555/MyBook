@@ -22,16 +22,22 @@
                         <td>@bookCenter.Description</td>
                         <td>
                             <div class="flex_but">
-                                <button class="spec_but">Редактировать</button>
+                                <button class="spec_but" data-toggle="modal" data-target="#EditBookCenterModal">
+                                    Редактировать
+                                </button>
                                 <button class="spec_but">Удалить</button>
                             </div>
                         </td>
                     </tr>
+                    <partial name="../Partials/_EditBookCenterModal" model="bookCenter"></partial>
+                    <partial name="../Partials/_AddBookCenterModal" model="bookCenter"></partial>
                 }
             </table>
         </div>
     </div>
     <div class="add_author">
-        <button class="spec_but">Добавить магазин</button>
+        <button class="spec_but" data-toggle="modal" data-target="#AddBookCenterModal">
+            Добавить магазин
+        </button>
     </div>
 </section>

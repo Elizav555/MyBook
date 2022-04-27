@@ -42,4 +42,14 @@
         $('#containerUser').hide();
         return false;
     });
+
+    
+    $('#user').click(function () {
+        $('#containerAuthor').hide();
+        $('#containerSubscription').hide();
+        $('#containerBook').hide();
+        $('#containerBookCenter').hide();
+        $('#containerUser').show();
+        return false;
+    });
 });
