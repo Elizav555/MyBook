@@ -9,7 +9,7 @@ using Repositories;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    //[Authorize(Policy = "AdminsOnly")]
+    [Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
@@ -66,17 +66,46 @@ namespace MyBook.Controllers
             return RedirectToAction("ShowCurrent", new { page });
         }
 
-        public async Task<IActionResult> AddSubscrType()
+        public IActionResult EditSubscriptionModal(EditSubscrViewModel model)
         {
-            //TODO 
-            var page = "Subscription";
-            return RedirectToAction("ShowCurrent", new { page });
+            return View(model);
         }
-        public async Task<IActionResult> EditSubscrType()
+
+        public IActionResult AddSubscriptionModal(EditSubscrViewModel model)
         {
-            //TODO 
-            var page = "Subscription";
-            return RedirectToAction("ShowCurrent", new { page });
+            return View(model);
+        }
+
+        public async Task<IActionResult> AddSubscrType(EditSubscrViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var type = new Type { Description = model.Description, Price = model.Price, TypeName = model.TypeName };
+                await _typeRepository.Create(type);
+                var page = "Subscription";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("AddSubscriptionModal", model);
+        }
+
+        public async Task<IActionResult> EditSubscrType(EditSubscrViewModel model)
+        {
+            if (ModelState.IsValid && model.TypeId != null)
+            {
+                var type = await _typeRepository.FindById((int)model.TypeId);
+                if (type == null)
+                {
+                    ModelState.AddModelError("TypeNotFound", "Type with this id wasn't found");
+                    return View("_EditSubscriptionModal", model);
+                }
+                type.Description = model.Description;
+                type.Price = model.Price;
+                type.TypeName = model.TypeName;
+                await _typeRepository.Update(type, null);
+                var page = "Subscription";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("EditSubscriptionModal", model);
         }
 
         #endregion

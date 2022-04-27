@@ -24,19 +24,23 @@
                     <td>@type.Price руб</td>
                     <td>
                         <div class="flex_but">
-                            <button class="spec_but">Удалить</button>
-                            <button class="spec_but" data-toggle="modal" data-target="#EditSubscriptionModal">
+                            <button class="spec_but"type="button" onclick="location.href='@Url.Action("DeleteSubscrType", "AdminProfile",type)'">Удалить</button>
+                            <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditSubscriptionModal", "AdminProfile",new MyBook.Models.Admin.EditSubscrViewModel
+                        {
+                                TypeId = type.TypeId,
+                                 TypeName = type.TypeName,
+                                Price = type.Price,
+                                Description = type.Description
+                        })'">
                                 Редактировать
                             </button>
                         </div>
                     </td>
                 </tr>
-                <partial name="../Partials/_EditSubscriptionModal" model="type"></partial>
-                <partial name="../Partials/_AddSubscriptionModal" model="type"></partial>
             }
         </table>
     </div>
-    <button class="spec_but" data-toggle="modal" data-target="#AddSubscriptionModal">
-       Создать новую подписку
+    <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddSubscriptionModal", "AdminProfile",new MyBook.Models.Admin.EditSubscrViewModel())'">
+        Создать новую подписку
     </button>
 </section>
