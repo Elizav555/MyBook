@@ -1,5 +1,6 @@
 ﻿@using System.Text
 @model MyBook.Models.Admin.AdminViewModel
+<link rel="stylesheet" href="~/css/BookPreview.css">
 <section class="admin_functional">
     <h2>Получить информацию о книге</h2>
     <form class="form-inline">
@@ -7,46 +8,21 @@
     </form>
     <div class="user_information">
         <div class="books_information">
-            <table>
-                <tr class="upper_table_row">
-                    <td>Обложка</td>
-                    <td>Название</td>
-                    <td>Автор</td>
-                    <td>Жанр</td>
-                    <td>Действия</td>
-                </tr>
+            <ul id="list">
                 @foreach (var book in Model.Books.Take(10))
                 {
-                    var authors = new StringBuilder();
-                    authors.AppendJoin(" , ", book.AuthorBooks.Select(it => it.Author.Name));
-                    var genres = new StringBuilder();
-                    genres.AppendJoin(" , ", book.BookGenres.Select(it => it.Genre.Name));
-                    @*var rating = book.Ratings != null ? Math.Round(book.Ratings.Select(it => it.Points).Sum() / book.Ratings.Count, 2) : 0.0;
-                        var isPaid = book.IsPaid ? "Да" : "Нет";
-                        var isAdult = book.IsForAdult ? "Да" : "Нет";*@
-                    string? imgLink = book.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;
-                    <tr>
-                        <td><img src="@imgLink"></td>
-                        <td>@book.Name</td>
-                        <td>@authors.ToString()</td>
-                        <td>@genres.ToString()</td>
-                        <td>
-                            <div class="flex_but">
-                                <button class="spec_but" data-toggle="modal" data-target="#EditBookModal">
-                                    Редактировать
-                                </button>
-                                <button class="spec_but">Удалить</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <partial name="../Partials/_EditBookModal" model="book"></partial>
-                    <partial name="../Partials/_AddBookModal" model="book"></partial>
+                    <li>
+                        @await Component.InvokeAsync("BookEdit", book)
+                    </li>
                 }
-            </table>
+            </ul>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-lg w-100" onclick="showMoreEditBooks()">Показать ещё</button>
         </div>
         <button class="spec_but" data-toggle="modal" data-target="#EditBookModal">
-           Добавить книгу
+            Добавить книгу
         </button>
     </div>
 </section>
-
+<script src="~/js/searchEditBooks.js"></script>

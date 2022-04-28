@@ -1,15 +1,15 @@
-﻿let pageNumber = 0;
-function showMoreBooks(){
+﻿let pageNumber = 1;
+function showMoreEditBooks() {
     alert("ABOBA")
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchBooks?page=${++pageNumber}`,
+            url:`/Search/SearchEditBooks?page=${++pageNumber}`,
             success: function (data) {
                 var $response=$(data);
-                console.log(data)
                 var resultDiv = $response.find("#list").html();
-                $("#list").append(resultDiv);
+                console.log(resultDiv)
+                $(".books_information").append(resultDiv);
             },
             error: function (data){
                 alert("Чота не так пошло");
@@ -17,5 +17,3 @@ function showMoreBooks(){
         }
     )
 }
-
-
