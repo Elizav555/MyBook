@@ -25,9 +25,9 @@ namespace MyBook.Models.Admin
         [Required(ErrorMessage = "Выберите платная ли книга")]
         public bool IsPaid { get; set; }
         [Required(ErrorMessage = "Выберите жанр")]
-        public int? GenreId { get; set; }
+        public string? GenreName { get; set; }
         [Required(ErrorMessage = "Выберите автора")]
-        public int? AuthorId { get; set; }
+        public string? AuthorName { get; set; }
 
         [Required(ErrorMessage = "Введите кол-во страниц в книге")]
         public int? PagesCount { get; set; }

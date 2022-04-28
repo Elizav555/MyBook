@@ -191,6 +191,7 @@ namespace MyBook.Controllers
 
         public IActionResult EditBookModal(Book book)
         {
+            //TODO почему передает неправильно
             var model = new MyBook.Models.Admin.EditBookViewModel
             {
                 BookId = book.BookId,
@@ -199,8 +200,8 @@ namespace MyBook.Controllers
                 PublishedDate = book.PublishedDate,
                 IsForAdult = book.IsForAdult,
                 IsPaid = book.IsPaid,
-                GenreId = book.BookGenres.FirstOrDefault()?.GenreId,
-                AuthorId = book.AuthorBooks.FirstOrDefault()?.AuthorId,
+                GenreName = book.BookGenres.FirstOrDefault()?.Genre.Name,
+                AuthorName = book.AuthorBooks.FirstOrDefault()?.Author.Name,
                 PagesCount = book.Description?.PagesCount,
                 Price = book.Description?.Price,
                 Description = book.Description?.Description,
@@ -225,17 +226,25 @@ namespace MyBook.Controllers
             {
                 var book = new Book { Name = model.Name, ImgLinks = new List<ImgLink>(), IsForAdult = model.IsForAdult, IsPaid = model.IsPaid, PublishedDate = model.PublishedDate, Language = model.Language };
                 var entities = new List<object>();
-                if (model.GenreId != null)
+                if (model.GenreName != null)
                 {
-                    var bookGenre = new BookGenre { Book = book, GenreId = (int)model.GenreId };
-                    entities.Add(bookGenre);
-                    book.BookGenres.Add(bookGenre);
+                    var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
+                    if (genreId != null)
+                    {
+                        var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
+                        entities.Add(bookGenre);
+                        book.BookGenres.Add(bookGenre);
+                    }
                 }
-                if (model.AuthorId != null)
+                if (model.AuthorName != null)
                 {
-                    var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)model.AuthorId };
-                    book.AuthorBooks.Add(bookAuthor);
-                    entities.Add(bookAuthor);
+                    var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
+                    if (authorId != null)
+                    {
+                        var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
+                        book.AuthorBooks.Add(bookAuthor);
+                        entities.Add(bookAuthor);
+                    }
                 }
                 var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, Book = book };
                 book.Description = desc;
@@ -253,6 +262,7 @@ namespace MyBook.Controllers
             }
             return View("AddBookModal", model);
         }
+        //TODO почему передает language null
         public async Task<IActionResult> EditBook(EditBookViewModel model)
         {
             if (ModelState.IsValid && model.BookId != null)
@@ -269,17 +279,25 @@ namespace MyBook.Controllers
                 book.PublishedDate = model.PublishedDate;
                 book.Language = model.Language;
                 var entities = new List<object>();
-                if (model.GenreId != null)
+                if (model.GenreName != null)
                 {
-                    var bookGenre = new BookGenre { Book = book, GenreId = (int)model.GenreId };
-                    entities.Add(bookGenre);
-                    book.BookGenres = new List<BookGenre> { bookGenre };
+                    var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
+                    if (genreId != null)
+                    {
+                        var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
+                        entities.Add(bookGenre);
+                        book.BookGenres.Add(bookGenre);
+                    }
                 }
-                if (model.AuthorId != null)
+                if (model.AuthorName != null)
                 {
-                    var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)model.AuthorId };
-                    book.AuthorBooks = new List<AuthorBook> { bookAuthor };
-                    entities.Add(bookAuthor);
+                    var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
+                    if (authorId != null)
+                    {
+                        var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
+                        book.AuthorBooks.Add(bookAuthor);
+                        entities.Add(bookAuthor);
+                    }
                 }
                 var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, BookId = book.BookId };
                 book.Description = desc;
@@ -301,6 +319,17 @@ namespace MyBook.Controllers
         #endregion
 
         #region BookCenter
+
+        public IActionResult EditBookCenterModal(EditCenterViewModel model)
+        {
+            return View(model);
+        }
+
+        public IActionResult AddBookCenterModal()
+        {
+            return View(new EditCenterViewModel());
+        }
+
         public async Task<IActionResult> DeleteBookCenter(BookCenter bookCenter)
         {
             await _bookCenterRepository.Remove(bookCenter);
@@ -308,17 +337,37 @@ namespace MyBook.Controllers
             return RedirectToAction("ShowCurrent", new { page });
         }
 
-        public async Task<IActionResult> AddBookCenter()
+        public async Task<IActionResult> AddBookCenter(EditCenterViewModel model)
         {
-            //TODO 
-            var page = "BookCenter";
-            return RedirectToAction("ShowCurrent", new { page });
+            if (ModelState.IsValid)
+            {
+                var center = new BookCenter { Address = model.Address, Name = model.Name, Description = model.Description, Phone = model.Phone };
+                await _bookCenterRepository.Create(center);
+                var page = "BookCenter";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("AddBookCenterModal", model);
         }
-        public async Task<IActionResult> EditBookCenter()
+        public async Task<IActionResult> EditBookCenter(EditCenterViewModel model)
         {
-            //TODO 
-            var page = "BookCenter";
-            return RedirectToAction("ShowCurrent", new { page });
+
+            if (ModelState.IsValid && model.BookCenterId != null)
+            {
+                var center = await _bookCenterRepository.FindById((int)model.BookCenterId);
+                if (center == null)
+                {
+                    ModelState.AddModelError("CenterNotFound", "Центр с таким айди не был найден");
+                    return View("EditBookCenterModal", model);
+                }
+                center.Name = model.Name;
+                center.Address = model.Address;
+                center.Description = model.Description;
+                center.Phone = model.Phone;
+                await _bookCenterRepository.Update(center, null);
+                var page = "BookCenter";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("EditBookCenterModal", model);
         }
 
         #endregion
