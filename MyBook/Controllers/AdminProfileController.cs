@@ -21,7 +21,7 @@ namespace MyBook.Controllers
         private readonly EFUserSubscrRepository _userSubscrRepository;
         private readonly IGenericRepository<Object> _genericRepository;
         private readonly SignInManager<User> _signInManager;
-
+        
         public AdminProfileController(IGenericRepository<Type> typeRep,
         EfAuthorRepository authorRepository,
         EFGenreRepository genreRepository,

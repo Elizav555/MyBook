@@ -1,0 +1,34 @@
+﻿@model MyBook.Entities.Book
+    <article class="postcard">
+        <a class="postcard_img_link" asp-controller="Book" asp-action="Book" asp-route-bookId="@Model.BookId">
+            <img class="postcard_img" src="@Model.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url" alt="">
+        </a>
+        <div class="postcard_text">
+            <h3 class="h3 PreviewTitle">
+                <a asp-controller="Book" asp-action="Book" asp-route-bookId="@Model.BookId">
+                    <div class="me-4 Name">
+                        @Model.Name
+                    </div>
+                </a>
+                @(await Component.InvokeAsync("StarsRateResult", 5))
+            </h3>
+            <p class="author">
+                @foreach (var authorBooks in Model.AuthorBooks)
+                {
+                    <a asp-controller="Author" asp-action="Author" asp-route-authorId="@authorBooks.Author.AuthorId">
+                        @authorBooks.Author.Name
+                    </a>
+                }
+            </p>
+            <p class="postcard_preview-txt">@Model.Description.Description</p>
+            <div class="d-flex mt-5">
+                        <button class="spec_but me-4" data-toggle="modal" data-target="#EditBookModal">
+                            Редактировать
+                        </button>
+                        <button class="spec_but">Удалить</button>
+                    </div>
+        </div>
+        
+    </article>
+<partial name="../Partials/_EditBookModal" model="Model"></partial>
+<partial name="../Partials/_AddBookModal" model="Model"></partial>

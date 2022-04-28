@@ -5,7 +5,7 @@
     border: 0;
 }
 
-    *, *:after, *:before,  {
+    *, *:after, *:before  {
         box-sizing: border-box;
         transition: .5s ease-in-out;
     }
@@ -856,11 +856,6 @@ table td {
     margin: 1em auto;
 }
 
-    .books_information img {
-        width: 100px;
-        border-radius: 5px;
-    }
-
 .sub_table_admin {
     padding: 1em 14em 5em 14em;
 }
@@ -926,4 +921,12 @@ table td {
     }
 .sub{
     background: white;
+}
+
+#list{
+    list-style: none;
+}
+
+li{
+    list-style: none;
 }

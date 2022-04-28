@@ -37,7 +37,7 @@ public class SearchViewModel
         _authorRepository = authorRepository;
         SearchString = searchString;
 
-        Authors = GetSearchAuthors()!;
+        Authors = GetSearchAuthors()!.Skip((pageNumber-1)*10).Take(10);
         PageViewModel = new PageViewModel(Authors.Count(), pageNumber);
     }
     
