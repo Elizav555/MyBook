@@ -6,7 +6,7 @@ namespace MyBook.Models.Admin
     public class EditBookViewModel
     {
         const string text = @"^([А-Я]|[а-яё]|[A-z]|[A-z]|\s|\d|[.,!?:;-])*";
-        const string price = @"^([1-9]+([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$";
+        const string price = @"^((\d{1,3}|\s*){1})((\,\d{3}|\d)*)(\s*|\.(\d{2}))$";
         const string url = @"^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$";
         public int? BookId { get; set; }
 
@@ -37,7 +37,7 @@ namespace MyBook.Models.Admin
         [Required(ErrorMessage = "Введите описание")]
         [DataType(DataType.MultilineText)]
         [RegularExpression(text, ErrorMessage = "Пожалуйста, используйте только русские буквы,цифры и знаки препинания")]
-        [MaxLength(500, ErrorMessage = "Длина описания не должна превышать 500 символов"), MinLength(5, ErrorMessage = "Длина описания не должна быть меньше 10 символов")]
+        [MaxLength(10000, ErrorMessage = "Длина описания не должна превышать 10000 символов"), MinLength(5, ErrorMessage = "Длина описания не должна быть меньше 10 символов")]
         public string? Description { get; set; }
         [DataType(DataType.Url)]
         [RegularExpression(url, ErrorMessage = "Введите корректный url")]

@@ -9,7 +9,7 @@ using Repositories;
 
 namespace MyBook.Infrastructure.Repositories;
 
-public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
+public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
 {
     public EfBookRepository(MyBookContext context) : base(context)
     {
@@ -18,7 +18,7 @@ public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
     public IQueryable<Book> GetAllBooks()
     {
         return DbSet.Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
-            .Include(book => book.Description);
+            .Include(book => book.Description).Include(book => book.BookGenres).ThenInclude(book => book.Genre);
     }
     public IQueryable<Book> GetAllFreeBooks()
     {
@@ -68,7 +68,7 @@ public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
             .Include(book => book.AuthorBooks).ThenInclude(authorBook => authorBook.Author)
             .Include(book => book.ImgLinks).Include(book => book.Description).Include(book => book.BookGenres);
     }
-    
+
     public IQueryable<Book> GetFilterBooks(string filterLanguage, string filterGenre)
     {
         var tempBooks = DbSet
@@ -80,13 +80,13 @@ public class EfBookRepository: EfGenericRepository<Book>,IBookRepository
         var resultBooks = tempBooks.Where(book => book.BookGenres.FirstOrDefault()!.Genre.Name == filterGenre);
         return resultBooks;
     }
-    
+
     public IQueryable<Book> GetFilterFreeBooksLanguageAndGenre(string filterLanguage, string filterGenre)
     {
         return DbSet
             .Where(book => book.Language.Contains(filterLanguage) &&
                            book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.Description.Price == " ").Include(book => book.AuthorBooks)
-            
+
             .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description).Include(book => book.BookGenres);
     }

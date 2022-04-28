@@ -15,7 +15,7 @@
                     <td>Жанр</td>
                     <td>Действия</td>
                 </tr>
-                @foreach (var book in Model.Books.Take(10))
+                @foreach (var book in Model.Books.OrderByDescending(it => it.BookId).Take(10))
                 {
                     var authors = new StringBuilder();
                     authors.AppendJoin(" , ", book.AuthorBooks.Select(it => it.Author.Name));
@@ -24,7 +24,7 @@
                     @*var rating = book.Ratings != null ? Math.Round(book.Ratings.Select(it => it.Points).Sum() / book.Ratings.Count, 2) : 0.0;
                         var isPaid = book.IsPaid ? "Да" : "Нет";
                         var isAdult = book.IsForAdult ? "Да" : "Нет";*@
-                    string? imgLink = book.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;
+                    string? imgLink = book.ImgLinks.FirstOrDefault()?.Url;
                     <tr>
                         <td><img src="@imgLink"></td>
                         <td>@book.Name</td>
@@ -32,8 +32,26 @@
                         <td>@genres.ToString()</td>
                         <td>
                             <div class="flex_but">
-
-                                <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditBookModal", "AdminProfile",book)'">
+                                @{
+                                    var model = new MyBook.Models.Admin.EditBookViewModel
+                {
+                    BookId = book.BookId,
+                    Name = book.Name,
+                    Language = book.Language,
+                    PublishedDate = book.PublishedDate,
+                    IsForAdult = book.IsForAdult,
+                    IsPaid = book.IsPaid,
+                    GenreName = book.BookGenres.FirstOrDefault()?.Genre.Name,
+                    AuthorName = book.AuthorBooks.FirstOrDefault()?.Author.Name,
+                    PagesCount = book.Description?.PagesCount,
+                    Price = book.Description?.Price,
+                    Description = book.Description?.Description,
+                    UrlEPUB = book.Description?.DownloadLinks?.FirstOrDefault(it => it.Format == "epub")?.Url,
+                    UrlPDF = book.Description?.DownloadLinks?.FirstOrDefault(it => it.Format == "pdf")?.Url,
+                    ImageLink = book.ImgLinks?.FirstOrDefault()?.Url,
+                };
+                                }
+                                <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditBookModal", "AdminProfile",model)'">
                                     Редактировать
                                 </button>
                                 <button class="spec_but" type="button" onclick="location.href='@Url.Action("DeleteBook", "AdminProfile",book)'">Удалить</button>

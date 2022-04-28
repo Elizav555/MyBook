@@ -6,7 +6,7 @@ namespace MyBook.Models.Admin
     {
         const string letters = @"^([А-Я]([а-яё]|\s)*)";
         const string text = @"^([А-Я]|[а-яё]|[A-z]|[A-z]|\s|\d|[.,!?:;-])*";
-        const string price = @"^([1-9]+([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$";
+        const string price = @"^((\d{1,3}|\s*){1})((\,\d{3}|\d)*)(\s*|\.(\d{2}))$";
         public int? TypeId { get; set; }
         [Required(ErrorMessage = "Введите название типа подписки")]
         [MaxLength(50, ErrorMessage = "Длина названия не должна превышать 50 символов"), MinLength(5, ErrorMessage = "Длина названия не должна быть меньше 5 символов")]

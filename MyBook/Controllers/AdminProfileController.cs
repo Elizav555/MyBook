@@ -187,33 +187,16 @@ namespace MyBook.Controllers
         //TODO search book
         public async Task<IActionResult> DeleteBook(Book book)
         {
+            //TODO fix with other links
             await _bookRepository.Remove(book);
             var page = "Book";
             return RedirectToAction("Index", new { page });
         }
 
-        public IActionResult EditBookModal(Book book)
+        public IActionResult EditBookModal(EditBookViewModel model)
         {
-            //TODO почему передает неправильно
-            var model = new MyBook.Models.Admin.EditBookViewModel
-            {
-                BookId = book.BookId,
-                Name = book.Name,
-                Language = book.Language,
-                PublishedDate = book.PublishedDate,
-                IsForAdult = book.IsForAdult,
-                IsPaid = book.IsPaid,
-                GenreName = book.BookGenres.FirstOrDefault()?.Genre.Name,
-                AuthorName = book.AuthorBooks.FirstOrDefault()?.Author.Name,
-                PagesCount = book.Description?.PagesCount,
-                Price = book.Description?.Price,
-                Description = book.Description?.Description,
-                UrlEPUB = book.Description?.DownloadLinks?.FirstOrDefault(it => it.Format == "epub")?.Url,
-                UrlPDF = book.Description?.DownloadLinks?.FirstOrDefault(it => it.Format == "pdf")?.Url,
-                ImageLink = book.ImgLinks?.FirstOrDefault()?.Url,
-                Authors = GetAuthors(),
-                Genres = GetGenres()
-            };
+            model.Genres = GetGenres();
+            model.Authors = GetAuthors();
             return View(model);
         }
 
@@ -265,7 +248,7 @@ namespace MyBook.Controllers
             }
             return View("AddBookModal", model);
         }
-        //TODO почему передает language null
+        //TODO почему то дублируются авторы и жанры
         public async Task<IActionResult> EditBook(EditBookViewModel model)
         {
             if (ModelState.IsValid && model.BookId != null)
@@ -287,9 +270,9 @@ namespace MyBook.Controllers
                     var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
                     if (genreId != null)
                     {
-                        var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
+                        var bookGenre = new BookGenre { BookId = book.BookId, GenreId = (int)genreId };
                         entities.Add(bookGenre);
-                        book.BookGenres.Add(bookGenre);
+                        book.BookGenres = new List<BookGenre> { bookGenre };
                     }
                 }
                 if (model.AuthorName != null)
@@ -297,16 +280,16 @@ namespace MyBook.Controllers
                     var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
                     if (authorId != null)
                     {
-                        var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
-                        book.AuthorBooks.Add(bookAuthor);
+                        var bookAuthor = new AuthorBook { BookId = book.BookId, AuthorId = (int)authorId };
+                        book.AuthorBooks = new List<AuthorBook> { bookAuthor };
                         entities.Add(bookAuthor);
                     }
                 }
-                var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, BookId = book.BookId };
+                var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price };
                 book.Description = desc;
                 if (model.ImageLink != null)
                 {
-                    var imageLink = new ImgLink { Book = book, Url = model.ImageLink };
+                    var imageLink = new ImgLink { BookId = book.BookId, Url = model.ImageLink };
                     book.ImgLinks = new List<ImgLink> { imageLink };
                     entities.Add(imageLink);
                 }
