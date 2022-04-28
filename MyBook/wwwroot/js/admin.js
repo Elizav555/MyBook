@@ -1,11 +1,29 @@
-﻿$(document).ready(function () {
-    $('#containerAuthor').show();
+﻿$(document).ready(function() {
+    $('#containerAuthor').hide();
     $('#containerSubscription').hide();
     $('#containerBook').hide();
     $('#containerBookCenter').hide();
     $('#containerUser').hide();
-
-    $('#book').click(function () {
+    switch ($('#current').val()) {
+        case "Author":
+            $('#containerAuthor').show();
+            break;
+        case "Book":
+            $('#containerBook').show();
+            break;
+        case "BookCenter":
+            $('#containerBookCenter').show();
+            break;
+        case "User":
+            $('#containerUser').show();
+            break;
+        case "Subscription":
+            $('#containerSubscription').show();
+            break;
+        default:
+            $('#containerSubscription').show();
+    }
+    $('#book').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
         $('#containerBook').show();
@@ -14,7 +32,7 @@
         return false;
     });
 
-    $('#author').click(function () {
+    $('#author').click(function() {
         $('#containerAuthor').show();
         $('#containerSubscription').hide();
         $('#containerBook').hide();
@@ -24,7 +42,7 @@
     });
 
 
-    $('#subscr').click(function () {
+    $('#subscr').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').show();
         $('#containerBook').hide();
@@ -34,7 +52,7 @@
     });
 
 
-    $('#bookCenter').click(function () {
+    $('#bookCenter').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
         $('#containerBook').hide();
@@ -43,8 +61,8 @@
         return false;
     });
 
-    
-    $('#user').click(function () {
+
+    $('#user').click(function() {
         $('#containerAuthor').hide();
         $('#containerSubscription').hide();
         $('#containerBook').hide();

@@ -35,15 +35,15 @@ public class LibraryController : Controller
         switch (sortOrder)
         {
             case "name":
-            {
-                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.Name);
-                break;
-            }
+                {
+                    _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.Name);
+                    break;
+                }
             case "date":
-            {
-                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.PublishedDate);
-                break;
-            }
+                {
+                    _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.PublishedDate);
+                    break;
+                }
         }
 
         return View(_viewModel);

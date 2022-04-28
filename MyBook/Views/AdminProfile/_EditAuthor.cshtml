@@ -14,32 +14,42 @@
                     <td>Количество книг</td>
                     <td>Действия</td>
                 </tr>
-                @foreach (var author in Model.Authors.Take(10))
+                @foreach (var author in Model.Authors.OrderByDescending(it=>it.AuthorId).Take(10))
                 {
-                    @*  string? imgLink = author.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;*@
-
+                     string? imgLink = author.ImgLinks.FirstOrDefault()?.Url;
+                    if (imgLink == null)
+                        imgLink = "/assets/img/non.png";
                     <tr>
-                        <td><img src="/assets/img/non.png"></td>
+                        <td><img src="@imgLink"></td>
                         <td>@author.Name</td>
                         <td>@author.BirthDate</td>
                         <td>@author.AuthorBooks.Count</td>
                         <td>
                             <div class="flex_but">
-                                <button class="spec_but" data-toggle="modal" data-target="#EditAuthorModal">
+                                @{
+                                    var model = new MyBook.Models.Admin.EditAuthorViewModel
+                {
+                    AuthorId = author.AuthorId,
+                    BirthDate = null,
+                    Name = author.Name,
+                    ImageLink = author.ImgLinks.FirstOrDefault()?.Url
+                };
+                                    if (author.BirthDate != null)
+                                        model.BirthDate = DateTime.Parse(author.BirthDate);
+                                }
+                                <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditAuthorModal", "AdminProfile",model)'">
                                     Редактировать
                                 </button>
-                                <button class="spec_but">Удалить</button>
+                                <button class="spec_but" type="button" onclick="location.href='@Url.Action("DeleteAuthor", "AdminProfile",author)'">Удалить</button>
                             </div>
                         </td>
                     </tr>
-                    <partial name="../Partials/_EditAuthorModal" model="author"></partial>
-                    <partial name="../Partials/_AddAuthorModal" model="author"></partial>
                 }
             </table>
         </div>
     </div>
     <div class="add_author">
-        <button class="spec_but" data-toggle="modal" data-target="#AddAuthorModal">
+        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddAuthorModal", "AdminProfile", new MyBook.Models.Admin.EditAuthorViewModel())'">
             Добавить автора
         </button>
     </div>

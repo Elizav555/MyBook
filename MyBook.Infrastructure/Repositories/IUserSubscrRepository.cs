@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace MyBook.Infrastructure.Repositories
 {
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IUserSubscrRepository : IGenericRepository<UserSubscr>
     {
-        public User GetUserWithSubscr(string userId);
-        public IQueryable<User> GetUsersWithSubscr();
+        public UserSubscr? GetUserSubscr(string userId, int subscrId);
     }
 }
