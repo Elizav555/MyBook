@@ -27,11 +27,10 @@
                                 @subscr.Type.TypeName
                                 <div class="flex_but">
                                     <form method="post" asp-action="DeleteUserSubscr">
-                                        <input type="hidden" value="@user.Id" id="id">
-                                        <input type="hidden" value="@subscr" id="subscr">
+                                        <input type="hidden" value="@user.Id" name="id">
+                                        <input type="hidden" value="@subscr.SubscriptionId" name="subscrId">
                                         <button class="spec_but" type="submit">Удалить</button>
                                     </form>
-                                    <button class="spec_but">Добавить</button>
                                 </div>
                             </td>
                             <td>@subscr.EndDate</td>
@@ -39,11 +38,13 @@
                         <td> </td>
                         <td> </td>
                         <td>
-                            <button class="spec_but" data-toggle="modal" data-target="#AddSubscriptionToUserModal">
-                                Назначить подписку
-                            </button>
+                            <form method="post" asp-action="AddSubscrModal">
+                                <input type="hidden" value="@user.Id" name="userId">
+                                <button class="spec_but" type="submit">
+                                    Назначить подписку
+                                </button>
+                            </form>
                         </td>
-                        <partial name="Partials/_AddSubscriptionToUserModal" model="user"></partial>
                     </tr>
                 }
             </table>

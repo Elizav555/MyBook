@@ -18,6 +18,7 @@ namespace MyBook.Controllers
         private readonly EfBookRepository _bookRepository;
         private readonly EFBookCenterRepository _bookCenterRepository;
         private readonly EFUserRepository _userRepository;
+        private readonly EFUserSubscrRepository _userSubscrRepository;
         private readonly IGenericRepository<Object> _genericRepository;
         private readonly SignInManager<User> _signInManager;
 
@@ -28,7 +29,8 @@ namespace MyBook.Controllers
              EFBookCenterRepository bookCenterRepository,
             EFUserRepository userRepository,
             IGenericRepository<object> genericRepository,
-            SignInManager<User> signInManager)
+            EFUserSubscrRepository userSubscrRepository,
+        SignInManager<User> signInManager)
         {
             _typeRepository = typeRep;
             _authorRepository = authorRepository;
@@ -37,6 +39,7 @@ namespace MyBook.Controllers
             _genericRepository = genericRepository;
             _userRepository = userRepository;
             _signInManager = signInManager;
+            _userSubscrRepository = userSubscrRepository;
             _genreRepository = genreRepository;
         }
 
@@ -374,19 +377,72 @@ namespace MyBook.Controllers
 
         #region User
         //TODO search User
-        public async Task<IActionResult> DeleteUserSubscr(string userId, Subscription subscription)
+        public async Task<IActionResult> DeleteUserSubscr(string id, int subscrId)
         {
-            //TODO
+            var userSubscr = _userSubscrRepository.GetUserSubscr(id, subscrId);
+            if (userSubscr == null) { } //TODO show error
+            await _userSubscrRepository.Remove(userSubscr);
             var page = "User";
             return RedirectToAction("ShowCurrent", new { page });
+        }
+        public IActionResult AddSubscrModal(string userId)
+        {
+            return View("AddSubscriptionToUserModal", new EditUserViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes(), UserID = userId });
         }
 
-        public async Task<IActionResult> AddUserSubscr()
+        public async Task<IActionResult> AddUserSubscr(EditUserViewModel model)
         {
-            //TODO 
-            var page = "User";
-            return RedirectToAction("ShowCurrent", new { page });
+            model.Authors = GetAuthors();
+            model.Genres = GetGenres();
+            model.SubscrTypes = GetTypes();
+            if (ModelState.IsValid)
+            {
+                var type = GetTypes().First(it => it.TypeId == model.TypeId);
+                var subscr = new Subscription
+                {
+                    StartDate = DateTime.Now.ToString(),
+                    EndDate = DateTime.Now.AddMonths((int)model.Period).ToString(),
+                    TypeId = (int)model.TypeId,
+                };
+                if (type.TypeName == "Подписка на автора")
+                {
+                    if (model.AuthorName != null)
+                    {
+                        var author = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault();
+                        if (author == null)
+                            return View("AddSubscriptionToUserModal", model);
+                        subscr.AuthorId = author.AuthorId;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("AuthorName", "Укажите автора для подписки");
+                        return View("AddSubscriptionToUserModal", model);
+                    }
+                }
+                if (type.TypeName == "Подписка на жанр")
+                {
+                    if (model.GenreName != null)
+                    {
+                        var genre = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault();
+                        if (genre == null)
+                            return View("AddSubscriptionToUserModal", model);
+                        subscr.AuthorId = genre.GenreId;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("GenreName", "Укажите жанр для подписки");
+                        return View("AddSubscriptionToUserModal", model);
+                    }
+                }
+                var userSubscr = new UserSubscr { Subscription = subscr, UserId = model.UserID };
+                subscr.UserSubscr = userSubscr;
+                await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
+                var page = "User";
+                return RedirectToAction("ShowCurrent", new { page });
+            }
+            return View("AddSubscriptionToUserModal", model);
         }
+
         #endregion
 
         public async Task<IActionResult> Logout()
