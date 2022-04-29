@@ -37,6 +37,9 @@
     .card_style {
         margin: 1.5em 1em !important;
     }
+    .blocks_inf {
+        flex-wrap: wrap;
+    }
 @media (max-width: 765px) {
     .inner_block {
         top: -20em;
