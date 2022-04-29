@@ -18,12 +18,12 @@
                 <form asp-action="Index" asp-controller="Library" method="POST">
                     <label class="Search bold_label">Порядок: </label>
                     @Html.DropDownList("sortOrder", BooksSortHelper.Orders)
-                    <label class="Search bold_label">Язык </label>
+                    <label class="Search bold_label">Язык: </label>
                     @Html.DropDownList("filterLanguage", Model.Languages as List
                     <SelectListItem>
                     )
                     <br>
-                    <label class="Search bold_label">Жанр </label>
+                    <label class="Search bold_label">Жанр: </label>
                     @Html.DropDownList("filterGenre", Model.Genres as List
                     <SelectListItem>
                     )

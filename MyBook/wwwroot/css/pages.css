@@ -953,3 +953,11 @@ li{
     font-weight: bold;
     padding: 0.5em 0.3em 0.5em 0.3em;
 }
+.books_info_wrap{
+  /*  background: white;*/
+    padding: 0em 2em 0 0;
+/*    border-radius: 16px;*/
+}
+.card_imgAuth {
+    max-width: 20%;
+}

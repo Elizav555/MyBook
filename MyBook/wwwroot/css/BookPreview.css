@@ -1,23 +1,26 @@
 ﻿.postcard {
     display: flex;
-
+    /*
     max-width: 1080px;
     min-height: 230px;
     max-height: 320px;
+*/
+    width: 100%;
+    margin: 1.5em 1em 0em 0;
 
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
     border-radius: 10px;
-    margin: 0 auto;
-    margin-top: 30px;
-    padding: 10px;
+    /*margin: 0 auto;
+    margin-top: 30px;*/
+    padding: 1em;
     overflow: hidden;
     position: relative;
     color: #ffffff;
-    
     box-sizing: content-box;
 }
 
 .postcard_text {
+    width: 100%;
     padding: 1.5rem;
     position: relative;
     display: flex;
