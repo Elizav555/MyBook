@@ -121,3 +121,11 @@ button.accept-policy {
   list-style: none;
 }
 
+.authors_collection_grid{
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 18rem);
+  grid-column-gap: 15px;
+  grid-row-gap: 1em;
+  justify-content: center;
+}
