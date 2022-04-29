@@ -948,3 +948,8 @@ li{
     .password-control.view {
         background: url(/assets/img/closeEye.svg) 0 0 no-repeat;
     }
+
+.bold_label{
+    font-weight: bold;
+    padding: 0.5em 0.3em 0.5em 0.3em;
+}
