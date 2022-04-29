@@ -930,3 +930,21 @@ table td {
 li{
     list-style: none;
 }
+/*--------------------password_in_Modals--------------*/
+.password {
+    position: relative;
+}
+
+.password-control {
+    position: absolute;
+    top: 2.3em;
+    right: 8px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(/assets/img/openEye.svg) 0 0 no-repeat;
+}
+
+    .password-control.view {
+        background: url(/assets/img/closeEye.svg) 0 0 no-repeat;
+    }
