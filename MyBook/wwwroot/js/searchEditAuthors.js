@@ -1,14 +1,14 @@
-﻿let pageNumber = 1;
-let searchString = "";
-function showMoreEditBooks() {
+﻿let pageNumberAuthors = 1;
+let searchStringAuthor = "";
+function showMoreEditAuthors() {
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchEditBooks?page=${++pageNumber}&searchString=${searchString}`,
+            url:`/Search/SearchEditAuthors?page=${++pageNumberAuthors}&searchString=${searchStringAuthor}`,
             success: function (data) {
                 var $response=$(data);
                 var resultDiv = $response.find("#list").html();
-                $(".books_information").html(resultDiv);
+                $(".author_information").html(resultDiv);
             },
             error: function (data){
                 alert("Чота не так пошло");
@@ -18,18 +18,18 @@ function showMoreEditBooks() {
     return false;
 }
 
-function searchEditBook(){
-    searchValue = $("#searchString").val();
+function searchEditAuthor(){
+    let searchValue = $("#searchString").val();
     console.log("change",searchValue);
-    searchString = searchValue;
+    searchStringAuthor = searchValue;
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchEditBooks?page=${pageNumber}&searchString=${searchString}`,
+            url:`/Search/SearchEditAuthors?page=${pageNumberAuthors}&searchString=${searchStringAuthor}`,
             success: function (data) {
                 var $response=$(data);
                 var resultDiv = $response.find("#list").html();
-                $(".books_information").html(resultDiv);
+                $(".author_information").html(resultDiv);
             },
             error: function (data){
                 alert("Что-то пошло не так, повторите попытку, елси проблема не исчезнет повторите через некоторое время");

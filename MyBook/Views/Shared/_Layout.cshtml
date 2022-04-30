@@ -97,8 +97,29 @@
                             <li class="nav-item">
                                 <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
                             </li>
+                          <li class="nav-item">
+                                   <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
+                            </li>
                             <li class="nav-item">
-                                <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤️ Топ книг</a>
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    if (User.IsInRole("Admin"))
+
+                                    {
+                                        <a class="nav-link " asp-area="" asp-controller="AdminProfile" asp-action="Index">Личный кабинет администратора</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="nav-link " asp-area="" asp-controller="UserProfile" asp-route-id="@User.Claims.FirstOrDefault()?.Value" asp-action="Index">Личный кабинет</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                                }
+
+                                
+
                             </li>
                         </ul>
                     </div>

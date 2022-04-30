@@ -77,7 +77,16 @@ public class SearchController : Controller
             new SearchViewModel(_bookRepository,"",page);
         return PartialView("../Partials/_EditBooksList", _vIewModel.Books.ToList());
     }
-
+    
+    public PartialViewResult SearchEditAuthors(int page, string searchString)
+    {
+        if (page == 0) page = 1;
+        _vIewModel = !String.IsNullOrEmpty(searchString) ? 
+            new SearchViewModel(_authorRepository,searchString,page) : 
+            new SearchViewModel(_authorRepository,"",page);
+        return PartialView("../Partials/_EditAuthorsList", _vIewModel.Authors.ToList());
+    }
+    
     public IActionResult SearchGenres()
     {
         throw new NotImplementedException();
