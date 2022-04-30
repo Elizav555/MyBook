@@ -5,6 +5,7 @@ namespace MyBook.Entities
     public partial class Rating
     {
         public int RatingId { get; set; }
+        public string ReviewText { get; set; }
         public double Points { get; set; }
         [Column("UserId")]
         public string UserId { get; set; }

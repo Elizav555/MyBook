@@ -211,6 +211,9 @@ namespace MyBook.Migrations
                     b.Property<int>("BookDescId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("DownloadsCount")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("IsForAdult")
                         .HasColumnType("boolean");
 
@@ -343,56 +346,6 @@ namespace MyBook.Migrations
                     b.ToTable("download_link", (string)null);
                 });
 
-            modelBuilder.Entity("MyBook.Entities.FavAuthor", b =>
-                {
-                    b.Property<int>("FavAuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("fav_author_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FavAuthorId"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("FavAuthorId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("fav_author", (string)null);
-                });
-
-            modelBuilder.Entity("MyBook.Entities.FavGenre", b =>
-                {
-                    b.Property<int>("FavGenreId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("fav_genre_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FavGenreId"));
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("FavGenreId");
-
-                    b.HasIndex("GenreId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("fav_genre", (string)null);
-                });
-
             modelBuilder.Entity("MyBook.Entities.Genre", b =>
                 {
                     b.Property<int>("GenreId")
@@ -481,6 +434,10 @@ namespace MyBook.Migrations
 
                     b.Property<double>("Points")
                         .HasColumnType("double precision");
+
+                    b.Property<string>("ReviewText")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -768,44 +725,6 @@ namespace MyBook.Migrations
                     b.Navigation("BookDesc");
                 });
 
-            modelBuilder.Entity("MyBook.Entities.FavAuthor", b =>
-                {
-                    b.HasOne("MyBook.Entities.Author", "Author")
-                        .WithMany("FavAuthors")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyBook.Entities.User", "User")
-                        .WithMany("FavAuthors")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MyBook.Entities.FavGenre", b =>
-                {
-                    b.HasOne("MyBook.Entities.Genre", "Genre")
-                        .WithMany("FavGenres")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyBook.Entities.User", "User")
-                        .WithMany("FavGenres")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Genre");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("MyBook.Entities.History", b =>
                 {
                     b.HasOne("MyBook.Entities.Book", "Book")
@@ -905,8 +824,6 @@ namespace MyBook.Migrations
                 {
                     b.Navigation("AuthorBooks");
 
-                    b.Navigation("FavAuthors");
-
                     b.Navigation("ImgLinks");
 
                     b.Navigation("Subscriptions");
@@ -937,8 +854,6 @@ namespace MyBook.Migrations
                 {
                     b.Navigation("BookGenres");
 
-                    b.Navigation("FavGenres");
-
                     b.Navigation("Subscriptions");
                 });
 
@@ -955,10 +870,6 @@ namespace MyBook.Migrations
 
             modelBuilder.Entity("MyBook.Entities.User", b =>
                 {
-                    b.Navigation("FavAuthors");
-
-                    b.Navigation("FavGenres");
-
                     b.Navigation("Histories");
 
                     b.Navigation("Ratings");

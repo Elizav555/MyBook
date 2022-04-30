@@ -29,8 +29,6 @@ namespace MyBook.Entities
         public virtual DbSet<BookDesc> BookDescs { get; set; } = null!;
         public virtual DbSet<BookGenre> BookGenres { get; set; } = null!;
         public virtual DbSet<DownloadLink> DownloadLinks { get; set; } = null!;
-        public virtual DbSet<FavAuthor> FavAuthors { get; set; } = null!;
-        public virtual DbSet<FavGenre> FavGenres { get; set; } = null!;
         public virtual DbSet<Genre> Genres { get; set; } = null!;
         public virtual DbSet<History> Histories { get; set; } = null!;
         public virtual DbSet<ImgLink> ImgLinks { get; set; } = null!;
@@ -120,35 +118,7 @@ namespace MyBook.Entities
                     .WithMany(p => p.DownloadLinks);
             });
 
-            modelBuilder.Entity<FavAuthor>(entity =>
-            {
-                entity.ToTable("fav_author");
-
-                entity.Property(e => e.FavAuthorId)
-                    .HasColumnName("fav_author_id");
-
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.FavAuthors);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.FavAuthors);
-            });
-
-            modelBuilder.Entity<FavGenre>(entity =>
-            {
-                entity.ToTable("fav_genre");
-
-                entity.Property(e => e.FavGenreId)
-                    .HasColumnName("fav_genre_id")
-                    ;
-
-                entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.FavGenres);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.FavGenres);
-            });
-
+           
             modelBuilder.Entity<Genre>(entity =>
             {
                 entity.ToTable("genre");
