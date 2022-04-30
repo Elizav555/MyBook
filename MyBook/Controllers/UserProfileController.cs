@@ -35,6 +35,7 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(UserProfileViewModel model)
         {
+            model.Histories = GetHistories(model.Id);
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
@@ -43,12 +44,12 @@ namespace MyBook.Controllers
                     if (_userManager.Users.Any(userIdentity => userIdentity.Email == model.Email && userIdentity.UserName != user.UserName))
                     {
                         ModelState.AddModelError(string.Empty, "Пользователь с таким email уже существует");
-                        return RedirectToAction("Index", new { model });
+                        return View("Index", model);
                     }
                     if (model.BirthDate == null)
                     {
                         ModelState.AddModelError(string.Empty, "Введите корректную дату рождения");
-                        return RedirectToAction("Index", new { model });
+                        return View("Index", model);
                     }
                     user.Email = model.Email;
                     user.UserName = model.Email;
@@ -59,7 +60,7 @@ namespace MyBook.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", new { model });
+                        return View("Index", model);
                     }
                     else
                     {

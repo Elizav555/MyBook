@@ -9,7 +9,7 @@ using Repositories;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    /*[Authorize(Policy = "AdminsOnly")]*/
+    [Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;

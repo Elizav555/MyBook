@@ -8,14 +8,16 @@
     <title>@ViewData["Profile"] - MyBook</title>
 </head>
 <body>
-    <section class="user_page_upper container">
-        <div class="row lk_wrap col-12" >
-        <div class="lk_out">
-            <p>Личный кабинет</p>
-            <form method="post" asp-action="Logout"><button type="submit" class="sign_out" asp-action="Logout">Выйти из аккаунта</button></form>
-        </div>
-        <nav class="user_links_wrapper">
-            <input type="hidden" id="userId" asp-for="Id" />
+    <section class="user_page_upper pl-5">
+        <div class="container">
+                <div class="row lk_wrap col-12">
+                    <div class="lk_out pr-5">
+                        <h2>Личный кабинет</h2>
+                        <form method="post" asp-action="Logout"><button type="submit" class="sign_out" asp-action="Logout">Выйти из аккаунта</button></form>
+                    </div>
+                </div>
+            <nav class="user_links_wrapper">
+                <input type="hidden" id="userId" asp-for="Id" />
             <ul>
                 <li class="nav-item">
                     <a class="nav-link" id="profile">Профиль</a>

@@ -2,22 +2,24 @@
 
 <section class="user_page_lower">
     <div class="sub_table container">
-        <div class="sub_table_wrapper col-12 pt-4 pb-4">
-            <table>
-                <tr class="title_tr">
-                    <td>Название книги</td>
-                    <td>Дата скачивания</td>
-                    <td>Стоимость</td>
-                </tr>
-                @foreach (var history in Model.Histories)
-                {
-                    <tr>
-                        <td>@history.Book.Name</td>
-                        <td>@history.DateTime.ToShortDateString()</td>
-                        <td>@history.Book.Description.Price руб.</td>
+        <div class="container">
+            <div class="sub_table_wrapper col-12 pt-4 pb-4">
+                <table>
+                    <tr class="title_tr">
+                        <td>Название книги</td>
+                        <td>Дата скачивания</td>
+                        <td>Стоимость</td>
                     </tr>
-                }
-            </table>
+                    @foreach (var history in Model.Histories)
+                    {
+                        <tr>
+                            <td>@history.Book.Name</td>
+                            <td>@history.DateTime.ToShortDateString()</td>
+                            <td>@history.Book.Description.Price руб.</td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
     </div>
 </section>
