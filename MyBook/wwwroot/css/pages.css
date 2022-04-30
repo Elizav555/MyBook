@@ -942,11 +942,11 @@ li{
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url(/assets/img/openEye.svg) 0 0 no-repeat;
+    background: url(/assets/img/closeEye.svg) 0 0 no-repeat;
 }
 
     .password-control.view {
-        background: url(/assets/img/closeEye.svg) 0 0 no-repeat;
+        background: url(/assets/img/openEye.svg) 0 0 no-repeat;
     }
 
 .bold_label{
