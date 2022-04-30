@@ -44,6 +44,12 @@
                                     Назначить подписку
                                 </button>
                             </form>
+                            <form method="post" asp-action="AddAdmin">
+                                <input type="hidden" value="@user.Id" name="userId">
+                                <button class="spec_but" type="submit">
+                                    Назначить администратором
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 }

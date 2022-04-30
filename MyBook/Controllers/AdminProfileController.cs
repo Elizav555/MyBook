@@ -6,6 +6,7 @@ using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
 using MyBook.Models.Admin;
 using Repositories;
+using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
@@ -21,7 +22,8 @@ namespace MyBook.Controllers
         private readonly EFUserSubscrRepository _userSubscrRepository;
         private readonly IGenericRepository<Object> _genericRepository;
         private readonly SignInManager<User> _signInManager;
-        
+        private readonly UserManager<User> _userManager;
+
         public AdminProfileController(IGenericRepository<Type> typeRep,
         EfAuthorRepository authorRepository,
         EFGenreRepository genreRepository,
@@ -30,7 +32,8 @@ namespace MyBook.Controllers
             EFUserRepository userRepository,
             IGenericRepository<object> genericRepository,
             EFUserSubscrRepository userSubscrRepository,
-        SignInManager<User> signInManager)
+        SignInManager<User> signInManager,
+        UserManager<User> userManager)
         {
             _typeRepository = typeRep;
             _authorRepository = authorRepository;
@@ -41,9 +44,10 @@ namespace MyBook.Controllers
             _signInManager = signInManager;
             _userSubscrRepository = userSubscrRepository;
             _genreRepository = genreRepository;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View(new AdminViewModel
             {
@@ -51,11 +55,11 @@ namespace MyBook.Controllers
                 Books = GetBooks(),
                 Centers = GetCenters(),
                 SubscrTypes = GetTypes(),
-                Users = GetUsers()
+                Users = await GetUsers()
             });
         }
 
-        public IActionResult ShowCurrent(string page)
+        public async Task<IActionResult> ShowCurrent(string page)
         {
             return View("Index", new AdminViewModel
             {
@@ -63,7 +67,7 @@ namespace MyBook.Controllers
                 Books = GetBooks(),
                 Centers = GetCenters(),
                 SubscrTypes = GetTypes(),
-                Users = GetUsers(),
+                Users = await GetUsers(),
                 CurrentPage = page
             });
         }
@@ -373,6 +377,15 @@ namespace MyBook.Controllers
             return View("AddSubscriptionToUserModal", new EditUserViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes(), UserID = userId });
         }
 
+        public async Task<IActionResult> AddAdmin(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Admin"));
+            var page = "User";
+            return RedirectToAction("ShowCurrent", new { page });
+        }
+
+
         public async Task<IActionResult> AddUserSubscr(EditUserViewModel model)
         {
             model.Authors = GetAuthors();
@@ -450,9 +463,10 @@ namespace MyBook.Controllers
             return _bookRepository.GetAllBooks().ToList();
         }
 
-        private List<User> GetUsers()
+        private async Task<List<User>> GetUsers()
         {
-            return _userRepository.GetUsersWithSubscr().ToList();
+            var admins = await _userManager.GetUsersForClaimAsync(new Claim(ClaimTypes.Role, "Admin"));
+            return _userRepository.GetUsersWithSubscr().Where(user=>!admins.Contains(user)).ToList();
         }
 
         private List<BookCenter> GetCenters()
