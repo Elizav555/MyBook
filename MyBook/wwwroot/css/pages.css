@@ -930,3 +930,52 @@ table td {
 li{
     list-style: none;
 }
+/*--------------------password_in_Modals--------------*/
+.password {
+    position: relative;
+}
+
+.password-control {
+    position: absolute;
+    top: 2.3em;
+    right: 8px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(/assets/img/closeEye.svg) 0 0 no-repeat;
+}
+
+    .password-control.view {
+        background: url(/assets/img/openEye.svg) 0 0 no-repeat;
+    }
+
+.bold_label{
+    font-weight: bold;
+    padding: 0.5em 0.3em 0.5em 0.3em;
+}
+.books_info_wrap{
+  /*  background: white;*/
+    padding: 0em 2em 0 0;
+/*    border-radius: 16px;*/
+}
+.card_imgAuth {
+    max-width: 20%;
+}
+/*----------------------footer----------------------*/
+.main_footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    z-index: -1;
+}
+
+.render_content{
+    margin-bottom: 10em;
+    z-index: 2;
+}
+.main_wrap{
+    margin-bottom: 15em !important;
+}
