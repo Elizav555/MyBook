@@ -4,13 +4,13 @@ function showMoreEditBooks() {
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchEditBooks?page=${++pageNumber}&searchString=${searchString}`,
+            url: `/Search/SearchEditBooks?page=${++pageNumber}&searchString=${searchString}`,
             success: function (data) {
-                var $response=$(data);
+                var $response = $(data);
                 var resultDiv = $response.find("#list").html();
                 $(".books_information").html(resultDiv);
             },
-            error: function (data){
+            error: function (data) {
                 alert("Чота не так пошло");
             }
         }
@@ -18,20 +18,20 @@ function showMoreEditBooks() {
     return false;
 }
 
-function searchEditBook(){
-    searchValue = $("#searchString").val();
-    console.log("change",searchValue);
+function searchEditBook() {
+    searchValue = $("#searchStringBooks").val();
+    console.log("change", searchValue);
     searchString = searchValue;
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchEditBooks?page=${pageNumber}&searchString=${searchString}`,
+            url: `/Search/SearchEditBooks?page=${pageNumber}&searchString=${searchString}`,
             success: function (data) {
-                var $response=$(data);
+                var $response = $(data);
                 var resultDiv = $response.find("#list").html();
                 $(".books_information").html(resultDiv);
             },
-            error: function (data){
+            error: function (data) {
                 alert("Что-то пошло не так, повторите попытку, елси проблема не исчезнет повторите через некоторое время");
             }
         }

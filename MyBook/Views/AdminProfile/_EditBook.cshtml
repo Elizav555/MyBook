@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="~/css/BookPreview.css">
 <section class="admin_functional">
     <h2>Получить информацию о книге</h2>
-    <input class="form-control mr-sm-2" id="searchString" type="search" onchange="searchEditBook()" placeholder="Найти книгу" aria-label="Search">
+    <input class="form-control mr-sm-2" id="searchStringBooks" type="search" onchange="searchEditBook()" placeholder="Найти книгу" aria-label="Search">
     <div class="user_information container">
         <div class="books_information">
             @foreach (var book in Model.Books.Take(10))
