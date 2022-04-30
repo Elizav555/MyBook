@@ -5,7 +5,7 @@ namespace MyBook.Models.Admin
 {
     public class EditCenterViewModel
     {
-        const string text = @"^([А-Я]|[а-яё]|[A-z]|[A-z]|\s|\d|[.,!?:;\-,\/])*$";
+        const string text = @"^([А-Я]|[а-яё]|[A-z]|[A-z]|\s|\d|[.,!?:;\-,\/,@])*$";
         const string phone = @"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$";
         public int? BookCenterId { get; set; }
         [Required(ErrorMessage = "Введите название")]
@@ -24,7 +24,7 @@ namespace MyBook.Models.Admin
         public string Phone { get; set; } = null!;
         [Required(ErrorMessage = "Введите описание")]
         [DataType(DataType.MultilineText)]
-        [RegularExpression(text, ErrorMessage = "Пожалуйста, используйте только русские буквы,цифры и знаки препинания")]
+        [RegularExpression(text, ErrorMessage = "Пожалуйста, используйте буквы,цифры и знаки препинания")]
         [MaxLength(500, ErrorMessage = "Длина описания не должна превышать 500 символов"), MinLength(5, ErrorMessage = "Длина описания не должна быть меньше 10 символов")]
         public string Description { get; set; } = null!;
     }
