@@ -961,3 +961,21 @@ li{
 .card_imgAuth {
     max-width: 20%;
 }
+/*----------------------footer----------------------*/
+.main_footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    z-index: -1;
+}
+
+.render_content{
+    margin-bottom: 10em;
+    z-index: 2;
+}
+.main_wrap{
+    margin-bottom: 15em !important;
+}
