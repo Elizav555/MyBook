@@ -35,6 +35,7 @@
                                     <button class="main_button" type="submit">Сохранить</button>
                                 </form>
                             </div>
+                        </div>
                         <div class="inner_content_block">
                             <div class="wrapper_content_inner_block">
                                 <span>Социальные сети</span>
@@ -59,5 +60,6 @@
         </div>
     </div>
 </section>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+    }
