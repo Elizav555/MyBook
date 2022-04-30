@@ -78,7 +78,7 @@ public class LibraryViewModel
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
         FilterGenre = filterGenre;
-        AllBooks = GetFilterBooks();
+        AllBooks = _bookRepository.GetFilterBooksGenre(FilterGenre);
         AllAuthors = authorRepository.GetAllAuthors();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
