@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyBook.Infrastructure.Repositories
 {
-    interface IHistoryRepository : IGenericRepository<History>
+    public interface IHistoryRepository : IGenericRepository<History>
     {
         public IQueryable<History> GetHistories(string userId);
     }
