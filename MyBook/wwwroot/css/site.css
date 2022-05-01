@@ -55,14 +55,14 @@ button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
-
+/*
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
-}
+}*/
 
 .chips{
   padding:2px 3px;
@@ -107,7 +107,135 @@ button.accept-policy {
   border-radius: 8px;
   background: white;
 }
+
+.searchChoice:hover{
+  cursor: pointer;
+  background: rgb(245, 144, 60);
+}
+
 .searchChoice{
   margin-left: 14px;
 }
 
+.postcard_mini {
+  display: flex;
+
+  max-width: 260px;
+  min-height: 77px;
+  max-height: 87px;
+
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  background-color: rgb(255,255,255);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-right: 8px;
+  padding: 10px;
+  position: relative;
+  color: #ffffff;
+
+  box-sizing: content-box;
+}
+
+.GenreTitle{
+  display: flex;
+  align-items: center;
+}
+
+.genreName {
+  color: rgb(0, 0, 0) !important;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-right: 10px;
+}
+
+.genreNumber {
+  color: rgb(0, 0, 0) !important;
+  max-width: 60px;
+  min-height: 5px;
+  max-height: 10px;
+
+  margin-left: 20px;
+}
+
+.genre_img{
+  position:absolute;
+  right: 0;
+  bottom: 3px;
+  border-radius: 10px;
+  width: 100px;
+  object-fit: contain;
+  height: 100%;
+}
+
+.show_more {
+  display: flex;
+
+  width: 1080px;
+  height: 40px;
+
+  border: 2px solid rgb(179, 77, 0);
+  background: rgb(256, 256, 256) !important;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  position: relative;
+  text-align:  center;
+
+  box-sizing: content-box;
+}
+.show_more_button{
+  background: rgb(256, 256, 256) !important;
+  border:none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35em;
+  font-size: 25px;
+  color: rgb(179, 77, 0);
+}
+#list{
+  list-style: none;
+}
+
+.authors_collection_grid{
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 18rem);
+  grid-column-gap: 15px;
+  grid-row-gap: 1em;
+  justify-content: center;
+}
+
+.r-img {
+  text-align:center;
+}
+
+.delimiter {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.horizontal {
+  background-color: rgb(232, 232, 232);
+  height: 1px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+.review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+}
