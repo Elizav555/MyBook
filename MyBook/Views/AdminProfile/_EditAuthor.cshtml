@@ -1,40 +1,22 @@
-﻿@model MyBook.Models.Admin.EditAuthorViewModel
+﻿@model MyBook.Models.Admin.AdminViewModel
 <section class="admin_functional">
     <h2>Получить информацию об авторе</h2>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Найти автора" aria-label="Search">
-    </form>
-    <div class="author_information">
-        <div class="author_information">
-            <table>
-                <tr class="upper_table_row">
-                    <td>Фотография</td>
-                    <td>Имя</td>
-                    <td>Дата рождения</td>
-                    <td>Количество книг</td>
-                    <td>Действия</td>
-                </tr>
-                @foreach (var author in Model.Authors.Take(10))
-                {
-                    @*  string? imgLink = author.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;*@
-
-                    <tr>
-                        <td><img src="/assets/img/non.png"></td>
-                        <td>@author.Name</td>
-                        <td>@author.BirthDate</td>
-                        <td>@author.AuthorBooks.Count</td>
-                        <td>
-                            <div class="flex_but">
-                                <button class="spec_but">Редактировать</button>
-                                <button class="spec_but">Удалить</button>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
+    <input class="form-control mr-sm-2" id="searchString" onchange="searchEditAuthor()" type="search" placeholder="Найти автора" aria-label="Search">
+    <div class="author_information authors_collection_grid">
+        @foreach (var author in Model.Authors.Take(10))
+        {
+            @await Component.InvokeAsync("EditAuthor", author)
+        }
+    </div>
+    <div class="container text-center">
+        <button class="spec_but" type="button" onclick="showMoreEditAuthors()">
+            Показать ещё
+        </button>
     </div>
     <div class="add_author">
-        <button class="spec_but">Добавить автора</button>
+        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddAuthorModal", "AdminProfile", new MyBook.Models.Admin.EditAuthorViewModel())'">
+            Добавить автора
+        </button>
     </div>
 </section>
+<script src="~/js/searchEditAuthors.js"></script>

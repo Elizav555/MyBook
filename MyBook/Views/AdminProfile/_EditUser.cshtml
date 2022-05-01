@@ -1,6 +1,6 @@
-﻿@model MyBook.Models.Admin.EditUserViewModel
+﻿@model MyBook.Models.Admin.AdminViewModel
 <section class="admin_functional">
-    <h2>Получить информацию о пользователе</h2>
+    <h2>Изменить информацию о пользователе</h2>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Найти пользователя" aria-label="Search">
     </form>
@@ -26,12 +26,31 @@
                             <td>
                                 @subscr.Type.TypeName
                                 <div class="flex_but">
-                                    <button class="spec_but">Удалить</button>
-                                    <button class="spec_but">Добавить</button>
+                                    <form method="post" asp-action="DeleteUserSubscr">
+                                        <input type="hidden" value="@user.Id" name="id">
+                                        <input type="hidden" value="@subscr.SubscriptionId" name="subscrId">
+                                        <button class="spec_but" type="submit">Удалить</button>
+                                    </form>
                                 </div>
                             </td>
                             <td>@subscr.EndDate</td>
                         }
+                        <td> </td>
+                        <td> </td>
+                        <td>
+                            <form method="post" asp-action="AddSubscrModal">
+                                <input type="hidden" value="@user.Id" name="userId">
+                                <button class="spec_but" type="submit">
+                                    Назначить подписку
+                                </button>
+                            </form>
+                            <form method="post" asp-action="AddAdmin">
+                                <input type="hidden" value="@user.Id" name="userId">
+                                <button class="spec_but" type="submit">
+                                    Назначить администратором
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </table>

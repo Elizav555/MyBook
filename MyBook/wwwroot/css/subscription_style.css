@@ -47,24 +47,44 @@ body{
     max-width: 100%;
     margin-bottom:5%;
 }
+#subscription-admin{
+    border-radius: 12px;
+    width:100%;
+    text-align: center;
+    max-width: 100%;
+    margin-bottom:5%;
+}
 
-.col-3{
+.sub-pay-period{
+    margin-left: 5%;
+    text-align: center;
+}
+
+
+.col-3-admin1{
     overflow: hidden;
     border-bottom: 5px;
     border-bottom: 1px solid rgb(232 232 232);
-    border-right: 1px solid rgb(232 232 232);
     padding: 20px;
 }
 
-.col-9{
+
+.col-3-admin2{
     overflow: hidden;
-    display: inline-block;
-    margin-top: 6%;
-    padding-bottom: 20px;
+    border-bottom: 5px;
     border-bottom: 1px solid rgb(232 232 232);
-    text-align: center;
-    vertical-align: middle
+    padding: 20px;
 }
+
+
+.col-3-admin3{
+    overflow: hidden;
+    border-bottom: 5px;
+    border-bottom: 1px solid rgb(232 232 232);
+    padding: 20px;
+}
+
+
 
 .input-group{
     overflow: hidden;
@@ -83,70 +103,12 @@ body{
     overflow: hidden;
 }
 
-#btn-subscr{
-    overflow: hidden;
-    margin-top: 5%;
-    width: 35%;
-    display: inline-flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    position: relative;
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 600;
-    font-size: 16px!important;
-    outline: 0px;
-    text-align: center;
-    transition: none 0s ease 0s;
-    white-space: nowrap;
-    user-select: none;
-    cursor: pointer;
-    box-shadow: none;
-    border: 2px none;
-    text-shadow: none;
-    background: linear-gradient(rgb(255, 215, 84), rgb(255, 199, 44));
-    color: rgb(0, 0, 0);
-    padding: 12px 16px;
-    height: 48px;
-    border-radius: 12px;
-    line-height: 24px;
-}
-
-#btn-subscr:hover{
-    color: rgb(0, 0, 0);
-    background: linear-gradient(rgb(255, 229, 125), rgb(255, 215, 84));
-    transition: all 0.3s ease 0s;
-    box-shadow: none;
-    border: none;
-}
 
 
 #selecttheme{
     height: 40px;
     border-radius: 5px;
     border-color: rgb(232 232 232);
-}
-
-#sub-pay{
-    margin:5% 25% 0 20%;
-    width:65%;
-    background-color: white;
-    padding: 20px 10px 10px 10px;
-    border-radius: 12px;
-}
-
-.btn-lg{
-    margin-right: 4%;
-    margin-left: 2%;
-    margin-top: 4%;
-    padding: 10px;
-    width: 220px;
-    border-radius: 15px;
-    color:black;
-    background-color: white;
-    border-color:  #FFC72C;
-    border-width: thick;
 }
 
 
@@ -161,62 +123,83 @@ body{
     font-weight: bold;
 }
 
-#ms img{
+/*#ms img{
     display: block;
     padding-left: 0;
     margin-left: 0;
     width: 200px;
     height: 60px;
-}
-#pp img{
+}*/
+/*#pp img{
     margin-left: 30px;
     display: block;
     padding-left: 0;
     width: 120px;
     height: 60px;
+}*/
+h2, h4 {
+    font-weight: 600;
+    padding: 0.3em 0;
 }
-
-.r-only{
+.r-only {
     font-size: 17px;
-    color:rosybrown;
+    color: red;
 }
 
+.pay_but button {
+    display: block !important;
+}
+.but_wrap {
+    background: white;
+    width: 100%;
+    box-shadow: 0 0 10px #cfcccc;
+    border-radius: 12px;
+    margin: 0.5em 0;
+    border: none;
+}
+.but_wrap img{
+    width: 160px;
 
-#pay-up{
+}
+.spec_img img{
+    width: 100px !important;
+}
+/*#pay-up{
     margin:5% 25% 0 20%;
     width:65%;
     background-color: white;
     padding: 20px 10px 10px 10px;
     border-radius: 12px;
-}
-
-#sum-up{
+}*/
+/*#sum-up{
     margin:5% 25% 0 20%;
     width:65%;
     background-color: white;
     padding: 20px 10px 10px 10px;
     border-radius: 12px;
-}
-.sub-type-price{
+}*/
+/*.sub-type-price{
     margin-top: 100px;
     margin-left: 80%;
-}
-
-#sign-up{
-    margin:2% 30% 0 20%;
-    width:65%;
+}*/
+#sign-up {
+    margin: 2% 30% 0 20%;
+    width: 65%;
     border-radius: 12px;
     text-align: center;
 }
-
-.register-form{
-    margin:1% 25% 0 25%;
+#sum-up p{
+    padding: 0;
+    margin: 0;
 }
-.sign-in-text{
+.register-form {
+    margin: 1% 25% 0 25%;
+}
+/*.sign-in-text{
     margin:5% 25% 0 34%;
     width:35%;
     text-align: center;
-}
+}*/
 .btn-block{
     margin: 0;
     padding: 0;
@@ -267,23 +250,18 @@ body{
 }
 .textarea-postcard {
     max-width: 100%;
-    height: auto;
-    min-height: 40px;
+    margin: 1em 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
     vertical-align: bottom;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
-    font-variant: tabular-nums;
     list-style: none;
-    -webkit-font-feature-settings: "tnum","tnum";
-    -moz-font-feature-settings: "tnum","tnum";
-    font-feature-settings: "tnum","tnum";
-    position: relative;
     display: inline-block;
-    width: 100%;
     min-width: 0;
-    padding: 8px 11px;
     color: rgba(0,0,0,.65);
     font-size: 14px;
     line-height: 1.5715;
@@ -295,13 +273,13 @@ body{
     transition: all .3s;
     text-overflow: ellipsis;
 }
-
+/*
 .textarea-postcard {
     resize: vertical;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    margin-bottom: 1%;
+    margin-bottom: 1%;*/
 }
 
 .postcard-danger{
@@ -357,6 +335,18 @@ body{
     text-align: center;
 }
 
+.buttons_sub {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+}
+
+.btn_text img {
+    background: red;
+    justify-content: center;
+    width: 100%;
+}
+
 @media (max-width: 980px) {
     .container-fluid {
         margin: 2% 0 0 5%!important;
@@ -372,4 +362,92 @@ body{
     #btn-subscr {
         font-size: 9px;
     }
+}
+/*--------------------new style-------------*/
+
+.card_style{
+    background: white;
+    box-sizing: border-box;
+    border-radius: 16px;
+    margin: 2.5em 2em;
+    padding: 2em 5em;
+}
+.title_for_sbr{
+    text-align: center;
+    justify-content: center;
+    margin: 0.5em 0;
+}
+.img_sbr_wrapper{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+.img_sbr_wrapper img{
+    width: 100%;
+}
+.title_card{
+    text-align: center;
+    justify-content: center;
+    padding: 1.5em 0;
+    font-weight: bold;
+}
+.inp_card{
+    text-align: center;
+    justify-content: center;
+    font-size: 20px;
+}
+.inp_card div{
+    padding: 0.5em 2em;
+}
+.but_card_wrap {
+    text-align: center;
+    margin: 2em 0 0;
+    justify-content: center;
+}
+.but_card_wrap button{
+    font-size: 22px;
+    padding: 0em 1em;
+}
+.inner_block_card{
+    justify-content: center;
+    text-align: center;
+}
+
+.description_Info{
+    justify-content: center;
+    text-align: center;
+}
+.type_of_sub {
+    justify-content: center;
+    text-align: center;
+    padding: 2em;
+}
+#btn-subscr {
+    font-size: 16px;
+    font-weight: bold;
+    width: 92%;
+    padding: 1em;
+    border-radius: 16px;
+    margin: 2em;
+    box-shadow: 0px 0px 12px #d6d4d4;
+}
+.card_style_block {
+    box-sizing: border-box;
+    background: white;
+    border-radius: 16px;
+    margin: 1em;
+    height: 100%;
+    min-height: 530px;
+    position: relative
+}
+.btn_wrap_info {
+    position: absolute;
+    bottom: 0;
+    width: 92%;
+    text-align: center;
+    justify-content: center;
+}
+.card_text_info{
+    box-sizing: border-box;
+    padding: 0em 2em;
 }

@@ -1,8 +1,8 @@
-﻿@model MyBook.Models.Admin.EditCenterViewModel
+﻿@model MyBook.Models.Admin.AdminViewModel
 <section class="admin_functional">
     <h2>Изменить информацию о магазине</h2>
-    <div class="author_information">
-        <div class="author_information">
+    <div class="center_information">
+        <div class="center_information">
             <table>
                 <tr class="upper_table_row">
                     <td>Название</td>
@@ -22,8 +22,20 @@
                         <td>@bookCenter.Description</td>
                         <td>
                             <div class="flex_but">
-                                <button class="spec_but">Редактировать</button>
-                                <button class="spec_but">Удалить</button>
+                                @{
+                                    var model = new MyBook.Models.Admin.EditCenterViewModel
+                {
+                    BookCenterId = bookCenter.BookCenterId,
+                    Name = bookCenter.Name,
+                    Address = bookCenter.Address,
+                    Phone = bookCenter.Phone,
+                    Description = bookCenter.Description
+                };
+                                }
+                                <button type="button" onclick="location.href='@Url.Action("EditBookCenterModal", "AdminProfile",model)'">
+                                    Редактировать
+                                </button>
+                                <button class="spec_but" type="button" onclick="location.href='@Url.Action("DeleteBookCenter", "AdminProfile",bookCenter)'">Удалить</button>
                             </div>
                         </td>
                     </tr>
@@ -32,6 +44,8 @@
         </div>
     </div>
     <div class="add_author">
-        <button class="spec_but">Добавить магазин</button>
+        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddBookCenterModal", "AdminProfile")'">
+            Добавить магазин
+        </button>
     </div>
 </section>

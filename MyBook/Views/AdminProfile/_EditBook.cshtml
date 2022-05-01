@@ -1,45 +1,24 @@
-﻿@using System.Text
-@model MyBook.Models.Admin.EditBookViewModel
+@using System.Text
+@model MyBook.Models.Admin.AdminViewModel
+<link rel="stylesheet" href="~/css/BookPreview.css">
 <section class="admin_functional">
     <h2>Получить информацию о книге</h2>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Найти книгу" aria-label="Search">
-    </form>
-    <div class="user_information">
+    <input class="form-control mr-sm-2" id="searchStringBooks" type="search" onchange="searchEditBook()" placeholder="Найти книгу" aria-label="Search">
+    <div class="user_information container">
         <div class="books_information">
-            <table>
-                <tr class="upper_table_row">
-                    <td>Обложка</td>
-                    <td>Название</td>
-                    <td>Автор</td>
-                    <td>Жанр</td>
-                    <td>Действия</td>
-                </tr>
-                @foreach (var book in Model.Books.Take(10))
-                {
-                    var authors = new StringBuilder();
-                    authors.AppendJoin(" , ", book.AuthorBooks.Select(it => it.Author.Name));
-                    var genres = new StringBuilder();
-                    genres.AppendJoin(" , ", book.BookGenres.Select(it => it.Genre.Name));
-                    @*var rating = book.Ratings != null ? Math.Round(book.Ratings.Select(it => it.Points).Sum() / book.Ratings.Count, 2) : 0.0;
-                        var isPaid = book.IsPaid ? "Да" : "Нет";
-                        var isAdult = book.IsForAdult ? "Да" : "Нет";*@
-                    string? imgLink = book.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url;
-                    <tr>
-                        <td><img src="@imgLink"></td>
-                        <td>@book.Name</td>
-                        <td>@authors.ToString()</td>
-                        <td>@genres.ToString()</td>
-                        <td>
-                            <div class="flex_but">
-                                <button class="spec_but">Редактировать</button>
-                                <button class="spec_but">Удалить</button>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </table>
+            @foreach (var book in Model.Books.Take(10))
+            {
+                @await Component.InvokeAsync("EditBook", book)
+            }
         </div>
-        <button class="spec_but">Добавить книгу</button>
+        <div class="container text-center">
+            <button class="spec_but" type="button" onclick="showMoreEditBooks()">
+                Показать ещё
+            </button>
+        </div>
+        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddBookModal", "AdminProfile")'">
+            Добавить книгу
+        </button>
     </div>
 </section>
+<script src="~/js/searchEditBooks.js"></script>

@@ -16,5 +16,13 @@ namespace MyBook.Infrastructure.Repositories
                 .ThenInclude(userSubscr => userSubscr.Subscription)
                 .FirstOrDefault()!;
         }
+
+        public IQueryable<User> GetUsersWithSubscr()
+        {
+            return DbSet
+                .Include(user => user.UserSubscrs)
+                .ThenInclude(userSubscr => userSubscr.Subscription)
+                .ThenInclude(subscr => subscr.Type);
+        }
     }
 }

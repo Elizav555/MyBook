@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MyBook.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyBook.Models
 {
-    public class EditProfileViewModel
+    public class UserProfileViewModel
     {
         public string Id { get; set; }
         [Required(ErrorMessage = "Введите email")]
@@ -19,6 +20,8 @@ namespace MyBook.Models
         [Required(ErrorMessage = "Не указана дата рождения")]
         [DataType(DataType.Date, ErrorMessage = "Введите корректную дату рождения")]
         public DateTime? BirthDate { get; set; }
+
+        public List<History>? Histories { get; set; } = null;
     }
 
     public class EditPasswordViewModel

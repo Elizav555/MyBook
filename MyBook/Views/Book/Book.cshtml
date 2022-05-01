@@ -46,14 +46,19 @@
                            <h1>@Model.Name</h1>
                      </div>
                      <div class="ant-col  ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                           <a asp-controller="Author" asp-action="Author" asp-route-authorId="@(Model.AuthorBooks.FirstOrDefault()!.Author.AuthorId)" >
+                        @{
+                           if (Model.AuthorBooks.Any())
+                           {
+                              <a asp-controller="Author" asp-action="Author" asp-route-authorId="@(Model.AuthorBooks.First().Author.AuthorId)">
                                  <div class="lang-block-add-text-head-main bookAuthor">
                                     @foreach (var book in Model.AuthorBooks)
                                     {
                                        @book.Author.Name
                                     }
                                  </div>
-                           </a>
+                              </a>
+                           }
+                           }
                      </div>
                      <div class="ant-col pages ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                         <p>@Model.Description.PagesCount</p>

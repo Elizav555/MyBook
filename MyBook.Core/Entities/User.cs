@@ -8,8 +8,6 @@ namespace MyBook.Entities
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string BirthDate { get; set; }
-        public virtual ICollection<FavAuthor> FavAuthors { get; set; } = new List<FavAuthor>();
-        public virtual ICollection<FavGenre> FavGenres { get; set; }=new List<FavGenre>();
         public virtual ICollection<History> Histories { get; set; }= new List<History>();
         public virtual ICollection<Rating> Ratings { get; set; }=new List<Rating>();
         public virtual ICollection<UserSubscr> UserSubscrs { get; set; } = new List<UserSubscr>();

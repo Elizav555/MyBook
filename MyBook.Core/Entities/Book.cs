@@ -9,6 +9,7 @@
         public bool IsForAdult { get; set; }
         public bool IsPaid { get; set; }
 
+        public int DownloadsCount { get; set; } = 0;
         public int BookDescId { get; set; }
         public virtual BookDesc Description { get; set; } = null!;
         public virtual ICollection<Rating> Ratings { get; set; } = new List<Rating>();

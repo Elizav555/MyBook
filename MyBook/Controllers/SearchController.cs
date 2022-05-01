@@ -52,8 +52,11 @@ public class SearchController : Controller
         return View(_vIewModel);
     }
     
+    [HttpGet]
+    [Route("[controller]/[action]")]
     public IActionResult SearchAuthors(int page,string searchString)
     {
+        if (page == 0) page = 1;
         if (!String.IsNullOrEmpty(searchString))
         {
             _vIewModel = new SearchViewModel(_authorRepository,searchString,page);
@@ -66,6 +69,24 @@ public class SearchController : Controller
         return View(_vIewModel);
     }
 
+    public PartialViewResult SearchEditBooks(int page, string searchString)
+    {
+        if (page == 0) page = 1;
+        _vIewModel = !String.IsNullOrEmpty(searchString) ? 
+            new SearchViewModel(_bookRepository,searchString,page) : 
+            new SearchViewModel(_bookRepository,"",page);
+        return PartialView("../Partials/_EditBooksList", _vIewModel.Books.ToList());
+    }
+    
+    public PartialViewResult SearchEditAuthors(int page, string searchString)
+    {
+        if (page == 0) page = 1;
+        _vIewModel = !String.IsNullOrEmpty(searchString) ? 
+            new SearchViewModel(_authorRepository,searchString,page) : 
+            new SearchViewModel(_authorRepository,"",page);
+        return PartialView("../Partials/_EditAuthorsList", _vIewModel.Authors.ToList());
+    }
+    
     public IActionResult SearchGenres()
     {
         throw new NotImplementedException();
