@@ -41,7 +41,9 @@
                                 <span>Социальные сети</span>
                                 <div class="color_block" style="background: rgb(59, 89, 152);">
                                     <p>VK<p>
-                                        <button class="inner_button">Подключить</button>
+                                        <form asp-controller="UserProfile" asp-action="AddVk" asp-route-userId="@Model.Id">
+                                            <button class="inner_button">Подключить</button>
+                                        </form>
                                 </div>
                                 <small>
                                     Подключите социальные сети, чтобы входить

@@ -57,6 +57,11 @@ namespace MyBook.Controllers
                     {
                         await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Admin"));
                     }
+                    var info = await _signInManager.GetExternalLoginInfoAsync();
+                    if(info!=null)
+                    { 
+                        var identityResult = await _userManager.AddLoginAsync(user, info);
+                    }
                     _bookContext.SaveChanges();
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
@@ -103,5 +108,44 @@ namespace MyBook.Controllers
             }
             return View(model);
         }
+        #region VK
+        public IActionResult ExternalLogin(string returnUrl)
+        {
+            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("VK", redirectUrl);
+            return Challenge(properties, "VK");
+        }
+
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("Login", new {returnUrl});
+            }
+
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false, false);
+            if (result.Succeeded)
+            {
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            DateTime? date = info.Principal.FindFirstValue(ClaimTypes.DateOfBirth) != null ? DateTime.Parse(info.Principal.FindFirstValue(ClaimTypes.DateOfBirth)): null;
+            return View("Registration", new RegistrationModel
+            {
+                FirstName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                LastName = info.Principal.FindFirstValue(ClaimTypes.Surname),
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                BirthDate = date
+            });
+        }
+        
+        #endregion 
     }
 }

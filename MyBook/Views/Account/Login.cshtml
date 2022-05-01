@@ -41,7 +41,9 @@
                         </div>
                         <button type="submit" class="reg_button">Войти</button>
                     </form>
-                    <button class="signin_button">Вход с помощью VK</button>
+                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                        <button class="signin_button" >Вход с помощью VK</button>
+                    </form>
                     <form method="get" asp-controller="Account" asp-action="Registration">
                         <button type="submit" class="main_button">Зарегистрироваться</button>
                     </form><button class="main_button">Забыл пароль</button>
