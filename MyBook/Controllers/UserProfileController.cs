@@ -107,6 +107,31 @@ namespace MyBook.Controllers
             return View();
         }
 
+        public IActionResult AddVk(string userId)
+        {
+            var redirectUrl = Url.Action(nameof(AddVkCallback), "UserProfile", new { userId });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("VK", redirectUrl);
+            return Challenge(properties, "VK");
+        }
+
+        public async Task<IActionResult> AddVkCallback(string userId)
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("AddVK", new { userId });
+            }
+
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false, false);
+            if (!result.Succeeded)
+            {
+              var user = await _userManager.FindByIdAsync(userId);
+              var identityResult = await _userManager.AddLoginAsync(user, info);
+            }
+            //TODO else show that vk already added
+            return RedirectToAction("Index","UserProfile", new { id=userId });
+        }
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

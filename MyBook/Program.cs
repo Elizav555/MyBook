@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Validation;
 using Repositories;
 using System.Security.Claims;
 using MyBook.Infrastructure.Helpers;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,10 +36,38 @@ builder.Services.AddDbContext<MyBookContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ReadersOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Reader"));
     options.AddPolicy("AdminsOnly", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+});
+builder.Services.AddAuthentication().AddOAuth("VK", "VKontakte", config =>
+{
+    config.ClientId = builder.Configuration["VkAuth:AppId"];
+    config.ClientSecret = builder.Configuration["VkAuth:AppSecret"];
+    config.ClaimsIssuer = "VKontakte";
+    config.CallbackPath = new PathString("/signin-vkontakte-token");
+    config.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+    config.TokenEndpoint = "https://oauth.vk.com/access_token";
+    config.Scope.Add("email");
+    config.Scope.Add("first_name");
+    config.Scope.Add("last_name");
+    config.Scope.Add("bdate");
+    config.ClaimActions.MapJsonKey(ClaimTypes.Name, "first_name");
+    config.ClaimActions.MapJsonKey(ClaimTypes.Surname, "last_name");
+    config.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "user_id");
+    config.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+    config.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, "bdate");
+    config.SaveTokens = true;
+    config.Events = new OAuthEvents
+    {
+        OnCreatingTicket = context =>
+        {
+            context.RunClaimActions(context.TokenResponse.Response.RootElement);
+            return Task.CompletedTask;
+        }
+    };
 });
 var app = builder.Build();
 
