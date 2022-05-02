@@ -6,8 +6,9 @@ namespace MyBook.Services
 {
     public class MailService : IMailService
     {
-        const string companyEmail = "mybook@semestrovka.com";
-        const string companyName = "MyBook";
+        const string companyEmail = "mybooksemestrovka@gmail.com";
+        const string companyPass = "mybook@semestrovka.com";
+        const string companyName = "MyBook"; 
         private void SendEmailDefault(string emailAddress, string emailTheme, string bodyHtml)
         {
             try
@@ -22,7 +23,7 @@ namespace MyBook.Services
 
                 using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com")) //используем сервера Google
                 {
-                    client.Credentials = new NetworkCredential("mail@gmail.com", "secret"); //логин-пароль от аккаунта
+                    client.Credentials = new NetworkCredential(companyEmail,companyPass); //логин-пароль от аккаунта
                     client.Port = 587; //порт 587 либо 465
                     client.EnableSsl = true; //SSL обязательно
                     client.Send(message);
@@ -37,6 +38,7 @@ namespace MyBook.Services
         public void SendGiftSubscr(string email)
         {
             var body = "<img src=\"https://i2.mybook.io/next/assets/buyGift/selectionImage0.png\"><br>";
+            SendEmailDefault(email, "Gift for ya", body);
         }
     }
 }

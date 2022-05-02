@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MyBook.Core.Interfaces
 {
-    public class IMailService
+    public interface IMailService
     {
+        public void SendGiftSubscr(string email);
     }
 }

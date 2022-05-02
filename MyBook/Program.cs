@@ -8,6 +8,8 @@ using Repositories;
 using System.Security.Claims;
 using MyBook.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Authentication;
+using MyBook.Services;
+using MyBook.Core.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,9 +33,10 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IGenericRepository<History>, EfGenericRepository<History>>().AddScoped<EFHistoryRepository>()
     .AddScoped<IGenericRepository<UserSubscr>, EfGenericRepository<UserSubscr>>().AddScoped<EFUserSubscrRepository>()
     .AddScoped<ILanguageFilterGetter, LanguageFilterGetter>()
-    .AddScoped<IGenresFilterGetter, GenreFilterGetter>();
+    .AddScoped<IGenresFilterGetter, GenreFilterGetter>()
+    .AddScoped<IMailService, MailService>();
 
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyBookContext>();
+builder.Services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true).AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication();
