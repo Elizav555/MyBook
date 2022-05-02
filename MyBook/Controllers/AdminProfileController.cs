@@ -422,7 +422,7 @@ namespace MyBook.Controllers
                         var genre = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault();
                         if (genre == null)
                             return View("AddSubscriptionToUserModal", model);
-                        subscr.AuthorId = genre.GenreId;
+                        subscr.GenreId = genre.GenreId;
                     }
                     else
                     {

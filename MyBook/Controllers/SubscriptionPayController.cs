@@ -36,6 +36,8 @@ namespace MyBook.Controllers
             subscr.UserSubscr = userSubscr;
             await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
             //TODO show modal that subscr succesfully added
+            if (model.isGift)
+                return RedirectToAction("PaySuccess", "SubscriptionGift", new {userId=model.UserId});
             return RedirectToAction("Subscription", "Subscription");
         }
     }
