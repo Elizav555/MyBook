@@ -52,11 +52,14 @@ namespace MyBook.Controllers
                     return View(model);
                 }
                 var type = GetTypes().First(it => it.TypeId == model.TypeId);
-                var subscr = new Subscription
+                var payModel = new PayViewModel
                 {
-                    StartDate = DateTime.Now.ToString(),
-                    EndDate = DateTime.Now.AddMonths((int)model.Period).ToString(),
-                    TypeId = (int)model.TypeId,
+                    UserId = user.Id,
+                    Period = 1,
+                    TypeId = type.TypeId,
+                    TypeName = type.TypeName,
+                    Price = type.Price,
+                    isGift = true
                 };
                 if (type.TypeName == "Подписка на автора")
                 {
@@ -65,7 +68,8 @@ namespace MyBook.Controllers
                         var author = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault();
                         if (author == null)
                             return View(model);
-                        subscr.AuthorId = author.AuthorId;
+                        payModel.SpecsId = author.AuthorId;
+                        payModel.SpecsName = author.Name;
                     }
                     else
                     {
@@ -80,7 +84,8 @@ namespace MyBook.Controllers
                         var genre = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault();
                         if (genre == null)
                             return View(model);
-                        subscr.AuthorId = genre.GenreId;
+                        payModel.SpecsId = genre.GenreId;
+                        payModel.SpecsName = genre.Name;
                     }
                     else
                     {
@@ -88,14 +93,21 @@ namespace MyBook.Controllers
                         return View(model);
                     }
                 }
-                var userSubscr = new UserSubscr { Subscription = subscr, UserId = user.Id };
-                subscr.UserSubscr = userSubscr;
-                _mailService.SendGiftSubscr(model.Email);
-                await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
-                //TODO show success
-                return View(new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes() });
+                return RedirectToAction("SubscriptionPay", "SubscriptionPay", payModel);
             }
             return View(model);
+        }
+
+        public async Task<IActionResult> PaySuccess(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null){ 
+                //TODO show error
+                return View();
+            }
+            _mailService.SendGiftSubscr(user.Email);
+            //TODO show success
+            return View("SubscriptionGift", new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes() });
         }
 
         private List<Type> GetTypes()

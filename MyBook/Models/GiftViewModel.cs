@@ -19,8 +19,6 @@ namespace MyBook.Models
         public List<Genre> Genres { get; set; } = new List<Genre>();
         public string? GenreName { get; set; }
         public string? AuthorName { get; set; }
-        [Required(ErrorMessage = "Выберите период")]
-        public int? Period { get; set; } = null;
         [Required(ErrorMessage = "Выберите тип подписки")]
         public int? TypeId { get; set; } = null;
     }
