@@ -12,8 +12,8 @@ public class FreeBooksViewModel
     private readonly EFGenreRepository _genreRepository;
     private readonly IGenresFilterGetter _genresFilterGetter;
     private readonly ILanguageFilterGetter _languageFilterGetter;
-    public List<Book> AllBooks { get; set; }
-    public List<Author> AllAuthors { get; set; }
+    public IQueryable<Book> AllBooks { get; set; }
+    public IQueryable<Author> AllAuthors { get; set; }
     public readonly string FilterLanguage;
     public readonly string FilterGenre;
     public List<SelectListItem> Languages = new List<SelectListItem>();
@@ -25,8 +25,8 @@ public class FreeBooksViewModel
     {
         this._bookRepository = _bookRepository;
         this._genreRepository = _genreRepository;
-        AllBooks = _bookRepository.GetAllFreeBooks().ToList();
-        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        AllBooks = _bookRepository.GetAllFreeBooks();
+        AllAuthors = authorRepository.GetAllAuthors();
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
         Languages = _languageFilterGetter.GetItems(_bookRepository);
@@ -43,8 +43,8 @@ public class FreeBooksViewModel
         _languageFilterGetter = languageFilterGetter;
         FilterLanguage = filterLanguage;
         FilterGenre = filterGenre;
-        AllBooks = _bookRepository.GetFilterFreeBooksLanguageAndGenre(FilterLanguage, FilterGenre).ToList();
-        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        AllBooks = _bookRepository.GetFilterFreeBooksLanguageAndGenre(FilterLanguage, FilterGenre);
+        AllAuthors = authorRepository.GetAllAuthors();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
@@ -58,8 +58,8 @@ public class FreeBooksViewModel
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
         FilterLanguage = filterLanguage;
-        AllBooks = _bookRepository.GetFilterFreeBooksLanguage(FilterLanguage).ToList();
-        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        AllBooks = _bookRepository.GetFilterFreeBooksLanguage(FilterLanguage);
+        AllAuthors = authorRepository.GetAllAuthors();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
@@ -73,8 +73,8 @@ public class FreeBooksViewModel
         _genresFilterGetter = genresFilterGetter;
         _languageFilterGetter = languageFilterGetter;
         FilterGenre = filterGenre;
-        AllBooks = _bookRepository.GetFilterFreeBooksGenre(FilterGenre).ToList();
-        AllAuthors = authorRepository.GetAllAuthors().ToList();
+        AllBooks = _bookRepository.GetFilterFreeBooksGenre(FilterGenre);
+        AllAuthors = authorRepository.GetAllAuthors();
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
