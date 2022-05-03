@@ -30,9 +30,22 @@ public class FreeBooksController : Controller
     }
 
     [Route("[controller]/[action]/{pageCount:int?}")]
-    public async Task<IActionResult> FreeBooks(string filterLanguage, string filterGenre)
+    public async Task<IActionResult> FreeBooks(string filterLanguage, string filterGenre, string sortOrder)
     {
         _viewModel = InitializeViewModel(filterLanguage, filterGenre);
+        switch (sortOrder)
+        {
+            case "name":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.Name);
+                break;
+            }
+            case "date":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.PublishedDate);
+                break;
+            }
+        }
         return View(_viewModel);
     }
 
