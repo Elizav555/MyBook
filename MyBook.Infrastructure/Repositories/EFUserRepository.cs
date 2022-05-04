@@ -24,5 +24,14 @@ namespace MyBook.Infrastructure.Repositories
                 .ThenInclude(userSubscr => userSubscr.Subscription)
                 .ThenInclude(subscr => subscr.Type);
         }
+        
+        public IQueryable<User> GetUsersWithName(string nameString)
+        {
+            return DbSet
+                .Include(user => user.UserSubscrs)
+                .ThenInclude(subscr => subscr.Subscription)
+                .ThenInclude(subscr => subscr.Type)
+                .Where(user => (user.FirstName + " " + user.LastName).Contains(nameString));
+        }
     }
 }

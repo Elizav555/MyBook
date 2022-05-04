@@ -103,7 +103,7 @@ namespace MyBook.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null){ 
                 //TODO show error
-                return View();
+                return RedirectToRoute("/");
             }
             _mailService.SendGiftSubscr(user.Email);
             //TODO show success
