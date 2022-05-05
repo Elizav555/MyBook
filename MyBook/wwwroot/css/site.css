@@ -239,3 +239,34 @@ button.accept-policy {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 10px;
 }
+
+.review_box input {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+.review_box p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+.review_box input:focus ~ label {
+    outline: -webkit-focus-ring-color
+    auto 5px;
+  }
+
+.review_box input:checked + p {
+    -webkit-line-clamp: unset;
+  }
+
+.review_box input:checked ~ label {
+    display: none;
+  }
+
+label {
+  color: #b34d00;
+}
+
