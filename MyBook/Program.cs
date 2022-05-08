@@ -25,6 +25,7 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<EfBookRepository>()
     .AddScoped<EFGenreRepository>()
     .AddScoped<EfAuthorRepository>()
+    .AddScoped<IGenericRepository<DownloadLink>, EfGenericRepository<DownloadLink>>()
     .AddScoped<IGenericRepository<MyBook.Entities.Type>, EfGenericRepository<MyBook.Entities.Type>>()
     .AddScoped<EFTypeRepository>().AddScoped<IGenericRepository<object>, EfGenericRepository<object>>()
     .AddScoped<IGenericRepository<BookCenter>, EfGenericRepository<BookCenter>>()
