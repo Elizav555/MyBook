@@ -11,9 +11,11 @@ public class SearchViewModel
     public PageViewModel PageViewModel { get; set; }
     private readonly IGenericRepository<Book>? _bookRepository;
     private readonly IGenericRepository<Author>? _authorRepository;
+    private readonly EFUserRepository _userRepository;
     public readonly string SearchString;
     public IQueryable<Book> Books { get; set; }
     public IQueryable<Author> Authors { get; set; }
+    public IQueryable<User> Users { get; set; }
 
     public SearchViewModel(
         IGenericRepository<Book> bookRepository,
@@ -39,6 +41,17 @@ public class SearchViewModel
 
         Authors = GetSearchAuthors()!.Take(pageNumber*10);
         PageViewModel = new PageViewModel(Authors.Count(), pageNumber);
+    }
+    public SearchViewModel(
+        EFUserRepository userRepository,
+        string searchString,
+        int pageNumber)
+    {
+        _userRepository = userRepository;
+        SearchString = searchString;
+
+        Users = GetSearchUsers()!.Take(pageNumber*10);
+        PageViewModel = new PageViewModel(Users.Count(), pageNumber);
     }
     
     public SearchViewModel(
@@ -76,5 +89,10 @@ public class SearchViewModel
                     .ThenInclude(authorBook =>  authorBook.Book)
                     .Include(author => author.ImgLinks)
         );
+    }
+    
+    private IQueryable<User>? GetSearchUsers()
+    {
+        return _userRepository?.GetUsersWithName(SearchString);
     }
 }

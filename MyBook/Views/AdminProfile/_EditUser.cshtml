@@ -1,59 +1,19 @@
 ﻿@model MyBook.Models.Admin.AdminViewModel
-<section class="admin_functional">
+<section class="admin_functional container">
     <h2>Изменить информацию о пользователе</h2>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Найти пользователя" aria-label="Search">
-    </form>
+    <input class="form-control mr-sm-2" type="search" id="searchStringUsers" onchange="searchEditUser()" placeholder="Найти пользователя" aria-label="Search">
     <div class="user_information">
         <div class="users_information">
-            <table>
-                <tr class="upper_table_row">
-                    <td>Почта</td>
-                    <td>Имя</td>
-                    <td>Подписка</td>
-                    <td>Истекает</td>
-                </tr>
-                @foreach (var user in Model.Users)
-                {
-                    var name = user.FirstName + " " + user.LastName;
-                    var subscrs = user.UserSubscrs.Select(it => it.Subscription).Where(it => DateTime.Parse(it.EndDate).CompareTo(DateTime.Now) > 0);
-                    <tr>
-                        <td>@user.Email</td>
-                        <td>@name</td>
-
-                        @foreach (var subscr in subscrs)
-                        {
-                            <td>
-                                @subscr.Type.TypeName
-                                <div class="flex_but">
-                                    <form method="post" asp-action="DeleteUserSubscr">
-                                        <input type="hidden" value="@user.Id" name="id">
-                                        <input type="hidden" value="@subscr.SubscriptionId" name="subscrId">
-                                        <button class="spec_but" type="submit">Удалить</button>
-                                    </form>
-                                </div>
-                            </td>
-                            <td>@subscr.EndDate</td>
-                        }
-                        <td> </td>
-                        <td> </td>
-                        <td>
-                            <form method="post" asp-action="AddSubscrModal">
-                                <input type="hidden" value="@user.Id" name="userId">
-                                <button class="spec_but" type="submit">
-                                    Назначить подписку
-                                </button>
-                            </form>
-                            <form method="post" asp-action="AddAdmin">
-                                <input type="hidden" value="@user.Id" name="userId">
-                                <button class="spec_but" type="submit">
-                                    Назначить администратором
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </table>
+            @foreach (var user in Model.Users.Take(1))
+            {
+                @await Component.InvokeAsync("EditUser", user)
+            }
+        </div>
+        <div class="container text-center">
+            <button class="spec_but" type="button" onclick="showMoreEditUsers()">
+                Показать ещё
+            </button>
         </div>
     </div>
 </section>
+<script src="~/js/searchEditUsers.js"></script>

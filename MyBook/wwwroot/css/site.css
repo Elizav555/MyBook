@@ -129,3 +129,10 @@ button.accept-policy {
   grid-row-gap: 1em;
   justify-content: center;
 }
+
+.userEditCard{
+  border-radius: 14px;
+  -webkit-box-shadow: 2px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 2px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 2px 2px 8px 0px rgba(34, 60, 80, 0.2);
+}

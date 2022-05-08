@@ -12,5 +12,6 @@ namespace MyBook.Infrastructure.Repositories
     {
         public User GetUserWithSubscr(string userId);
         public IQueryable<User> GetUsersWithSubscr();
+        public IQueryable<User> GetUsersWithName(string name);
     }
 }

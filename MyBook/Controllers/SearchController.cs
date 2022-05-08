@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
 using MyBook.ViewModels;
 using Repositories;
@@ -12,14 +13,16 @@ public class SearchController : Controller
 {
     private readonly IGenericRepository<Book> _bookRepository;
     private readonly IGenericRepository<Author> _authorRepository;
+    private readonly EFUserRepository _userRepository;
     private SearchViewModel _vIewModel;
 
     public SearchController(IGenericRepository<Book> bookRepository,
         IGenericRepository<Author> authorRepository,
-        IGenericRepository<Genre> genreRepository)
+        EFUserRepository userRepository)
     {
         _bookRepository = bookRepository;
         _authorRepository = authorRepository;
+        _userRepository = userRepository;
     }
     public async Task<IActionResult> SearchAll(string searchString)
     {
@@ -86,9 +89,12 @@ public class SearchController : Controller
             new SearchViewModel(_authorRepository,"",page);
         return PartialView("../Partials/_EditAuthorsList", _vIewModel.Authors.ToList());
     }
-    
-    public IActionResult SearchGenres()
+    public PartialViewResult SearchEditUsers(int page, string searchString)
     {
-        throw new NotImplementedException();
+        if (page == 0) page = 1;
+        _vIewModel = !String.IsNullOrEmpty(searchString) ? 
+            new SearchViewModel(_userRepository,searchString,page) : 
+            new SearchViewModel(_userRepository,"",page);
+        return PartialView("../Partials/_EditUsersList", _vIewModel.Users.ToList());
     }
 }
