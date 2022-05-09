@@ -14,6 +14,7 @@ namespace MyBook.Infrastructure.Repositories
                 .Where(user => user.Id == userId)
                 .Include(user => user.UserSubscrs)
                 .ThenInclude(userSubscr => userSubscr.Subscription)
+                .ThenInclude(subscr => subscr.Type)
                 .FirstOrDefault()!;
         }
 
@@ -24,7 +25,7 @@ namespace MyBook.Infrastructure.Repositories
                 .ThenInclude(userSubscr => userSubscr.Subscription)
                 .ThenInclude(subscr => subscr.Type);
         }
-        
+
         public IQueryable<User> GetUsersWithName(string nameString)
         {
             return DbSet
