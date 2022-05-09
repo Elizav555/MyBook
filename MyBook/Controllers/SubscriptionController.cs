@@ -33,12 +33,6 @@ namespace MyBook.Controllers
         }
 
         [HttpGet]
-        public IActionResult SubscrForAuthor()
-        {
-            return RedirectToAction("Subscription");
-        }
-
-        [HttpGet]
         public IActionResult SubscrForGenre()
         {
             return RedirectToAction("Subscription");
@@ -51,7 +45,7 @@ namespace MyBook.Controllers
             var type = GetTypes().First(it => it.TypeName == "Подписка на жанр");
             var genre = _genreRepository.Get(it => it.Name == GenreName);
             var user = await CheckSubscr(type.TypeId, genreId: genre.First().GenreId, authorId: null);
-            if (user == null)
+            if (user == null || genre == null)
                 return Redirect("Error");//TODO show modal that user already have subscr
             var model = new PayViewModel
             {
@@ -68,12 +62,15 @@ namespace MyBook.Controllers
 
         [Authorize(Policy = "ReadersOnly")]
         [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> SubscrForAuthor(string AuthorName)
         {
+            if (AuthorName == null)
+                return RedirectToAction("Subscription");
             var type = GetTypes().First(it => it.TypeName == "Подписка на автора");
             var author = _authorRepository.Get(it => it.Name == AuthorName);
             var user = await CheckSubscr(type.TypeId, authorId: author.First().AuthorId, genreId: null);
-            if (user == null)
+            if (user == null || author == null)
                 return Redirect("Error");//TODO show modal that user already have subsc
             var model = new PayViewModel
             {
