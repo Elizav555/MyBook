@@ -44,6 +44,11 @@ namespace MyBook.Controllers
             return RedirectToAction("Subscription");
         }
 
+        public IActionResult PaymentModal()
+        {
+            return View("PaymentModal");
+        }
+
         [Authorize(Policy = "ReadersOnly")]
         [HttpPost]
         public async Task<IActionResult> SubscrForGenre(string GenreName)
