@@ -1043,7 +1043,7 @@ li{
     font-family: "Fira Sans", sans-serif;
     padding: 2em;
     width: 560px;
-    height: 450px;
+    height: 490px;
     border: thin solid rgba(18, 34, 88, 0.12);
     border-radius: 15px;
     box-shadow: 0px 0px 32px #d6d4d4;
@@ -1070,3 +1070,21 @@ li{
 .card_information .form_2 {
     width: 27% !important;
 }
+.card_info_owner{
+    display:block;
+    position: relative;
+}
+.payment_btn {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    margin: 1em auto;
+    width: 100%;
+}
+    .payment_btn button {
+        padding: 0.7em;
+        font-size: 20px;
+        font-weight: 600;
+        width: 90%;
+        border-radius: 15px;
+    }

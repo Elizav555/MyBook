@@ -70,6 +70,10 @@
         width: 100%;
         padding: 2em 2.5em 3em 2.5em;
     }
+    .payment_content{
+        box-shadow: none;
+        border: none;
+    }
 }
 @media (max-width: 520px) {
     .map{
