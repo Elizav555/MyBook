@@ -10,312 +10,365 @@
     <title>Book</title>
 </head>
 <body>
-    <div type="flex" class="content">
-        <div class="ant-col book-wrapper book-back ant-col-xs-12 ant-col-xs-order-1 ant-col-xl-3 ant-col-xl-order-2">
-            <div class="side-panel">
-                <div class="photo-background">
-                    <img width="560" src="@imgLink" class="book-photo">
-                </div>
-                <div class="book-blur book-cover">
-                    <div class="book-content book-preview">
-                        <div class="book-content-wrap book-preview-vert">
-                            <div height="378" width="0" class="book-photo-block">
-                                <img src="@imgLink" alt="Название книги">
-                            </div>
-                        </div>
+<div type="flex" class="content">
+<div class="ant-col book-wrapper book-back ant-col-xs-12 ant-col-xs-order-1 ant-col-xl-3 ant-col-xl-order-2">
+    <div class="side-panel">
+        <div class="photo-background">
+            <img width="560" src="@imgLink" class="book-photo">
+        </div>
+        <div class="book-blur book-cover">
+            <div class="book-content book-preview">
+                <div class="book-content-wrap book-preview-vert">
+                    <div height="378" width="0" class="book-photo-block">
+                        <img src="@imgLink" alt="Название книги">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ant-col main-content main-content-text ant-col-xs-12 ant-col-xs-order-4 ant-col-xl-3">
-            <div class="language">
-                <div class="lang-block">
-                    <div type="flex" class="ant-row lang-block-add">
-                        <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                            <div class="lang-block-add-text-head">
-                                @Model._resultBook.Language
-                            </div>
-                        </div>
+    </div>
+</div>
+<div class="ant-col main-content main-content-text ant-col-xs-12 ant-col-xs-order-4 ant-col-xl-3">
+    <div class="language">
+        <div class="lang-block">
+            <div type="flex" class="ant-row lang-block-add">
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="lang-block-add-text-head">
+                        @Model._resultBook.Language
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ant-col book-description-block ant-col-xs-12 ant-col-xs-order-3 ant-col-xl-6">
-            <div type="flex" class="ant-row book-name">
-                <div class="ant-col ant-col-xs-11 ant-col-md-11 ant-col-xl-12">
-                    <h1>@Model._resultBook.Name</h1>
-                </div>
-                <div class="ant-col  ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                    @{
-                        if (Model._resultBook.AuthorBooks.Any())
-                        {
-                            <a asp-controller="Author" asp-action="Author" asp-route-authorId="@(Model._resultBook.AuthorBooks.First().Author.AuthorId)">
-                                <div class="lang-block-add-text-head-main bookAuthor">
-                                    @foreach (var book in Model._resultBook.AuthorBooks)
-                                    {
-                                        @book.Author.Name
-                                    }
-                                </div>
-                            </a>
-                        }
+    </div>
+</div>
+<div class="ant-col book-description-block ant-col-xs-12 ant-col-xs-order-3 ant-col-xl-6">
+<div type="flex" class="ant-row book-name">
+<div class="ant-col ant-col-xs-11 ant-col-md-11 ant-col-xl-12">
+    <h1>@Model._resultBook.Name</h1>
+</div>
+<div class="ant-col  ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+    @{
+        if (Model._resultBook.AuthorBooks.Any())
+        {
+            <a asp-controller="Author" asp-action="Author" asp-route-authorId="@(Model._resultBook.AuthorBooks.First().Author.AuthorId)">
+                <div class="lang-block-add-text-head-main bookAuthor">
+                    @foreach (var book in Model._resultBook.AuthorBooks)
+                    {
+                        @book.Author.Name
                     }
                 </div>
-                <div class="ant-col pages ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                    <p>@Model._resultBook.Description.PagesCount</p>
-                    <p>@Model._resultBook.PublishedDate</p>
-                    <p>@(Model._resultBook.IsForAdult ? "18" : "6") +</p>
-                </div>
-                @if (Model.User == null)
-                {
-                    if (Model._resultBook.IsPaid == false)
-                    {
-                        if (Model.downloadLink.First().Url != "")
-                        {
-                            <form method="post" asp-action="DownloadFile">
-                                <input type="hidden" name="link" value="@Model.downloadLink.First().Url" />
-                                <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                                <input type="hidden" name="format" value="@Model.downloadLink.First().Format" />
-                                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                    <div class="button-sub-add">
-                                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                            <span>Скачать в формате epub</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                        if (Model.downloadLink[1].Url != "")
-                        {
-                            <form method="post" asp-action="DownloadFile">
-                                <input type="hidden" name="link" value="@Model.downloadLink[1].Url" />
-                                <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                                <input type="hidden" name="format" value="@Model.downloadLink[1].Format" />
-
-                                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                    <div class="button-sub-add">
-                                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                            <span>Скачать в формате pdf</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        }
-                    }
-                    else
-                    {
-                        <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                            <div class="button-sub-add">
-                                <a asp-action="Subscription" asp-controller="Subscription">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Оформить подписку</span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    }
-                }
-                else if (Model.HasAuthorSubscription())
-                {
-                    if (Model.downloadLink.First().Url != "")
-                    {
-                        <form method="get" asp-action="DownloadFile">
-                            <input type="hidden" name="link" value="@Model.downloadLink.First().Url" />
-                            <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                            <input type="hidden" name="format" value="@Model.downloadLink.First().Format" />
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div class="button-sub-add">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Скачать в формате epub</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                    if (Model.downloadLink[1].Url != "")
-                    {
-                        <form method="get" asp-action="DownloadFile">
-                            <input type="hidden" name="link" value="@Model.downloadLink[1].Url" />
-                            <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                            <input type="hidden" name="format" value="@Model.downloadLink[1].Format" />
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div class="button-sub-add">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Скачать в формате pdf</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                }
-                else if (Model.HasGenreSubsciption())
-                {
-                    if (Model.downloadLink.First().Url != "")
-                    {
-                        <form method="post" asp-action="DownloadFile">
-                            <input type="hidden" name="link" value="@Model.downloadLink.First().Url" />
-                            <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                            <input type="hidden" name="format" value="@Model.downloadLink.First().Format" />
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div class="button-sub-add">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Скачать в формате epub</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                    if (Model.downloadLink[1].Url != "")
-                    {
-                        <form method="post" asp-action="DownloadFile">
-                            <input type="hidden" name="link" value="@Model.downloadLink[1].Url" />
-                            <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                            <input type="hidden" name="format" value="@Model.downloadLink[1].Format" />
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div class="button-sub-add">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Скачать в формате pdf</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                }
-
-                else if (Model.HasPremiumSubscription())
-                {
-                    if (Model.downloadLink.First().Url != "")
-                    {
-                        <form method="post" asp-action="DownloadFile">
-                            <input type="hidden" name="link" value="@Model.downloadLink.First().Url" />
-                            <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                            <input type="hidden" name="format" value="@Model.downloadLink.First().Format" />
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div class="button-sub-add">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Скачать в формате epub</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                    if (Model.downloadLink[1].Url != "")
-                    {
-                        <form method="post" asp-action="DownloadFile">
-                            <input type="hidden" name="link" value="@Model.downloadLink[1].Url" />
-                            <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                            <input type="hidden" name="format" value="@Model.downloadLink[1].Format" />
-
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div class="button-sub-add">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Скачать в формате pdf</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                }
-                else
-                {
-                    <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                        <div class="button-sub-add">
-                            <a asp-action="Subscription" asp-controller="Subscription">
-                                <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                    <span>Оформить подписку</span>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                }
-
-            </div>
-            <div type="flex" class="ant-row ant-row-center">
-                <div class="ant-col book-rate-wrapper ant-col-xs-11 ant-col-md-4 ant-col-xl-6">
-                    <div class="book-rate">
-                        Оцените книгу
-                        <div class="rating-area">
-                            <input type="radio" id="star-5" name="rating" value="5">
-                            <label for="star-5" title="Оценка «5»"></label>
-                            <input type="radio" id="star-4" name="rating" value="4">
-                            <label for="star-4" title="Оценка «4»"></label>
-                            <input type="radio" id="star-3" name="rating" value="3">
-                            <label for="star-3" title="Оценка «3»"></label>
-                            <input type="radio" id="star-2" name="rating" value="2">
-                            <label for="star-2" title="Оценка «2»"></label>
-                            <input type="radio" id="star-1" name="rating" value="1">
-                            <label for="star-1" title="Оценка «1»"></label>
-                        </div>
-                    </div>
+            </a>
+        }
+    }
+</div>
+<div class="ant-col pages ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+    <p>@Model._resultBook.Description.PagesCount</p>
+    <p>@Model._resultBook.PublishedDate</p>
+    <p>@(Model._resultBook.IsForAdult ? "18" : "6") +</p>
+</div>
+@if (Model._resultBook.IsPaid == false)
+{
+    if (Model.downloadLink.First().Url != "")
+    {
+        <form method="post" asp-action="DownloadFile">
+            <input type="hidden" name="link" value="@Model.downloadLink.First().Url"/>
+            <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+            <input type="hidden" name="format" value="@Model.downloadLink.First().Format"/>
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                        <span>Скачать в формате epub</span>
+                    </button>
                 </div>
             </div>
-            <div class="language">
-                <div class="book-desc-wrapper">
-                    <div type="flex" class="ant-row ant-row-center about-book-wrapper">
-                        <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                            <div level="h2" class="about-book">
-                                О&nbsp;книге
+        </form>
+    }
+    if (Model.downloadLink[1].Url != "")
+    {
+        <form method="post" asp-action="DownloadFile">
+            <input type="hidden" name="link" value="@Model.downloadLink[1].Url"/>
+            <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+            <input type="hidden" name="format" value="@Model.downloadLink[1].Format"/>
+
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                        <span>Скачать в формате pdf</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    }
+    if (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == "")
+    {
+        <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+            <div class="button-sub-add">
+                Сожалеем, но эта книга сейчас недоступна
+            </div>
+        </div>
+    }
+}
+else
+{
+    if (Model.User == null)
+    {
+        if (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == "")
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    Сожалеем, но эта книга сейчас недоступна
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    <a asp-action="Subscription" asp-controller="Subscription">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Оформить подписку</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+    else if (Model.HasAuthorSubscription())
+    {
+        if (Model.downloadLink.First().Url != "")
+        {
+            <form method="get" asp-action="DownloadFile">
+                <input type="hidden" name="link" value="@Model.downloadLink.First().Url"/>
+                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                <input type="hidden" name="format" value="@Model.downloadLink.First().Format"/>
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Скачать в формате epub</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        if (Model.downloadLink[1].Url != "")
+        {
+            <form method="get" asp-action="DownloadFile">
+                <input type="hidden" name="link" value="@Model.downloadLink[1].Url"/>
+                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                <input type="hidden" name="format" value="@Model.downloadLink[1].Format"/>
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Скачать в формате pdf</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        if (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == "")
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    Сожалеем, но эта книга сейчас недоступна
+                </div>
+            </div>
+        }
+    }
+    else if (Model.HasGenreSubsciption())
+    {
+        if (Model.downloadLink.First().Url != "")
+        {
+            <form method="post" asp-action="DownloadFile">
+                <input type="hidden" name="link" value="@Model.downloadLink.First().Url"/>
+                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                <input type="hidden" name="format" value="@Model.downloadLink.First().Format"/>
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Скачать в формате epub</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        if (Model.downloadLink[1].Url != "")
+        {
+            <form method="post" asp-action="DownloadFile">
+                <input type="hidden" name="link" value="@Model.downloadLink[1].Url"/>
+                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                <input type="hidden" name="format" value="@Model.downloadLink[1].Format"/>
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Скачать в формате pdf</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        if (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == "")
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    Сожалеем, но эта книга сейчас недоступна
+                </div>
+            </div>
+        }
+    }
+
+    else if (Model.HasPremiumSubscription())
+    {
+        if (Model.downloadLink.First().Url != "")
+        {
+            <form method="post" asp-action="DownloadFile">
+                <input type="hidden" name="link" value="@Model.downloadLink.First().Url"/>
+                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                <input type="hidden" name="format" value="@Model.downloadLink.First().Format"/>
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Скачать в формате epub</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        if (Model.downloadLink[1].Url != "")
+        {
+            <form method="post" asp-action="DownloadFile">
+                <input type="hidden" name="link" value="@Model.downloadLink[1].Url"/>
+                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                <input type="hidden" name="format" value="@Model.downloadLink[1].Format"/>
+
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Скачать в формате pdf</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        if (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == "")
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    Сожалеем, но эта книга сейчас недоступна
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        if (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == "")
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    Сожалеем, но эта книга сейчас недоступна
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div class="button-sub-add">
+                    <a asp-action="Subscription" asp-controller="Subscription">
+                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                            <span>Оформить подписку</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+}
+</div>
+<div type="flex" class="ant-row ant-row-center">
+    <div class="ant-col book-rate-wrapper ant-col-xs-11 ant-col-md-4 ant-col-xl-6">
+        <div class="book-rate">
+            Оцените книгу
+            <div class="rating-area">
+                <input type="radio" id="star-5" name="rating" value="5">
+                <label for="star-5" title="Оценка «5»"></label>
+                <input type="radio" id="star-4" name="rating" value="4">
+                <label for="star-4" title="Оценка «4»"></label>
+                <input type="radio" id="star-3" name="rating" value="3">
+                <label for="star-3" title="Оценка «3»"></label>
+                <input type="radio" id="star-2" name="rating" value="2">
+                <label for="star-2" title="Оценка «2»"></label>
+                <input type="radio" id="star-1" name="rating" value="1">
+                <label for="star-1" title="Оценка «1»"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="language">
+    <div class="book-desc-wrapper">
+        <div type="flex" class="ant-row ant-row-center about-book-wrapper">
+            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                <div level="h2" class="about-book">
+                    О&nbsp;книге
+                </div>
+                <div class="book-annotation">
+                    @Model._resultBook.Description.Description
+                </div>
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div level="h3" class="book-genres">
+                        Жанры
+                    </div>
+                    <div class="book-genre-wrapper">
+                        @foreach (var book in Model._resultBook.BookGenres)
+                        {
+                            <div class="book-genre">@book.Genre.Name</div>
+                            ;
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<section style="background-color: rgb(246, 246, 246);">
+    <div class="container my-5 py-5">
+        <div class="comments">
+            <div class="comments-header">
+                Отзывы на книгу «Название»
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-start align-items-center">
+                            <img class="rounded-circle shadow-1-strong me-3"
+                                 src="https://i.pinimg.com/736x/79/ae/f4/79aef48be3c3930759bd23ab23f77b67.jpg"
+                                 alt="avatar"
+                                 width="60"
+                                 height="60"/>
+                            <div>
+                                <h6 class="fw-bold text-primary mb-1">nwtms</h6>
                             </div>
-                            <div class="book-annotation">
-                                @Model._resultBook.Description.Description
-                            </div>
-                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                                <div level="h3" class="book-genres">
-                                    Жанры
-                                </div>
-                                <div class="book-genre-wrapper">
-                                    @foreach (var book in Model._resultBook.BookGenres)
-                                    {
-                                        <div class="book-genre">@book.Genre.Name</div>
-                                        ;
-                                    }
-                                </div>
-                            </div>
+                        </div>
+                        <div class="rating-result">
+                            Оценил книгу
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span></span>
+                        </div>
+                        <p class="mt-3 mb-4 pb-2">
+                            Так и не дочитала
+                        </p>
+                        <div class>
+                            10 марта 2022
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <section style="background-color: rgb(246, 246, 246);">
-        <div class="container my-5 py-5">
-            <div class="comments">
-                <div class="comments-header">
-                    Отзывы на книгу «Название»
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-12 col-lg-10 col-xl-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-start align-items-center">
-                                <img class="rounded-circle shadow-1-strong me-3"
-                                     src="https://i.pinimg.com/736x/79/ae/f4/79aef48be3c3930759bd23ab23f77b67.jpg"
-                                     alt="avatar"
-                                     width="60"
-                                     height="60" />
-                                <div>
-                                    <h6 class="fw-bold text-primary mb-1">nwtms</h6>
-                                </div>
-                            </div>
-                            <div class="rating-result">
-                                Оценил книгу
-                                <span class="active"></span>
-                                <span class="active"></span>
-                                <span class="active"></span>
-                                <span class="active"></span>
-                                <span></span>
-                            </div>
-                            <p class="mt-3 mb-4 pb-2">
-                                Так и не дочитала
-                            </p>
-                            <div class>
-                                10 марта 2022
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</section>
 </body>
 </html>
