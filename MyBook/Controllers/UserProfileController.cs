@@ -15,11 +15,13 @@ namespace MyBook.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly EFHistoryRepository _historyRepository;
-        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager, EFHistoryRepository historyRepository)
+        private readonly EFUserSubscrRepository _userSubscrRepository;
+        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager, EFUserSubscrRepository userSubscrRepository, EFHistoryRepository historyRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _historyRepository = historyRepository;
+            _userSubscrRepository = userSubscrRepository;
         }
 
         public async Task<IActionResult> Index(string id)
@@ -29,7 +31,13 @@ namespace MyBook.Controllers
             {
                 return NotFound();
             }
+            await DeleteSubscr(user.Id);
             return View(new UserProfileViewModel { Id = id, BirthDate = DateTime.Parse(user.BirthDate), Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Histories = GetHistories(user.Id) });
+        }
+
+        private async Task DeleteSubscr(string userId)
+        {
+            await _userSubscrRepository.DeleteExpiredUserSubscrs(userId);
         }
 
         [HttpPost]
@@ -125,11 +133,11 @@ namespace MyBook.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false, false);
             if (!result.Succeeded)
             {
-              var user = await _userManager.FindByIdAsync(userId);
-              var identityResult = await _userManager.AddLoginAsync(user, info);
+                var user = await _userManager.FindByIdAsync(userId);
+                var identityResult = await _userManager.AddLoginAsync(user, info);
             }
             //TODO else show that vk already added
-            return RedirectToAction("Index","UserProfile", new { id=userId });
+            return RedirectToAction("Index", "UserProfile", new { id = userId });
         }
 
         public async Task<IActionResult> Logout()

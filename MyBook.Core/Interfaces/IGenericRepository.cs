@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace Repositories
 {
-    public interface IGenericRepository<TEntity>  where TEntity : class 
+    public interface IGenericRepository<TEntity> where TEntity : class
     {
         Task CreateAll(List<TEntity> items);
         Task Create(TEntity item);
@@ -14,8 +14,9 @@ namespace Repositories
         IEnumerable<TEntity> Get();
         IEnumerable<TEntity> Get(Func<TEntity, bool> predicate);
         Task Remove(TEntity item);
+        Task RemoveAll(List<TEntity> items);
         Task RemoveById(int id);
-        Task Update(TEntity item,List<string> excluded);
+        Task Update(TEntity item, List<string> excluded);
         IQueryable<TEntity> GetWithInclude(
             params Expression<Func<TEntity, object>>[] includeProperties);
         IEnumerable<TEntity> GetWithInclude(Func<TEntity, bool> predicate,

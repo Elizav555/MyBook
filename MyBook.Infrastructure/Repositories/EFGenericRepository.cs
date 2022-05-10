@@ -10,7 +10,7 @@ namespace MyBook.Infrastructure.Repositories
     {
         protected readonly MyBookContext Context;
         protected readonly DbSet<TEntity> DbSet;
-        
+
         public EfGenericRepository(MyBookContext context)
         {
             Context = context;
@@ -75,14 +75,14 @@ namespace MyBook.Infrastructure.Repositories
             var query = Include(includeProperties);
             return query.AsEnumerable().Where(predicate).ToList();
         }
-        
+
         private IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
         {
             var query = DbSet.AsNoTracking();
             return includeProperties
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
-        
+
         public IQueryable<TResult> GetWithMultiIncluding<TResult>(
             Expression<Func<TEntity, TResult>> selector,
             Expression<Func<TEntity, bool>> predicate,
@@ -111,7 +111,13 @@ namespace MyBook.Infrastructure.Repositories
         public Task CreateAll(List<TEntity> items)
         {
             Context.AddRange(items);
-            return  Context.SaveChangesAsync();
+            return Context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAll(List<TEntity> items)
+        {
+            DbSet.RemoveRange(items);
+            await Context.SaveChangesAsync();
         }
     }
 }

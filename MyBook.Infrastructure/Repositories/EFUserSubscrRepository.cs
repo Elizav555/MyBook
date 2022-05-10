@@ -20,5 +20,19 @@ namespace MyBook.Infrastructure.Repositories
                 .Include(it => it.User)
                 .FirstOrDefault();
         }
+
+        public IEnumerable<UserSubscr>? GetExpiredUserSubscrs(string userId)
+        {
+            var subscrs = DbSet.Where(it => it.UserId == userId)
+                .Include(it => it.Subscription).ToList();
+            return subscrs.Where(it => DateTime.Parse(it.Subscription.EndDate).CompareTo(DateTime.Now) < 0);
+        }
+
+        public async Task DeleteExpiredUserSubscrs(string userId)
+        {
+            var subscrs = GetExpiredUserSubscrs(userId);
+            if (subscrs != null && subscrs.Any())
+                await RemoveAll(subscrs.ToList());
+        }
     }
 }
