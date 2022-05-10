@@ -3,7 +3,7 @@
     public partial class History
     {
         public int HistoryId { get; set; }
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
         public int BookId { get; set; }
         public virtual Book Book { get; set; } = null!;
         public string UserId { get; set; }
