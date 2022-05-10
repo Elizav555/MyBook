@@ -34,7 +34,7 @@ public class BookViewModel
     {
         var type = GetTypes().First(it => it.TypeName == "Премиум");
         var user = HasSubscription(type.TypeId, null, null);
-        return user.Result != null;
+        return user.Result == null;
     }
 
     public bool HasGenreSubsciption()
