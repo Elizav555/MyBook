@@ -12,10 +12,14 @@
                     </tr>
                     @foreach (var history in Model.Histories)
                     {
+                        var price = history.Book.Description.Price;
+                        if (string.IsNullOrWhiteSpace(price))
+                            price = "Бесплатная";
+                        else price += " руб.";
                         <tr>
                             <td>@history.Book.Name</td>
-                            <td>@history.DateTime.ToShortDateString()</td>
-                            <td>@history.Book.Description.Price руб.</td>
+                            <td>@history.DateTime</td>
+                            <td>@price</td>
                         </tr>
                     }
                 </table>

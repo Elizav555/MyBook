@@ -12,18 +12,21 @@ namespace MyBook.Controllers
     {
         private readonly EfBookRepository _bookRepository;
         private readonly EFUserRepository _userRepository;
+        private readonly EFHistoryRepository _historyRepository;
         private readonly IGenericRepository<MyBook.Entities.Type> _typeRepository;
         private BookViewModel _viewModel;
         private readonly IGenericRepository<DownloadLink> _linksRepository;
 
         public BookController(EfBookRepository bookRepository,
             EFUserRepository userRepository,
-            EFTypeRepository typeRepository, IGenericRepository<DownloadLink> linksRepository)
+            EFTypeRepository typeRepository, IGenericRepository<DownloadLink> linksRepository,
+            EFHistoryRepository historyRepository)
         {
             _bookRepository = bookRepository;
             _userRepository = userRepository;
             _typeRepository = typeRepository;
             _linksRepository = linksRepository;
+            _historyRepository = historyRepository;
         }
 
 
@@ -45,7 +48,7 @@ namespace MyBook.Controllers
         }
 
 
-        public async Task<IActionResult> DownloadFile(string link, string name, string format)
+        public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
             format = "acsm";
             var net = new System.Net.WebClient();
@@ -53,6 +56,19 @@ namespace MyBook.Controllers
             var content = new System.IO.MemoryStream(data);
             var contentType = "APPLICATION/octet-stream";
             var fileName = name + "." + format;
+            var user = CheckUser();
+            var book = _bookRepository.GetFullBook(bookId);
+            if (user == null || book == null)
+                return RedirectToAction("error");//TODO show error
+            var history = new History
+            {
+                BookId = bookId,
+                DateTime = DateTime.Now.ToString(),
+                UserId = user.Id,
+            };
+            book.DownloadsCount += 1;
+            await _bookRepository.Update(book);
+            await _historyRepository.Create(history);
             return File(content, contentType, fileName);
         }
     }
