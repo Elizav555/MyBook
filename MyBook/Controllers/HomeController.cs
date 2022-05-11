@@ -1,26 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBook.Models;
 using System.Diagnostics;
+using MyBook.Entities;
+using Repositories;
 
 namespace MyBook.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGenericRepository<BookCenter> _bookCenterRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            IGenericRepository<BookCenter> bookCenterRepository)
         {
-            _logger = logger;
+            _bookCenterRepository = bookCenterRepository;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public JsonResult GetBooksCenter()
+        {
+            var bookCenters = _bookCenterRepository.Get();
+            return Json(bookCenters);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
