@@ -26,8 +26,10 @@ namespace MyBook.Parser
                 {
                     var imgLinkSm = new ImgLink { Resolution = "smallThumbnail", Url = item.volumeInfo.imageLinks != null && item.volumeInfo.imageLinks.smallThumbnail != null ? item.volumeInfo.imageLinks.smallThumbnail : "" };
                     var imgLink = new ImgLink { Resolution = "thumbnail", Url = item.volumeInfo.imageLinks != null && item.volumeInfo.imageLinks.thumbnail != null ? item.volumeInfo.imageLinks.thumbnail : "" };
-                    var epub = new DownloadLink { Format = "epub", Url = item.accessInfo.epub.acsTokenLink != null ? item.accessInfo.epub.acsTokenLink : "" };
-                    var pdf = new DownloadLink { Format = "pdf", Url = item.accessInfo.pdf.acsTokenLink != null ? item.accessInfo.pdf.acsTokenLink : "" };
+                    //var epub = new DownloadLink { Format = "epub", Url = item.accessInfo.epub.acsTokenLink != null ? item.accessInfo.epub.acsTokenLink : "" };
+                    //var pdf = new DownloadLink { Format = "pdf", Url = item.accessInfo.pdf.acsTokenLink != null ? item.accessInfo.pdf.acsTokenLink : "" };
+                    var epub = new DownloadLink { Format = "epub", Url = @"https://drive.google.com/uc?export=download&id=1Bsr_A-6yrTsdYYYFAnuvurCmhYTRfEH6" };
+                    var pdf = new DownloadLink { Format = "pdf", Url = @"https://drive.google.com/uc?export=download&id=1tMtHBHvnJof0gJd_H3UCBrLseIDWtntB" };
                     DateOnly date;
                     DateOnly.TryParse(item.volumeInfo.publishedDate, out date);
                     var book = new BookJson
