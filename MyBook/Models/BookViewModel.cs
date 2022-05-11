@@ -34,7 +34,7 @@ public class BookViewModel
     {
         var type = GetTypes().First(it => it.TypeName == "Премиум");
         var user = HasSubscription(type.TypeId, null, null);
-        return user.Result == null;
+        return user.Result != null;
     }
 
     public bool HasGenreSubsciption()
@@ -46,6 +46,11 @@ public class BookViewModel
         return user.Result != null;
     }
 
+    public bool IsPermitted()
+    {
+        return _resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription() 
+            || HasPremiumSubscription();
+    }
 
     public bool HasAuthorSubscription()
     {
@@ -64,7 +69,8 @@ public class BookViewModel
         if (User.UserSubscrs != null && (User.UserSubscrs.Any(it =>
                 it.Subscription.TypeId == typeId &&
                 ((genreId != null && it.Subscription.GenreId == genreId) ||
-                 (authorId != null && it.Subscription.AuthorId == authorId)))))
+                 (authorId != null && it.Subscription.AuthorId == authorId) 
+                 || it.Subscription.Type.TypeName=="Премиум"))))
             return User;
         return null;
     }
