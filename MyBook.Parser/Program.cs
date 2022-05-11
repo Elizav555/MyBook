@@ -120,6 +120,8 @@ using (var db = new MyBookContext())
         Address = "г.Казань, пр-т. Ямашева, дом 15/2 этаж 4",
         Phone = "8-967-777-96-11",
         Description = "Почта: MyBook.kazan@gmail.com",
+        Latitude = 55.826190,
+        Longitude = 49.097143
     };
     var center1 = new BookCenter
     {
@@ -127,6 +129,8 @@ using (var db = new MyBookContext())
         Address = "г.Москва, пр-т. Победы 92/4",
         Phone = "8-905-557-23-11",
         Description = "Почта: MyBook.moscow@gmail.com",
+        Latitude = 55.689319,
+        Longitude = 37.912552
     };
     var center2 = new BookCenter
     {
@@ -134,6 +138,8 @@ using (var db = new MyBookContext())
         Address = "г.Казань, ул. Декабристов 182",
         Phone = "(843) 563 17 90",
         Description = "Почта: info@kazanbooks.ru. Предлагаем самый большой выбор учебной литературы.",
+        Latitude = 55.840659,
+        Longitude = 49.082366
     };
     db.BookCenters.AddRange(center, center1, center2);
     db.SaveChanges();
