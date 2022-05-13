@@ -26,22 +26,29 @@ namespace MyBook.Controllers
             _userConnectionManager = userConnectionManager;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            //TODO generate notifications
-            await _notificationHubContext.Clients.All.SendAsync("sendToUser", "Heading", "Content"); //send to all
-
-            ////send to specific
-            //var connections = _userConnectionManager.GetUserConnections(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            //if (connections != null && connections.Count > 0)
-            //{
-            //    foreach (var connectionId in connections)
-            //    {
-            //        await _notificationUserHubContext.Clients.Client(connectionId).SendAsync("sendToUser", "Heading", "Content");
-            //    }
-            //}
-
             return View();
+        }
+
+        public async Task<JsonResult> NotifyAll()
+        {
+            await _notificationHubContext.Clients.All.SendAsync("sendToUser", "AlllHeader", "Content"); //send to all
+            return Json(true);
+        }
+
+        public async Task<JsonResult> NotifyClient()
+        {
+            //send to specific
+            var connections = _userConnectionManager.GetUserConnections(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (connections != null && connections.Count > 0)
+            {
+                foreach (var connectionId in connections)
+                {
+                    await _notificationUserHubContext.Clients.Client(connectionId).SendAsync("sendToUser", "UserHeader", "Content");
+                }
+            }
+            return Json(true);
         }
 
         public IActionResult Privacy()

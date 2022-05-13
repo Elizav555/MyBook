@@ -107,13 +107,19 @@
             </div>
         </div>
     </header>
-    <div class="modal fade" id="modal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                    <p class="modal-text"></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <div class="container">
+        <button id="notifyAll">NotifyAll</button><br>
+        <button id="notifyClient">NotifyClient</button>
+        <div class="modal fade" id="modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal-text"></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,13 +142,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        function ready() {
-
-        }
-        var userId = @User.FindFirstValue(ClaimTypes.NameIdentifier);
-        document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    <input type="hidden" value=@User.FindFirstValue(ClaimTypes.NameIdentifier) id="userIdNot" />
     <script src="~/lib/signalr/signalr.js"></script>
     <script src="~/js/notification.js"></script>
     <script src="~/js/usernotification.js"></script>

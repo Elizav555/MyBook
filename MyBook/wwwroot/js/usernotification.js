@@ -1,26 +1,34 @@
-﻿"use strict";
-if (userId == null) {
-    return;
-}
-var connection = new signalR.HubConnectionBuilder().withUrl("/NotificationUserHub?userId=" + userId).build();
-connection.on("sendToUser", (notificationHeading, notificationContent) => {
-    var heading = document.createElement("h3");
-    heading.textContent = notificationHeading;
+﻿$(document).ready(function () {
+    var userId = $('#userIdNot').val();
+    if (userId != null) {
+        var connection = new signalR.HubConnectionBuilder().withUrl("/NotificationUserHub?userId=" + userId).build();
+        connection.on("sendToUser", (notificationHeading, notificationContent) => {
+            $('.modal-title').html(notificationHeading);
+            $('#modal-text').html(notificationContent);
+            $('#modal').modal('show');
+        });
 
-    var p = document.createElement("p");
-    p.innerText = notificationContent;
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        }).then(function () {
+            connection.invoke('GetConnectionId').then(function (connectionId) {
+                document.getElementById('signalRConnectionId').innerHTML = connectionId;
+                //TODO убрать мб то что выше
+            })
+        });
 
-    var div = document.createElement("div");
-    div.appendChild(heading);
-    div.appendChild(p);
 
-    document.getElementById("notificationsList").appendChild(div);
-});
-
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-}).then(function () {
-    connection.invoke('GetConnectionId').then(function (connectionId) {
-        document.getElementById('signalRConnectionId').innerHTML = connectionId;
-    })
+        $('#notifyClient').click(function () {
+            $.ajax({
+                url: '/Home/NotifyClient',
+                type: "GET",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Error" + errorThrown)
+                },
+                success: function (data) {
+                    //Do nothing
+                }
+            });
+        });
+    }
 });
