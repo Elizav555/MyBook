@@ -1,0 +1,56 @@
+﻿.modal_admin {
+    background: white;
+    border-radius: 16px;
+    width: 400px;
+    box-shadow: 0 0 15px #cfcccc;
+}
+    .modal_admin .modal-header {
+        padding: 1em 2em;
+    }
+    .modal_admin .modal-body {
+        padding: 0.5em 2em 1.5em 2em;
+    }
+.modal-body button {
+    padding: 0.7em 1.2em;
+    border-radius: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 0 10px #cfcccc;
+}
+.modal_admin label {
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 0.7em;
+}
+.form-button{
+    justify-content: center;
+    text-align: center;
+    padding: 1em;
+    cursor: pointer;
+}
+.modal_admin_book {
+    background: white;
+    border-radius: 16px;
+    width: 850px;
+    box-shadow: 0 0 15px #cfcccc;
+}
+    .modal_admin_book .modal-header {
+        padding: 0.8em 1.8em;
+    }
+
+    .modal_admin_book .modal-body {
+        padding: 0.5em 2em 1.5em 2em;
+    }
+    .modal_admin_book label {
+        font-weight: bold;
+        font-size: 16px;
+        padding-top: 0.2em;
+    }
+.modal-body .right{
+    padding: 0 0.5em;
+    width: 100%;
+}
+.modal-body .left {
+    padding: 0 0.5em;
+    width: 100%;
+}

@@ -74,6 +74,12 @@
         box-shadow: none;
         border: none;
     }
+    .modal_admin{
+        box-shadow: none;
+    }
+        .modal_admin .modal-header {
+            box-shadow: none;
+        }
 }
 @media (max-width: 520px) {
     .map{
