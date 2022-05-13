@@ -58,8 +58,8 @@ namespace MyBook.Controllers
                         await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Admin"));
                     }
                     var info = await _signInManager.GetExternalLoginInfoAsync();
-                    if(info!=null)
-                    { 
+                    if (info != null)
+                    {
                         var identityResult = await _userManager.AddLoginAsync(user, info);
                     }
                     _bookContext.SaveChanges();
@@ -78,7 +78,7 @@ namespace MyBook.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login(string? returnUrl = null)
         {
             return View(new SignInModel { ReturnUrl = returnUrl });
         }
@@ -121,7 +121,7 @@ namespace MyBook.Controllers
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return RedirectToAction("Login", new {returnUrl});
+                return RedirectToAction("Login", new { returnUrl });
             }
 
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false, false);
@@ -136,7 +136,7 @@ namespace MyBook.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            DateTime? date = info.Principal.FindFirstValue(ClaimTypes.DateOfBirth) != null ? DateTime.Parse(info.Principal.FindFirstValue(ClaimTypes.DateOfBirth)): null;
+            DateTime? date = info.Principal.FindFirstValue(ClaimTypes.DateOfBirth) != null ? DateTime.Parse(info.Principal.FindFirstValue(ClaimTypes.DateOfBirth)) : null;
             return View("Registration", new RegistrationModel
             {
                 FirstName = info.Principal.FindFirstValue(ClaimTypes.Name),
@@ -145,7 +145,7 @@ namespace MyBook.Controllers
                 BirthDate = date
             });
         }
-        
-        #endregion 
+
+        #endregion
     }
 }

@@ -3,25 +3,47 @@ using MyBook.Models;
 using System.Diagnostics;
 using MyBook.Entities;
 using Repositories;
+using Microsoft.AspNetCore.SignalR;
+using MyBook.Infrastructure.Hubs;
+using MyBook.Core.Interfaces;
+using System.Security.Claims;
 
 namespace MyBook.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IGenericRepository<BookCenter> _bookCenterRepository;
 
-        public HomeController(
-            IGenericRepository<BookCenter> bookCenterRepository)
+        private readonly IHubContext<NotificationHub> _notificationHubContext;
+        private readonly IHubContext<NotificationUserHub> _notificationUserHubContext;
+        private readonly IUserConnectionManager _userConnectionManager;
+
+        public HomeController(IGenericRepository<BookCenter> bookCenterRepository, IHubContext<NotificationHub> notificationHubContext, IHubContext<NotificationUserHub> notificationUserHubContext, IUserConnectionManager userConnectionManager)
         {
             _bookCenterRepository = bookCenterRepository;
+            _notificationHubContext = notificationHubContext;
+            _notificationUserHubContext = notificationUserHubContext;
+            _userConnectionManager = userConnectionManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //TODO generate notifications
+            await _notificationHubContext.Clients.All.SendAsync("sendToUser", "Heading", "Content"); //send to all
+
+            ////send to specific
+            //var connections = _userConnectionManager.GetUserConnections(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            //if (connections != null && connections.Count > 0)
+            //{
+            //    foreach (var connectionId in connections)
+            //    {
+            //        await _notificationUserHubContext.Clients.Client(connectionId).SendAsync("sendToUser", "Heading", "Content");
+            //    }
+            //}
+
             return View();
         }
-        
+
         public IActionResult Privacy()
         {
             return View();
