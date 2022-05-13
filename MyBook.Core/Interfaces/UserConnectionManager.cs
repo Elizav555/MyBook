@@ -46,7 +46,8 @@ namespace MyBook.Core.Interfaces
             var conn = new List<string>();
             lock (userConnectionMapLocker)
             {
-                conn = userConnectionMap[userId];
+                if (userId != null && userConnectionMap.ContainsKey(userId))
+                    conn = userConnectionMap[userId];
             }
             return conn;
         }
