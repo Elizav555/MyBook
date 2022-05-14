@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyBook.Core.Interfaces;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
@@ -12,16 +13,22 @@ namespace MyBook.Controllers
     [Authorize(Policy = "ReadersOnly")]
     public class UserProfileController : Controller
     {
+        private readonly INotificationService _notificationService;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly EFHistoryRepository _historyRepository;
         private readonly EFUserSubscrRepository _userSubscrRepository;
-        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager, EFUserSubscrRepository userSubscrRepository, EFHistoryRepository historyRepository)
+        public UserProfileController(UserManager<User> userManager,
+                                     SignInManager<User> signInManager,
+                                     EFUserSubscrRepository userSubscrRepository,
+                                     EFHistoryRepository historyRepository,
+                                     INotificationService notificationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _historyRepository = historyRepository;
             _userSubscrRepository = userSubscrRepository;
+            _notificationService = notificationService;
         }
 
         public async Task<IActionResult> Index(string id)
@@ -37,7 +44,22 @@ namespace MyBook.Controllers
 
         private async Task DeleteSubscr(string userId)
         {
-            await _userSubscrRepository.DeleteExpiredUserSubscrs(userId);
+            var subscrs = _userSubscrRepository.GetExpiredUserSubscrs(userId);
+            if (subscrs != null && subscrs.Any())
+            {
+                var message = "Упс у вас истекли следующие подписки: ";
+                foreach (var subscrItem in subscrs)
+                {
+                    message += subscrItem.Subscription?.Type.TypeName;
+                    if (subscrItem.Subscription?.Author != null)
+                        message += $" {subscrItem.Subscription?.Author.Name}";
+                    if (subscrItem.Subscription?.Genre != null)
+                        message += $" {subscrItem.Subscription?.Genre.Name}";
+                    message += ", ";
+                }
+                await _notificationService.NotifyClient(userId, "Обратите внимание", message);
+            }
+            await _userSubscrRepository.DeleteExpiredUserSubscrs(subscrs);
         }
 
         [HttpPost]
@@ -147,6 +169,7 @@ namespace MyBook.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

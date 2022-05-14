@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\MyBook.Core\MyBook.Core.csproj" />
 		<ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
 		<ProjectReference Include="..\MyBook\MyBook.csproj" />

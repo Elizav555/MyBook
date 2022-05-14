@@ -99,8 +99,8 @@
                             <li class="nav-item">
                                 <a asp-area="" asp-controller="NewProducts" asp-action="NewProducts">🔥 Новинки</a>
                             </li>
-                          <li class="nav-item">
-                                   <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤ Топ книг</a>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="TopBooks" asp-action="Index">❤ Топ книг</a>
                             </li>
                         </ul>
                     </div>
@@ -108,7 +108,21 @@
             </div>
         </div>
     </header>
-
+    <div class="container">
+        <div class="modal fade" id="modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="render_content">
         <main role="main">
             @RenderBody()
@@ -127,6 +141,10 @@
             </div>
         </div>
     </footer>
+    <input type="hidden" value=@User.FindFirstValue(ClaimTypes.NameIdentifier) id="userIdNot" />
+    <script src="~/lib/signalr/signalr.js"></script>
+    <script src="~/js/notification.js"></script>
+    <script src="~/js/usernotification.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -135,7 +153,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/scroll.js"> </script>
     <script src="~/js/password.js"> </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
