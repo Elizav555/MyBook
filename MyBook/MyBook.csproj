@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
+    <ProjectReference Include="..\MyBook.SharedKernel\MyBook.SharedKernel.csproj" />
 
   </ItemGroup>
 

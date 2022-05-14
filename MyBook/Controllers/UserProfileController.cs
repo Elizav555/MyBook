@@ -136,6 +136,10 @@ namespace MyBook.Controllers
         {
             return View();
         }
+        public IActionResult Recommendations()
+        {
+            return View();
+        }
 
         public IActionResult AddVk(string userId)
         {
