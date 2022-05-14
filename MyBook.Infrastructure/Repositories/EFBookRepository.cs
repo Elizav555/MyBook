@@ -41,9 +41,16 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
 
     public Book? GetFullBook(int bookId)
     {
-        return DbSet.Where(book => book.BookId == bookId).Include(book => book.Description)
-            .Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.BookGenres)
-            .ThenInclude(book => book.Genre).Include(book => book.ImgLinks).FirstOrDefault();
+        return DbSet.Where(book => book.BookId == bookId)
+            .Include(book => book.Description)
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(book => book.Author)
+            .Include(book => book.BookGenres)
+            .ThenInclude(book => book.Genre)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Ratings)
+            .ThenInclude(rating => rating.User)
+            .FirstOrDefault();
     }
 
     public IQueryable<Book> GetFilterBooksLanguageAndGenre(string filterLanguage, string filterGenre)
@@ -97,7 +104,7 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
             .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description).Include(book => book.BookGenres);
     }
-
+    
     public IQueryable<Book> GetFilterFreeBooksGenre(string filterGenre)
     {
         return DbSet.Where(book => book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.Description.Price == " ")

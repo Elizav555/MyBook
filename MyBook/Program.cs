@@ -36,7 +36,8 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<ILanguageFilterGetter, LanguageFilterGetter>()
     .AddScoped<IGenresFilterGetter, GenreFilterGetter>()
     .AddScoped<IGenericRepository<BookCenter>,EfGenericRepository<BookCenter>>()
-    .AddScoped<IMailService, MailService>();
+    .AddScoped<IMailService, MailService>()
+    .AddScoped<IGenericRepository<Rating>,EfGenericRepository<Rating>>();
 
 builder.Services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true).AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.

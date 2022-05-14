@@ -39,6 +39,8 @@ namespace MyBook.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+            
             modelBuilder.Entity<Author>(entity =>
             {
                 entity.ToTable("author");
@@ -159,18 +161,11 @@ namespace MyBook.Entities
 
             modelBuilder.Entity<Rating>(entity =>
             {
-                entity.ToTable("rating");
+                entity.ToTable("rating")
+                    .HasIndex(p => new {p.UserId , p.BookId}).IsUnique();
 
                 entity.Property(e => e.RatingId)
                     .HasColumnName("rating_id");
-
-                entity.HasOne(p => p.Book)
-                    .WithMany(b => b.Ratings)
-                    .HasForeignKey(e => e.RatingId);
-
-                entity.HasOne(p => p.User)
-                    .WithMany(b => b.Ratings)
-                    .HasForeignKey(e => e.UserId);
             });
 
             modelBuilder.Entity<Subscription>(entity =>
@@ -195,7 +190,6 @@ namespace MyBook.Entities
 
                 entity.Property(e => e.TypeId)
                     .HasColumnName("type_id");
-
             });
 
             modelBuilder.Entity<UserSubscr>(entity =>

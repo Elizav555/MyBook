@@ -78,6 +78,56 @@ button.accept-policy {
   box-shadow: 2px 2px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
+.delimiter {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.horizontal {
+  background-color: rgb(232, 232, 232);
+  height: 1px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+.review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+}
+
+.review_box input {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.review_box p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.review_box input:focus ~ label {
+  outline: -webkit-focus-ring-color
+  auto 5px;
+}
+
+.review_box input:checked + p {
+  -webkit-line-clamp: unset;
+}
+
+.review_box input:checked ~ label {
+  display: none;
+}
+
 .chips:hover{
   cursor: pointer;
   color: rgb(168, 76, 0) !important;
