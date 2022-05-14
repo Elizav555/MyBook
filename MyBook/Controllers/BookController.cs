@@ -50,7 +50,6 @@ namespace MyBook.Controllers
 
         public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
-            format = "acsm";
             var net = new System.Net.WebClient();
             var data = net.DownloadData(link);
             var content = new System.IO.MemoryStream(data);
