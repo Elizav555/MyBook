@@ -979,3 +979,128 @@ li{
 .main_wrap{
     margin-bottom: 15em !important;
 }
+/*----------------------payment_modal----------------------*/
+.payment_card_modal {
+    background: #4876bb;
+    width: 360px !important;
+    padding: 1.7em;
+    border-radius: 25px;
+    font-weight: 300;
+    color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px #a19f9f;
+    position: absolute;
+    z-index: 5;
+}
+
+    .payment_card_modal .payCard-form {
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 0.3em;
+        margin: 0;
+    }
+
+    .payment_card_modal .upper_form {
+        width: 100%;
+    }
+
+.payment_card_modal_backside {
+    width: 360px !important;
+    justify-content: right;
+    text-align: right;
+    background: #e5ebf2;
+    border-radius: 25px;
+    font-weight: 500;
+    color: black;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px #a19f9f;
+    position: absolute;
+    z-index: 4;
+    margin: 5em 10em;
+    padding: 0;
+}
+
+    .payment_card_modal_backside .payCard-form {
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 0.3em;
+        border: solid 1px #4876bb;
+        width: 30%;
+    }
+
+.black_row {
+    background: black;
+    width: 100%;
+    padding: 1.7em;
+    margin: 0;
+}
+
+.payment_card_modal_backside .first_block {
+    padding: 1.5em;
+}
+
+.payment_card_modal_backside .second_block {
+    padding: 0.2em 1em 1.5em 1em;
+}
+
+.payment_wrapper {
+    position: relative;
+}
+
+.payment_content {
+    background: white;
+    font-family: "Fira Sans", sans-serif;
+    padding: 2em;
+    width: 560px;
+    height: 490px;
+    border: thin solid rgba(18, 34, 88, 0.12);
+    border-radius: 15px;
+    box-shadow: 0px 0px 32px #d6d4d4;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+    .payment_content .card_information {
+        margin-top: 1em;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .payment_content input {
+        width: 100%;
+    }
+
+.card_information .form_1 {
+    width: 67%;
+}
+
+.card_information .form_2 {
+    width: 27% !important;
+}
+
+.card_info_owner {
+    display: block;
+    position: relative;
+}
+
+.payment_btn {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    margin: 1em auto;
+    width: 100%;
+}
+
+    .payment_btn button {
+        padding: 0.7em;
+        font-size: 20px;
+        font-weight: 600;
+        width: 90%;
+        border-radius: 15px;
+    }

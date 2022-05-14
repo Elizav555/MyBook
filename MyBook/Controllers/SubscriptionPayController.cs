@@ -17,6 +17,10 @@ namespace MyBook.Controllers
         {
             return View(model);
         }
+        public IActionResult PaymentModal()
+        {
+            return View("PaymentModal");
+        }
 
 
         [HttpPost]
