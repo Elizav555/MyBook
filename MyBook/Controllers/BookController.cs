@@ -1,8 +1,10 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
+using MyBook.SharedKernel.Extensions;
 using Repositories;
 
 
@@ -10,25 +12,31 @@ namespace MyBook.Controllers
 {
     public class BookController : Controller
     {
+        private readonly UserManager<User> _userManager;
         private readonly EfBookRepository _bookRepository;
         private readonly EFUserRepository _userRepository;
         private readonly EFHistoryRepository _historyRepository;
         private readonly IGenericRepository<MyBook.Entities.Type> _typeRepository;
         private BookViewModel _viewModel;
         private readonly IGenericRepository<DownloadLink> _linksRepository;
+        private readonly IGenericRepository<Rating> _ratingsRepository;
 
         public BookController(EfBookRepository bookRepository,
             EFUserRepository userRepository,
-            EFTypeRepository typeRepository, IGenericRepository<DownloadLink> linksRepository,
-            EFHistoryRepository historyRepository)
+            EFTypeRepository typeRepository,
+            IGenericRepository<DownloadLink> linksRepository,
+            IGenericRepository<Rating> ratingsRepository,
+            EFHistoryRepository historyRepository, 
+            UserManager<User> userManager)
         {
             _bookRepository = bookRepository;
             _userRepository = userRepository;
             _typeRepository = typeRepository;
             _linksRepository = linksRepository;
+            _ratingsRepository = ratingsRepository;
             _historyRepository = historyRepository;
+            _userManager = userManager;
         }
-
 
         // GET
         [Route("Book/{bookId:int}")]
@@ -46,7 +54,6 @@ namespace MyBook.Controllers
                 return null;
             return user;
         }
-
 
         public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
@@ -69,6 +76,34 @@ namespace MyBook.Controllers
             await _bookRepository.Update(book);
             await _historyRepository.Create(history);
             return File(content, contentType, fileName);
+        }
+        
+        public async Task<PartialViewResult> PostComment(int rating,string comment,int bookId)
+        {
+            var returnComment = new Rating();
+            var user = await _userManager.GetUserAsync(User);
+            var bookRatings = _bookRepository.GetWithInclude(book => book.BookId == bookId,book => book.Ratings).First().Ratings;
+            var newComment = new Rating()
+            {
+                Points = rating,
+                ReviewText = comment,
+                Book = _bookRepository.FindById(bookId).Result,
+                BookId = bookId,
+                User = user,
+                UserId = user.Id
+            };
+            if (CollectionHelper<Rating>.Contains(bookRatings, rating1 => rating1.UserId == user.Id))
+            {
+                var currentRating = bookRatings.First(rating1 => rating1.UserId == user.Id);
+                currentRating.Points = rating;
+                currentRating.ReviewText = comment;
+                await _ratingsRepository.Update(currentRating,null);
+            }
+            else
+            {
+                await _ratingsRepository.Create(newComment);
+            }
+            return PartialView("../Partials/_Comment", newComment);
         }
     }
 }
