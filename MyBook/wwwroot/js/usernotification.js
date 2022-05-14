@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     function notifyClient() {
         $.ajax({
-            url: '/Home/CheckUserSubscr', 
+            url: '/Home/CheckUserSubscr',
             type: "GET",
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error" + errorThrown)

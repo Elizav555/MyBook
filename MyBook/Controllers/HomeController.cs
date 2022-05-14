@@ -8,6 +8,7 @@ using MyBook.Infrastructure.Hubs;
 using MyBook.Core.Interfaces;
 using System.Security.Claims;
 using MyBook.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace MyBook.Controllers
 {
@@ -23,7 +24,7 @@ namespace MyBook.Controllers
             _userSubscrRepository = userSubscrRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -33,8 +34,10 @@ namespace MyBook.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
                 return Json(true);
+            if (HttpContext.Session.Keys.Contains("isNotificated") && HttpContext.Session.GetString("isNotificated") == "true")
+                return Json(true);
             var subscr = _userSubscrRepository.GetExpiredUserSubscrs(userId, 5);
-            if (subscr != null && subscr.Count() > 0)
+            if (subscr != null && subscr.Any())
             {
                 var message = "В течение пяти дней у Вас истекают следующие подписки: ";
                 foreach (var subscrItem in subscr)
@@ -47,6 +50,7 @@ namespace MyBook.Controllers
                     message += ", ";
                 }
                 await _notificationService.NotifyClient(userId, "Обратите внимание", message);
+                HttpContext.Session.SetString("isNotificated", "true");
             }
             return Json(true);
         }

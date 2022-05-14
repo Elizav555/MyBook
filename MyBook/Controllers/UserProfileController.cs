@@ -45,7 +45,7 @@ namespace MyBook.Controllers
         private async Task DeleteSubscr(string userId)
         {
             var subscrs = _userSubscrRepository.GetExpiredUserSubscrs(userId);
-            if (subscrs != null && subscrs.Count() > 0)
+            if (subscrs != null && subscrs.Any())
             {
                 var message = "Упс у вас истекли следующие подписки: ";
                 foreach (var subscrItem in subscrs)
@@ -165,6 +165,7 @@ namespace MyBook.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

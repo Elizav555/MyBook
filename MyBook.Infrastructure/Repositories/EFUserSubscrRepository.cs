@@ -30,7 +30,7 @@ namespace MyBook.Infrastructure.Repositories
             return subscrs.Where(it => DateTime.Parse(it.Subscription.EndDate).CompareTo(DateTime.Now.AddDays(expireIn)) < 0);
         }
 
-        public async Task DeleteExpiredUserSubscrs(IEnumerable<UserSubscr> subscr)
+        public async Task DeleteExpiredUserSubscrs(IEnumerable<UserSubscr> subscrs)
         {
             if (subscrs != null && subscrs.Any())
                 await RemoveAll(subscrs.ToList());

@@ -41,6 +41,12 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddSingleton<IUserConnectionManager, UserConnectionManager>()
     .AddScoped<INotificationService, NotificationService>();
 builder.Services.AddSignalR();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".MyBook.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(3600);
+});
 builder.Services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true).AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -78,7 +84,7 @@ builder.Services.AddAuthentication().AddOAuth("VK", "VKontakte", config =>
     };
 });
 var app = builder.Build();
-
+app.UseSession();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
