@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     function notifyAll() {
         $.ajax({
-            url: '/Home/NotifyAll',
+            url: '/Home/NotifyAll', //TODO change url if we need this func
             type: "GET",
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error" + errorThrown)
@@ -21,6 +21,6 @@
     connection.start().catch(function (err) {
         return console.error(err.toString());
     }).then(function () {
-        notifyAll();
+        //  notifyAll();
     });
 });

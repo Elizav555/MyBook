@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MyBook.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBook.Core.Interfaces
+namespace MyBook.Services
 {
     public class UserConnectionManager : IUserConnectionManager
     {

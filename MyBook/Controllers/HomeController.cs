@@ -14,41 +14,14 @@ namespace MyBook.Controllers
     {
         private readonly IGenericRepository<BookCenter> _bookCenterRepository;
 
-        private readonly IHubContext<NotificationHub> _notificationHubContext;
-        private readonly IHubContext<NotificationUserHub> _notificationUserHubContext;
-        private readonly IUserConnectionManager _userConnectionManager;
-
-        public HomeController(IGenericRepository<BookCenter> bookCenterRepository, IHubContext<NotificationHub> notificationHubContext, IHubContext<NotificationUserHub> notificationUserHubContext, IUserConnectionManager userConnectionManager)
+        public HomeController(IGenericRepository<BookCenter> bookCenterRepository)
         {
             _bookCenterRepository = bookCenterRepository;
-            _notificationHubContext = notificationHubContext;
-            _notificationUserHubContext = notificationUserHubContext;
-            _userConnectionManager = userConnectionManager;
         }
 
         public IActionResult Index()
         {
             return View();
-        }
-
-        public async Task<JsonResult> NotifyAll()
-        {
-            await _notificationHubContext.Clients.All.SendAsync("sendToUser", "AlllHeader", "Content"); //send to all
-            return Json(true);
-        }
-
-        public async Task<JsonResult> NotifyClient()
-        {
-            //send to specific
-            var connections = _userConnectionManager.GetUserConnections(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if (connections != null && connections.Count > 0)
-            {
-                foreach (var connectionId in connections)
-                {
-                    await _notificationUserHubContext.Clients.Client(connectionId).SendAsync("sendToUser", "UserHeader", "Content");
-                }
-            }
-            return Json(true);
         }
 
         public IActionResult Privacy()
