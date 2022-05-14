@@ -21,16 +21,17 @@ namespace MyBook.Infrastructure.Repositories
                 .FirstOrDefault();
         }
 
-        public IEnumerable<UserSubscr>? GetExpiredUserSubscrs(string userId)
+        public IEnumerable<UserSubscr>? GetExpiredUserSubscrs(string userId, int expireIn = 0)
         {
             var subscrs = DbSet.Where(it => it.UserId == userId)
-                .Include(it => it.Subscription).ToList();
-            return subscrs.Where(it => DateTime.Parse(it.Subscription.EndDate).CompareTo(DateTime.Now) < 0);
+                .Include(it => it.Subscription).ThenInclude(it => it.Type)
+                .Include(it => it.Subscription).ThenInclude(it => it.Author)
+                .Include(it => it.Subscription).ThenInclude(it => it.Genre).ToList();
+            return subscrs.Where(it => DateTime.Parse(it.Subscription.EndDate).CompareTo(DateTime.Now.AddDays(expireIn)) < 0);
         }
 
-        public async Task DeleteExpiredUserSubscrs(string userId)
+        public async Task DeleteExpiredUserSubscrs(IEnumerable<UserSubscr> subscr)
         {
-            var subscrs = GetExpiredUserSubscrs(userId);
             if (subscrs != null && subscrs.Any())
                 await RemoveAll(subscrs.ToList());
         }

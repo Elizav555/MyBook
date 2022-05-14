@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     function notifyClient() {
         $.ajax({
-            url: '/Home/NotifyClient', //TODO change url if we need this func
+            url: '/Home/CheckUserSubscr', 
             type: "GET",
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Error" + errorThrown)
@@ -24,7 +24,7 @@
             return console.error(err.toString());
         }).then(function () {
             connection.invoke('GetConnectionId')
-            // notifyClient();
+            notifyClient();
         });
     }
 });
