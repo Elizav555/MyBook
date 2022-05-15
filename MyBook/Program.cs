@@ -36,11 +36,12 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IGenericRepository<UserSubscr>, EfGenericRepository<UserSubscr>>().AddScoped<EFUserSubscrRepository>()
     .AddScoped<ILanguageFilterGetter, LanguageFilterGetter>()
     .AddScoped<IGenresFilterGetter, GenreFilterGetter>()
-     .AddScoped<IGenericRepository<Rating>,EfGenericRepository<Rating>>()
+     .AddScoped<IGenericRepository<Rating>, EfGenericRepository<Rating>>()
     .AddScoped<IGenericRepository<BookCenter>, EfGenericRepository<BookCenter>>()
     .AddScoped<IMailService, MailService>()
     .AddSingleton<IUserConnectionManager, UserConnectionManager>()
-    .AddScoped<INotificationService, NotificationService>();
+    .AddScoped<INotificationService, NotificationService>()
+    .AddScoped<IRecommendationsService, RecommendationsService>();
 builder.Services.AddSignalR();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

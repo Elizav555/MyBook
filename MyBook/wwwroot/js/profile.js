@@ -2,11 +2,13 @@
     $('#containerProfile').show();
     $('#containerSubscr').hide();
     $('#containerHistory').hide();
+    $('#containerRecommends').hide();
 
     $('#subscr').click(function () {
         $('#containerProfile').hide();
         $('#containerSubscr').show();
         $('#containerHistory').hide();
+        $('#containerRecommends').hide();
         return false;
     });
 
@@ -14,6 +16,7 @@
         $('#containerProfile').show();
         $('#containerSubscr').hide();
         $('#containerHistory').hide();
+        $('#containerRecommends').hide();
     });
 
 
@@ -21,5 +24,13 @@
         $('#containerProfile').hide();
         $('#containerSubscr').hide();
         $('#containerHistory').show();
+        $('#containerRecommends').hide();
+    });
+
+    $('#recommends').click(function () {
+        $('#containerProfile').hide();
+        $('#containerSubscr').hide();
+        $('#containerHistory').hide();
+        $('#containerRecommends').show();
     });
 });
