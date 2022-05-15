@@ -18,17 +18,17 @@ namespace MyBook.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly EFHistoryRepository _historyRepository;
         private readonly EFUserSubscrRepository _userSubscrRepository;
-        public UserProfileController(UserManager<User> userManager,
-                                     SignInManager<User> signInManager,
-                                     EFUserSubscrRepository userSubscrRepository,
-                                     EFHistoryRepository historyRepository,
-                                     INotificationService notificationService)
+        private readonly IRecommendationsService _recommendationsService;
+        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager,
+                                     EFUserSubscrRepository userSubscrRepository, EFHistoryRepository historyRepository,
+                                     INotificationService notificationService, IRecommendationsService recommendationsService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _historyRepository = historyRepository;
             _userSubscrRepository = userSubscrRepository;
             _notificationService = notificationService;
+            _recommendationsService = recommendationsService;
         }
 
         public async Task<IActionResult> Index(string id)
@@ -39,7 +39,17 @@ namespace MyBook.Controllers
                 return NotFound();
             }
             await DeleteSubscr(user.Id);
-            return View(new UserProfileViewModel { Id = id, BirthDate = DateTime.Parse(user.BirthDate), Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Histories = GetHistories(user.Id) });
+            return View(
+                new UserProfileViewModel
+                {
+                    Id = id,
+                    BirthDate = DateTime.Parse(user.BirthDate),
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Histories = GetHistories(user.Id),
+                    Recommendations = await GetRecommendations(user.Id)
+                });
         }
 
         private async Task DeleteSubscr(string userId)
@@ -66,6 +76,7 @@ namespace MyBook.Controllers
         public async Task<IActionResult> EditProfile(UserProfileViewModel model)
         {
             model.Histories = GetHistories(model.Id);
+            model.Recommendations = await GetRecommendations(model.Id);
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
@@ -136,10 +147,6 @@ namespace MyBook.Controllers
         {
             return View();
         }
-        public IActionResult Recommendations()
-        {
-            return View();
-        }
 
         public IActionResult AddVk(string userId)
         {
@@ -176,6 +183,11 @@ namespace MyBook.Controllers
         private List<History> GetHistories(string userId)
         {
             return _historyRepository.GetHistories(userId).ToList();
+        }
+
+        private async Task<List<Book>> GetRecommendations(string userId)
+        {
+            return await _recommendationsService.GetRecommendationsAsync(userId);
         }
     }
 }

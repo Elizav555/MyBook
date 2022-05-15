@@ -11,7 +11,10 @@ namespace MyBook.Infrastructure.Repositories
         {
             return DbSet.Where(x => x.UserId == userId)
                 .Include(history => history.Book)
-            .ThenInclude(book => book.Description);
+            .ThenInclude(book => book.Description).Include(history => history.Book)
+            .ThenInclude(book => book.BookGenres)
+            .Include(history => history.Book)
+            .ThenInclude(book => book.AuthorBooks);
         }
     }
 }

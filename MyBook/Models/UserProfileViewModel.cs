@@ -22,6 +22,8 @@ namespace MyBook.Models
         public DateTime? BirthDate { get; set; }
 
         public List<History>? Histories { get; set; } = null;
+
+        public List<Book> Recommendations { get; set; } = null;
     }
 
     public class EditPasswordViewModel
