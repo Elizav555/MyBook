@@ -1,9 +1,9 @@
 ﻿@model MyBook.Models.Admin.AdminViewModel
-<section class="admin_functional">
+<section class="admin_functional container">
     <h2>Изменить информацию о магазине</h2>
     <div class="center_information">
-        <div class="center_information">
-            <table>
+        <div class="sub_table_content_admin container">
+            <table class="row col-lg-12">
                 <tr class="upper_table_row">
                     <td>Название</td>
                     <td>Адрес</td>
@@ -32,7 +32,7 @@
                     Description = bookCenter.Description
                 };
                                 }
-                                <button type="button" onclick="location.href='@Url.Action("EditBookCenterModal", "AdminProfile",model)'">
+                                <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditBookCenterModal", "AdminProfile",model)'">
                                     Редактировать
                                 </button>
                                 <button class="spec_but" type="button" onclick="location.href='@Url.Action("DeleteBookCenter", "AdminProfile",bookCenter)'">Удалить</button>
@@ -43,8 +43,9 @@
             </table>
         </div>
     </div>
-    <div class="add_author">
-        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddBookCenterModal", "AdminProfile")'">
+
+    <div class="form-button">
+        <button class="btn-warning btn_spec" type="button" onclick="location.href='@Url.Action("AddBookCenterModal", "AdminProfile")'">
             Добавить магазин
         </button>
     </div>

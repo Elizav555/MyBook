@@ -64,3 +64,40 @@
     padding: 0 0.5em;
     width: 100%;
 }
+.admin_nav li{
+    padding: 0.5em;
+}
+.admin_nav{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.admin_ul li{
+    margin: 1em;
+}
+.logout_admin button{
+    margin-right: 4em;
+}
+.logout_admin  {
+    margin: auto 0;
+}
+.text_button{
+    display: flex;
+    justify-content: space-between;
+}
+.more{
+    background: none;
+    color: black;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+.btn_spec {
+    border-radius: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0.7em;
+    box-shadow: 0 0 2px #cfcccc;
+    margin: -0.5em 0.3em 0 0.3em;
+}

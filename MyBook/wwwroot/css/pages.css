@@ -841,6 +841,7 @@ table td {
 
 .flex_but {
     display: flex;
+    flex-wrap: wrap;
 }
 
     .flex_but .spec_but {
@@ -857,7 +858,7 @@ table td {
 }
 
 .sub_table_admin {
-    padding: 1em 14em 5em 14em;
+    
 }
 
 .sub_table_content_admin {
@@ -1104,3 +1105,16 @@ li{
         width: 90%;
         border-radius: 15px;
     }
+.mod_form {
+    padding: 1.5em;
+}
+.mod_but_form button{
+    width: 100%;
+}
+.mod_but_form {
+    width: 100%;
+    margin: 0.5em 1em;
+}
+.up_btn{
+    margin-top: -1em;
+}
