@@ -21,9 +21,10 @@ namespace MyBook.Models
         [DataType(DataType.Date, ErrorMessage = "Введите корректную дату рождения")]
         public DateTime? BirthDate { get; set; }
 
-        public List<History>? Histories { get; set; } = null;
+        public List<History> Histories { get; set; } = new List<History>();
 
-        public List<Book> Recommendations { get; set; } = null;
+        public List<Book> Recommendations { get; set; } = new List<Book>();
+        public List<Subscription> Subscriptions { get; set; } = new List<Subscription>();
     }
 
     public class EditPasswordViewModel

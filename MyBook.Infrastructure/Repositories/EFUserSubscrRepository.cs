@@ -21,6 +21,17 @@ namespace MyBook.Infrastructure.Repositories
                 .FirstOrDefault();
         }
 
+        public IEnumerable<UserSubscr> GetUserWithAllSubscr(string userId)
+        {
+            return DbSet.Where(it => it.UserId == userId)
+                .Include(it => it.Subscription)
+                .ThenInclude(it => it.Genre)
+                .Include(it => it.Subscription)
+                .ThenInclude(it => it.Author)
+                .Include(it => it.Subscription)
+                .ThenInclude(it => it.Type);
+        }
+
         public IEnumerable<UserSubscr>? GetExpiredUserSubscrs(string userId, int expireIn = 0)
         {
             var subscrs = DbSet.Where(it => it.UserId == userId)

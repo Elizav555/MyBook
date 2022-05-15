@@ -48,7 +48,8 @@ namespace MyBook.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Histories = GetHistories(user.Id),
-                    Recommendations = await GetRecommendations(user.Id)
+                    Recommendations = await GetRecommendations(user.Id),
+                    Subscriptions = GetSubscrs(user.Id)
                 });
         }
 
@@ -76,6 +77,7 @@ namespace MyBook.Controllers
         public async Task<IActionResult> EditProfile(UserProfileViewModel model)
         {
             model.Histories = GetHistories(model.Id);
+            model.Subscriptions = GetSubscrs(model.Id);
             model.Recommendations = await GetRecommendations(model.Id);
             if (ModelState.IsValid)
             {
@@ -143,11 +145,6 @@ namespace MyBook.Controllers
             return RedirectToAction("Index", new { model.Id });
         }
 
-        public IActionResult NonSubscription()
-        {
-            return View();
-        }
-
         public IActionResult AddVk(string userId)
         {
             var redirectUrl = Url.Action(nameof(AddVkCallback), "UserProfile", new { userId });
@@ -188,6 +185,11 @@ namespace MyBook.Controllers
         private async Task<List<Book>> GetRecommendations(string userId)
         {
             return await _recommendationsService.GetRecommendationsAsync(userId);
+        }
+
+        private List<Subscription> GetSubscrs(string userId)
+        {
+            return _userSubscrRepository.GetUserWithAllSubscr(userId).Select(it => it.Subscription).ToList();
         }
     }
 }
