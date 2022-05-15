@@ -17,7 +17,11 @@
                             price = "Бесплатная";
                         else price += " руб.";
                         <tr>
-                            <td>@history.Book.Name</td>
+                            <td>
+                                <a asp-controller="Book" asp-action="Book" asp-route-bookId="@history.Book.BookId">
+                                    @history.Book.Name
+                                </a>
+                            </td>
                             <td>@history.DateTime</td>
                             <td>@price</td>
                         </tr>
