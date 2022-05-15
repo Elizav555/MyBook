@@ -112,7 +112,7 @@ namespace MyBook.Controllers
                 return null;
             if (user.UserSubscrs == null || !(user.UserSubscrs.Any(it =>
                 it.Subscription.TypeId == typeId &&
-                ((genreId != null && it.Subscription.GenreId == genreId) || (authorId != null && it.Subscription.AuthorId == authorId)))))
+                ((genreId != null && it.Subscription.GenreId == genreId) || (authorId != null && it.Subscription.AuthorId == authorId) || it.Subscription.Type.TypeName == "Премиум"))))
                 return user;
             else return null;
         }

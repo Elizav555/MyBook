@@ -41,7 +41,8 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IMailService, MailService>()
     .AddSingleton<IUserConnectionManager, UserConnectionManager>()
     .AddScoped<INotificationService, NotificationService>()
-    .AddScoped<IRecommendationsService, RecommendationsService>();
+    .AddScoped<IRecommendationsService, RecommendationsService>()
+    .AddSingleton<IPaymentService, PaymentService>();
 builder.Services.AddSignalR();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

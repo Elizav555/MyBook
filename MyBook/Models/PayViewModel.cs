@@ -1,9 +1,13 @@
 ﻿using MyBook.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyBook.Models
 {
     public class PayViewModel
     {
+        const string date_regex = @"^((0[1-9])|(1[0-2]))\/([2-9][3-9])|((0[6-9])|(1[0-2]))\/22$";
+        const string name_regex = @"^((?:[A-Za-z]+ ?){1,3})$";
+        const string cvc_regex = @"^[0-9]{3}$";
         public bool isGift { get; set; } = false;
         public string UserId { get; set; }
         public int Period { get; set; }
@@ -13,5 +17,15 @@ namespace MyBook.Models
 
         public string? SpecsName { get; set; }
         public int? SpecsId { get; set; }
+
+        [CreditCard(ErrorMessage ="Введите корректный номер карты")]
+        [DataType(DataType.CreditCard,ErrorMessage ="Введите корректный номер карты")]
+        public string? CardNum { get; set; }
+        [RegularExpression(date_regex, ErrorMessage = "Введите корректную дату для карты, которая не является истекшей")]
+        public string? CardDate { get; set; }
+        [RegularExpression(name_regex, ErrorMessage = "Введите корректное имя владельца карты")]
+        public string? CardName { get; set; }
+        [RegularExpression(cvc_regex, ErrorMessage = "Введите корректный код")]
+        public string? CardCode { get; set; }
     }
 }
