@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Text;
+using Microsoft.AspNetCore.Identity;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using Repositories;
@@ -46,11 +47,6 @@ public class BookViewModel
         return user.Result != null;
     }
 
-    public bool IsPermitted()
-    {
-        return _resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription() 
-            || HasPremiumSubscription();
-    }
 
     public bool HasAuthorSubscription()
     {
@@ -69,8 +65,8 @@ public class BookViewModel
         if (User.UserSubscrs != null && (User.UserSubscrs.Any(it =>
                 it.Subscription.TypeId == typeId &&
                 ((genreId != null && it.Subscription.GenreId == genreId) ||
-                 (authorId != null && it.Subscription.AuthorId == authorId) 
-                 || it.Subscription.Type.TypeName=="Премиум"))))
+                 (authorId != null && it.Subscription.AuthorId == authorId)
+                 || it.Subscription.Type.TypeName == "Премиум"))))
             return User;
         return null;
     }
@@ -79,5 +75,21 @@ public class BookViewModel
     private List<MyBook.Entities.Type> GetTypes()
     {
         return _typeRepository.Get().ToList();
+    }
+
+    public bool CheckAge()
+    {
+        var today = DateTime.Today;
+        string[] date = User.BirthDate.Split('.');
+        int yearBirth;
+            bool success = int.TryParse(date[2], out yearBirth);
+        var age = today.Year - yearBirth;
+        return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
+    }
+
+    public bool IsPermitted()
+    {
+        return _resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription() 
+               || HasPremiumSubscription();
     }
 }
