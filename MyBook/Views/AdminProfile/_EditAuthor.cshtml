@@ -1,7 +1,12 @@
 ﻿@model MyBook.Models.Admin.AdminViewModel
 <section class="admin_functional">
     <h2>Получить информацию об авторе</h2>
-    <input class="form-control mr-sm-2" id="searchString" onchange="searchEditAuthor()" type="search" placeholder="Найти автора" aria-label="Search">
+    <div class="d-flex">
+        <input class="form-control mr-sm-2" id="searchString" onchange="searchEditAuthor()" type="search" placeholder="Найти автора" aria-label="Search">
+        <button class="btn-warning btn_spec" type="button" onclick="location.href='@Url.Action("AddAuthorModal", "AdminProfile", new MyBook.Models.Admin.EditAuthorViewModel())'">
+            Добавить автора
+        </button>
+    </div>
     <div class="author_information authors_collection_grid">
         @foreach (var author in Model.Authors.Take(10))
         {
@@ -9,14 +14,11 @@
         }
     </div>
     <div class="container text-center">
-        <button class="spec_but" type="button" onclick="showMoreEditAuthors()">
-            Показать ещё
+        <button class="more" type="button" onclick="showMoreEditAuthors()">
+            Показать ещё...
         </button>
     </div>
     <div class="add_author">
-        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddAuthorModal", "AdminProfile", new MyBook.Models.Admin.EditAuthorViewModel())'">
-            Добавить автора
-        </button>
     </div>
 </section>
 <script src="~/js/searchEditAuthors.js"></script>

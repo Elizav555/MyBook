@@ -2,17 +2,18 @@
 @{
     var name = Model.FirstName + " " + Model.LastName;
     var subscrs = Model.UserSubscrs.Select(it => it.Subscription).Where(it => DateTime.Parse(it.EndDate).CompareTo(DateTime.Now) > 0);
-    <div class="card d-flex flex-row align-items-center border-bottom p-5 pt-4 pb-4 userEditCard justify-content-around ms-3 me-3 mb-3">
-        <h4 class="text-primary me-4 text-nowrap">
-            @name
-        </h4>
-        <h6 class="text-secondary me-4">
-                    @Model.Email
-                </h6>
-    <button type="button" class="btn btn-danger dropdown-toggle me-4 w-100" data-bs-toggle="dropdown" aria-expanded="false">
-        Подписки пользователя
-    </button>
-        <ul class="dropdown-menu">
+    <section class="container">
+        <div class="card d-flex flex-row align-items-center border-bottom p-5 pt-4 pb-4 userEditCard justify-content-around ms-3 me-3 mb-3">
+            <h4 class=" me-4 text-nowrap">
+                @name
+            </h4>
+            <h6 class="text-secondary me-4">
+                @Model.Email
+            </h6>
+            <button type="button" class="sign_out dropdown-toggle me-4 w-100" data-bs-toggle="dropdown" aria-expanded="false">
+                Подписки пользователя
+            </button>
+            <ul class="dropdown-menu">
                 @foreach (var subscr in subscrs)
                 {
                     <li class="dropdown-item dropdown-item-text d-flex align-items-center">
@@ -45,5 +46,6 @@
                     Назначить администратором
                 </button>
             </form>
-    </div>
+        </div>
+    </section>
 }

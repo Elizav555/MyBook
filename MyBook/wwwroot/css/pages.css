@@ -841,6 +841,7 @@ table td {
 
 .flex_but {
     display: flex;
+    flex-wrap: wrap;
 }
 
     .flex_but .spec_but {
@@ -857,7 +858,7 @@ table td {
 }
 
 .sub_table_admin {
-    padding: 1em 14em 5em 14em;
+    
 }
 
 .sub_table_content_admin {

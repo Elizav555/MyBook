@@ -1,24 +1,30 @@
 @using System.Text
 @model MyBook.Models.Admin.AdminViewModel
 <link rel="stylesheet" href="~/css/BookPreview.css">
-<section class="admin_functional">
+<section class="container admin_functional">
     <h2>Получить информацию о книге</h2>
-    <input class="form-control mr-sm-2" id="searchStringBooks" type="search" onchange="searchEditBook()" placeholder="Найти книгу" aria-label="Search">
-    <div class="user_information container">
-        <div class="books_information">
-            @foreach (var book in Model.Books.Take(10))
-            {
-                @await Component.InvokeAsync("EditBook", book)
-            }
-        </div>
-        <div class="container text-center">
-            <button class="spec_but" type="button" onclick="showMoreEditBooks()">
-                Показать ещё
-            </button>
-        </div>
-        <button class="spec_but" type="button" onclick="location.href='@Url.Action("AddBookModal", "AdminProfile")'">
+    <div class="d-flex">
+        <input class="form-control mr-sm-2" id="searchStringBooks" type="search" onchange="searchEditBook()" placeholder="Найти книгу" aria-label="Search">
+        <button class="btn_spec btn-warning" type="button" onclick="location.href='@Url.Action("AddBookModal", "AdminProfile")'">
             Добавить книгу
         </button>
+    </div>
+    <div class="user_information container">
+        <div class="books_information">
+
+            <div class="container">
+                @foreach (var book in Model.Books.Take(10))
+                {
+                    @await Component.InvokeAsync("EditBook", book)
+
+                }
+            </div>
+        </div>
+        <div class="container text-center">
+            <button class="more" type="button" onclick="showMoreEditBooks()">
+                Показать ещё...
+            </button>
+        </div>
     </div>
 </section>
 <script src="~/js/searchEditBooks.js"></script>
