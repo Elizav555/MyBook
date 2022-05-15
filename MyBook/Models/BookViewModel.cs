@@ -10,6 +10,7 @@ public class BookViewModel
 {
     private readonly EfBookRepository _bookRepository;
     private readonly IGenericRepository<Author> _authorRepository;
+    private readonly EFHistoryRepository _historyRepository;
     private readonly IGenericRepository<MyBook.Entities.Type> _typeRepository;
     private readonly IGenericRepository<Genre> _genreRepository;
     public readonly Book? _resultBook;
@@ -19,9 +20,11 @@ public class BookViewModel
     public List<DownloadLink> downloadLink;
     public IGenericRepository<DownloadLink> _linksRepository;
 
-    public BookViewModel(IGenericRepository<DownloadLink> linksRepository,
-        IGenericRepository<MyBook.Entities.Type> typeRepository, EfBookRepository bookRepository, int bookId, User user)
+    public BookViewModel(EFHistoryRepository historyRepository, IGenericRepository<DownloadLink> linksRepository,
+        IGenericRepository<MyBook.Entities.Type> typeRepository, EfBookRepository bookRepository,
+        int bookId, User user)
     {
+        _historyRepository = historyRepository;
         _linksRepository = linksRepository;
         _typeRepository = typeRepository;
         _bookRepository = bookRepository;
@@ -85,6 +88,13 @@ public class BookViewModel
             bool success = int.TryParse(date[2], out yearBirth);
         var age = today.Year - yearBirth;
         return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
+    }
+
+    public bool CheckHistory()
+    {
+        if (User == null) return true;
+        return (!_historyRepository.GetWithInclude(h =>
+            _resultBook.BookId == h.BookId && User.Id == h.UserId).Any());
     }
 
     public bool IsPermitted()

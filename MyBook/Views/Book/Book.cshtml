@@ -131,6 +131,30 @@
                         </a>
                     </div>
                 </div>
+                if (Model.CheckHistory())
+                {
+                    <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                        <div class="button-sub-add">
+                            <form method="post" asp-action="DownloadFile">
+                                <input type="hidden" name="link" value="@Model.downloadLink.First().Url"/>
+                                <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                                <input type="hidden" name="format" value="@Model.downloadLink.First().Format"/>
+                                <input type="hidden" name="bookId" value="@Model._resultBook.BookId"/>
+                                <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                                    <span>Купить книгу</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                        <div class="button-sub-add" id="alreadyBought">
+                            Уже приобретено
+                        </div>
+                    </div>
+                }
             }
 
         </div>
