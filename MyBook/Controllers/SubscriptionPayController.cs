@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBook.Core.Interfaces;
 using MyBook.Entities;
 using MyBook.Models;
 using Repositories;
@@ -8,9 +9,11 @@ namespace MyBook.Controllers
     public class SubscriptionPayController : Controller
     {
         private readonly IGenericRepository<Object> _genericRepository;
-        public SubscriptionPayController(IGenericRepository<Object> genericRepository)
+        private readonly IPaymentService _paymentService;
+        public SubscriptionPayController(IGenericRepository<Object> genericRepository, IPaymentService paymentService)
         {
             _genericRepository = genericRepository;
+            _paymentService = paymentService;
         }
 
         public IActionResult SubscriptionPay(PayViewModel model)
@@ -33,6 +36,11 @@ namespace MyBook.Controllers
                 if (string.IsNullOrWhiteSpace(model.CardNum) || string.IsNullOrWhiteSpace(model.CardCode) || string.IsNullOrWhiteSpace(model.CardDate) || string.IsNullOrWhiteSpace(model.CardName))
                 {
                     ModelState.AddModelError("EmptyFields", "Заполните все поля");
+                    return View(model);
+                }
+                if (!_paymentService.PerformPayment())
+                {
+                    ModelState.AddModelError("Unsuccessfull payment", "Оплата была отклонена");
                     return View(model);
                 }
                 var subscr = new Subscription
