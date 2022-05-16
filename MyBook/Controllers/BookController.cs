@@ -42,7 +42,7 @@ namespace MyBook.Controllers
         [Route("Book/{bookId:int}")]
         public IActionResult Book(int bookId)
         {
-            _viewModel = new BookViewModel(_linksRepository,
+            _viewModel = new BookViewModel(_historyRepository, _linksRepository,
                 _typeRepository, _bookRepository, bookId, CheckUser());
             return View(_viewModel);
         }
