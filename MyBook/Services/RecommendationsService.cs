@@ -24,12 +24,12 @@ namespace MyBook.Services
                 return topTen;
             }
             var recommends = new List<Book>();
-            var genresIds = history.Select(history => history.Book.BookGenres.First().GenreId).ToList();
+            var genresIds = history.Where(history => history.Book.BookGenres.Any()).Select(history => history.Book.BookGenres.First().GenreId).ToList();
             if (genresIds != null && genresIds.Any())
             {
                 genresIds.ForEach(genreId => recommends.AddRange(_bookRepository.GetBookForGenre(genreId)));
             }
-            var authorsIds = history.Select(history => history.Book.AuthorBooks.First().AuthorId).ToList();
+            var authorsIds = history.Where(history => history.Book.AuthorBooks.Any()).Select(history => history.Book.AuthorBooks.First().AuthorId).ToList();
             if (authorsIds != null && authorsIds.Any())
             {
                 authorsIds.ForEach(authorId => recommends.AddRange(_bookRepository.GetBookForAuthor(authorId)));
