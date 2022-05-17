@@ -27,14 +27,14 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     public IQueryable<Book> GetAllFreeBooks()
     {
         return DbSet
-            .Where(book => book.Description.Price == " ")
+            .Where(book => book.IsPaid==false)
             .Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description);
     }
 
     public IQueryable<Book> GetFreeBooks()
     {
-        return DbSet.Where(book => book.Description.Price == " ").Include(book => book.AuthorBooks)
+        return DbSet.Where(book => book.IsPaid==false).Include(book => book.AuthorBooks)
             .ThenInclude(book => book.Author).Include(book => book.ImgLinks).Include(book => book.Description);
     }
 
@@ -108,7 +108,7 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     {
         return DbSet
             .Where(book => book.Language.Contains(filterLanguage) &&
-                           book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.Description.Price == " ").Include(book => book.AuthorBooks)
+                           book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.IsPaid==false).Include(book => book.AuthorBooks)
 
             .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description).Include(book => book.BookGenres);
@@ -116,14 +116,14 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
 
     public IQueryable<Book> GetFilterFreeBooksLanguage(string filterLanguage)
     {
-        return DbSet.Where(book => book.Language.Contains(filterLanguage) && book.Description.Price == " ").Include(book => book.AuthorBooks)
+        return DbSet.Where(book => book.Language.Contains(filterLanguage) && book.IsPaid==false).Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description).Include(book => book.BookGenres);
     }
 
     public IQueryable<Book> GetFilterFreeBooksGenre(string filterGenre)
     {
-        return DbSet.Where(book => book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.Description.Price == " ")
+        return DbSet.Where(book => book.BookGenres.First().Genre.Name.Contains(filterGenre) && book.IsPaid==false)
             .Include(book => book.AuthorBooks).ThenInclude(authorBook => authorBook.Author)
             .Include(book => book.ImgLinks).Include(book => book.Description).Include(book => book.BookGenres);
     }
