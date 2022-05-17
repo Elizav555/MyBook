@@ -66,7 +66,8 @@ namespace MyBook.Controllers
                         DateTime = DateTime.Now.ToString(),
                         UserId = model.UserId,
                     };
-                    await _historyRepository.Create(history);
+                    if(!_historyRepository.CheckHistory(model.UserId,(int)model.BookId))
+                        await _historyRepository.Create(history);
                     return RedirectToAction("Book", "Book", new { model.BookId });
                 }
                 if (model.Period == null || model.TypeId == null)
