@@ -82,12 +82,16 @@ public class BookViewModel
 
     public bool CheckAge()
     {
-        var today = DateTime.Today;
-        string[] date = User.BirthDate.Split('.');
-        int yearBirth;
+        if (User == null) return true;
+        else
+        {
+            var today = DateTime.Today;
+            string[] date = User.BirthDate.Split('.');
+            int yearBirth;
             bool success = int.TryParse(date[2], out yearBirth);
-        var age = today.Year - yearBirth;
-        return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
+            var age = today.Year - yearBirth;
+            return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
+        }
     }
 
     public bool CheckHistory()
