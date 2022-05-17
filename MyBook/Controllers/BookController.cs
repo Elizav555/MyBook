@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
@@ -55,6 +56,7 @@ namespace MyBook.Controllers
             return user;
         }
 
+        [Authorize]
         public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
             var net = new System.Net.WebClient();
