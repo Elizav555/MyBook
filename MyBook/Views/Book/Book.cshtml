@@ -122,17 +122,17 @@
         }
         else
         {
-            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                <div class="button-sub-add">
-                    <a asp-action="Subscription" asp-controller="Subscription">
-                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                            <span>Оформить подписку</span>
-                        </button>
-                    </a>
-                </div>
-            </div>
             if (Model.CheckHistory())
             {
+                <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                    <div class="button-sub-add">
+                        <a asp-action="Subscription" asp-controller="Subscription">
+                            <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                                <span>Оформить подписку</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
                 <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                     <div class="button-sub-add">
                         <form method="post" asp-action="BookPay" asp-controller="SubscriptionPay">
