@@ -68,7 +68,7 @@
                                                     <option value="@author.Name"></option>
                                                 }
                                             </datalist>
-                                            <span asp-validation-for="AuthorName"></span>
+                                            <span class="alerts" asp-validation-for="AuthorName"></span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -90,12 +90,12 @@
                                                     <option value="@genre.Name"></option>
                                                 }
                                             </datalist>
-                                            <span asp-validation-for="GenreName"></span>
+                                            <span class="alerts" asp-validation-for="GenreName"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <span asp-validation-for="TypeId"></span>
+                            <span class="alerts" asp-validation-for="TypeId"></span>
                             <div id="sub-pay">
                                 <div class="sub-pay-period">
                                     <h5>Период оформления подписки</h5>
@@ -112,7 +112,7 @@
                                         <label class="form-check-label" asp-for=Period>12 месяцев</label>
                                     </div>
                                 </div>
-                                <span asp-validation-for="Period"></span>
+                                <span class="alerts" asp-validation-for="Period"></span>
                             </div>
                             <button type="submit" class="btn btn-primary">Сохранить</button>
                         </form>

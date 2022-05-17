@@ -24,7 +24,7 @@
 .modal_admin label {
     font-weight: bold;
     font-size: 16px;
-    padding-top: 0.7em;
+    padding-top: 0;
 }
 
 .form-button {
@@ -37,8 +37,9 @@
 .modal_admin_book {
     background: white;
     border-radius: 16px;
-    width: 850px;
+    width: 100%;
     box-shadow: 0 0 15px #cfcccc;
+    white-space: nowrap;
 }
 
     .modal_admin_book .modal-header {
@@ -52,7 +53,7 @@
     .modal_admin_book label {
         font-weight: bold;
         font-size: 16px;
-        padding-top: 0.2em;
+        padding-top: 0em;
     }
 
 .modal-body .right {
@@ -100,4 +101,15 @@
     padding: 0.7em;
     box-shadow: 0 0 2px #cfcccc;
     margin: -0.5em 0.3em 0 0.3em;
+}
+.alerts{
+    display: block;
+    color: red;
+    padding: 0.5em 0.2em 0 0.2em;
+    font-size: 14px;
+    font-weight: normal;
+}
+.form-group{
+    padding: 0;
+    margin: 0;
 }
