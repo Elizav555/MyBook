@@ -76,7 +76,8 @@ namespace MyBook.Controllers
             };
             book.DownloadsCount += 1;
             await _bookRepository.Update(book);
-            await _historyRepository.Create(history);
+            if (!_historyRepository.CheckHistory(user.Id, bookId))
+                await _historyRepository.Create(history);
             return File(content, contentType, fileName);
         }
         
