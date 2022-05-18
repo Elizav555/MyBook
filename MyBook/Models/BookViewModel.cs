@@ -83,15 +83,12 @@ public class BookViewModel
     public bool CheckAge()
     {
         if (User == null) return true;
-        else
-        {
-            var today = DateTime.Today;
-            string[] date = User.BirthDate.Split('.');
-            int yearBirth;
-            bool success = int.TryParse(date[2], out yearBirth);
-            var age = today.Year - yearBirth;
-            return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
-        }
+        var today = DateTime.Today;
+        string[] date = User.BirthDate.Split('.');
+        int yearBirth;
+        bool success = int.TryParse(date[2], out yearBirth);
+        var age = today.Year - yearBirth;
+        return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
     }
 
     public bool CheckHistory()
@@ -103,7 +100,7 @@ public class BookViewModel
 
     public bool IsPermitted()
     {
-        return _resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription() 
+        return _resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription()
                || HasPremiumSubscription();
     }
 }

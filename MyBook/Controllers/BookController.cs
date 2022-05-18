@@ -27,7 +27,7 @@ namespace MyBook.Controllers
             EFTypeRepository typeRepository,
             IGenericRepository<DownloadLink> linksRepository,
             IGenericRepository<Rating> ratingsRepository,
-            EFHistoryRepository historyRepository, 
+            EFHistoryRepository historyRepository,
             UserManager<User> userManager)
         {
             _bookRepository = bookRepository;
@@ -56,18 +56,19 @@ namespace MyBook.Controllers
             return user;
         }
 
-        [Authorize]
+
         public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
+            var user = CheckUser();
+            if (user == null) return RedirectToAction("Login", "Account");
             var net = new System.Net.WebClient();
             var data = net.DownloadData(link);
             var content = new System.IO.MemoryStream(data);
             var contentType = "APPLICATION/octet-stream";
             var fileName = name + "." + format;
-            var user = CheckUser();
             var book = _bookRepository.GetFullBook(bookId);
             if (user == null || book == null)
-                return RedirectToAction("error");//TODO show error
+                return RedirectToAction("error"); //TODO show error
             var history = new History
             {
                 BookId = bookId,
@@ -80,12 +81,13 @@ namespace MyBook.Controllers
                 await _historyRepository.Create(history);
             return File(content, contentType, fileName);
         }
-        
-        public async Task<PartialViewResult> PostComment(int rating,string comment,int bookId)
+
+        public async Task<PartialViewResult> PostComment(int rating, string comment, int bookId)
         {
             var returnComment = new Rating();
             var user = await _userManager.GetUserAsync(User);
-            var bookRatings = _bookRepository.GetWithInclude(book => book.BookId == bookId,book => book.Ratings).First().Ratings;
+            var bookRatings = _bookRepository.GetWithInclude(book => book.BookId == bookId, book => book.Ratings)
+                .First().Ratings;
             var newComment = new Rating()
             {
                 Points = rating,
@@ -100,12 +102,13 @@ namespace MyBook.Controllers
                 var currentRating = bookRatings.First(rating1 => rating1.UserId == user.Id);
                 currentRating.Points = rating;
                 currentRating.ReviewText = comment;
-                await _ratingsRepository.Update(currentRating,null);
+                await _ratingsRepository.Update(currentRating, null);
             }
             else
             {
                 await _ratingsRepository.Create(newComment);
             }
+
             return PartialView("../Partials/_Comment", newComment);
         }
     }
