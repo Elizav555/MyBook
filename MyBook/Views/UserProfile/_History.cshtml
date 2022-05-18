@@ -13,11 +13,17 @@
                     @foreach (var history in Model.Histories)
                     {
                         var price = history.Book.Description.Price;
-                        if (string.IsNullOrWhiteSpace(price))
+                        if (!history.Book.IsPaid)
                             price = "Бесплатная";
+                        if (string.IsNullOrWhiteSpace(price))
+                            price = "299 руб.";
                         else price += " руб.";
                         <tr>
-                            <td>@history.Book.Name</td>
+                            <td>
+                                <a asp-controller="Book" asp-action="Book" asp-route-bookId="@history.Book.BookId">
+                                    @history.Book.Name
+                                </a>
+                            </td>
                             <td>@history.DateTime</td>
                             <td>@price</td>
                         </tr>

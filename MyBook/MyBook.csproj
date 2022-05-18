@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -21,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\NewProducts\Components\StarsRateResult\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Components\BookPreviewComponent\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Components\BookPreview\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Components\BookSmallPreview\Default.cshtml" />
@@ -32,11 +32,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
+    <ProjectReference Include="..\MyBook.SharedKernel\MyBook.SharedKernel.csproj" />
 
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Migrations\MyBookContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

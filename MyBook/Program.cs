@@ -10,6 +10,7 @@ using MyBook.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using MyBook.Services;
 using MyBook.Core.Interfaces;
+using MyBook.Infrastructure.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,9 +36,20 @@ builder.Services.AddDbContext<MyBookContext>(options =>
     .AddScoped<IGenericRepository<UserSubscr>, EfGenericRepository<UserSubscr>>().AddScoped<EFUserSubscrRepository>()
     .AddScoped<ILanguageFilterGetter, LanguageFilterGetter>()
     .AddScoped<IGenresFilterGetter, GenreFilterGetter>()
-    .AddScoped<IGenericRepository<BookCenter>,EfGenericRepository<BookCenter>>()
-    .AddScoped<IMailService, MailService>();
-
+     .AddScoped<IGenericRepository<Rating>, EfGenericRepository<Rating>>()
+    .AddScoped<IGenericRepository<BookCenter>, EfGenericRepository<BookCenter>>()
+    .AddScoped<IMailService, MailService>()
+    .AddSingleton<IUserConnectionManager, UserConnectionManager>()
+    .AddScoped<INotificationService, NotificationService>()
+    .AddScoped<IRecommendationsService, RecommendationsService>()
+    .AddSingleton<IPaymentService, PaymentService>();
+builder.Services.AddSignalR();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".MyBook.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(3600);
+});
 builder.Services.AddIdentity<User, IdentityRole>(options => options.User.RequireUniqueEmail = true).AddEntityFrameworkStores<MyBookContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -75,7 +87,7 @@ builder.Services.AddAuthentication().AddOAuth("VK", "VKontakte", config =>
     };
 });
 var app = builder.Build();
-
+app.UseSession();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -83,14 +95,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.MapHub<NotificationHub>("/NotificationHub");
+app.MapHub<NotificationUserHub>("/NotificationUserHub");
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

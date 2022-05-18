@@ -17,11 +17,12 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Object> _genericRepository;
         private readonly UserManager<User> _userManager;
         private readonly IMailService _mailService;
+        private readonly INotificationService _notificationService;
 
         public SubscriptionGiftController(
             IGenericRepository<Type> typeRepository, EfAuthorRepository authorRepository,
           EFGenreRepository genreRepository, IGenericRepository<Object> genericRepository,
-          UserManager<User> userManager, IMailService mailService)
+          UserManager<User> userManager, IMailService mailService, INotificationService notificationService)
         {
             _typeRepository = typeRepository;
             _authorRepository = authorRepository;
@@ -29,11 +30,12 @@ namespace MyBook.Controllers
             _genericRepository = genericRepository;
             _userManager = userManager;
             _mailService = mailService;
+            _notificationService = notificationService;
         }
 
         public IActionResult SubscriptionGift()
         {
-            return View(new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes=GetTypes()});
+            return View(new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes() });
         }
 
         //TODO добавить видимость оплаты
@@ -101,11 +103,13 @@ namespace MyBook.Controllers
         public async Task<IActionResult> PaySuccess(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null){ 
+            if (user == null)
+            {
                 //TODO show error
                 return RedirectToRoute("/");
             }
             _mailService.SendGiftSubscr(user.Email);
+            await _notificationService.NotifyClient(userId, "Подарок!", "Вам подарили подписку на наш сервис");
             //TODO show success
             return View("SubscriptionGift", new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes() });
         }

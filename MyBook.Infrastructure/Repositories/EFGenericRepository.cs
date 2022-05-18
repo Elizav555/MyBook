@@ -35,8 +35,8 @@ namespace MyBook.Infrastructure.Repositories
             await DbSet.AddAsync(item);
             await Context.SaveChangesAsync();
         }
-
-        public async Task Update(TEntity item, List<string> excluded = null)
+            
+        public async Task Update(TEntity item, List<string>? excluded = null)
         {
             var entity = Context.Entry(item);
             entity.State = EntityState.Modified;

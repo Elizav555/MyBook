@@ -29,7 +29,7 @@
                         <a class="nav-link" id="subscr">Подписки</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="Recommendations" id="recomments">
+                        <a class="nav-link" id="recommends">
                             Рекомендации
                         </a>
                     </li>
@@ -50,6 +50,11 @@
     <div id="containerHistory">
         @{
             await Html.RenderPartialAsync("_History", Model);
+        }
+    </div>
+    <div id="containerRecommends">
+        @{
+            await Html.RenderPartialAsync("_Recommendations", Model);
         }
     </div>
     @section Scripts {

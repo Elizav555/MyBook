@@ -1,4 +1,5 @@
-﻿using MyBook.Entities;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MyBook.Entities;
 using MyBook.Parser;
 using Type = MyBook.Entities.Type;
 
@@ -39,6 +40,8 @@ foreach (var bookJSON in booksJSON)
             Description = desc,
             Ratings = new List<Rating>() { rating }
         };
+        rating.Book = book;
+        db.Ratings.Add(rating);
         if (bookJSON.Authors != null)
         {
             foreach (var author in bookJSON.Authors)
@@ -60,7 +63,6 @@ foreach (var bookJSON in booksJSON)
             }
             book.AuthorBooks = authorBooks;
         }
-
         if (bookJSON.Genres != null)
         {
             foreach (var genre in bookJSON.Genres)

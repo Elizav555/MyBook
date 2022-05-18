@@ -24,6 +24,7 @@ public class LibraryViewModel
     public List<SelectListItem> Languages = new List<SelectListItem>();
     public List<SelectListItem> Genres = new List<SelectListItem>();
 
+
     public LibraryViewModel(EfBookRepository _bookRepository, EFGenreRepository _genreRepository,
         EfAuthorRepository authorRepository, IGenresFilterGetter genresFilterGetter,
         ILanguageFilterGetter languageFilterGetter)
@@ -83,9 +84,5 @@ public class LibraryViewModel
         Languages = _languageFilterGetter.GetItems(_bookRepository);
         Genres = _genresFilterGetter.GetItems(_genreRepository);
     }
-
-    public IQueryable<Book> GetFilterBooks()
-    {
-        return _bookRepository.GetFilterBooks(FilterLanguage, FilterGenre);
-    }
+    
 }
