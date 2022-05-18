@@ -24,17 +24,17 @@
                     <div class="form-group">
                         <label asp-for="Name" for="nameInput">Имя автора</label>
                         <input asp-for="Name" type="text" class="form-control" id="nameInput" placeholder="Имя">
-                        @*<span asp-validation-for="Name"></span>*@
+                        <span class="alerts" asp-validation-for="Name"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="BirthDate">Дата рождения: </label><br />
                         <input asp-for="BirthDate" class="form-control" type="date" id="datepicker" max="2020-04-30">
-                        @*<span asp-validation-for="BirthDate"></span>*@
+                        <span class="alerts" asp-validation-for="BirthDate"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageLink" for="img">Ссылка на изображение</label>
                         <input type="text" asp-for="ImageLink" class="form-control" id="img" placeholder="Ссылка на изображение" />
-                       @* <span asp-validation-for="ImageLink"></span>*@
+                        <span class="alerts" asp-validation-for="ImageLink"></span>
                     </div>
                     <div class="form-button">
                         <button type="submit" class="btn btn-warning">Сохранить</button>
