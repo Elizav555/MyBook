@@ -156,7 +156,8 @@ namespace MyBook.Entities
                     .WithMany(p => p.ImgLinks);
 
                 entity.HasOne(d => d.Book)
-                    .WithMany(p => p.ImgLinks);
+                    .WithMany(p => p.ImgLinks)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Rating>(entity =>
