@@ -31,36 +31,51 @@ public class BookViewModel
         _resultBook = _bookRepository.GetFullBook(bookId);
         User = user;
         downloadLink = linksRepository.GetWithInclude(link =>
-            _resultBook.BookDescId == link.BookDescId).ToList();
+            _resultBook != null && _resultBook.BookDescId == link.BookDescId).ToList();
     }
 
     public bool HasPremiumSubscription()
     {
-        var type = GetTypes().First(it => it.TypeName == "Премиум");
-        var user = HasSubscription(type.TypeId, null, null);
-        return user.Result != null;
+        var type = GetTypes().FirstOrDefault(it => it.TypeName == "Премиум");
+        if (type != null)
+        {
+            var user = HasSubscription(type.TypeId, null, null);
+            return user.Result != null;
+        }
+
+        return false;
     }
 
     public bool HasGenreSubsciption()
     {
         int genreId;
-        genreId = _resultBook.BookGenres.First().Genre.GenreId;
-        var type = GetTypes().First(it => it.TypeName == "Подписка на жанр");
-        var user = HasSubscription(type.TypeId, genreId: genreId, authorId: null);
-        return user.Result != null;
+        genreId = _resultBook!.BookGenres.First().Genre.GenreId;
+        var type = GetTypes().FirstOrDefault(it => it.TypeName == "Подписка на жанр");
+        Task<User?> user = null;
+        if (type != null)
+            user = HasSubscription(type.TypeId, genreId: genreId, authorId: null);
+        
+        if(user!=null)
+         return user.Result != null;
+        return false;
     }
 
 
     public bool HasAuthorSubscription()
     {
         int authorId;
-        if (_resultBook.AuthorBooks.Count == 0) return false;
-        authorId = _resultBook.AuthorBooks.First().Author.AuthorId;
-        var type = GetTypes().First(it => it.TypeName == "Подписка на автора");
-        var user = HasSubscription(type.TypeId, genreId: null, authorId: authorId);
-        return user.Result != null;
-    }
+        if (_resultBook!.AuthorBooks.Count == 0) return false;
+        authorId = _resultBook.AuthorBooks.FirstOrDefault()!.Author.AuthorId;
+        var type = GetTypes().FirstOrDefault(it => it.TypeName == "Подписка на автора");
+        if (type != null)
+        {
+            var user = HasSubscription(type.TypeId, genreId: null, authorId: authorId);
+            return user.Result != null;
+        }
 
+        return false;
+    }
+    
     private async Task<User?> HasSubscription(int typeId, int? genreId, int? authorId)
     {
         if (User == null)
@@ -88,19 +103,19 @@ public class BookViewModel
         int yearBirth;
         bool success = int.TryParse(date[2], out yearBirth);
         var age = today.Year - yearBirth;
-        return (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
+        return _resultBook != null && (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
     }
 
     public bool CheckHistory()
     {
         if (User == null) return true;
         return (!_historyRepository.GetWithInclude(h =>
-            _resultBook.BookId == h.BookId && User.Id == h.UserId).Any());
+            _resultBook != null && _resultBook.BookId == h.BookId && User.Id == h.UserId).Any());
     }
 
     public bool IsPermitted()
     {
-        return _resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription()
-               || HasPremiumSubscription();
+        return _resultBook != null && (_resultBook.IsPaid == false || HasGenreSubsciption() || HasAuthorSubscription()
+                                       || HasPremiumSubscription());
     }
 }

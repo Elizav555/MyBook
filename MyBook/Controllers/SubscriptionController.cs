@@ -42,21 +42,26 @@ namespace MyBook.Controllers
         [HttpPost]
         public async Task<IActionResult> SubscrForGenre(string GenreName)
         {
-            var type = GetTypes().First(it => it.TypeName == "Подписка на жанр");
+            var type = GetTypes().FirstOrDefault(it => it.TypeName == "Подписка на жанр");
             var genre = _genreRepository.Get(it => it.Name == GenreName);
-            var user = await CheckSubscr(type.TypeId, genreId: genre.First().GenreId, authorId: null);
-            if (user == null || genre == null)
-                return Redirect("Error");//TODO show modal that user already have subscr
-            var model = new PayViewModel
+            var model = new PayViewModel();
+            if (type != null)
             {
-                UserId = user.Id,
-                Period = 1,
-                SpecsName = genre.First().Name,
-                SpecsId = genre.First().GenreId,
-                TypeId = type.TypeId,
-                TypeName = type.TypeName,
-                Price = type.Price,
-            };
+                var user = await CheckSubscr(type.TypeId, genreId: genre.First().GenreId, authorId: null);
+                if (user == null || genre == null)
+                    return Redirect("Error");//TODO show modal that user already have subscr
+                model = new PayViewModel
+                {
+                    UserId = user.Id,
+                    Period = 1,
+                    SpecsName = genre.First().Name,
+                    SpecsId = genre.First().GenreId,
+                    TypeId = type.TypeId,
+                    TypeName = type.TypeName,
+                    Price = type.Price,
+                };
+                return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
+            }
             return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
         }
 
@@ -67,41 +72,51 @@ namespace MyBook.Controllers
         {
             if (AuthorName == null)
                 return RedirectToAction("Subscription");
-            var type = GetTypes().First(it => it.TypeName == "Подписка на автора");
+            var type = GetTypes().FirstOrDefault(it => it.TypeName == "Подписка на автора");
             var author = _authorRepository.Get(it => it.Name == AuthorName);
-            var user = await CheckSubscr(type.TypeId, authorId: author.First().AuthorId, genreId: null);
-            if (user == null || author == null)
-                return Redirect("Error");//TODO show modal that user already have subsc
-            var model = new PayViewModel
+            var model = new PayViewModel();
+            if (type != null)
             {
-                UserId = user.Id,
-                Period = 1,
-                SpecsName = author.First().Name,
-                SpecsId = author.First().AuthorId,
-                TypeId = type.TypeId,
-                TypeName = type.TypeName,
-                Price = type.Price,
-            };
+                var user = await CheckSubscr(type.TypeId, authorId: author.First().AuthorId, genreId: null);
+                if (user == null || author == null)
+                    return Redirect("Error");//TODO show modal that user already have subsc
+                model = new PayViewModel
+                {
+                    UserId = user.Id,
+                    Period = 1,
+                    SpecsName = author.First().Name,
+                    SpecsId = author.First().AuthorId,
+                    TypeId = type.TypeId,
+                    TypeName = type.TypeName,
+                    Price = type.Price,
+                };
+                return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
+            }
             return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
         }
 
         [Authorize(Policy = "ReadersOnly")]
         public async Task<IActionResult> SubscrForPremium()
         {
-            var type = GetTypes().First(it => it.TypeName == "Премиум");
-            var user = await CheckSubscr(type.TypeId, null, null);
-            if (user == null)
-                return Redirect("Error");//TODO show modal that user already have subscr
-            var model = new PayViewModel
+            var type = GetTypes().FirstOrDefault(it => it.TypeName == "Премиум");
+            var model = new PayViewModel();
+            if (type != null)
             {
-                UserId = user.Id,
-                Period = 1,
-                SpecsName = null,
-                SpecsId = null,
-                TypeId = type.TypeId,
-                TypeName = type.TypeName,
-                Price = type.Price,
-            };
+                var user = await CheckSubscr(type.TypeId, null, null);
+                if (user == null)
+                    return Redirect("Error");//TODO show modal that user already have subscr
+                model = new PayViewModel
+                {
+                    UserId = user.Id,
+                    Period = 1,
+                    SpecsName = null,
+                    SpecsId = null,
+                    TypeId = type.TypeId,
+                    TypeName = type.TypeName,
+                    Price = type.Price,
+                };
+                return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
+            }
             return RedirectToAction("SubscriptionPay", "SubscriptionPay", model);
         }
 
