@@ -1118,3 +1118,9 @@ li{
 .up_btn{
     margin-top: -1em;
 }
+.us_profil input{
+    margin: 0.3em 0 1em 0;
+}
+.us_profil .form_label {
+    padding-top: 1em;
+}
