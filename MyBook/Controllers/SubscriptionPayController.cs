@@ -21,7 +21,7 @@ namespace MyBook.Controllers
             _paymentService = paymentService;
             _historyRepository = historyRepository;
         }
-        
+
         public IActionResult SubscriptionPay(PayViewModel model)
         {
             return View(model);
@@ -30,8 +30,10 @@ namespace MyBook.Controllers
         [Authorize]
         public IActionResult BookPay(int bookId, string price, string name)
         {
+            if (name == null)
+                return RedirectToAction("Book", "Book", new { bookId });
             return View(
-                new PayViewModel { BookId = bookId, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier), BookPrice = price, BookName = name});
+                new PayViewModel { BookId = bookId, UserId = User.FindFirstValue(ClaimTypes.NameIdentifier), BookPrice = price, BookName = name });
         }
 
         [HttpPost]
@@ -56,7 +58,7 @@ namespace MyBook.Controllers
                     ModelState.AddModelError("Unsuccessfull payment", "Оплата была отклонена");
                     return View(model);
                 }
-                if(model.UserId == null)
+                if (model.UserId == null)
                     return Redirect("Error"); //TODO show error
                 if (model.BookId != null)
                 {
@@ -66,7 +68,7 @@ namespace MyBook.Controllers
                         DateTime = DateTime.Now.ToString(),
                         UserId = model.UserId,
                     };
-                    if(!_historyRepository.CheckHistory(model.UserId,(int)model.BookId))
+                    if (!_historyRepository.CheckHistory(model.UserId, (int)model.BookId))
                         await _historyRepository.Create(history);
                     return RedirectToAction("Book", "Book", new { model.BookId });
                 }

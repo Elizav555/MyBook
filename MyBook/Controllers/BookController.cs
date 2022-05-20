@@ -56,18 +56,19 @@ namespace MyBook.Controllers
             return user;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
+            if (name == null || link == null || format == null)
+                return RedirectToAction("Book", "Book", new { bookId });
             var user = CheckUser();
-            if (user == null) return RedirectToAction("Login", "Account");
             var net = new System.Net.WebClient();
             var data = net.DownloadData(link);
             var content = new System.IO.MemoryStream(data);
             var contentType = "APPLICATION/octet-stream";
             var fileName = name + "." + format;
             var book = _bookRepository.GetFullBook(bookId);
-            /*if (user == null || book == null)
+            if (user == null || book == null)
                 return RedirectToAction("error"); //TODO show error*/
             var history = new History
             {
