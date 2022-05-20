@@ -8,5 +8,13 @@ namespace MyBook.Controllers
         {
             return View();
         }
+        public IActionResult Error()
+        {
+            return View();
+        }
+        public IActionResult Successful()
+        {
+            return View();
+        }
     }
 }
