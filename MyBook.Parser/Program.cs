@@ -121,16 +121,16 @@ using (var db = new MyBookContext())
     {
         Description = @"Новый роман самой яркой дебютантки в истории российской литературы новейшего времени, лауреата премий «Большая книга» и «Ясная Поляна» за бестселлер «Зулейха открывает глаза».",
         PagesCount = 496,
-        Price = "845 руб.",
+        Price = "845 RUB",
         DownloadLinks = new List<DownloadLink> {epub, pdf}
     };
     var book = new Book
     {
         Name = "Дети мои",
         Language = "ru",
-        PublishedDate = "22.02.2002",
+        PublishedDate = "01.05.2018",
         IsForAdult = false,
-        IsPaid = false,
+        IsPaid = true,
         ImgLinks = bookImages,
         Description = desc,
         Ratings = new List<Rating>() {rating}
