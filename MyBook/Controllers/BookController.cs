@@ -62,14 +62,14 @@ namespace MyBook.Controllers
             if (name == null || link == null || format == null)
                 return RedirectToAction("Book", "Book", new { bookId });
             var user = CheckUser();
-            var net = new System.Net.WebClient();
-            var data = net.DownloadData(link);
-            var content = new System.IO.MemoryStream(data);
             var contentType = "APPLICATION/octet-stream";
             var fileName = name + "." + format;
             var book = _bookRepository.GetFullBook(bookId);
             if (user == null || book == null)
-                return RedirectToAction("error"); //TODO show error*/
+            {
+                var modalModel = new ModalsViewModel { ControllerName = "Book", ActionName = "Book", BookId = bookId };
+                return RedirectToAction("Error", "Modals", modalModel);
+            }
             var history = new History
             {
                 BookId = bookId,
@@ -80,7 +80,11 @@ namespace MyBook.Controllers
             await _bookRepository.Update(book);
             if (!_historyRepository.CheckHistory(user.Id, bookId))
                 await _historyRepository.Create(history);
-            return File(content, contentType, fileName);
+            var stream = await new HttpClient().GetStreamAsync(link);
+            return new FileStreamResult(stream, contentType)
+            {
+                FileDownloadName = fileName,
+            };
         }
 
         public async Task<PartialViewResult> PostComment(int rating, string comment, int bookId)

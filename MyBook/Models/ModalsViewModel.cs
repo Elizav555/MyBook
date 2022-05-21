@@ -7,6 +7,7 @@
 
         public string? CurrentPage { get; set; } = null;
         public string? UserId { get; set; } = null;
-        public int? Id { get; set; } = null;
+        public int? BookId { get; set; } = null;
+        public int? AuthorId { get; set; } = null;
     }
 }

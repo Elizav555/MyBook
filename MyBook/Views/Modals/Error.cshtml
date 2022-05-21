@@ -23,15 +23,21 @@
                                         <button class="btn-warning btn_spec">Закрыть</button>
                                     </a>
                                 }
-                                 else if (Model.Id != null)
+                                else if (Model.BookId != null)
                                 {
-                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-id=@Model.Id>
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-bookId=@Model.BookId>
+                                        <button class="btn-warning btn_spec">Закрыть</button>
+                                    </a>
+                                }
+                                else if (Model.AuthorId != null)
+                                {
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-authorId=@Model.AuthorId>
                                         <button class="btn-warning btn_spec">Закрыть</button>
                                     </a>
                                 }
                                 else
                                 {
-                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName >
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName>
                                         <button class="btn-warning btn_spec">Закрыть</button>
                                     </a>
                                 }

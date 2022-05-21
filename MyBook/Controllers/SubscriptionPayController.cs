@@ -59,7 +59,10 @@ namespace MyBook.Controllers
                     return View(model);
                 }
                 if (model.UserId == null)
-                    return Redirect("Error"); //TODO show error
+                {
+                    var modalModel = new ModalsViewModel { ControllerName = "Home", ActionName = "Index" };
+                    return RedirectToAction("Error", "Modals", modalModel);
+                }
                 if (model.BookId != null)
                 {
                     var history = new History
@@ -73,7 +76,10 @@ namespace MyBook.Controllers
                     return RedirectToAction("Book", "Book", new { model.BookId });
                 }
                 if (model.Period == null || model.TypeId == null)
-                    return Redirect("Error"); //TODO show error
+                {
+                    var modalModel = new ModalsViewModel { ControllerName = "Home", ActionName = "Index" };
+                    return RedirectToAction("Error", "Modals", modalModel);
+                }
                 var subscr = new Subscription
                 {
                     StartDate = DateTime.Now.ToString(),
@@ -87,10 +93,18 @@ namespace MyBook.Controllers
                 var userSubscr = new UserSubscr { Subscription = subscr, UserId = model.UserId };
                 subscr.UserSubscr = userSubscr;
                 await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
-                //TODO show modal that subscr succesfully added
+                var modalModell = new ModalsViewModel { ControllerName = "Subscription", ActionName = "Subscription" };
                 if (model.isGift)
-                    return RedirectToAction("PaySuccess", "SubscriptionGift", new { userId = model.UserId });
-                return RedirectToAction("Subscription", "Subscription");
+                {
+                    modalModell = new ModalsViewModel
+                    {
+                        ActionName = "PaySuccess",
+                        ControllerName = "SubscriptionGift",
+                        UserId = model.UserId,
+                    };
+                    return RedirectToAction("Successful", "Modals", modalModell);
+                }
+                return RedirectToAction("Successful", "Modals", modalModell);
             }
             return View(model);
         }
