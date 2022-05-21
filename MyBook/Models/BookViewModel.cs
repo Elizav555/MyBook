@@ -49,6 +49,7 @@ public class BookViewModel
     public bool HasGenreSubsciption()
     {
         int genreId;
+        if (_resultBook!.BookGenres.Count == 0) return false;
         genreId = _resultBook!.BookGenres.First().Genre.GenreId;
         var type = GetTypes().FirstOrDefault(it => it.TypeName == "Подписка на жанр");
         Task<User?> user = null;

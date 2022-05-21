@@ -1,10 +1,12 @@
 ﻿@model MyBook.Entities.Book
 
 <article class="postcard ">
+    <div class="bookSearch">
     <div class="card_imgAuth container">
         <a class="postcard_img_link" asp-controller="Book" asp-action="Book" asp-route-bookId="@Model.BookId">
-            <img class="postcard_img" src="@Model.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url" alt="">
+            <img class="postcard_img" src="@Model.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url" alt="" id="bookSearchPhoto">
         </a>
+    </div>
     </div>
     <div class="postcard_text container">
         <h3 class="PreviewTitle">
