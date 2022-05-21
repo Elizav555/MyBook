@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBook.Models;
 
 namespace MyBook.Controllers
 {
     public class ModalsController : Controller
     {
-        public IActionResult Delete()
+        public IActionResult Delete(DeleteViewModel model)
         {
-            return View();
+            return View(model);
         }
         public IActionResult Error()
         {

@@ -10,7 +10,7 @@ using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    /*[Authorize(Policy = "AdminsOnly")]*/
+    [Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
@@ -72,8 +72,11 @@ namespace MyBook.Controllers
             });
         }
         #region SubscrType
-        public async Task<IActionResult> DeleteSubscrType(Type type)
+        public async Task<IActionResult> DeleteSubscription(int id)
         {
+            var type = await _typeRepository.FindById(id);
+            if (type == null)
+                return Redirect("Error");//TODO show error
             await _typeRepository.Remove(type);
             var page = "Subscription";
             return RedirectToAction("ShowCurrent", new { page });
@@ -124,9 +127,11 @@ namespace MyBook.Controllers
         #endregion
 
         #region Author
-        //TODO search author
-        public async Task<IActionResult> DeleteAuthor(Author author)
+        public async Task<IActionResult> DeleteAuthor(int id)
         {
+            var author = await _authorRepository.FindById(id);
+            if (author == null)
+                return Redirect("Error");//TODO show error
             await _authorRepository.Remove(author);
             var page = "Author";
             return RedirectToAction("ShowCurrent", new { page });
@@ -188,10 +193,11 @@ namespace MyBook.Controllers
         #endregion
 
         #region Book
-        //TODO search book
-        public async Task<IActionResult> DeleteBook(Book book)
+        public async Task<IActionResult> DeleteBook(int id)
         {
-            //TODO fix with other links
+            var book = await _bookRepository.FindById(id);
+            if (book == null)
+                return Redirect("Error");//TODO show error
             await _bookRepository.Remove(book);
             var page = "Book";
             return RedirectToAction("Index", new { page });
@@ -320,8 +326,11 @@ namespace MyBook.Controllers
             return View(new EditCenterViewModel());
         }
 
-        public async Task<IActionResult> DeleteBookCenter(BookCenter bookCenter)
+        public async Task<IActionResult> DeleteBookCenter(int id)
         {
+            var bookCenter = await _bookCenterRepository.FindById(id);
+            if (bookCenter == null)
+                return Redirect("Error");//TODO show error
             await _bookCenterRepository.Remove(bookCenter);
             var page = "BookCenter";
             return RedirectToAction("ShowCurrent", new { page });
