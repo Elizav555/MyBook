@@ -53,17 +53,17 @@ namespace MyBook.Controllers
                     ModelState.AddModelError("Email", "К сожалению, пользователь с таким email не найден");
                     return View(model);
                 }
-                var type = GetTypes().First(it => it.TypeId == model.TypeId);
+                var type = GetTypes().FirstOrDefault(it => it.TypeId == model.TypeId);
                 var payModel = new PayViewModel
                 {
                     UserId = user.Id,
                     Period = 1,
-                    TypeId = type.TypeId,
-                    TypeName = type.TypeName,
-                    Price = type.Price,
+                    TypeId = type?.TypeId,
+                    TypeName = type?.TypeName,
+                    Price = type?.Price,
                     isGift = true
                 };
-                if (type.TypeName == "Подписка на автора")
+                if (type?.TypeName == "Подписка на автора")
                 {
                     if (model.AuthorName != null)
                     {
@@ -79,7 +79,7 @@ namespace MyBook.Controllers
                         return View(model);
                     }
                 }
-                if (type.TypeName == "Подписка на жанр")
+                if (type?.TypeName == "Подписка на жанр")
                 {
                     if (model.GenreName != null)
                     {
