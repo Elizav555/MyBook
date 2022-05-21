@@ -46,7 +46,7 @@
             <button class="spec_but  me-4" type="button" onclick="location.href='@Url.Action("EditBookModal", "AdminProfile", model)'">
                         Редактировать
                     </button>
-                    <button class="spec_but" type="button" onclick="location.href='@Url.Action("DeleteBook", "AdminProfile", book)'">Удалить</button>
+                    <button class="spec_but" type="button" onclick="location.href='@Url.Action("Delete", "Modals", new DeleteViewModel{ Id = book.BookId, ReturnPage="Book"})'">Удалить</button>
         </div>
     </div>
 </article>

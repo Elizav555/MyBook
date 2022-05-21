@@ -1,14 +1,14 @@
-﻿
+﻿@model MyBook.Models.DeleteViewModel
 <body class="lock">
     <section class="modal_wrapper">
         <div class="main_content_page">
             <div class="wrapper_modal_content">
                 <div class="modal_view">
                     <div class="modal_name mod_form">
-                        <h3>Вы действительно хотите безвозвратно удалить подписку?</h3>
+                        <h3>Вы уверены?</h3>
                         <div class="up_btn">
                             <button class="close_modal">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <a class="nav-link" asp-area="" asp-controller="AdminProfile" asp-action="ShowCurrent" asp-route-page=@Model.ReturnPage>
                                     <img src="/assets/img/close.svg">
                                 </a>
                             </button>
@@ -16,10 +16,17 @@
                     </div>
                     <div class="d-flex ">
                         <div class="mod_but_form">
-                            <button class="btn-warning btn_spec">Удалить</button>
+                            @{
+                                var action = "Delete" + @Model.ReturnPage;
+                            }
+                            <a asp-controller="AdminProfile" asp-action=@action asp-route-id=@Model.Id>
+                                <button class="btn-warning btn_spec">Удалить</button>
+                            </a>
                         </div>
                         <div class="mod_but_form">
-                            <button class="btn-warning btn_spec">Отменить</button>
+                            <a asp-area="" asp-controller="AdminProfile" asp-action="ShowCurrent" asp-route-page=@Model.ReturnPage>
+                                <button class="btn-warning btn_spec">Отменить</button>
+                            </a>
                         </div>
                     </div>
 
