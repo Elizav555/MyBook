@@ -9,6 +9,6 @@ namespace MyBook.Core.Interfaces
 {
     public interface IRecommendationsService
     {
-        public Task<List<Book>> GetRecommendationsAsync(string userId);
+        public Task<List<Book>> GetRecommendationsAsync(string userId,int page);
     }
 }

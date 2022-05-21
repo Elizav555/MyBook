@@ -8,6 +8,7 @@ namespace MyBook.Services
     {
         private EFHistoryRepository _historyRepository;
         private EfBookRepository _bookRepository;
+        private const int BooksCountInPage = 15;
 
         public RecommendationsService(EFHistoryRepository historyRepository, EfBookRepository bookRepository)
         {
@@ -15,7 +16,7 @@ namespace MyBook.Services
             _historyRepository = historyRepository;
         }
 
-        public async Task<List<Book>> GetRecommendationsAsync(string userId)
+        public async Task<List<Book>> GetRecommendationsAsync(string userId,int page)
         {
             var history = _historyRepository.GetHistories(userId);
             var topTen = _bookRepository.GetTopBooks().Take(10).ToList();
@@ -40,7 +41,7 @@ namespace MyBook.Services
                 recommends.AddRange(topTen);
                 recommends = recommends.DistinctBy(it => it.BookId).Where(it => !history.Any(history => history.BookId == it.BookId)).ToList();
             }
-            return recommends.Take(30).ToList();
+            return recommends.Take(page*BooksCountInPage).ToList();
         }
     }
 }

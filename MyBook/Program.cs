@@ -17,32 +17,54 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IUserValidator<User>, UserValidator>()
     .AddTransient<IPasswordValidator<User>, PasswordValidator>(serv => new PasswordValidator(6));
 
+var defaultConnectionString = string.Empty;
+
+if (builder.Environment.EnvironmentName == "Development") {
+    defaultConnectionString = builder.Configuration.GetConnectionString("DefaultString");
+}
+else
+{
+    // Use connection string provided at runtime by Heroku.
+    var connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+    
+    connectionUrl = connectionUrl.Replace("postgres://", string.Empty);
+    var userPassSide = connectionUrl.Split("@")[0];
+    var hostSide = connectionUrl.Split("@")[1];
+
+    var user = userPassSide.Split(":")[0];
+    var password = userPassSide.Split(":")[1];
+    var host = hostSide.Split("/")[0];
+    var database = hostSide.Split("/")[1].Split("?")[0];
+
+    defaultConnectionString = $"Host={host};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+}
 builder.Services.AddDbContext<MyBookContext>(options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"),
+        options.UseNpgsql(defaultConnectionString,
             options => options.MigrationsAssembly("MyBook")), ServiceLifetime.Transient)
-    .AddScoped<IGenericRepository<Book>, EfGenericRepository<Book>>()
-    .AddScoped<IGenericRepository<Author>, EfGenericRepository<Author>>()
-    .AddScoped<IGenericRepository<Genre>, EfGenericRepository<Genre>>()
     .AddScoped<EfBookRepository>()
     .AddScoped<EFGenreRepository>()
     .AddScoped<EfAuthorRepository>()
-    .AddScoped<IGenericRepository<DownloadLink>, EfGenericRepository<DownloadLink>>()
-    .AddScoped<IGenericRepository<MyBook.Entities.Type>, EfGenericRepository<MyBook.Entities.Type>>()
-    .AddScoped<EFTypeRepository>().AddScoped<IGenericRepository<object>, EfGenericRepository<object>>()
-    .AddScoped<IGenericRepository<BookCenter>, EfGenericRepository<BookCenter>>()
+    .AddScoped<EFTypeRepository>()
     .AddScoped<EFBookCenterRepository>()
-    .AddScoped<IGenericRepository<User>, EfGenericRepository<User>>().AddScoped<EFUserRepository>()
-    .AddScoped<IGenericRepository<History>, EfGenericRepository<History>>().AddScoped<EFHistoryRepository>()
-    .AddScoped<IGenericRepository<UserSubscr>, EfGenericRepository<UserSubscr>>().AddScoped<EFUserSubscrRepository>()
+    .AddScoped<EFUserRepository>()
+    .AddScoped<EFHistoryRepository>()
+    .AddScoped<EFUserSubscrRepository>()
     .AddScoped<ILanguageFilterGetter, LanguageFilterGetter>()
     .AddScoped<IGenresFilterGetter, GenreFilterGetter>()
-     .AddScoped<IGenericRepository<Rating>, EfGenericRepository<Rating>>()
-    .AddScoped<IGenericRepository<BookCenter>, EfGenericRepository<BookCenter>>()
     .AddScoped<IMailService, MailService>()
     .AddSingleton<IUserConnectionManager, UserConnectionManager>()
     .AddScoped<INotificationService, NotificationService>()
     .AddScoped<IRecommendationsService, RecommendationsService>()
-    .AddSingleton<IPaymentService, PaymentService>();
+    .AddSingleton<IPaymentService, PaymentService>()
+    .AddScoped(typeof(IGenericRepository<>), typeof(EfGenericRepository<>));
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+try
+{
+    var dbContext = serviceProvider.GetRequiredService<MyBookContext>();
+    dbContext.Database.Migrate();
+}
+catch {}
 builder.Services.AddSignalR();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -88,11 +110,9 @@ builder.Services.AddAuthentication().AddOAuth("VK", "VKontakte", config =>
 });
 var app = builder.Build();
 app.UseSession();
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 app.UseHttpsRedirection();
