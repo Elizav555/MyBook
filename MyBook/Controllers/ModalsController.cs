@@ -22,5 +22,10 @@ namespace MyBook.Controllers
         {
             return View(modalModel);
         }
+
+        public IActionResult SubscrExists()
+        {
+            return View();
+        }
     }
 }
