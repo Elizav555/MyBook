@@ -71,15 +71,18 @@ namespace MyBook.Controllers
                 CurrentPage = page
             });
         }
+
         #region SubscrType
         public async Task<IActionResult> DeleteSubscription(int id)
         {
+            var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Subscription" };
             var type = await _typeRepository.FindById(id);
             if (type == null)
-                return Redirect("Error");//TODO show error
+            {
+                return RedirectToAction("Error", "Modals",  modalModel );
+            }
             await _typeRepository.Remove(type);
-            var page = "Subscription";
-            return RedirectToAction("ShowCurrent", new { page });
+            return RedirectToAction("Successful", "Modals", modalModel );
         }
 
         public IActionResult EditSubscriptionModal(EditSubscrViewModel model)
@@ -98,8 +101,8 @@ namespace MyBook.Controllers
             {
                 var type = new Type { Description = model.Description, Price = model.Price, TypeName = model.TypeName };
                 await _typeRepository.Create(type);
-                var page = "Subscription";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Subscription" };
+                return RedirectToAction("Successful", "Modals",  modalModel );
             }
             return View("AddSubscriptionModal", model);
         }
@@ -118,8 +121,8 @@ namespace MyBook.Controllers
                 type.Price = model.Price;
                 type.TypeName = model.TypeName;
                 await _typeRepository.Update(type, null);
-                var page = "Subscription";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Subscription" };
+                return RedirectToAction("Successful", "Modals",  modalModel);
             }
             return View("EditSubscriptionModal", model);
         }
@@ -129,12 +132,12 @@ namespace MyBook.Controllers
         #region Author
         public async Task<IActionResult> DeleteAuthor(int id)
         {
+            var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Author" };
             var author = await _authorRepository.FindById(id);
             if (author == null)
-                return Redirect("Error");//TODO show error
+                return RedirectToAction("Error", "Modals", modalModel );
             await _authorRepository.Remove(author);
-            var page = "Author";
-            return RedirectToAction("ShowCurrent", new { page });
+            return RedirectToAction("Successful", "Modals", modalModel );
         }
         public IActionResult EditAuthorModal(EditAuthorViewModel model)
         {
@@ -158,8 +161,8 @@ namespace MyBook.Controllers
                     await _genericRepository.CreateAll(new List<object>() { author, imageLink });
                 }
                 else await _authorRepository.Create(author);
-                var page = "Author";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Author" };
+                return RedirectToAction("Successful", "Modals", modalModel );
             }
             return View("AddAuthorModal", model);
         }
@@ -184,8 +187,8 @@ namespace MyBook.Controllers
                     author.ImgLinks = new List<ImgLink> { imageLink };
                 }
                 await _authorRepository.Update(author, null);
-                var page = "Author";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Author" };
+                return RedirectToAction("Successful", "Modals", modalModel );
             }
             return View("EditAuthorModal", model);
         }
@@ -195,12 +198,12 @@ namespace MyBook.Controllers
         #region Book
         public async Task<IActionResult> DeleteBook(int id)
         {
+            var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
             var book = await _bookRepository.FindById(id);
             if (book == null)
-                return Redirect("Error");//TODO show error
+                return RedirectToAction("Error", "Modals", modalModel);
             await _bookRepository.Remove(book);
-            var page = "Book";
-            return RedirectToAction("Index", new { page });
+            return RedirectToAction("Successful", "Modals", modalModel);
         }
 
         public IActionResult EditBookModal(EditBookViewModel model)
@@ -253,12 +256,12 @@ namespace MyBook.Controllers
                 entities.Add(book);
                 entities.Add(desc);
                 await _genericRepository.CreateAll(entities);
-                var page = "Book";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddBookModal", model);
         }
-        //TODO почему то дублируются авторы и жанры
+
         public async Task<IActionResult> EditBook(EditBookViewModel model)
         {
             if (ModelState.IsValid && model.BookId != null)
@@ -306,8 +309,8 @@ namespace MyBook.Controllers
                 entities.Add(desc);
                 await _genericRepository.CreateAll(entities);
                 await _bookRepository.Update(book);
-                var page = "Book";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("EditBookModal", model);
         }
@@ -328,12 +331,12 @@ namespace MyBook.Controllers
 
         public async Task<IActionResult> DeleteBookCenter(int id)
         {
+            var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
             var bookCenter = await _bookCenterRepository.FindById(id);
             if (bookCenter == null)
-                return Redirect("Error");//TODO show error
+                return RedirectToAction("Error", "Modals", modalModel);
             await _bookCenterRepository.Remove(bookCenter);
-            var page = "BookCenter";
-            return RedirectToAction("ShowCurrent", new { page });
+            return RedirectToAction("Successful", "Modals", modalModel);
         }
 
         public async Task<IActionResult> AddBookCenter(EditCenterViewModel model)
@@ -342,8 +345,8 @@ namespace MyBook.Controllers
             {
                 var center = new BookCenter { Address = model.Address, Name = model.Name, Description = model.Description, Phone = model.Phone };
                 await _bookCenterRepository.Create(center);
-                var page = "BookCenter";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddBookCenterModal", model);
         }
@@ -363,8 +366,8 @@ namespace MyBook.Controllers
                 center.Description = model.Description;
                 center.Phone = model.Phone;
                 await _bookCenterRepository.Update(center, null);
-                var page = "BookCenter";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("EditBookCenterModal", model);
         }
@@ -372,14 +375,14 @@ namespace MyBook.Controllers
         #endregion
 
         #region User
-        //TODO search User
         public async Task<IActionResult> DeleteUserSubscr(string id, int subscrId)
         {
+            var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "User" };
             var userSubscr = _userSubscrRepository.GetUserSubscr(id, subscrId);
-            if (userSubscr == null) { } //TODO show error
+            if (userSubscr == null)
+                return RedirectToAction("Error", "Modals", modalModel);
             await _userSubscrRepository.Remove(userSubscr);
-            var page = "User";
-            return RedirectToAction("ShowCurrent", new { page });
+            return RedirectToAction("Successful", "Modals", modalModel);
         }
         public IActionResult AddSubscrModal(string userId)
         {
@@ -390,8 +393,8 @@ namespace MyBook.Controllers
         {
             var user = await _userManager.FindByIdAsync(userId);
             await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Admin"));
-            var page = "User";
-            return RedirectToAction("ShowCurrent", new { page });
+            var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "User" };
+            return RedirectToAction("Successful", "Modals", modalModel);
         }
 
 
@@ -442,8 +445,8 @@ namespace MyBook.Controllers
                 var userSubscr = new UserSubscr { Subscription = subscr, UserId = model.UserID };
                 subscr.UserSubscr = userSubscr;
                 await _genericRepository.CreateAll(new List<object>() { subscr, userSubscr, });
-                var page = "User";
-                return RedirectToAction("ShowCurrent", new { page });
+                var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "User" };
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddSubscriptionToUserModal", model);
         }
@@ -475,7 +478,7 @@ namespace MyBook.Controllers
         private async Task<List<User>> GetUsers()
         {
             var admins = await _userManager.GetUsersForClaimAsync(new Claim(ClaimTypes.Role, "Admin"));
-            return _userRepository.GetUsersWithSubscr().Where(user=>!admins.Contains(user)).ToList();
+            return _userRepository.GetUsersWithSubscr().Where(user => !admins.Contains(user)).ToList();
         }
 
         private List<BookCenter> GetCenters()
