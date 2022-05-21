@@ -17,5 +17,10 @@ namespace MyBook.Controllers
         {
             return View(modalModel);
         }
+
+        public IActionResult VkExists(ModalsViewModel modalModel)
+        {
+            return View(modalModel);
+        }
     }
 }
