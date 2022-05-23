@@ -73,13 +73,7 @@ public static class ServicesConfiguration
 
     static string GetConnectionString(WebApplicationBuilder webApplicationBuilder)
     {
-        var s = string.Empty;
-
-        if (webApplicationBuilder.Environment.EnvironmentName == "Development")
-        {
-            s = webApplicationBuilder.Configuration.GetConnectionString("DefaultString");
-        }
-        else
+        if (webApplicationBuilder.Environment.EnvironmentName != "Development")
         {
             var connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
@@ -92,10 +86,10 @@ public static class ServicesConfiguration
             var host = hostSide.Split("/")[0];
             var database = hostSide.Split("/")[1].Split("?")[0];
 
-            s =
+            return
                 $"Host={host};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
         }
 
-        return s;
+        return webApplicationBuilder.Configuration.GetConnectionString("DefaultString");
     }
 }
