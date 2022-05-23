@@ -1,10 +1,11 @@
 ﻿let pageNumber = 1;
 let searchString = "";
-function showMoreAuthors(){
+function showMoreAuthors(srchVal){
+    let search = srchVal
     $.ajax(
         {
             type: "GET",
-            url:`/Search/SearchAuthors?page=${++pageNumber}`,
+            url:`/Search/SearchAuthors?page=${++pageNumber}&searchString=${srchVal}`,
             success: function (data) {
                 var $response=$(data);
                 var resultDiv = $response.find("#list").html();

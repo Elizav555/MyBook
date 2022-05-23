@@ -42,6 +42,7 @@ public class SearchController : Controller
     [Route("[controller]/[action]")]
     public IActionResult SearchBooks(int page,string searchString)
     {
+        ViewData["searchBooks"] = searchString;
         if (page == 0) page = 1;
         if (!String.IsNullOrEmpty(searchString))
         {
@@ -59,6 +60,7 @@ public class SearchController : Controller
     [Route("[controller]/[action]")]
     public IActionResult SearchAuthors(int page,string searchString)
     {
+        ViewData["searchAuthors"] = searchString;
         if (page == 0) page = 1;
         if (!String.IsNullOrEmpty(searchString))
         {
