@@ -98,13 +98,9 @@ public class BookViewModel
 
     public bool CheckAge()
     {
-        if (User == null) return true;
-        var today = DateTime.Today;
-        string[] date = User.BirthDate.Split('.');
-        int yearBirth;
-        bool success = int.TryParse(date[2], out yearBirth);
-        var age = today.Year - yearBirth;
-        return _resultBook != null && (_resultBook.IsForAdult && age >= 18 || !_resultBook.IsForAdult);
+        var eightteen = DateTime.Now.AddYears(-18);
+        var isAdult = User != null && DateTime.Parse(User.BirthDate).CompareTo(eightteen) <= 0;
+        return _resultBook != null && (_resultBook.IsForAdult && isAdult || !_resultBook.IsForAdult);
     }
 
     public bool CheckHistory()
