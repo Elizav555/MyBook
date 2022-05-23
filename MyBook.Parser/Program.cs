@@ -494,6 +494,302 @@ using (var db = new MyBookContext())
     db.SaveChanges();
 }
 
+
+using (var db = new MyBookContext())
+{
+    var rating = new Rating
+    {
+        Points = rnd.Next(5),
+        ReviewText = "В восторге от этой серии книг. Красивое лаконичное оформление.",
+        User = db.Users.First()
+    };
+    var authorBooks = new List<AuthorBook>();
+    var bookGenres = new List<BookGenre>();
+    var bookImages = new List<ImgLink>();
+
+    var smallImage =
+        @"https://rubel26.ru/images/2020/10/20/1_1.jpg";
+    var bigImage =
+        @"https://rubel26.ru/images/2020/10/20/1_1.jpg";
+    var imgLinkSm = new ImgLink
+        {Resolution = "smallThumbnail", Url = smallImage != null && bigImage != null ? smallImage : ""};
+    var imgLink = new ImgLink {Resolution = "thumbnail", Url = smallImage != null && bigImage != null ? bigImage : ""};
+
+    var epub = new DownloadLink
+        {Format = "epub", Url = @"https://drive.google.com/uc?export=download&id=1Bsr_A-6yrTsdYYYFAnuvurCmhYTRfEH6"};
+    var pdf = new DownloadLink
+        {Format = "pdf", Url = @"https://drive.google.com/uc?export=download&id=1tMtHBHvnJof0gJd_H3UCBrLseIDWtntB"};
+
+    bookImages.Add(imgLink);
+    bookImages.Add(imgLinkSm);
+    var desc = new BookDesc
+    {
+        Description = @"Научно-фантастический роман-антиутопия Рэя Брэдбери, изданный в 1953 году. Роман описывает американское общество близкого будущего, в котором книги находятся под запретом.",
+        PagesCount = 320,
+        Price = "530 RUB",
+        DownloadLinks = new List<DownloadLink> {epub, pdf}
+    };
+    var book = new Book
+    {
+        Name = "451' по Фаренгейту",
+        Language = "ru",
+        PublishedDate = "01.01.1953",
+        IsForAdult = false,
+        IsPaid = true,
+        ImgLinks = bookImages,
+        Description = desc,
+        Ratings = new List<Rating>() {rating}
+    };
+    rating.Book = book;
+    db.Ratings.Add(rating);
+
+    var smallImageAuthor =
+        @"https://www.ridus.ru/_ah/img/2d9W9V9Rzlu-wE_P0KFzrA";
+    var bigImageAuthor =
+        @"https://www.ridus.ru/_ah/img/2d9W9V9Rzlu-wE_P0KFzrA";
+    var imgLinkSmAuthor = new ImgLink
+    {
+        Resolution = "smallThumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? smallImageAuthor : ""
+    };
+    var imgLinkAuthor = new ImgLink
+        {Resolution = "thumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? bigImageAuthor : ""};
+
+
+    List<Author> authors = new List<Author>();
+    authors.Add(new Author
+        {
+            Name = "Рэй Брэдбери",
+            BirthDate = "22.08.1920",
+            ImgLinks = new List<ImgLink> {imgLinkAuthor, imgLinkSmAuthor}
+        }
+    );
+
+    foreach (var author in authors)
+    {
+        var dbAuthor = db.Authors.FirstOrDefault(a => a.Name == author.Name);
+        if (dbAuthor == null)
+        {
+            db.Authors.Add(author);
+            authorBooks.Add(new AuthorBook
+            {
+                Author = author,
+                Book = book
+            });
+        }
+        else
+        {
+            authorBooks.Add(new AuthorBook {Author = dbAuthor, Book = book});
+        }
+    }
+
+    book.AuthorBooks = authorBooks;
+
+    bookGenres.Add(new BookGenre
+    {
+        Genre = db.Genres.Where(g => g.Name == "American literature")?.FirstOrDefault(),
+        Book = book
+    });
+
+    db.BookGenres.AddRange(bookGenres);
+    db.SaveChanges();
+}
+
+using (var db = new MyBookContext())
+{
+    var rating = new Rating
+    {
+        Points = rnd.Next(5),
+        ReviewText = "Читать, читать и ещё раз читать Солженицына всем тем, кто хочет проникнуться жизнью человека 20 века, кем бы он ни был!",
+        User = db.Users.First()
+    };
+    var authorBooks = new List<AuthorBook>();
+    var bookGenres = new List<BookGenre>();
+    var bookImages = new List<ImgLink>();
+
+    var smallImage =
+        @"https://img4.labirint.ru/rc/d6b21bbe259a313461cd86ffa62cab3b/363x561q80/books48/477076/cover.jpg?1612675795";
+    var bigImage =
+        @"https://img4.labirint.ru/rc/d6b21bbe259a313461cd86ffa62cab3b/363x561q80/books48/477076/cover.jpg?1612675795";
+    var imgLinkSm = new ImgLink
+        {Resolution = "smallThumbnail", Url = smallImage != null && bigImage != null ? smallImage : ""};
+    var imgLink = new ImgLink {Resolution = "thumbnail", Url = smallImage != null && bigImage != null ? bigImage : ""};
+
+    var epub = new DownloadLink
+        {Format = "epub", Url = @"https://drive.google.com/uc?export=download&id=1Bsr_A-6yrTsdYYYFAnuvurCmhYTRfEH6"};
+    var pdf = new DownloadLink
+        {Format = "pdf", Url = @"https://drive.google.com/uc?export=download&id=1tMtHBHvnJof0gJd_H3UCBrLseIDWtntB"};
+
+    bookImages.Add(imgLink);
+    bookImages.Add(imgLinkSm);
+    var desc = new BookDesc
+    {
+        Description = @"Первое опубликованное произведение Александра Солженицына, принёсшее ему мировую известность, публикация которого, по мнению историков и литературоведов, повлияла на весь дальнейший ход истории СССР. ",
+        PagesCount = 320,
+        Price = "530 RUB",
+        DownloadLinks = new List<DownloadLink> {epub, pdf}
+    };
+    var book = new Book
+    {
+        Name = "Один день Ивана Денисовича",
+        Language = "386",
+        PublishedDate = "12.12.1962",
+        IsForAdult = false,
+        IsPaid = true,
+        ImgLinks = bookImages,
+        Description = desc,
+        Ratings = new List<Rating>() {rating}
+    };
+    rating.Book = book;
+    db.Ratings.Add(rating);
+
+    var smallImageAuthor =
+        @"https://avatars.mds.yandex.net/get-zen_doc/1587710/pub_5eea965a1517ce1d5fa60f55_5eeab811e5ad4848ca5dbade/scale_1200";
+    var bigImageAuthor =
+        @"https://avatars.mds.yandex.net/get-zen_doc/1587710/pub_5eea965a1517ce1d5fa60f55_5eeab811e5ad4848ca5dbade/scale_1200";
+    var imgLinkSmAuthor = new ImgLink
+    {
+        Resolution = "smallThumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? smallImageAuthor : ""
+    };
+    var imgLinkAuthor = new ImgLink
+        {Resolution = "thumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? bigImageAuthor : ""};
+
+
+    List<Author> authors = new List<Author>();
+    authors.Add(new Author
+        {
+            Name = "Александр Солженицын",
+            BirthDate = "11.12.1918",
+            ImgLinks = new List<ImgLink> {imgLinkAuthor, imgLinkSmAuthor}
+        }
+    );
+
+    foreach (var author in authors)
+    {
+        var dbAuthor = db.Authors.FirstOrDefault(a => a.Name == author.Name);
+        if (dbAuthor == null)
+        {
+            db.Authors.Add(author);
+            authorBooks.Add(new AuthorBook
+            {
+                Author = author,
+                Book = book
+            });
+        }
+        else
+        {
+            authorBooks.Add(new AuthorBook {Author = dbAuthor, Book = book});
+        }
+    }
+
+    book.AuthorBooks = authorBooks;
+
+    bookGenres.Add(new BookGenre
+    {
+        Genre = db.Genres.Where(g => g.Name == "Russia")?.FirstOrDefault(),
+        Book = book
+    });
+
+    db.BookGenres.AddRange(bookGenres);
+    db.SaveChanges();
+}
+using (var db = new MyBookContext())
+{
+    var rating = new Rating
+    {
+        Points = rnd.Next(5),
+        ReviewText = "Читать, читать и ещё раз читать Солженицына всем тем, кто хочет проникнуться жизнью человека 20 века, кем бы он ни был!",
+        User = db.Users.First()
+    };
+    var authorBooks = new List<AuthorBook>();
+    var bookGenres = new List<BookGenre>();
+    var bookImages = new List<ImgLink>();
+
+    var smallImage =
+        @"https://img4.labirint.ru/rc/d6b21bbe259a313461cd86ffa62cab3b/363x561q80/books48/477076/cover.jpg?1612675795";
+    var bigImage =
+        @"https://img4.labirint.ru/rc/d6b21bbe259a313461cd86ffa62cab3b/363x561q80/books48/477076/cover.jpg?1612675795";
+    var imgLinkSm = new ImgLink
+        {Resolution = "smallThumbnail", Url = smallImage != null && bigImage != null ? smallImage : ""};
+    var imgLink = new ImgLink {Resolution = "thumbnail", Url = smallImage != null && bigImage != null ? bigImage : ""};
+
+    var epub = new DownloadLink
+        {Format = "epub", Url = @"https://drive.google.com/uc?export=download&id=1Bsr_A-6yrTsdYYYFAnuvurCmhYTRfEH6"};
+    var pdf = new DownloadLink
+        {Format = "pdf", Url = @"https://drive.google.com/uc?export=download&id=1tMtHBHvnJof0gJd_H3UCBrLseIDWtntB"};
+
+    bookImages.Add(imgLink);
+    bookImages.Add(imgLinkSm);
+    var desc = new BookDesc
+    {
+        Description = @"Первое опубликованное произведение Александра Солженицына, принёсшее ему мировую известность, публикация которого, по мнению историков и литературоведов, повлияла на весь дальнейший ход истории СССР. ",
+        PagesCount = 320,
+        Price = "530 RUB",
+        DownloadLinks = new List<DownloadLink> {epub, pdf}
+    };
+    var book = new Book
+    {
+        Name = "Один день Ивана Денисовича",
+        Language = "386",
+        PublishedDate = "12.12.1962",
+        IsForAdult = false,
+        IsPaid = true,
+        ImgLinks = bookImages,
+        Description = desc,
+        Ratings = new List<Rating>() {rating}
+    };
+    rating.Book = book;
+    db.Ratings.Add(rating);
+
+    var smallImageAuthor =
+        @"https://avatars.mds.yandex.net/get-zen_doc/1587710/pub_5eea965a1517ce1d5fa60f55_5eeab811e5ad4848ca5dbade/scale_1200";
+    var bigImageAuthor =
+        @"https://avatars.mds.yandex.net/get-zen_doc/1587710/pub_5eea965a1517ce1d5fa60f55_5eeab811e5ad4848ca5dbade/scale_1200";
+    var imgLinkSmAuthor = new ImgLink
+    {
+        Resolution = "smallThumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? smallImageAuthor : ""
+    };
+    var imgLinkAuthor = new ImgLink
+        {Resolution = "thumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? bigImageAuthor : ""};
+
+
+    List<Author> authors = new List<Author>();
+    authors.Add(new Author
+        {
+            Name = "Александр Солженицын",
+            BirthDate = "11.12.1918",
+            ImgLinks = new List<ImgLink> {imgLinkAuthor, imgLinkSmAuthor}
+        }
+    );
+
+    foreach (var author in authors)
+    {
+        var dbAuthor = db.Authors.FirstOrDefault(a => a.Name == author.Name);
+        if (dbAuthor == null)
+        {
+            db.Authors.Add(author);
+            authorBooks.Add(new AuthorBook
+            {
+                Author = author,
+                Book = book
+            });
+        }
+        else
+        {
+            authorBooks.Add(new AuthorBook {Author = dbAuthor, Book = book});
+        }
+    }
+
+    book.AuthorBooks = authorBooks;
+
+    bookGenres.Add(new BookGenre
+    {
+        Genre = db.Genres.Where(g => g.Name == "Russia")?.FirstOrDefault(),
+        Book = book
+    });
+
+    db.BookGenres.AddRange(bookGenres);
+    db.SaveChanges();
+}
 #endregion
 
 

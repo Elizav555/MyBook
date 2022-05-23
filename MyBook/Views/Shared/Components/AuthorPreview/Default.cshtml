@@ -5,7 +5,7 @@
         @{
             var image = Model.ImgLinks?.FirstOrDefault()?.Url;
             if (image == null)
-                image = "~/assets/img/king.jpg";
+                image = @"/assets/img/non.png";
         }
 
         <a class="postcard_img_link" asp-controller="Author" asp-action="Author" asp-route-authorId="@Model.AuthorId">
