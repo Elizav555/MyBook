@@ -14,12 +14,12 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     public EfBookRepository(MyBookContext context) : base(context)
     {
     }
-
+    
     public IQueryable<Book> GetTopBooks()
     {
         return GetAllBooks().OrderByDescending(it => it.DownloadsCount);
     }
-
+    
     public IQueryable<Book> GetAllBooks()
     {
         return DbSet.Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
@@ -105,7 +105,7 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
         var resultBooks = tempBooks.Where(book => book.BookGenres.FirstOrDefault()!.Genre.Name == filterGenre);
         return resultBooks;
     }
-
+    
     public IQueryable<Book> GetFilterFreeBooksLanguageAndGenre(string filterLanguage, string filterGenre)
     {
         return DbSet
@@ -123,13 +123,16 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
             .ThenInclude(authorBook => authorBook.Author).Include(book => book.ImgLinks)
             .Include(book => book.Description).Include(book => book.BookGenres);
     }
-
+    
     public IQueryable<Book> GetFilterFreeBooksGenre(string filterGenre)
     {
         return DbSet.Where(book => book.BookGenres.First().Genre.Name == filterGenre && book.IsPaid == false)
-            .Include(book => book.AuthorBooks).ThenInclude(authorBook => authorBook.Author)
-            .Include(book => book.ImgLinks).Include(book => book.Description).Include(book => book.BookGenres);
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description)
+            .Include(book => book.BookGenres);
     }
-
+    
     #endregion
 }
