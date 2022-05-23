@@ -16,7 +16,7 @@ namespace MyBook.Infrastructure.Repositories
             .Include(history => history.Book)
             .ThenInclude(book => book.AuthorBooks);
         }
-
+        
         public bool CheckHistory(string userId, int bookId)
         {
             return DbSet.Any(x => x.UserId == userId && x.BookId==bookId);
