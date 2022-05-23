@@ -17,12 +17,13 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<Object> _genericRepository;
         private readonly UserManager<User> _userManager;
         private readonly IMailService _mailService;
+        private readonly EFUserRepository _userRepository;
         private readonly INotificationService _notificationService;
 
         public SubscriptionGiftController(
             IGenericRepository<Type> typeRepository, EfAuthorRepository authorRepository,
           EFGenreRepository genreRepository, IGenericRepository<Object> genericRepository,
-          UserManager<User> userManager, IMailService mailService, INotificationService notificationService)
+          UserManager<User> userManager, IMailService mailService, INotificationService notificationService, EFUserRepository userRepository)
         {
             _typeRepository = typeRepository;
             _authorRepository = authorRepository;
@@ -31,6 +32,7 @@ namespace MyBook.Controllers
             _userManager = userManager;
             _mailService = mailService;
             _notificationService = notificationService;
+            _userRepository = userRepository;
         }
 
         public IActionResult SubscriptionGift()
@@ -38,7 +40,6 @@ namespace MyBook.Controllers
             return View(new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes() });
         }
 
-        //TODO добавить видимость оплаты
         [HttpPost]
         public async Task<IActionResult> SubscriptionGift(GiftViewModel model)
         {
@@ -72,6 +73,11 @@ namespace MyBook.Controllers
                             return View(model);
                         payModel.SpecsId = author.AuthorId;
                         payModel.SpecsName = author.Name;
+
+                        if (HasSubscr(typeId: (int)model.TypeId, userId: user.Id, authorId: author.AuthorId))
+                        {
+                            return RedirectToAction("SubscrExists", "Modals");
+                        }
                     }
                     else
                     {
@@ -88,6 +94,10 @@ namespace MyBook.Controllers
                             return View(model);
                         payModel.SpecsId = genre.GenreId;
                         payModel.SpecsName = genre.Name;
+                        if (HasSubscr(typeId: (int)model.TypeId, userId: user.Id, genreId: genre.GenreId))
+                        {
+                            return RedirectToAction("SubscrExists", "Modals");
+                        }
                     }
                     else
                     {
@@ -95,23 +105,38 @@ namespace MyBook.Controllers
                         return View(model);
                     }
                 }
+                else if (type?.TypeName == "Премиум" && HasSubscr(typeId: (int)model.TypeId, userId: user.Id))
+                {
+                    return RedirectToAction("SubscrExists", "Modals");
+                }
                 return RedirectToAction("SubscriptionPay", "SubscriptionPay", payModel);
             }
             return View(model);
         }
 
-        public async Task<IActionResult> PaySuccess(string userId)
+        private bool HasSubscr(int typeId, string userId, int? genreId = null, int? authorId = null)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = _userRepository.GetUserWithSubscr(userId);
+            if (user == null)
+                return true;
+            if (user.UserSubscrs == null || !(user.UserSubscrs.Any(it =>
+                it.Subscription.TypeId == typeId &&
+                ((genreId != null && it.Subscription.GenreId == genreId) || (authorId != null && it.Subscription.AuthorId == authorId) || it.Subscription.Type.TypeName == "Премиум"))))
+                return false;
+            else return true;
+        }
+
+        public async Task<IActionResult> PaySuccess(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+                var modalModel = new ModalsViewModel { ControllerName = "SubscriptionGift", ActionName = "SubscriptionGift" };
             if (user == null)
             {
-                //TODO show error
-                return RedirectToRoute("/");
+                return RedirectToAction("Error", "Modals", modalModel);
             }
             _mailService.SendGiftSubscr(user.Email);
-            await _notificationService.NotifyClient(userId, "Подарок!", "Вам подарили подписку на наш сервис");
-            //TODO show success
-            return View("SubscriptionGift", new GiftViewModel { Authors = GetAuthors(), Genres = GetGenres(), SubscrTypes = GetTypes() });
+            await _notificationService.NotifyClient(id, "Подарок!", "Вам подарили подписку на наш сервис");
+            return RedirectToAction("SubscriptionGift", "SubscriptionGift");
         }
 
         private List<Type> GetTypes()

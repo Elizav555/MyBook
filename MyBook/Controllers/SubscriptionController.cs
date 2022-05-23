@@ -47,9 +47,14 @@ namespace MyBook.Controllers
             var model = new PayViewModel();
             if (type != null)
             {
+                if ( genre == null)
+                {
+                    var modalModel = new ModalsViewModel { ControllerName = "Subscription", ActionName = "Subscription" };
+                    return RedirectToAction("Error", "Modals", modalModel);
+                }
                 var user = await CheckSubscr(type.TypeId, genreId: genre.First().GenreId, authorId: null);
-                if (user == null || genre == null)
-                    return Redirect("Error");//TODO show modal that user already have subscr
+                if(user == null )
+                    return RedirectToAction("SubscrExists", "Modals");
                 model = new PayViewModel
                 {
                     UserId = user.Id,
@@ -77,9 +82,14 @@ namespace MyBook.Controllers
             var model = new PayViewModel();
             if (type != null)
             {
+                if (author == null)
+                {
+                    var modalModel = new ModalsViewModel { ControllerName = "Subscription", ActionName = "Subscription" };
+                    return RedirectToAction("Error", "Modals", modalModel);
+                }
                 var user = await CheckSubscr(type.TypeId, authorId: author.First().AuthorId, genreId: null);
-                if (user == null || author == null)
-                    return Redirect("Error");//TODO show modal that user already have subsc
+                if (user == null)
+                    return RedirectToAction("SubscrExists", "Modals");
                 model = new PayViewModel
                 {
                     UserId = user.Id,
@@ -104,7 +114,7 @@ namespace MyBook.Controllers
             {
                 var user = await CheckSubscr(type.TypeId, null, null);
                 if (user == null)
-                    return Redirect("Error");//TODO show modal that user already have subscr
+                    return RedirectToAction("SubscrExists", "Modals");
                 model = new PayViewModel
                 {
                     UserId = user.Id,

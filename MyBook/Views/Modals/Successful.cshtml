@@ -1,4 +1,4 @@
-﻿
+﻿@model MyBook.Models.ModalsViewModel
 <body class="lock">
     <section class="modal_wrapper">
         <div class="main_content_page">
@@ -9,7 +9,39 @@
                     </div>
                     <div class="d-flex ">
                         <div class="mod_but_form center">
-                            <button class="btn-warning btn_spec">Закрыть</button>
+                           @{
+                                if (Model.CurrentPage != null)
+                                {
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-page=@Model.CurrentPage>
+                                        <button class="btn-warning btn_spec">Закрыть</button>
+                                    </a>
+                                }
+
+                                else if (Model.UserId != null)
+                                {
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-id=@Model.UserId>
+                                        <button class="btn-warning btn_spec">Закрыть</button>
+                                    </a>
+                                }
+                                else if (Model.BookId != null)
+                                {
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-bookId=@Model.BookId>
+                                        <button class="btn-warning btn_spec">Закрыть</button>
+                                    </a>
+                                }
+                                else if (Model.AuthorId != null)
+                                {
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-authorId=@Model.AuthorId>
+                                        <button class="btn-warning btn_spec">Закрыть</button>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-area="" asp-controller=@Model.ControllerName asp-action=@Model.ActionName>
+                                        <button class="btn-warning btn_spec">Закрыть</button>
+                                    </a>
+                                }
+                            }
                         </div>
                     </div>
                 </div>

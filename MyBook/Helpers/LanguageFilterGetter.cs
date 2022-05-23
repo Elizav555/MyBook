@@ -38,6 +38,9 @@ public class LanguageFilterGetter: ILanguageFilterGetter
                 case "it":
                     display = "итальянский";
                     break;
+                case "pl":
+                    display = "польский";
+                    break;
                 default:
                     display = lang;
                     break;

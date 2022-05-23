@@ -36,7 +36,8 @@ namespace MyBook.Controllers
             User user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return NotFound();
+                var modalModel = new ModalsViewModel { ControllerName = "Home", ActionName = "Index"};
+                return RedirectToAction("Error", "Modals", modalModel);
             }
             await DeleteSubscr(user.Id);
             return View(
@@ -103,7 +104,8 @@ namespace MyBook.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return View("Index", model);
+                        var modalModel = new ModalsViewModel { ControllerName = "UserProfile", ActionName = "Index", UserId = model.Id };
+                        return RedirectToAction("Successful", "Modals", modalModel);
                     }
                     else
                     {
@@ -129,7 +131,8 @@ namespace MyBook.Controllers
                     var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", new { model.Id });
+                        var modalModel = new ModalsViewModel { ControllerName = "UserProfile", ActionName = "Index", UserId = model.Id };
+                        return RedirectToAction("Successful", "Modals", modalModel);
                     }
                     else
                     {
@@ -161,13 +164,14 @@ namespace MyBook.Controllers
             }
 
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false, false);
+            var modalModel = new ModalsViewModel { ControllerName = "UserProfile", ActionName = "Index", UserId = userId };
             if (!result.Succeeded)
             {
                 var user = await _userManager.FindByIdAsync(userId);
                 var identityResult = await _userManager.AddLoginAsync(user, info);
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
-            //TODO else show that vk already added
-            return RedirectToAction("Index", "UserProfile", new { id = userId });
+            else return RedirectToAction("VkExists", "Modals", modalModel);
         }
 
         public async Task<IActionResult> Logout()

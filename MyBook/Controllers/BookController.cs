@@ -66,7 +66,10 @@ namespace MyBook.Controllers
             var fileName = name + "." + format;
             var book = _bookRepository.GetFullBook(bookId);
             if (user == null || book == null)
-                return RedirectToAction("error"); //TODO show error*/
+            {
+                var modalModel = new ModalsViewModel { ControllerName = "Book", ActionName = "Book", BookId = bookId };
+                return RedirectToAction("Error", "Modals", modalModel);
+            }
             var history = new History
             {
                 BookId = bookId,

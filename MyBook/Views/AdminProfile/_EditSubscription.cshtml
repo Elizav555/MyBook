@@ -27,7 +27,7 @@
                             <td>@type.Price руб</td>
                             <td>
                                 <div class="flex_but">
-                                    <button class="spec_but" type="button" onclick="location.href='@Url.Action("DeleteSubscrType", "AdminProfile",type)'">Удалить</button>
+                                    <button class="spec_but" type="button" onclick="location.href='@Url.Action("Delete", "Modals", new DeleteViewModel{ Id = type.TypeId, ReturnPage="Subscription"})'">Удалить</button>
                                     <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditSubscriptionModal", "AdminProfile",new MyBook.Models.Admin.EditSubscrViewModel
                         {
                                 TypeId = type.TypeId,

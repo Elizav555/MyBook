@@ -766,3 +766,22 @@ b {
     color: gold;
     text-shadow: 1px 1px #c60;
 }
+
+#authorPhoto{
+    width: 300px;
+    height: 300px;
+}
+
+#authorPhotoPreview{
+    width: 140px;
+    height: 140px;
+}
+
+#bookSearchPhoto{
+    width: 150px;
+    height: 200px;
+}
+
+.bookSearch{
+    padding-left: 5%;
+}

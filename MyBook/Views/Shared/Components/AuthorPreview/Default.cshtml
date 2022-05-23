@@ -2,21 +2,28 @@
 
 <div class="container">
     <article class="postcard">
+        @{
+            var image = Model.ImgLinks?.FirstOrDefault()?.Url;
+            if (image == null)
+                image = "~/assets/img/king.jpg";
+        }
+
         <a class="postcard_img_link" asp-controller="Author" asp-action="Author" asp-route-authorId="@Model.AuthorId">
-            <img class="postcard_img" src="~/assets/img/king.jpg" alt="">
+            <img class="postcard_img" src="@image" id="authorPhotoPreview" alt="">
         </a>
         <div class="postcard_text">
             <h3 class="h3 PreviewTitle">
+
                 <a asp-controller="Author" asp-action="Author" asp-route-authorId="@Model.AuthorId">
                     <div class="me-4 Name">
                         @Model.Name
-                    </div>     
+                    </div>
                 </a>
             </h3>
             <p class="card-text oneLineDisplayText text-secondary">
-                            @Model.AuthorBooks.Count
-                            Книг
-                            </p>
+                @Model.AuthorBooks.Count
+                Книг
+            </p>
         </div>
     </article>
 </div>

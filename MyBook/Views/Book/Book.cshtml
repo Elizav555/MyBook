@@ -122,26 +122,37 @@
                 {
                     if (Model.CheckHistory())
                     {
-                        <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                            <div class="button-sub-add">
-                                <a asp-action="Subscription" asp-controller="Subscription">
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Оформить подписку</span>
-                                    </button>
-                                </a>
+                        if (Model.CheckAge())
+                        {
+                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                                <div class="button-sub-add">
+                                    <a asp-action="Subscription" asp-controller="Subscription">
+                                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                                            <span>Оформить подписку</span>
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
-                            <div class="button-sub-add">
-                                <form method="post" asp-action="BookPay" asp-controller="SubscriptionPay" asp-route-bookId="@Model._resultBook.BookId">
-                                    <input type="hidden" name="price" value="@Model._resultBook.Description.Price" />
-                                    <input type="hidden" name="name" value="@Model._resultBook.Name" />
-                                    <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
-                                        <span>Купить книгу</span>
-                                    </button>
-                                </form>
+                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                                <div class="button-sub-add">
+                                    <form method="post" asp-action="BookPay" asp-controller="SubscriptionPay" asp-route-bookId="@Model._resultBook.BookId">
+                                        <input type="hidden" name="price" value="@Model._resultBook.Description.Price"/>
+                                        <input type="hidden" name="name" value="@Model._resultBook.Name"/>
+                                        <button type="submit" class="ant-btn ant-btn-border book-sub-wrapper ant-btn-trial ant-btn-lg">
+                                            <span>Купить книгу</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        }
+                        else
+                        {
+                            <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
+                                <div class="button-sub-add">
+                                    Запрещено для детей
+                                </div>
+                            </div>
+                        }
                     }
                     else
                     {
