@@ -6,6 +6,7 @@
     </a>
     <div class="card-body">
         <h4 class="card-title oneLineDisplayText">@Model.Name</h4>
+        <i class="fa fa-download"></i><span class="text-secondary ms-2 downloadsCount">@Model.DownloadsCount</span>
         @await Component.InvokeAsync("StarsRateResult", 5)
         <p class="card-text oneLineDisplayText">
             @foreach (var author in Model.AuthorBooks)

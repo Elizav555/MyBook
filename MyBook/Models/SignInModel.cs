@@ -12,6 +12,7 @@ namespace MyBook.Models
         [Required(ErrorMessage = "Введите пароль")]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
+        [MaxLength(18)]
         public string Password { get; set; }
 
         [Display(Name = "Запомнить?")]
