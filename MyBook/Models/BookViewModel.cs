@@ -99,7 +99,7 @@ public class BookViewModel
     public bool CheckAge()
     {
         var eightteen = DateTime.Now.AddYears(-18);
-        var isAdult = DateTime.Parse(User.BirthDate).CompareTo(eightteen) <= 0;
+        var isAdult = User != null && DateTime.Parse(User.BirthDate).CompareTo(eightteen) <= 0;
         return _resultBook != null && (_resultBook.IsForAdult && isAdult || !_resultBook.IsForAdult);
     }
 
