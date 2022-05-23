@@ -7,7 +7,6 @@
     <div class="carousel-inner w-100">
         @for (var i = 0; i < (Model.Count>6?(Model.Count - 6):Model.Count); i += 6)
         {
-            Console.WriteLine("================================");
             <div class="carousel-item @(i == 0 ? " active" : "") customCarouselItem">
                 <div class="row">
                     @{

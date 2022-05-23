@@ -17,16 +17,21 @@ namespace MyBook.Controllers
         private readonly IGenericRepository<BookCenter> _bookCenterRepository;
         private readonly INotificationService _notificationService;
         private readonly EFUserSubscrRepository _userSubscrRepository;
-        public HomeController(IGenericRepository<BookCenter> bookCenterRepository, INotificationService notificationService, EFUserSubscrRepository userSubscrRepository)
+        private readonly EfBookRepository _bookRepository;
+
+        public HomeController(IGenericRepository<BookCenter> bookCenterRepository, INotificationService notificationService, EFUserSubscrRepository userSubscrRepository,
+            EfBookRepository bookRepository)
         {
             _bookCenterRepository = bookCenterRepository;
             _notificationService = notificationService;
             _userSubscrRepository = userSubscrRepository;
+            _bookRepository = bookRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var books = _bookRepository.GetTopBooks().ToList();
+            return View(books);
         }
 
         public async Task<JsonResult> CheckUserSubscr()
