@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyBook.Infrastructure.Repositories
 {
-    public class EFTypeRepository : EfGenericRepository<MyBook.Entities.Type>
+    public class EFTypeRepository : EfGenericRepository<Entities.Type>
     {
         public EFTypeRepository(MyBookContext context) : base(context)
         { 

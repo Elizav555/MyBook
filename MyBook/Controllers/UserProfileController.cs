@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace MyBook.Controllers
 {
-    [Authorize(Policy = "ReadersOnly")]
+    /*[Authorize(Policy = "ReadersOnly")]*/
     public class UserProfileController : Controller
     {
         private readonly INotificationService _notificationService;
@@ -49,7 +49,7 @@ namespace MyBook.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Histories = GetHistories(user.Id),
-                    Recommendations = await GetRecommendations(user.Id),
+                    Recommendations = await GetRecommendations(user.Id,1),
                     Subscriptions = GetSubscrs(user.Id)
                 });
         }
@@ -79,7 +79,7 @@ namespace MyBook.Controllers
         {
             model.Histories = GetHistories(model.Id);
             model.Subscriptions = GetSubscrs(model.Id);
-            model.Recommendations = await GetRecommendations(model.Id);
+            model.Recommendations = await GetRecommendations(model.Id,1);
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
@@ -186,11 +186,19 @@ namespace MyBook.Controllers
             return _historyRepository.GetHistories(userId).ToList();
         }
 
-        private async Task<List<Book>> GetRecommendations(string userId)
+        private async Task<List<Book>> GetRecommendations(string userId,int page)
         {
-            return await _recommendationsService.GetRecommendationsAsync(userId);
+            if (page < 1) page = 1;
+            return await _recommendationsService.GetRecommendationsAsync(userId,page);
         }
 
+        private async Task<PartialViewResult> GetRecommendationsPaginated(int page)
+        {
+            var userId = (await _userManager.GetUserAsync(User)).Id;
+            var books =await GetRecommendations(userId, page);
+            return PartialView("../Partials/_BooksList", books);
+        }
+        
         private List<Subscription> GetSubscrs(string userId)
         {
             return _userSubscrRepository.GetUserWithAllSubscr(userId).Select(it => it.Subscription).ToList();

@@ -172,17 +172,13 @@ namespace MyBook.Entities
             modelBuilder.Entity<Subscription>(entity =>
             {
                 entity.ToTable("subscription");
-
                 entity.Property(e => e.SubscriptionId)
-                    .HasColumnName("subscr_id")
-                    ;
+                    .HasColumnName("subscr_id");
                 entity.HasOne(d => d.Type).WithMany(p => p.Subscriptions)
                     .OnDelete(DeleteBehavior.Cascade);;
-
                 entity.HasOne(d => d.Author)
                     .WithMany(p => p.Subscriptions).HasForeignKey(it => it.AuthorId)
                     .OnDelete(DeleteBehavior.Cascade);
-
                 entity.HasOne(d => d.Genre)
                     .WithMany(p => p.Subscriptions).HasForeignKey(it => it.GenreId)
                     .OnDelete(DeleteBehavior.Cascade);;

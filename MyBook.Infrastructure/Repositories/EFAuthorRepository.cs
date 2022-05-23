@@ -8,7 +8,7 @@ public class EfAuthorRepository: EfGenericRepository<Author>,IAuthorRepository
 {
     public EfAuthorRepository(MyBookContext context) : base(context)
     { }
-
+    
     public IQueryable<Author> GetAllAuthors()
     {
         return DbSet
@@ -16,7 +16,7 @@ public class EfAuthorRepository: EfGenericRepository<Author>,IAuthorRepository
             .ThenInclude(authorBook => authorBook.Book)
             .Include(author => author.ImgLinks);
     }
-
+    
     public Author GetFullAuthor(int authorId)
     {
         return DbSet

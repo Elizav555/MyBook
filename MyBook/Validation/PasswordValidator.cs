@@ -7,7 +7,7 @@ namespace MyBook.Validation
     public class PasswordValidator : IPasswordValidator<User>
     {
         public int RequiredLength { get; set; } // минимальная длина
-
+        
         public PasswordValidator(int length)
         {
             RequiredLength = length;
