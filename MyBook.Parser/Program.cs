@@ -493,7 +493,104 @@ using (var db = new MyBookContext())
     db.BookGenres.AddRange(bookGenres);
     db.SaveChanges();
 }
+using (var db = new MyBookContext())
+{
+    var rating = new Rating
+    {
+        Points = rnd.Next(5),
+        ReviewText = "В восторге от этой серии книг. Красивое лаконичное оформление.",
+        User = db.Users.First()
+    };
+    var authorBooks = new List<AuthorBook>();
+    var bookGenres = new List<BookGenre>();
+    var bookImages = new List<ImgLink>();
 
+    var smallImage =
+        @"https://cdn.eksmo.ru/v2/ITD000000000835226/COVER/cover1__w820.jpg";
+    var bigImage =
+        @"https://cdn.eksmo.ru/v2/ITD000000000835226/COVER/cover1__w820.jpg";
+    var imgLinkSm = new ImgLink
+        {Resolution = "smallThumbnail", Url = smallImage != null && bigImage != null ? smallImage : ""};
+    var imgLink = new ImgLink {Resolution = "thumbnail", Url = smallImage != null && bigImage != null ? bigImage : ""};
+
+    var epub = new DownloadLink
+        {Format = "epub", Url = @"https://drive.google.com/uc?export=download&id=1Bsr_A-6yrTsdYYYFAnuvurCmhYTRfEH6"};
+    var pdf = new DownloadLink
+        {Format = "pdf", Url = @"https://drive.google.com/uc?export=download&id=1tMtHBHvnJof0gJd_H3UCBrLseIDWtntB"};
+
+    bookImages.Add(imgLink);
+    bookImages.Add(imgLinkSm);
+    var desc = new BookDesc
+    {
+        Description = @"Научно-фантастический роман-антиутопия Рэя Брэдбери, изданный в 1953 году. Роман описывает американское общество близкого будущего, в котором книги находятся под запретом.",
+        PagesCount = 320,
+        Price = "559 RUB",
+        DownloadLinks = new List<DownloadLink> {epub, pdf}
+    };
+    var book = new Book
+    {
+        Name = "451 градус по Фаренгейту",
+        Language = "ru",
+        PublishedDate = "01.01.1953",
+        IsForAdult = false,
+        IsPaid = true,
+        ImgLinks = bookImages,
+        Description = desc,
+        Ratings = new List<Rating>() {rating}
+    };
+    rating.Book = book;
+    db.Ratings.Add(rating);
+
+    var smallImageAuthor =
+        @"http://1.bp.blogspot.com/-zA7FttdXiis/Wor6zpN-4yI/AAAAAAAATBo/NIxb8SmCYcALYiSK7-ki-xVl5RVy-rtVACK4BGAYYCw/s1600/Immagine%2Bdel%2B19-02-18%2Balle%2B17.24-712442.jpg";
+    var bigImageAuthor =
+        @"http://1.bp.blogspot.com/-zA7FttdXiis/Wor6zpN-4yI/AAAAAAAATBo/NIxb8SmCYcALYiSK7-ki-xVl5RVy-rtVACK4BGAYYCw/s1600/Immagine%2Bdel%2B19-02-18%2Balle%2B17.24-712442.jpg";
+    var imgLinkSmAuthor = new ImgLink
+    {
+        Resolution = "smallThumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? smallImageAuthor : ""
+    };
+    var imgLinkAuthor = new ImgLink
+        {Resolution = "thumbnail", Url = smallImageAuthor != null && bigImageAuthor != null ? bigImageAuthor : ""};
+
+
+    List<Author> authors = new List<Author>();
+    authors.Add(new Author
+        {
+            Name = "Рэй Брэдбери",
+            BirthDate = "22.08.1920",
+            ImgLinks = new List<ImgLink> {imgLinkAuthor, imgLinkSmAuthor}
+        }
+    );
+
+    foreach (var author in authors)
+    {
+        var dbAuthor = db.Authors.FirstOrDefault(a => a.Name == author.Name);
+        if (dbAuthor == null)
+        {
+            db.Authors.Add(author);
+            authorBooks.Add(new AuthorBook
+            {
+                Author = author,
+                Book = book
+            });
+        }
+        else
+        {
+            authorBooks.Add(new AuthorBook {Author = dbAuthor, Book = book});
+        }
+    }
+
+    book.AuthorBooks = authorBooks;
+
+    bookGenres.Add(new BookGenre
+    {
+        Genre = db.Genres.Where(g => g.Name == "American literature")?.FirstOrDefault(),
+        Book = book
+    });
+
+    db.BookGenres.AddRange(bookGenres);
+    db.SaveChanges();
+}
 #endregion
 
 
