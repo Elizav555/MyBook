@@ -70,7 +70,7 @@
                 {
                     if (Model.CheckAge())
                     {
-                        if (!Model.downloadLink.Any() && Model.downloadLink.First().Url != "")
+                        if (Model.downloadLink.Any()&&Model.downloadLink.First().Url != "")
                         {
                             <form method="post" asp-action="DownloadFile" asp-route-bookId="@Model._resultBook.BookId">
                                 <input type="hidden" name="link" value="@Model.downloadLink.First().Url" />
@@ -85,7 +85,7 @@
                                 </div>
                             </form>
                         }
-                        if (!Model.downloadLink.Any() && Model.downloadLink[1].Url != "")
+                        if (Model.downloadLink.Any()&&Model.downloadLink[1].Url != "")
                         {
                             <form method="post" asp-action="DownloadFile" asp-route-bookId="@Model._resultBook.BookId">
                                 <input type="hidden" name="link" value="@Model.downloadLink[1].Url" />
@@ -100,7 +100,7 @@
                                 </div>
                             </form>
                         }
-                        if (!Model.downloadLink.Any() || (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == ""))
+                        if (!Model.downloadLink.Any()||(Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == ""))
                         {
                             <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                                 <div class="button-sub-add">
@@ -161,7 +161,7 @@
                                 Уже приобретено
                             </div>
                         </div>
-                        if (!Model.downloadLink.Any() && Model.downloadLink.First().Url != "")
+                        if (Model.downloadLink.Any()&&Model.downloadLink.First().Url != "")
                         {
                             <form method="post" asp-action="DownloadFile">
                                 <input type="hidden" name="link" value="@Model.downloadLink.First().Url" />
@@ -177,7 +177,7 @@
                                 </div>
                             </form>
                         }
-                        if (!Model.downloadLink.Any() && Model.downloadLink[1].Url != "")
+                        if (Model.downloadLink.Any()&&Model.downloadLink[1].Url != "")
                         {
                             <form method="post" asp-action="DownloadFile">
                                 <input type="hidden" name="link" value="@Model.downloadLink[1].Url" />
@@ -193,7 +193,7 @@
                                 </div>
                             </form>
                         }
-                        if (!Model.downloadLink.Any() || (Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == ""))
+                        if (!Model.downloadLink.Any()||(Model.downloadLink.First().Url == "" && Model.downloadLink[1].Url == ""))
                         {
                             <div class="ant-col ant-col-xs-11 ant-col-md-8 ant-col-xl-12">
                                 <div class="button-sub-add">

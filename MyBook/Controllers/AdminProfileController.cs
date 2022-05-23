@@ -10,7 +10,7 @@ using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    [Authorize(Policy = "AdminsOnly")]
+    //[Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
@@ -249,7 +249,7 @@ namespace MyBook.Controllers
                 book.Description = desc;
                 if (model.ImageLink != null)
                 {
-                    var imageLink = new ImgLink { Book = book, Url = model.ImageLink };
+                    var imageLink = new ImgLink {Book = book, Url = model.ImageLink, Resolution = "thumbnail"};
                     book.ImgLinks.Add(imageLink);
                     entities.Add(imageLink);
                 }
