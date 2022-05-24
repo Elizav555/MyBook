@@ -7,6 +7,7 @@ namespace MyBook.Models
         [Required(ErrorMessage = "Введите email")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
+        [MaxLength(64)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Введите пароль")]

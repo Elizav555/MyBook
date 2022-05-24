@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureServices(builder.Configuration);
 
 var app = builder.Build();
+app.UseCookiePolicy(new CookiePolicyOptions()
+{
+    MinimumSameSitePolicy = SameSiteMode.Lax
+});
 app.UseSession();
 if (!app.Environment.IsDevelopment())
 {

@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MyBook.Core.Interfaces;
 using MyBook.Entities;
 using MyBook.Infrastructure.Helpers;
@@ -53,6 +54,7 @@ public static class ServicesConfiguration
 
         builder.Services.AddSignalR();
         builder.Services.AddDistributedMemoryCache();
+        
         builder.Services.AddSession(options =>
         {
             options.Cookie.Name = ".MyBook.Session";
