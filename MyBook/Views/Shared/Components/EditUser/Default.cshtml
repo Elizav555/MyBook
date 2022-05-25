@@ -21,7 +21,7 @@
                             @subscr.Type.TypeName
                         </h5>
                         <div class="flex_but me-2">
-                            <form method="post" asp-action="DeleteUserSubscr">
+                            <form method="post" asp-controller="AdminProfile" asp-action="DeleteUserSubscr">
                                 <input type="hidden" value="@Model.Id" name="id">
                                 <input type="hidden" value="@subscr.SubscriptionId" name="subscrId">
                                 <button class="spec_but" type="submit">Удалить</button>
@@ -34,13 +34,13 @@
                     </li>
                 }
             </ul>
-            <form method="post" class="me-4" asp-action="AddSubscrModal">
+            <form method="post" class="me-4" asp-controller="AdminProfile" asp-action="AddSubscrModal">
                 <input type="hidden" value="@Model.Id" name="userId">
                 <button class="spec_but w-100" type="submit">
                     Назначить подписку
                 </button>
             </form>
-            <form method="post" asp-action="AddAdmin">
+            <form method="post" asp-controller="AdminProfile" asp-action="AddAdmin">
                 <input type="hidden" value="@Model.Id" name="userId">
                 <button class="spec_but w-100" type="submit">
                     Назначить администратором

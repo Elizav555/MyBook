@@ -4,7 +4,7 @@
     <input class="form-control mr-sm-2" type="search" id="searchStringUsers" onchange="searchEditUser()" placeholder="Найти пользователя" aria-label="Search">
     <div class="user_information">
         <div class="users_information">
-            @foreach (var user in Model.Users.Take(1))
+            @foreach (var user in Model.Users.Take(5))
             {
                 @await Component.InvokeAsync("EditUser", user)
             }
