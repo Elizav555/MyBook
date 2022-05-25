@@ -12,7 +12,7 @@ builder.Services.AddResponseCompression(options =>
 
 var app = builder.Build();
 app.UseResponseCompression();
-app.UseCors(builder => builder.WithOrigins("https://my-book-app-kpfu-proj.herokuapp.com"));
+app.UseCors(builder => builder.WithOrigins(""));
 app.UseCookiePolicy(new CookiePolicyOptions()
 {
     MinimumSameSitePolicy = SameSiteMode.Lax
