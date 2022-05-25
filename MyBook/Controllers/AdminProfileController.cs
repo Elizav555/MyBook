@@ -249,7 +249,7 @@ namespace MyBook.Controllers
                 book.Description = desc;
                 if (model.ImageLink != null)
                 {
-                    var imageLink = new ImgLink { Book = book, Url = model.ImageLink };
+                    var imageLink = new ImgLink {Book = book, Url = model.ImageLink, Resolution = "thumbnail"};
                     book.ImgLinks.Add(imageLink);
                     entities.Add(imageLink);
                 }
