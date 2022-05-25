@@ -253,6 +253,20 @@ namespace MyBook.Controllers
                     book.ImgLinks.Add(imageLink);
                     entities.Add(imageLink);
                 }
+
+                if (!string.IsNullOrEmpty(model.UrlPDF))
+                {
+                    var pdfLink = new DownloadLink { BookDesc = desc, Format="pdf", Url = model.UrlPDF};
+                    desc.DownloadLinks.Add(pdfLink);
+                    entities.Add(pdfLink);
+                }
+                if (!string.IsNullOrEmpty(model.UrlEPUB))
+                {
+                    var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
+                    desc.DownloadLinks.Add(epubLink);
+                    entities.Add(epubLink);
+                }
+
                 entities.Add(book);
                 entities.Add(desc);
                 await _genericRepository.CreateAll(entities);
@@ -306,6 +320,20 @@ namespace MyBook.Controllers
                     book.ImgLinks = new List<ImgLink> { imageLink };
                     entities.Add(imageLink);
                 }
+
+                if (!string.IsNullOrEmpty(model.UrlPDF))
+                {
+                    var pdfLink = new DownloadLink { BookDesc = desc, Format = "pdf", Url = model.UrlPDF };
+                    desc.DownloadLinks.Add(pdfLink);
+                    entities.Add(pdfLink);
+                }
+                if (!string.IsNullOrEmpty(model.UrlEPUB))
+                {
+                    var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
+                    desc.DownloadLinks.Add(epubLink);
+                    entities.Add(epubLink);
+                }
+
                 entities.Add(desc);
                 await _genericRepository.CreateAll(entities);
                 await _bookRepository.Update(book);

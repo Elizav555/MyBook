@@ -23,7 +23,7 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     public IQueryable<Book> GetAllBooks()
     {
         return DbSet.Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
-            .Include(book => book.Description).Include(book => book.BookGenres).ThenInclude(book => book.Genre);
+            .Include(book => book.Description).ThenInclude(desc=>desc.DownloadLinks).Include(book => book.BookGenres).ThenInclude(book => book.Genre);
     }
 
     public IQueryable<Book> GetAllFreeBooks()

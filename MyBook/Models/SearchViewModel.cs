@@ -73,9 +73,12 @@ public class SearchViewModel
             book => book.Name.Contains(SearchString),
             books => 
                 books.Include(book => book.AuthorBooks)
-                    .ThenInclude(authorBook =>  authorBook.Author)
-                    .Include(book => book.ImgLinks)
-                    .Include(book=>book.Description)
+                     .ThenInclude(book => book.Author)
+                     .Include(book => book.ImgLinks)
+                     .Include(book => book.Description)
+                     .ThenInclude(desc => desc.DownloadLinks)
+                     .Include(book => book.BookGenres)
+                     .ThenInclude(book => book.Genre)
         );
     }
     
