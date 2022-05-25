@@ -60,7 +60,7 @@ namespace MyBook.Controllers
         public async Task<IActionResult> DownloadFile(string link, string name, string format, int bookId)
         {
             if (name == null || link == null || format == null)
-                return RedirectToAction("Book", "Book", new { bookId });
+                return RedirectToAction("Book", "Book", new {bookId});
             var user = CheckUser();
             var contentType = "APPLICATION/octet-stream";
             var fileName = name + "." + format;
