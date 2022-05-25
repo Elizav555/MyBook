@@ -5,8 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors();
 builder.ConfigureServices(builder.Configuration);
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+});
 
 var app = builder.Build();
+app.UseResponseCompression();
 app.UseCors(builder => builder.WithOrigins("https://my-book-app-kpfu-proj.herokuapp.com"));
 app.UseCookiePolicy(new CookiePolicyOptions()
 {
