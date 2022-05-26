@@ -8,9 +8,8 @@
 </head>
 <body class="lock">
     <section class="modal_wrapper">
-        <div class="main_content_page">
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog-centered" role="document">
                 <div class="modal_admin_book">
                     <div class="modal-header">
                         <h2 class="modal-title" id="exampleModalLongTitle">Редактировать книгу</h2>
@@ -22,9 +21,10 @@
                     </div>
                     <div class="modal-body">
                         <form method="post" asp-action="EditBook" asp-controller="AdminProfile">
+                            <div asp-validation-summary="ModelOnly"></div>
                             <div class="d-flex">
                                 <div class="left">
-                                    <div asp-validation-summary="ModelOnly"></div>
+                                    
                                     <input type="hidden" asp-for="BookId" id="bookId" />
                                     <div class="form-group">
                                         <label asp-for="Name" for="nameInput">Название книги</label>
