@@ -2,20 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBook.Entities;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MyBook.Migrations
+namespace MyBook.Infrastructure.Migrations
 {
     [DbContext(typeof(MyBookContext))]
-    [Migration("20220519153527_deleteCascad")]
-    partial class deleteCascad
+    partial class MyBookContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -432,6 +430,23 @@ namespace MyBook.Migrations
                     b.ToTable("img_link", (string)null);
                 });
 
+            modelBuilder.Entity("MyBook.Entities.MigrationTestEntity", b =>
+                {
+                    b.Property<int>("MigrationTestEntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("MigrationTestEntityId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("MigrationTestEntityId");
+
+                    b.ToTable("MigrationTestEntities");
+                });
+
             modelBuilder.Entity("MyBook.Entities.Rating", b =>
                 {
                     b.Property<int>("RatingId")
@@ -501,6 +516,23 @@ namespace MyBook.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("subscription", (string)null);
+                });
+
+            modelBuilder.Entity("MyBook.Entities.Test", b =>
+                {
+                    b.Property<int>("TestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TestId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("TestId");
+
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("MyBook.Entities.Type", b =>

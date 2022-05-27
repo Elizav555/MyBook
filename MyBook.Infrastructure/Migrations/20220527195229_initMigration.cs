@@ -4,9 +4,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MyBook.Migrations
+namespace MyBook.Infrastructure.Migrations
 {
-    public partial class deleteCascad : Migration
+    public partial class initMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -111,6 +111,19 @@ namespace MyBook.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_genre", x => x.genre_id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MigrationTestEntities",
+                columns: table => new
+                {
+                    MigrationTestEntityId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MigrationTestEntities", x => x.MigrationTestEntityId);
                 });
 
             migrationBuilder.CreateTable(
@@ -635,6 +648,9 @@ namespace MyBook.Migrations
 
             migrationBuilder.DropTable(
                 name: "img_link");
+
+            migrationBuilder.DropTable(
+                name: "MigrationTestEntities");
 
             migrationBuilder.DropTable(
                 name: "rating");
