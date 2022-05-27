@@ -4,15 +4,15 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-RUN dotnet tool install -g dotnet-ef --version 3.1.1 
-ENV PATH $PATH:/root/.dotnet/tools
-RUN dotnet ef --version
 WORKDIR /src
 COPY ["MyBook/MyBook.csproj", "MyBook/"]
 COPY ["MyBook.Core/MyBook.Core.csproj", "MyBook.Core/"]
 COPY ["MyBook.SharedKernel/MyBook.SharedKernel.csproj", "MyBook.SharedKernel/"]
 COPY ["MyBook.Infrastructure/MyBook.Infrastructure.csproj", "MyBook.Infrastructure/"]
 RUN dotnet restore "MyBook/MyBook.csproj"
+RUN dotnet tool install -g dotnet-ef --version 3.1.1 
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet ef --version
 COPY . .
 WORKDIR "/src/MyBook"
 RUN dotnet build "MyBook.csproj" -c Release -o /app/build
