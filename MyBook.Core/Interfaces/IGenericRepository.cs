@@ -16,6 +16,7 @@ namespace Repositories
         IEnumerable<TEntity> Get(Func<TEntity, bool> predicate);
         Task Remove(TEntity item);
         Task RemoveAll(List<TEntity> items);
+        Task DeleteAll(List<TEntity> items);
         Task RemoveById(int id);
         Task Update(TEntity item, List<string>? excluded);
         IQueryable<TEntity> GetWithInclude(

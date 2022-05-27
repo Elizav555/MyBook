@@ -119,5 +119,11 @@ namespace MyBook.Infrastructure.Repositories
             DbSet.RemoveRange(items);
             await Context.SaveChangesAsync();
         }
+
+        public async Task DeleteAll(List<TEntity> items)
+        {
+            Context.RemoveRange(items);
+            await Context.SaveChangesAsync();
+        }
     }
 }

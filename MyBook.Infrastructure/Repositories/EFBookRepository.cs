@@ -49,6 +49,7 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     {
         return DbSet.Where(book => book.BookId == bookId)
             .Include(book => book.Description)
+            .ThenInclude(desc=>desc.DownloadLinks)
             .Include(book => book.AuthorBooks)
             .ThenInclude(book => book.Author)
             .Include(book => book.BookGenres)

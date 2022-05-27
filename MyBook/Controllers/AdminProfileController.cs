@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
@@ -6,11 +6,12 @@ using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
 using MyBook.Models.Admin;
 using Repositories;
+using System.Globalization;
 using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    /*[Authorize(Policy = "AdminsOnly")]*/
+    [Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
@@ -79,10 +80,10 @@ namespace MyBook.Controllers
             var type = await _typeRepository.FindById(id);
             if (type == null)
             {
-                return RedirectToAction("Error", "Modals",  modalModel );
+                return RedirectToAction("Error", "Modals", modalModel);
             }
             await _typeRepository.Remove(type);
-            return RedirectToAction("Successful", "Modals", modalModel );
+            return RedirectToAction("Successful", "Modals", modalModel);
         }
 
         public IActionResult EditSubscriptionModal(EditSubscrViewModel model)
@@ -102,7 +103,7 @@ namespace MyBook.Controllers
                 var type = new Type { Description = model.Description, Price = model.Price, TypeName = model.TypeName };
                 await _typeRepository.Create(type);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Subscription" };
-                return RedirectToAction("Successful", "Modals",  modalModel );
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddSubscriptionModal", model);
         }
@@ -122,7 +123,7 @@ namespace MyBook.Controllers
                 type.TypeName = model.TypeName;
                 await _typeRepository.Update(type, null);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Subscription" };
-                return RedirectToAction("Successful", "Modals",  modalModel);
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("EditSubscriptionModal", model);
         }
@@ -135,9 +136,9 @@ namespace MyBook.Controllers
             var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Author" };
             var author = await _authorRepository.FindById(id);
             if (author == null)
-                return RedirectToAction("Error", "Modals", modalModel );
+                return RedirectToAction("Error", "Modals", modalModel);
             await _authorRepository.Remove(author);
-            return RedirectToAction("Successful", "Modals", modalModel );
+            return RedirectToAction("Successful", "Modals", modalModel);
         }
         public IActionResult EditAuthorModal(EditAuthorViewModel model)
         {
@@ -162,7 +163,7 @@ namespace MyBook.Controllers
                 }
                 else await _authorRepository.Create(author);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Author" };
-                return RedirectToAction("Successful", "Modals", modalModel );
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddAuthorModal", model);
         }
@@ -188,7 +189,7 @@ namespace MyBook.Controllers
                 }
                 await _authorRepository.Update(author, null);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Author" };
-                return RedirectToAction("Successful", "Modals", modalModel );
+                return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("EditAuthorModal", model);
         }
@@ -223,57 +224,62 @@ namespace MyBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var book = new Book { Name = model.Name, ImgLinks = new List<ImgLink>(), IsForAdult = model.IsForAdult, IsPaid = model.IsPaid, PublishedDate = model.PublishedDate, Language = model.Language };
-                var entities = new List<object>();
-                if (model.GenreName != null)
-                {
-                    var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
-                    if (genreId != null)
-                    {
-                        var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
-                        entities.Add(bookGenre);
-                        book.BookGenres.Add(bookGenre);
-                    }
-                }
-                if (model.AuthorName != null)
-                {
-                    var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
-                    if (authorId != null)
-                    {
-                        var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
-                        book.AuthorBooks.Add(bookAuthor);
-                        entities.Add(bookAuthor);
-                    }
-                }
-                var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, Book = book };
-                book.Description = desc;
-                if (model.ImageLink != null)
-                {
-                    var imageLink = new ImgLink {Book = book, Url = model.ImageLink, Resolution = "thumbnail"};
-                    book.ImgLinks.Add(imageLink);
-                    entities.Add(imageLink);
-                }
-
-                if (!string.IsNullOrEmpty(model.UrlPDF))
-                {
-                    var pdfLink = new DownloadLink { BookDesc = desc, Format="pdf", Url = model.UrlPDF};
-                    desc.DownloadLinks.Add(pdfLink);
-                    entities.Add(pdfLink);
-                }
-                if (!string.IsNullOrEmpty(model.UrlEPUB))
-                {
-                    var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
-                    desc.DownloadLinks.Add(epubLink);
-                    entities.Add(epubLink);
-                }
-
-                entities.Add(book);
-                entities.Add(desc);
-                await _genericRepository.CreateAll(entities);
+                await AddBookPrivate(model);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
                 return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddBookModal", model);
+        }
+
+        private async Task AddBookPrivate(EditBookViewModel model)
+        {
+            var book = new Book { Name = model.Name, ImgLinks = new List<ImgLink>(), IsForAdult = model.IsForAdult, IsPaid = model.IsPaid, PublishedDate = model.PublishedDate, Language = model.Language };
+            var entities = new List<object>();
+            if (model.GenreName != null)
+            {
+                var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
+                if (genreId != null)
+                {
+                    var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
+                    entities.Add(bookGenre);
+                    book.BookGenres.Add(bookGenre);
+                }
+            }
+            if (model.AuthorName != null)
+            {
+                var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
+                if (authorId != null)
+                {
+                    var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
+                    book.AuthorBooks.Add(bookAuthor);
+                    entities.Add(bookAuthor);
+                }
+            }
+            var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, Book = book };
+            book.Description = desc;
+            if (model.ImageLink != null)
+            {
+                var imageLink = new ImgLink { Book = book, Url = model.ImageLink, Resolution = "thumbnail" };
+                book.ImgLinks.Add(imageLink);
+                entities.Add(imageLink);
+            }
+
+            if (!string.IsNullOrEmpty(model.UrlPDF))
+            {
+                var pdfLink = new DownloadLink { BookDesc = desc, Format = "pdf", Url = model.UrlPDF };
+                desc.DownloadLinks.Add(pdfLink);
+                entities.Add(pdfLink);
+            }
+            if (!string.IsNullOrEmpty(model.UrlEPUB))
+            {
+                var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
+                desc.DownloadLinks.Add(epubLink);
+                entities.Add(epubLink);
+            }
+
+            entities.Add(book);
+            entities.Add(desc);
+            await _genericRepository.CreateAll(entities);
         }
 
         public async Task<IActionResult> EditBook(EditBookViewModel model)
@@ -286,57 +292,8 @@ namespace MyBook.Controllers
                     ModelState.AddModelError("BookNotFound", "Книга с таким айди не был найдена");
                     return View("EditBookModal", model);
                 }
-                book.Name = model.Name;
-                book.IsForAdult = model.IsForAdult;
-                book.IsPaid = model.IsPaid;
-                book.PublishedDate = model.PublishedDate;
-                book.Language = model.Language;
-                var entities = new List<object>();
-                if (model.GenreName != null)
-                {
-                    var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
-                    if (genreId != null)
-                    {
-                        var bookGenre = new BookGenre { BookId = book.BookId, GenreId = (int)genreId };
-                        entities.Add(bookGenre);
-                        book.BookGenres = new List<BookGenre> { bookGenre };
-                    }
-                }
-                if (model.AuthorName != null)
-                {
-                    var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
-                    if (authorId != null)
-                    {
-                        var bookAuthor = new AuthorBook { BookId = book.BookId, AuthorId = (int)authorId };
-                        book.AuthorBooks = new List<AuthorBook> { bookAuthor };
-                        entities.Add(bookAuthor);
-                    }
-                }
-                var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price };
-                book.Description = desc;
-                if (model.ImageLink != null)
-                {
-                    var imageLink = new ImgLink { BookId = book.BookId, Url = model.ImageLink };
-                    book.ImgLinks = new List<ImgLink> { imageLink };
-                    entities.Add(imageLink);
-                }
-
-                if (!string.IsNullOrEmpty(model.UrlPDF))
-                {
-                    var pdfLink = new DownloadLink { BookDesc = desc, Format = "pdf", Url = model.UrlPDF };
-                    desc.DownloadLinks.Add(pdfLink);
-                    entities.Add(pdfLink);
-                }
-                if (!string.IsNullOrEmpty(model.UrlEPUB))
-                {
-                    var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
-                    desc.DownloadLinks.Add(epubLink);
-                    entities.Add(epubLink);
-                }
-                
-                entities.Add(desc);
-                await _genericRepository.CreateAll(entities);
-                await _bookRepository.Update(book);
+                await _bookRepository.Remove(book);
+                await AddBookPrivate(model);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
                 return RedirectToAction("Successful", "Modals", modalModel);
             }
@@ -371,7 +328,7 @@ namespace MyBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var center = new BookCenter { Address = model.Address, Name = model.Name, Description = model.Description, Phone = model.Phone };
+                var center = new BookCenter { Address = model.Address, Name = model.Name, Description = model.Description, Phone = model.Phone, Latitude = Double.Parse(model.Latitude, CultureInfo.InvariantCulture), Longitude = Double.Parse(model.Longitude, CultureInfo.InvariantCulture) };
                 await _bookCenterRepository.Create(center);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
                 return RedirectToAction("Successful", "Modals", modalModel);
@@ -393,6 +350,8 @@ namespace MyBook.Controllers
                 center.Address = model.Address;
                 center.Description = model.Description;
                 center.Phone = model.Phone;
+                center.Latitude = Double.Parse(model.Latitude, CultureInfo.InvariantCulture);
+                center.Longitude = Double.Parse(model.Longitude, CultureInfo.InvariantCulture);
                 await _bookCenterRepository.Update(center, null);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
                 return RedirectToAction("Successful", "Modals", modalModel);
@@ -511,7 +470,7 @@ namespace MyBook.Controllers
             var admins = await _userManager.GetUsersForClaimAsync(new Claim(ClaimTypes.Role, "Admin"));
             return _userRepository.GetUsersWithSubscr().Where(user => !admins.Contains(user)).ToList();
         }
-        
+
         private List<BookCenter> GetCenters()
         {
             return _bookCenterRepository.Get().ToList();

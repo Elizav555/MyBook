@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label asp-for="Name" for="nameInput">Название книги</label>
                                         <input asp-for="Name" type="text" class="form-control" id="nameInput" placeholder="Название">
-                                         <span class="alerts" asp-validation-for="Name"></span>
+                                        <span class="alerts" asp-validation-for="Name"></span>
                                     </div>
                                     <label asp-for="Language" for="LanguageRadio">Язык</label>
                                     <div id="LanguageRadio">
@@ -47,7 +47,7 @@
                                         <input asp-for="PublishedDate" class="form-control" type="date" min="1922-04-01" max="2020-04-30" id="datepicker">
                                         <span class="alerts" asp-validation-for="PublishedDate"></span>
                                     </div>
-                                    <label asp-for="IsPaid" for="isPaid">Бесплатная ?</label>
+                                    <label asp-for="IsPaid" for="isPaid">Платная ?</label>
                                     <div id="isPaid">
                                         <div class="form-check form-check-inline">
                                             <input asp-for="IsPaid" class="form-check-input" type="radio" value=@true>
@@ -72,7 +72,7 @@
                                     <div class="form-group">
                                         <label asp-for="Description" for="descInput">Описание книги</label>
                                         <textarea asp-for="Description" type="text" class="form-control" id="descInput" placeholder="Описание книги"></textarea>
-                                         <span class="alerts" asp-validation-for="Description"></span>
+                                        <span class="alerts" asp-validation-for="Description"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="PagesCount" for="pageCountInput">Количество страниц</label>
@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <label asp-for="Price" for="priceInput">Цена</label>
                                         <input asp-for="Price" class="form-control" id="priceInput" placeholder="Стоимость">
-                                         <span class="alerts" asp-validation-for="Price"></span>
+                                        <span class="alerts" asp-validation-for="Price"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="UrlPDF" for="pdf">Ссылка на книгу (pdf)</label>
@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                         <label asp-for="UrlEPUB" for="epub">Ссылка на книгу (epub)</label>
                                         <input asp-for="UrlEPUB" type="text" class="form-control" id="epub" placeholder="Ссылка на epub" />
-                                         <span class="alerts" asp-validation-for="UrlEPUB"></span>
+                                        <span class="alerts" asp-validation-for="UrlEPUB"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ImageLink" for="img">Ссылка на изображение</label>
@@ -110,7 +110,7 @@
                                                 <option value="@author.Name"></option>
                                             }
                                         </datalist>
-                                         <span class="alerts" asp-validation-for="AuthorName"></span>
+                                        <span class="alerts" asp-validation-for="AuthorName"></span>
                                     </div>
                                     <div class="form-group">
                                         <label>Выберите жанр: </label>
