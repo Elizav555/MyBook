@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
@@ -14,15 +16,18 @@ public class SearchController : Controller
     private readonly IGenericRepository<Book> _bookRepository;
     private readonly IGenericRepository<Author> _authorRepository;
     private readonly EFUserRepository _userRepository;
+    private readonly UserManager<User> _userManager;
     private SearchViewModel _vIewModel;
 
     public SearchController(IGenericRepository<Book> bookRepository,
         IGenericRepository<Author> authorRepository,
-        EFUserRepository userRepository)
+        EFUserRepository userRepository,
+        UserManager<User> userManager)
     {
         _bookRepository = bookRepository;
         _authorRepository = authorRepository;
         _userRepository = userRepository;
+        _userManager = userManager;
     }
     public async Task<IActionResult> SearchAll(string searchString)
     {
@@ -52,7 +57,6 @@ public class SearchController : Controller
         {
             _vIewModel = new SearchViewModel(_bookRepository,"",page);
         }
-        
         return View(_vIewModel);
     }
     
@@ -70,7 +74,7 @@ public class SearchController : Controller
         {
             _vIewModel = new SearchViewModel(_authorRepository, "",page);
         }
-        
+
         return View(_vIewModel);
     }
 
@@ -91,12 +95,14 @@ public class SearchController : Controller
             new SearchViewModel(_authorRepository,"",page);
         return PartialView("../Partials/_EditAuthorsList", _vIewModel.Authors.ToList());
     }
-    public PartialViewResult SearchEditUsers(int page, string searchString)
+    public async Task<PartialViewResult> SearchEditUsers(int page, string searchString)
     {
         if (page == 0) page = 1;
         _vIewModel = !String.IsNullOrEmpty(searchString) ? 
             new SearchViewModel(_userRepository,searchString,page) : 
             new SearchViewModel(_userRepository,"",page);
+        var admins = await _userManager.GetUsersForClaimAsync(new Claim(ClaimTypes.Role, "Admin"));
+        _vIewModel.Users = _vIewModel.Users.Where(user => !admins.Contains(user));
         return PartialView("../Partials/_EditUsersList", _vIewModel.Users.ToList());
     }
 }

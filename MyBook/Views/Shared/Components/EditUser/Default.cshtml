@@ -2,7 +2,7 @@
 @{
     var name = Model.FirstName + " " + Model.LastName;
     var subscrs = Model.UserSubscrs.Select(it => it.Subscription).Where(it => DateTime.Parse(it.EndDate).CompareTo(DateTime.Now) > 0);
-    <section class="container">
+    <section class="container userCard">
         <div class="card d-flex flex-row align-items-center border-bottom p-5 pt-4 pb-4 userEditCard justify-content-around ms-3 me-3 mb-3">
             <h4 class=" me-4 text-nowrap">
                 @name

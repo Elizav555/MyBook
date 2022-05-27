@@ -1,30 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
+using MyBook.Infrastructure.Repositories;
 using Repositories;
 
 namespace MyBook.Controllers;
 
 public class TopBooksController : Controller
 {
-    private readonly IGenericRepository<Book> _bookRepository;
+    private readonly EfBookRepository _bookRepository;
 
-    public TopBooksController(IGenericRepository<Book> bookRepository)
+    public TopBooksController(EfBookRepository bookRepository)
     {
         _bookRepository = bookRepository;
     }
-    [Route("[controller]/{pageCount:int?}")]
-    public IActionResult Index(int? pageCount)
+    [Route("[controller]")]
+    public IActionResult Index()
     {
-        var freeBooks =  _bookRepository.GetWithMultiIncluding(
-            book => book,
-            book => book.Description.Price == " ",
-            books => 
-                books.Include(book=>book.Description)
-                    .Include(book => book.AuthorBooks)
-                    .ThenInclude(authorBook =>  authorBook.Author)
-                    .Include(book => book.ImgLinks));
-        
-        return View(freeBooks);
+        var books = _bookRepository.GetTopBooks().ToList();
+        return View(books);
     }
 }

@@ -38,8 +38,8 @@ public class SearchViewModel
     {
         _authorRepository = authorRepository;
         SearchString = searchString;
-
-        Authors = GetSearchAuthors()!.Take(pageNumber*10);
+        var allAuthors = GetSearchAuthors()!;
+        Authors = allAuthors.Take(pageNumber*10);
         PageViewModel = new PageViewModel(Authors.Count(), pageNumber);
     }
     public SearchViewModel(
@@ -49,8 +49,8 @@ public class SearchViewModel
     {
         _userRepository = userRepository;
         SearchString = searchString;
-
-        Users = GetSearchUsers()!.Take(pageNumber*10);
+        var allUsers = GetSearchUsers()!;
+        Users = allUsers.Take(pageNumber*10);
         PageViewModel = new PageViewModel(Users.Count(), pageNumber);
     }
     
@@ -61,8 +61,8 @@ public class SearchViewModel
     {
         _bookRepository = bookRepository;
         SearchString = searchString;
-        
-        Books = GetSearchBooks()!.Take(pageNumber*10);
+        var searchBooks = GetSearchBooks()!;
+        Books = searchBooks.Take(pageNumber*10);
         PageViewModel = new PageViewModel(Books.Count(), pageNumber);
     }
     

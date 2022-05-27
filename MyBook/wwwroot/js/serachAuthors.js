@@ -1,5 +1,16 @@
 ﻿let pageNumber = 1;
 let searchString = "";
+function checkShowMoreAuthorsBtn() {
+    haveMoreAuthors = $(".authorCard").length % 10 === 0;
+    console.log($(".authorCard").length)
+    console.log(haveMoreAuthors)
+    if (!haveMoreAuthors){
+        $("#showMoreAuthors").prop('disabled', true);
+    }
+    else {
+        $("#showMoreAuthors").prop('disabled', false);
+    }
+}
 function showMoreAuthors(srchVal){
     let search = srchVal
     $.ajax(
@@ -10,6 +21,7 @@ function showMoreAuthors(srchVal){
                 var $response=$(data);
                 var resultDiv = $response.find("#list").html();
                 $("#list").html(resultDiv);
+                checkShowMoreAuthorsBtn()
             },
             error: function (data){
                 alert("Чота не так пошло");

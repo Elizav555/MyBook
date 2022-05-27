@@ -9,11 +9,11 @@
                 @await Component.InvokeAsync("EditUser", user)
             }
         </div>
-        <div class="container text-center">
-            <button class="more" type="button" onclick="showMoreEditUsers()">
-                Показать ещё...
-            </button>
-        </div>
+             <div class="container text-center">
+                 <button class="btn btn-lg btn-primary" id="showMoreUsers" type="button" onclick="showMoreEditUsers()">
+                     Показать ещё...
+                 </button>
+             </div>
     </div>
 </section>
 <script src="~/js/searchEditUsers.js"></script>

@@ -10,7 +10,7 @@ using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    [Authorize(Policy = "AdminsOnly")]
+    /*[Authorize(Policy = "AdminsOnly")]*/
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
@@ -495,20 +495,23 @@ namespace MyBook.Controllers
 
         private List<Author> GetAuthors()
         {
+            ViewData["haveAuthors"] = true;
             return _authorRepository.GetAllAuthors().ToList();
         }
 
         private List<Book> GetBooks()
         {
+            ViewData["haveBooks"] = true;
             return _bookRepository.GetAllBooks().ToList();
         }
 
         private async Task<List<User>> GetUsers()
         {
+            ViewData["haveUsers"] = true;
             var admins = await _userManager.GetUsersForClaimAsync(new Claim(ClaimTypes.Role, "Admin"));
             return _userRepository.GetUsersWithSubscr().Where(user => !admins.Contains(user)).ToList();
         }
-
+        
         private List<BookCenter> GetCenters()
         {
             return _bookCenterRepository.Get().ToList();
