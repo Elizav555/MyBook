@@ -333,7 +333,7 @@ namespace MyBook.Controllers
                     desc.DownloadLinks.Add(epubLink);
                     entities.Add(epubLink);
                 }
-
+                
                 entities.Add(desc);
                 await _genericRepository.CreateAll(entities);
                 await _bookRepository.Update(book);
