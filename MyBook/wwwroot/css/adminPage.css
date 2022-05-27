@@ -70,18 +70,19 @@
 }
 .admin_nav{
     display: flex;
+    padding: 2em 5em;
     justify-content: space-between;
     flex-wrap: wrap;
+    background: pink;
 }
 
 .admin_ul li{
-    margin: 1em;
-}
-.logout_admin button{
-    margin-right: 4em;
+    margin: 10em;
 }
 .logout_admin  {
     margin: auto 0;
+    text-align: center;
+    justify-content: center;
 }
 .text_button{
     display: flex;
@@ -114,3 +115,31 @@
     padding: 0;
     margin: 0;
 }
+#subscr{
+    margin: 1em!important;
+}
+.lower_header_admn{
+}
+.lower_header_admn ul{
+    display: flex;
+}
+    .lower_header_admn li {
+        background: white;
+        padding: 0.3em 1em;
+        margin: 0.7em 1em 1em 0;
+        text-align: center;
+        justify-content: center;
+        border-radius: 12px;
+        box-shadow: 0px 0px 12px #d6d4d4;
+        cursor: pointer;
+    }
+@media (max-width: 765px) {
+    .lower_header_admn ul {
+        display: block !important;
+    }
+
+    .lower_header_admn li {
+        margin: 0.7em 0;
+    }
+}
+
