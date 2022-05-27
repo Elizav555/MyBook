@@ -6,7 +6,8 @@
             type: "GET",
             url: `/Book/PostComment?rating=${rating}&comment=${comment}&bookId=${bookId}`,
             error: function (data) {
-                console.error("Что-то пошло не так, повторите попытку, елси проблема не исчезнет повторите через некоторое время");
+                alert("Только буквы русского или английского алфавита;\n" +
+                    "Длина не должна превышать 120 символов")
             }
         }
     )

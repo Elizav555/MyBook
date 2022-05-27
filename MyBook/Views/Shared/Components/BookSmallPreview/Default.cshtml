@@ -1,13 +1,24 @@
 ﻿@model MyBook.Entities.Book
 
+@{
+    var rating = 0.0;
+    foreach (var modelRating in Model.Ratings)
+    {
+        rating += modelRating.Points;
+        
+    }
+    rating = (double) rating / Model.Ratings.Count;
+}
 <div class="card customBookCard">
     <a asp-controller="Book" asp-action="Book" asp-route-bookId="@Model.BookId" class="customBookCard_img_link">
         <img class="customBookCard_img" alt="" src="@(Model.ImgLinks.FirstOrDefault(link => link.Resolution == "thumbnail")?.Url)">
     </a>
     <div class="card-body">
         <h4 class="card-title oneLineDisplayText">@Model.Name</h4>
-        <i class="fa fa-download"></i><span class="text-secondary ms-2 downloadsCount">@Model.DownloadsCount</span>
-        @await Component.InvokeAsync("StarsRateResult", 5)
+        <i class="fa fa-download"></i><span class="text-secondary ms-2 me-2 downloadsCount">@Model.DownloadsCount</span>
+        <div>
+            <i class="fa fa-star"></i><span class="text-secondary  ms-2">@rating</span>
+        </div>
         <p class="card-text oneLineDisplayText">
             @foreach (var author in Model.AuthorBooks)
             {

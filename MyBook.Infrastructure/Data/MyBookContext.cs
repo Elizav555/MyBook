@@ -18,7 +18,7 @@ namespace MyBook.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyBook;Username=postgres;Password=password");
+                optionsBuilder.UseNpgsql("Host=ec2-54-75-184-144.eu-west-1.compute.amazonaws.com;Port=5432;Database=db1ukub0t05b55;Username=zzwityjsgvcicj;Password=b4c4a64c1c55787e6ebabbba342f9e34d77f11e76e1f3303f69eeaa165422bac");
             }
         }
 

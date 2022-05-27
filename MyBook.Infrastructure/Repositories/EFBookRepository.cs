@@ -22,8 +22,14 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     
     public IQueryable<Book> GetAllBooks()
     {
-        return DbSet.Include(book => book.AuthorBooks).ThenInclude(book => book.Author).Include(book => book.ImgLinks)
-            .Include(book => book.Description).ThenInclude(desc=>desc.DownloadLinks).Include(book => book.BookGenres).ThenInclude(book => book.Genre);
+        return DbSet.Include(book => book.AuthorBooks)
+            .ThenInclude(book => book.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description)
+            .ThenInclude(desc=>desc.DownloadLinks)
+            .Include(book => book.BookGenres)
+            .ThenInclude(book => book.Genre)
+            .Include(book => book.Ratings);
     }
 
     public IQueryable<Book> GetAllFreeBooks()
@@ -36,8 +42,12 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
 
     public IQueryable<Book> GetFreeBooks()
     {
-        return DbSet.Where(book => book.IsPaid == false).Include(book => book.AuthorBooks)
-            .ThenInclude(book => book.Author).Include(book => book.ImgLinks).Include(book => book.Description);
+        return DbSet.Where(book => book.IsPaid == false)
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(book => book.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description)
+            .Include(book => book.Ratings);
     }
 
     public Book? GetBookWithImgLinks(int bookId)
@@ -147,6 +157,7 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
             .Include(book => book.Description)
             .ThenInclude(desc => desc.DownloadLinks)
             .Include(book => book.BookGenres)
-            .ThenInclude(book => book.Genre);
+            .ThenInclude(book => book.Genre)
+            .Include(book => book.Ratings);
     }
 }

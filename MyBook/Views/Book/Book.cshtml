@@ -276,7 +276,7 @@
                         <label for="star-1" title="Оценка «1»"></label>
                     </div>
                     <div class="">
-                        <textarea type="text" class="form-control me-3 mb-3 mb-md-0 comment" style="max-height: 100px; overflow-wrap: anywhere;" placeholder="Напишите свой комментарий"></textarea>
+                        <textarea type="text" maxlength="120" class="form-control me-3 mb-3 mb-md-0 comment" style="max-height: 100px; overflow-wrap: anywhere;" placeholder="Напишите свой комментарий"></textarea>
                     </div>
                 </div>
                 <button onclick="postComment(@Model._resultBook.BookId)" data-bs-dismiss="modal" aria-label="Close" type="button" asp class="btn btn-outline-warning mb-4">Отправить</button>

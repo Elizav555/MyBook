@@ -1,5 +1,15 @@
 ﻿@model MyBook.Entities.Book
 
+
+@{
+    var rating = 0.0;
+    foreach (var modelRating in Model.Ratings)
+    {
+        rating += modelRating.Points;
+        
+    }
+    rating = (double) rating / Model.Ratings.Count;
+}
 <link rel="stylesheet" href="~/css/bookPreview.css">
 <div class="book_informat">
     <div class="booK_info_image">
@@ -14,7 +24,7 @@
             <a asp-controller="Book" asp-action="Book" asp-route-bookId="@Model.BookId">
                 <h2>@Model.Name</h2>
             </a>
-            @(await Component.InvokeAsync("StarsRateResult", 5))
+            <i class="fa fa-star"></i><span class="text-secondary  ms-2">@rating</span>
         </h3>
         <p class="author">
             @foreach (var authorBooks in Model.AuthorBooks)

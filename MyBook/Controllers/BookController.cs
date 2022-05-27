@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyBook.Core.Validation;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
@@ -21,7 +22,7 @@ namespace MyBook.Controllers
         private BookViewModel _viewModel;
         private readonly IGenericRepository<DownloadLink> _linksRepository;
         private readonly IGenericRepository<Rating> _ratingsRepository;
-
+        
         public BookController(EfBookRepository bookRepository,
             EFUserRepository userRepository,
             EFTypeRepository typeRepository,
@@ -87,8 +88,12 @@ namespace MyBook.Controllers
             };
         }
 
-        public async Task<PartialViewResult> PostComment(int rating, string comment, int bookId)
+        public async Task<IActionResult> PostComment(int rating, string comment, int bookId)
         {
+            if (!Validator.LettersAndSpaces.IsMatch(comment))
+            {
+                return BadRequest();
+            }
             var returnComment = new Rating();
             var user = await _userManager.GetUserAsync(User);
             var bookRatings = _bookRepository.GetWithInclude(book => book.BookId == bookId, book => book.Ratings)
