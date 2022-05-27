@@ -12,7 +12,6 @@ COPY ["MyBook.Infrastructure/MyBook.Infrastructure.csproj", "MyBook.Infrastructu
 RUN dotnet restore "MyBook/MyBook.csproj"
 RUN dotnet tool install -g dotnet-ef 
 ENV PATH $PATH:/root/.dotnet/tools
-RUN dotnet ef database update
 COPY . .
 WORKDIR "/src/MyBook"
 RUN dotnet build "MyBook.csproj" -c Release -o /app/build
