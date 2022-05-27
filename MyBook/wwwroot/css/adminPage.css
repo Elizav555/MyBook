@@ -169,3 +169,35 @@
         justify-content: center;
     }
 
+.phone_screen_center{
+    display: none;
+}
+@media (max-width: 992px) {
+    .full_size_center {
+        display: none;
+    }
+    .sub_table_content_admin{
+        background: none;
+    }
+    .phone_screen_center{
+        display: contents !important;
+    }
+}
+.item_card_center_phone{
+    background: white;
+    border-radius: 16px;
+    padding: 1.5em;
+    margin: 1em 0;
+    text-align: center;
+    justify-content: center;
+}
+    .item_card_center_phone .flex_but {
+        text-align: center;
+        justify-content: center;
+    }
+.book__genre {
+    background: #bfbdbd;
+    padding: 0.3em;
+    margin: 0.4em 0.4em 0 0;
+    border-radius: 10px;
+}

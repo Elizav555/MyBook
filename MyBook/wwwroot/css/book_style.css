@@ -375,7 +375,8 @@ b {
 }
 
 .book-genre-wrapper {
-    display: inline-block;
+  /*  display: inline-block;*/
+  display: flex;
     max-width: 100%;
 }
 .book-genre {
