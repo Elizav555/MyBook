@@ -223,128 +223,76 @@ namespace MyBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var book = new Book { Name = model.Name, ImgLinks = new List<ImgLink>(), IsForAdult = model.IsForAdult, IsPaid = model.IsPaid, PublishedDate = model.PublishedDate, Language = model.Language };
-                var entities = new List<object>();
-                if (model.GenreName != null)
-                {
-                    var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
-                    if (genreId != null)
-                    {
-                        var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
-                        entities.Add(bookGenre);
-                        book.BookGenres.Add(bookGenre);
-                    }
-                }
-                if (model.AuthorName != null)
-                {
-                    var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
-                    if (authorId != null)
-                    {
-                        var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
-                        book.AuthorBooks.Add(bookAuthor);
-                        entities.Add(bookAuthor);
-                    }
-                }
-                var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, Book = book };
-                book.Description = desc;
-                if (model.ImageLink != null)
-                {
-                    var imageLink = new ImgLink { Book = book, Url = model.ImageLink, Resolution = "thumbnail" };
-                    book.ImgLinks.Add(imageLink);
-                    entities.Add(imageLink);
-                }
-
-                if (!string.IsNullOrEmpty(model.UrlPDF))
-                {
-                    var pdfLink = new DownloadLink { BookDesc = desc, Format = "pdf", Url = model.UrlPDF };
-                    desc.DownloadLinks.Add(pdfLink);
-                    entities.Add(pdfLink);
-                }
-                if (!string.IsNullOrEmpty(model.UrlEPUB))
-                {
-                    var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
-                    desc.DownloadLinks.Add(epubLink);
-                    entities.Add(epubLink);
-                }
-
-                entities.Add(book);
-                entities.Add(desc);
-                await _genericRepository.CreateAll(entities);
+                await AddBookPrivate(model);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
                 return RedirectToAction("Successful", "Modals", modalModel);
             }
             return View("AddBookModal", model);
         }
 
+        private async Task AddBookPrivate(EditBookViewModel model)
+        {
+            var book = new Book { Name = model.Name, ImgLinks = new List<ImgLink>(), IsForAdult = model.IsForAdult, IsPaid = model.IsPaid, PublishedDate = model.PublishedDate, Language = model.Language };
+            var entities = new List<object>();
+            if (model.GenreName != null)
+            {
+                var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
+                if (genreId != null)
+                {
+                    var bookGenre = new BookGenre { Book = book, GenreId = (int)genreId };
+                    entities.Add(bookGenre);
+                    book.BookGenres.Add(bookGenre);
+                }
+            }
+            if (model.AuthorName != null)
+            {
+                var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
+                if (authorId != null)
+                {
+                    var bookAuthor = new AuthorBook { Book = book, AuthorId = (int)authorId };
+                    book.AuthorBooks.Add(bookAuthor);
+                    entities.Add(bookAuthor);
+                }
+            }
+            var desc = new BookDesc { Description = model.Description, DownloadLinks = new List<DownloadLink>(), PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0, Price = model.Price, Book = book };
+            book.Description = desc;
+            if (model.ImageLink != null)
+            {
+                var imageLink = new ImgLink { Book = book, Url = model.ImageLink, Resolution = "thumbnail" };
+                book.ImgLinks.Add(imageLink);
+                entities.Add(imageLink);
+            }
+
+            if (!string.IsNullOrEmpty(model.UrlPDF))
+            {
+                var pdfLink = new DownloadLink { BookDesc = desc, Format = "pdf", Url = model.UrlPDF };
+                desc.DownloadLinks.Add(pdfLink);
+                entities.Add(pdfLink);
+            }
+            if (!string.IsNullOrEmpty(model.UrlEPUB))
+            {
+                var epubLink = new DownloadLink { BookDesc = desc, Format = "epub", Url = model.UrlEPUB };
+                desc.DownloadLinks.Add(epubLink);
+                entities.Add(epubLink);
+            }
+
+            entities.Add(book);
+            entities.Add(desc);
+            await _genericRepository.CreateAll(entities);
+        }
+
         public async Task<IActionResult> EditBook(EditBookViewModel model)
         {
             if (ModelState.IsValid && model.BookId != null)
             {
-                var book = _bookRepository.GetFullBook((int)model.BookId);
+                var book = await _bookRepository.FindById((int)model.BookId);
                 if (book == null)
                 {
                     ModelState.AddModelError("BookNotFound", "Книга с таким айди не был найдена");
                     return View("EditBookModal", model);
                 }
-                book.Name = model.Name;
-                book.IsForAdult = model.IsForAdult;
-                book.IsPaid = model.IsPaid;
-                book.PublishedDate = model.PublishedDate;
-                book.Language = model.Language;
-                var entities = new List<object>();
-                var entitiesToDelete = new List<object>();
-                entitiesToDelete.AddRange(book.BookGenres);
-                entitiesToDelete.AddRange(book.AuthorBooks);
-                entitiesToDelete.AddRange(book.ImgLinks);
-                if (book.Description != null)
-                    entitiesToDelete.AddRange(book.Description.DownloadLinks);
-                else book.Description = new BookDesc();
-                if (model.GenreName != null)
-                {
-                    var genreId = _genreRepository.Get(it => it.Name == model.GenreName).FirstOrDefault()?.GenreId;
-                    if (genreId != null)
-                    {
-                        var bookGenre = new BookGenre { BookId = book.BookId, GenreId = (int)genreId };
-                        entities.Add(bookGenre);
-                        //book.BookGenres = new List<BookGenre> { bookGenre };
-                    }
-                }
-                if (model.AuthorName != null)
-                {
-                    var authorId = _authorRepository.Get(it => it.Name == model.AuthorName).FirstOrDefault()?.AuthorId;
-                    if (authorId != null)
-                    {
-                        var bookAuthor = new AuthorBook { BookId = book.BookId, AuthorId = (int)authorId };
-                        //book.AuthorBooks = new List<AuthorBook> { bookAuthor };
-                        entities.Add(bookAuthor);
-                    }
-                }
-                book.Description.Description = model.Description;
-                book.Description.PagesCount = model.PagesCount != null ? (int)model.PagesCount : 0;
-                book.Description.Price = model.Price;
-                if (model.ImageLink != null)
-                {
-                    var imageLink = new ImgLink { BookId = book.BookId, Url = model.ImageLink };
-                    //book.ImgLinks = new List<ImgLink> { imageLink };
-                    entities.Add(imageLink);
-                }
-
-                if (!string.IsNullOrEmpty(model.UrlPDF))
-                {
-                    var pdfLink = new DownloadLink { BookDesc = book.Description, Format = "pdf", Url = model.UrlPDF };
-                    //book.Description.DownloadLinks = new List<DownloadLink> { pdfLink };
-                    entities.Add(pdfLink);
-                }
-                if (!string.IsNullOrEmpty(model.UrlEPUB))
-                {
-                    var epubLink = new DownloadLink { BookDesc = book.Description, Format = "epub", Url = model.UrlEPUB };
-                    //book.Description.DownloadLinks = new List<DownloadLink> { epubLink };
-                    entities.Add(epubLink);
-                }
-                await _genericRepository.DeleteAll(entitiesToDelete);
-                await _genericRepository.CreateAll(entities);
-                //await _genericRepository.Update(book.Description, null);
-                await _bookRepository.Update(book);
+                await _bookRepository.Remove(book);
+                await AddBookPrivate(model);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "Book" };
                 return RedirectToAction("Successful", "Modals", modalModel);
             }
