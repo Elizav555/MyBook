@@ -375,7 +375,8 @@ b {
 }
 
 .book-genre-wrapper {
-    display: inline-block;
+  /*  display: inline-block;*/
+    display: flex;
     max-width: 100%;
 }
 .book-genre {
@@ -777,9 +778,10 @@ b {
     height: 140px;
 }
 
-#bookSearchPhoto{
+#bookSearchPhoto {
     width: 150px;
-    background: red;
+    text-align: left;
+    justify-content: left;
 }
 
 .bookSearch{

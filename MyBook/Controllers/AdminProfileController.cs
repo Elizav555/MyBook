@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBook.Entities;
@@ -11,7 +11,7 @@ using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
 {
-    /*[Authorize(Policy = "AdminsOnly")]*/
+    [Authorize(Policy = "AdminsOnly")]
     public class AdminProfileController : Controller
     {
         private readonly IGenericRepository<Type> _typeRepository;
