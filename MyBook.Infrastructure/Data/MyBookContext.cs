@@ -40,8 +40,6 @@ namespace MyBook.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-            
             modelBuilder.Entity<Author>(entity =>
             {
                 entity.ToTable("author");

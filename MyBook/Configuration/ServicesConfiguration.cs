@@ -18,7 +18,7 @@ public static class ServicesConfiguration
     {
         builder.Services.AddTransient<IUserValidator<User>, UserValidator>()
             .AddTransient<IPasswordValidator<User>, PasswordValidator>(serv => new PasswordValidator(6));
-
+        
         var defaultConnectionString = GetConnectionString(builder);
         builder.Services.AddDbContext<MyBookContext>(options =>
                 options.UseNpgsql(defaultConnectionString,
