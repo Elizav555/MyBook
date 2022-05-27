@@ -25,6 +25,10 @@
     <_ContentIncludedByDefault Remove="Pages\Components\BooksCarousel\Default.cshtml" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.js" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquey-validationtemp\dist\additional-methods.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquey-validationtemp\dist\additional-methods.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquey-validationtemp\dist\jquery.validate.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquey-validationtemp\dist\jquery.validate.min.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyBook.Infrastructure\MyBook.Infrastructure.csproj" />
