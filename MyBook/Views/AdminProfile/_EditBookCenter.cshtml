@@ -29,7 +29,9 @@
                     Name = bookCenter.Name,
                     Address = bookCenter.Address,
                     Phone = bookCenter.Phone,
-                    Description = bookCenter.Description
+                    Description = bookCenter.Description,
+                    Latitude = bookCenter.Latitude.ToString(),
+                    Longitude = bookCenter.Longitude.ToString()
                 };
                                 }
                                 <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditBookCenterModal", "AdminProfile",model)'">

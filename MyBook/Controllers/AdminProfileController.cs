@@ -6,6 +6,7 @@ using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
 using MyBook.Models.Admin;
 using Repositories;
+using System.Globalization;
 using System.Security.Claims;
 using Type = MyBook.Entities.Type;
 namespace MyBook.Controllers
@@ -327,7 +328,7 @@ namespace MyBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                var center = new BookCenter { Address = model.Address, Name = model.Name, Description = model.Description, Phone = model.Phone };
+                var center = new BookCenter { Address = model.Address, Name = model.Name, Description = model.Description, Phone = model.Phone, Latitude = Double.Parse(model.Latitude, CultureInfo.InvariantCulture), Longitude = Double.Parse(model.Longitude, CultureInfo.InvariantCulture) };
                 await _bookCenterRepository.Create(center);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
                 return RedirectToAction("Successful", "Modals", modalModel);
@@ -349,6 +350,8 @@ namespace MyBook.Controllers
                 center.Address = model.Address;
                 center.Description = model.Description;
                 center.Phone = model.Phone;
+                center.Latitude = Double.Parse(model.Latitude, CultureInfo.InvariantCulture);
+                center.Longitude = Double.Parse(model.Longitude, CultureInfo.InvariantCulture);
                 await _bookCenterRepository.Update(center, null);
                 var modalModel = new ModalsViewModel { ControllerName = "AdminProfile", ActionName = "ShowCurrent", CurrentPage = "BookCenter" };
                 return RedirectToAction("Successful", "Modals", modalModel);
