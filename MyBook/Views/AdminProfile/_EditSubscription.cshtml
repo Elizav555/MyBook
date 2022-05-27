@@ -9,7 +9,7 @@
 
         <section class="sub_table_admin container">
             <div class="sub_table_content_admin row col-lg-12">
-                <table class="">
+                <table class="full_screen">
                     <tr class="upper_table_row ">
                         <td>Подписка</td>
                         <td>Описание</td>
@@ -42,6 +42,32 @@
                         </tr>
                     }
                 </table>
+
+                <div class="phone_screen">
+                    @foreach (var type in Model.SubscrTypes)
+                    {<div class="phone_sub_card">
+                        <h4>Подписка</h4>
+                        <h5>@type.TypeName</h5>
+                        <h4>Описание</h4>
+                        <h5>@type.Description</h5>
+                        <h4>Стоимость</h4>
+                        <h5>@type.Price руб</h5>
+                        <h4>Действия</h4>
+                        <div class="flex_but">
+                            <button class="spec_but" type="button" onclick="location.href='@Url.Action("Delete", "Modals", new DeleteViewModel{ Id = type.TypeId, ReturnPage="Subscription"})'">Удалить</button>
+                            <button class="spec_but" type="button" onclick="location.href='@Url.Action("EditSubscriptionModal", "AdminProfile",new MyBook.Models.Admin.EditSubscrViewModel
+                        {
+                                TypeId = type.TypeId,
+                                 TypeName = type.TypeName,
+                                Price = type.Price,
+                                Description = type.Description
+                        })'">
+                                Редактировать
+                            </button>
+                        </div>
+                        </div>
+                    }
+                </div>
             </div>
             <div class="form-button">
                 <button class="btn-warning btn_spec" type="button" onclick="location.href='@Url.Action("AddSubscriptionModal", "AdminProfile",new MyBook.Models.Admin.EditSubscrViewModel())'">

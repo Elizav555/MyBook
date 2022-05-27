@@ -133,6 +133,9 @@
         box-shadow: 0px 0px 12px #d6d4d4;
         cursor: pointer;
     }
+.phone_screen{
+    display: none;
+}
 @media (max-width: 765px) {
     .lower_header_admn ul {
         display: block !important;
@@ -141,5 +144,28 @@
     .lower_header_admn li {
         margin: 0.7em 0;
     }
+    .full_screen{
+        display: none;
+    }
+    .phone_screen{
+        display: contents !important;
+    }
+    .sub_table_content_admin{
+        background: none;
+    }
 }
+.phone_sub_card {
+    background: white;
+    padding: 2em;
+    border-radius: 18px;
+    box-shadow: 0 0 15px #cfcccc;
+    margin: 1em 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+    .phone_sub_card .flex_but{
+        text-align: center;
+        justify-content: center;
+    }
 
