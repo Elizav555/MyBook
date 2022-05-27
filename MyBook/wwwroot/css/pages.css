@@ -1134,3 +1134,9 @@ li{
 .us_profil .form_label {
     padding-top: 1em;
 }
+.book_rev{
+    flex-wrap: wrap-reverse;
+}
+.book_rev div{
+   margin-bottom: 3em;
+}
