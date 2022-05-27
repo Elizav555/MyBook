@@ -10,8 +10,6 @@ COPY ["MyBook.Core/MyBook.Core.csproj", "MyBook.Core/"]
 COPY ["MyBook.SharedKernel/MyBook.SharedKernel.csproj", "MyBook.SharedKernel/"]
 COPY ["MyBook.Infrastructure/MyBook.Infrastructure.csproj", "MyBook.Infrastructure/"]
 RUN dotnet restore "MyBook/MyBook.csproj"
-RUN dotnet tool install -g dotnet-ef 
-ENV PATH $PATH:/root/.dotnet/tools
 COPY . .
 WORKDIR "/src/MyBook"
 RUN dotnet build "MyBook.csproj" -c Release -o /app/build

@@ -41,6 +41,15 @@ public static class ServicesConfiguration
             .AddScoped(typeof(IGenericRepository<>), typeof(EfGenericRepository<>))
             .AddTransient<IUserValidator<User>, UserValidator>()
             .AddTransient<IPasswordValidator<User>, PasswordValidator>(serv => new PasswordValidator(6));
+        var serviceProvider = builder.Services.BuildServiceProvider();
+        try
+        {
+            var dbContext = serviceProvider.GetRequiredService<MyBookContext>();
+            dbContext.Database.Migrate();
+        }
+        catch
+        {
+        }
 
         builder.Services.AddSignalR();
         builder.Services.AddDistributedMemoryCache();
