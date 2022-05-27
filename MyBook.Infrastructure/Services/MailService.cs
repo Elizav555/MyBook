@@ -31,7 +31,7 @@ namespace MyBook.Services
             }
             catch (Exception e)
             {
-                //TODO show error
+                //вTODO show error
             }
         }
 
