@@ -1,7 +1,7 @@
 ﻿let pageNumber = 1;
 checkShowMoreBooksBtn()
 function checkShowMoreBooksBtn() {
-    let length = $(".bookCard").length
+    let length = $(".book_informat").length
     let haveMoreBooks = length % 10 === 0 && length!==0;
     console.log(length)
     console.log(haveMoreBooks)
