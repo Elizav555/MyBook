@@ -1149,23 +1149,24 @@ li{
     height: 20em;
     display: flex;
     margin: 1em 0;
+    overflow: hidden;
 }
 .booK_info_image{
-    width: 100%;
+    width: 80%;
     text-align: center; 
     justify-content: center;
     margin: auto;
 }
 
 .booK_info_image img {
-    width: 100%;
+    width: 10%;
 }
 
 .booK_info_text {
     box-sizing: border-box;
     padding: 0em 1em;
     margin: 0 !important;
-    width: 100%;
+    width: 190%;
 }
 @media (max-width: 765px) {
     .book_informat {
