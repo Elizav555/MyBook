@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
-using Repositories;
+using Validator = MyBook.Core.Validation.Validator;
 
 namespace MyBook.ViewModels;
 
@@ -12,6 +13,7 @@ public class SearchViewModel
     private readonly EfBookRepository _bookRepository;
     private readonly EfAuthorRepository _authorRepository;
     private readonly EFUserRepository _userRepository;
+    [RegularExpression(Validator.LettersValidationString,ErrorMessage = "Только буквы")]
     public readonly string SearchString;
     public IQueryable<Book> Books { get; set; }
     public IQueryable<Author> Authors { get; set; }

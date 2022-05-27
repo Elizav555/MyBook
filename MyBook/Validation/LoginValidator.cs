@@ -17,7 +17,7 @@ namespace MyBook.Validation
                     Description = "Email должен быть действителен"
                 });
             }
-            if (!Regex.IsMatch(user.FirstName,Validator.Letters)|| !Regex.IsMatch(user.LastName, Validator.Letters))
+            if (!Regex.IsMatch(user.FirstName,Validator.LettersValidationString)|| !Regex.IsMatch(user.LastName, Validator.LettersValidationString))
             {
                 errors.Add(new IdentityError
                 {

@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MyBook.Core.Validation;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Models;

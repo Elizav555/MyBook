@@ -102,7 +102,7 @@ public class FreeBooksController : Controller
             _viewModel = new FreeBooksViewModel(_bookRepository, _genreRepository, _authorRepository,
                 _genresFilterGetter, _languageFilterGetter);
         }
-
+        
         return _viewModel;
     }
 }
