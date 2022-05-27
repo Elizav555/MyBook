@@ -70,6 +70,11 @@ namespace MyBook.Controllers
             var bookCenters = _bookCenterRepository.Get();
             return Json(bookCenters);
         }
+        public JsonResult GetBookCenter(string name)
+        {
+            var bookCenters = _bookCenterRepository.Get().Where(center => center.Name==name);
+            return Json(bookCenters);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
