@@ -3,6 +3,11 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+FROM mcr.microsoft.com/dotnet/core/sdk:6.0-buster AS build
+RUN dotnet tool install -g dotnet-ef --version 3.1.1 
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet ef --version
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["MyBook/MyBook.csproj", "MyBook/"]
