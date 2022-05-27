@@ -959,9 +959,9 @@ li{
     padding: 0em 2em 0 0;
 /*    border-radius: 16px;*/
 }
-.card_imgAuth {
+/*.card_imgAuth {
     max-width: 20%;
-}
+}*/
 /*----------------------footer----------------------*/
 .main_footer {
     position: absolute;
@@ -1139,4 +1139,45 @@ li{
 }
 .book_rev div{
    margin-bottom: 3em;
+}
+
+/*-----------------*/
+.book_informat {
+    box-shadow: 0px 0px 32px #d6d4d4;
+    border-radius: 5px;
+    padding: 1em 2%;
+    height: 20em;
+    display: flex;
+}
+.booK_info_image{
+    width: 100%;
+    text-align: center; 
+    justify-content: center;
+    margin: auto;
+}
+
+.booK_info_image img {
+    width: 100%;
+}
+
+.booK_info_text {
+    box-sizing: border-box;
+    padding: 0em 1em;
+    margin: 0 !important;
+}
+@media (max-width: 765px) {
+    .book_informat {
+        height: 100% !important;
+        flex-wrap: wrap !important;
+        padding: 0;
+    }
+    .booK_info_text {
+        padding: 0 1.5em;
+        margin: 0;
+    }
+    .booK_info_image{
+        padding: 1em 0;
+        margin: 0;
+        height: 16em;
+    }
 }

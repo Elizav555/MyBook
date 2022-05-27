@@ -1,17 +1,17 @@
 ﻿.postcard {
     display: flex;
-    /*
+    
     max-width: 1080px;
     min-height: 230px;
     max-height: 320px;
-*/
+
     width: 100%;
     margin: 1.5em 1em 0em 0;
 
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
     border-radius: 10px;
-    /*margin: 0 auto;
-    margin-top: 30px;*/
+    margin: 0 auto;
+    margin-top: 30px;
     padding: 1em;
     overflow: hidden;
     position: relative;
@@ -46,7 +46,7 @@
 
 .postcard_preview-txt{
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -61,7 +61,7 @@
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
     width: 150px;
     object-fit: contain;
-    height: 100%;
+    /*height: 100%;*/
 }
 
 .PreviewTitle{

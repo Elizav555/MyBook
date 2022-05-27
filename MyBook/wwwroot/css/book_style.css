@@ -378,7 +378,7 @@ b {
     display: inline-block;
     max-width: 100%;
 }
-/*.book-genre {
+.book-genre {
     padding: 3px 14px;
     font-size: 18px;
     font-weight: bold;
@@ -390,7 +390,7 @@ b {
 .book-genre:hover{
     cursor: pointer;
     background: #ffbf61;
-}*/
+}
 
 .book-genre {
     padding: 0.5em;
@@ -779,7 +779,7 @@ b {
 
 #bookSearchPhoto{
     width: 150px;
-    height: 200px;
+    background: red;
 }
 
 .bookSearch{
