@@ -1148,6 +1148,7 @@ li{
     padding: 1em 2%;
     height: 20em;
     display: flex;
+    margin: 1em 0;
 }
 .booK_info_image{
     width: 100%;
@@ -1164,6 +1165,7 @@ li{
     box-sizing: border-box;
     padding: 0em 1em;
     margin: 0 !important;
+    width: 100%;
 }
 @media (max-width: 765px) {
     .book_informat {
@@ -1178,6 +1180,6 @@ li{
     .booK_info_image{
         padding: 1em 0;
         margin: 0;
-        height: 16em;
+        height: 18em;
     }
 }
