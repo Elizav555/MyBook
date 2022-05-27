@@ -13,14 +13,14 @@ namespace MyBook.Controllers;
 
 public class SearchController : Controller
 {
-    private readonly IGenericRepository<Book> _bookRepository;
-    private readonly IGenericRepository<Author> _authorRepository;
+    private readonly EfBookRepository _bookRepository;
+    private readonly EfAuthorRepository _authorRepository;
     private readonly EFUserRepository _userRepository;
     private readonly UserManager<User> _userManager;
     private SearchViewModel _vIewModel;
 
-    public SearchController(IGenericRepository<Book> bookRepository,
-        IGenericRepository<Author> authorRepository,
+    public SearchController(EfBookRepository bookRepository,
+        EfAuthorRepository authorRepository,
         EFUserRepository userRepository,
         UserManager<User> userManager)
     {

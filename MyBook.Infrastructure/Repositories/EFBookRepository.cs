@@ -135,4 +135,17 @@ public class EfBookRepository : EfGenericRepository<Book>, IBookRepository
     }
     
     #endregion
+
+    public IQueryable<Book> GetSearchBooks(string searchString)
+    {
+        return DbSet
+            .Where(book => book.Name.Contains(searchString))
+            .Include(book => book.AuthorBooks)
+            .ThenInclude(book => book.Author)
+            .Include(book => book.ImgLinks)
+            .Include(book => book.Description)
+            .ThenInclude(desc => desc.DownloadLinks)
+            .Include(book => book.BookGenres)
+            .ThenInclude(book => book.Genre);
+    }
 }

@@ -27,5 +27,14 @@ public class EfAuthorRepository: EfGenericRepository<Author>,IAuthorRepository
             .Include(author => author.ImgLinks)
             .FirstOrDefault()!;
     }
+
+    public IQueryable<Author> GetSearchAuthors(string searchString)
+    {
+           return DbSet
+                .Where(author => author.Name.Contains(searchString))
+                .Include(author => author.AuthorBooks)
+                .ThenInclude(book => book.Book)
+                .Include(author => author.ImgLinks);
+    }
 }
 
