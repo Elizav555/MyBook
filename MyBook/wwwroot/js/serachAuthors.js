@@ -1,9 +1,9 @@
 ﻿let pageNumber = 1;
 let searchString = "";
+checkShowMoreAuthorsBtn()
 function checkShowMoreAuthorsBtn() {
-    haveMoreAuthors = $(".authorCard").length % 10 === 0;
-    console.log($(".authorCard").length)
-    console.log(haveMoreAuthors)
+    let length = $(".authorCard").length
+    haveMoreAuthors = length % 10 === 0 && length!==0;
     if (!haveMoreAuthors){
         $("#showMoreAuthors").prop('disabled', true);
     }
@@ -12,7 +12,6 @@ function checkShowMoreAuthorsBtn() {
     }
 }
 function showMoreAuthors(srchVal){
-    let search = srchVal
     $.ajax(
         {
             type: "GET",
@@ -25,26 +24,6 @@ function showMoreAuthors(srchVal){
             },
             error: function (data){
                 alert("Чота не так пошло");
-            }
-        }
-    )
-}
-
-function searchEditAuthor(){
-    searchValue = $("#searchString").val();
-    console.log("change",searchValue);
-    searchString = searchValue;
-    $.ajax(
-        {
-            type: "GET",
-            url:`/Search/SearchEditAuthors?page=${pageNumber}&searchString=${searchString}`,
-            success: function (data) {
-                var $response=$(data);
-                var resultDiv = $response.find("#list").html();
-                $(".books_information").html(resultDiv);
-            },
-            error: function (data){
-                alert("Что-то пошло не так, повторите попытку, елси проблема не исчезнет повторите через некоторое время");
             }
         }
     )

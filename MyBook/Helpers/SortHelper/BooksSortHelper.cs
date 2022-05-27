@@ -16,6 +16,11 @@ public static class BooksSortHelper
         {
             Text = "По дате выпуска",
             Value = "date",
+        },
+        new SelectListItem()
+        {
+            Text = "По кол-ву скач.",
+            Value = "downloads",
         }
     };
 }

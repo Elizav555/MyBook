@@ -15,7 +15,7 @@ public class LibraryViewModel
     private readonly IGenericRepository<Genre> genreRepository;
     public IQueryable<Book> AllBooks { get; set; }
     public IQueryable<Author> AllAuthors { get; set; }
-
+    
     private readonly EFGenreRepository _genreRepository;
     private readonly IGenresFilterGetter _genresFilterGetter;
     private readonly ILanguageFilterGetter _languageFilterGetter;

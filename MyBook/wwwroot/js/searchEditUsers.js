@@ -1,9 +1,8 @@
 ﻿let pageNumberUsers = 1;
 let searchStringUser = "";
+checkShowMoreUsersBtn()
 function checkShowMoreUsersBtn() {
     haveMoreAuthors = $(".userCard").length % 5 === 0;
-    console.log($(".userCard").length)
-    console.log(haveMoreAuthors)
     if (!haveMoreAuthors){
         $("#showMoreUsers").prop('disabled', true);
     }

@@ -45,6 +45,11 @@ public class FreeBooksController : Controller
                 _viewModel.AllBooks = _viewModel.AllBooks.OrderBy(book => book.PublishedDate);
                 break;
             }
+            case "downloads":
+            {
+                _viewModel.AllBooks = _viewModel.AllBooks.OrderByDescending(book => book.DownloadsCount);
+                break;
+            }
         }
         return View(_viewModel);
     }

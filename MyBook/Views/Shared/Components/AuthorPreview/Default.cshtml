@@ -1,7 +1,7 @@
 ﻿@model MyBook.Entities.Author
 
-<div class="container authorViewContainer">
-    <article class="postcard">
+<div class="container">
+    <article class="postcard authorCard">
         @{
             var image = Model.ImgLinks?.FirstOrDefault()?.Url;
             if (image == null)

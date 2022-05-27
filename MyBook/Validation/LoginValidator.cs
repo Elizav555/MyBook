@@ -1,25 +1,23 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MyBook.Entities;
 using System.Text.RegularExpressions;
+using MyBook.Core.Validation;
 
 namespace MyBook.Validation
 {
     public class UserValidator : IUserValidator<User>
     {
-        DateTime minDate = DateTime.Parse("06.04.1922");
-        const string letters = @"^([А-Я][а-яё]{2,50}|[A-Z][a-z]{2,50})$";
-        const string email = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
         public Task<IdentityResult> ValidateAsync(UserManager<User> manager, User user)
         {
             List<IdentityError> errors = new List<IdentityError>();
-            if (!Regex.IsMatch(user.Email, email))
+            if (!Regex.IsMatch(user.Email, Validator.Email))
             {
                 errors.Add(new IdentityError
                 {
                     Description = "Email должен быть действителен"
                 });
             }
-            if (!Regex.IsMatch(user.FirstName,letters)|| !Regex.IsMatch(user.LastName, letters))
+            if (!Regex.IsMatch(user.FirstName,Validator.Letters)|| !Regex.IsMatch(user.LastName, Validator.Letters))
             {
                 errors.Add(new IdentityError
                 {
@@ -27,7 +25,7 @@ namespace MyBook.Validation
                 });
             }
             var date = DateTime.Parse(user.BirthDate);
-            if (date.CompareTo(DateTime.Now.Date)>0 || date.CompareTo(minDate) < 0) 
+            if (date.CompareTo(DateTime.Now.Date)>0 || date.CompareTo(Validator.MinDate) < 0) 
             {
                 errors.Add(new IdentityError
                 {

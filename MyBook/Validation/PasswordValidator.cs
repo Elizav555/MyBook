@@ -12,7 +12,7 @@ namespace MyBook.Validation
         {
             RequiredLength = length;
         }
-
+        
         public Task<IdentityResult> ValidateAsync(UserManager<User> manager, User user, string password)
         {
             List<IdentityError> errors = new List<IdentityError>();

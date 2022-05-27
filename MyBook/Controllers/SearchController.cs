@@ -74,7 +74,7 @@ public class SearchController : Controller
         {
             _vIewModel = new SearchViewModel(_authorRepository, "",page);
         }
-
+            
         return View(_vIewModel);
     }
 

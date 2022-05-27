@@ -1,9 +1,11 @@
 ﻿let pageNumber = 1;
+checkShowMoreBooksBtn()
 function checkShowMoreBooksBtn() {
-    haveMoreAuthors = $(".bookCard").length % 10 === 0;
-    console.log($(".bookCard").length)
-    console.log(haveMoreAuthors)
-    if (!haveMoreAuthors){
+    let length = $(".bookCard").length
+    let haveMoreBooks = length % 10 === 0 && length!==0;
+    console.log(length)
+    console.log(haveMoreBooks)
+    if (!haveMoreBooks){
         $("#showMoreBooks").prop('disabled', true);
     }
     else {
