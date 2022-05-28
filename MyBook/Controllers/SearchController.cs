@@ -1,15 +1,11 @@
-﻿using System.Linq;
+﻿using System;
 using System.Security.Claims;
-using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyBook.Core.Validation;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
-using MyBook.Models;
 using MyBook.ViewModels;
-using Repositories;
 
 namespace MyBook.Controllers;
 
@@ -79,7 +75,7 @@ public class SearchController : Controller
             
         return View(_vIewModel);
     }
-
+    
     public PartialViewResult SearchEditBooks(int page, string searchString)
     {
         if (page == 0) page = 1;

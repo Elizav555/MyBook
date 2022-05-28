@@ -1,4 +1,8 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +10,7 @@ using MyBook.Core.Validation;
 using MyBook.Entities;
 using MyBook.Infrastructure.Repositories;
 using MyBook.Models;
-using MyBook.SharedKernel.Extensions;
+using MyBook.SharedKernel.SharedHelpers;
 using Repositories;
 
 

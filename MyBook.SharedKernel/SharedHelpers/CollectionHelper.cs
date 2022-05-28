@@ -1,6 +1,4 @@
-﻿using MyBook.Entities;
-
-namespace MyBook.SharedKernel.Extensions;
+﻿namespace MyBook.SharedKernel.SharedHelpers;
 
 public static class CollectionHelper<T>
 {
