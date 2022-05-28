@@ -47,7 +47,7 @@ namespace MyBook.Controllers
             var model = new PayViewModel();
             if (type != null)
             {
-                if ( genre == null)
+                if ( genre == null || !genre.Any())
                 {
                     var modalModel = new ModalsViewModel { ControllerName = "Subscription", ActionName = "Subscription" };
                     return RedirectToAction("Error", "Modals", modalModel);
@@ -82,7 +82,7 @@ namespace MyBook.Controllers
             var model = new PayViewModel();
             if (type != null)
             {
-                if (author == null)
+                if (author == null || !author.Any())
                 {
                     var modalModel = new ModalsViewModel { ControllerName = "Subscription", ActionName = "Subscription" };
                     return RedirectToAction("Error", "Modals", modalModel);
